@@ -1,2 +1,2 @@
-# TarsDocs
-The documentations of TARS
+# Initial page
+
