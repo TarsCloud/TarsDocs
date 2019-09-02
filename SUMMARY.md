@@ -5,6 +5,7 @@
   * [Board](our-organization/board.md)
   * [Project Management Committee](our-organization/project-management-committee.md)
   * [End User Community](our-organization/end-user-community.md)
+  * [Contacts](our-organization/contacts.md)
 * [Our Community](our-community/README.md)
   * [Communication](our-community/communication.md)
   * [Meetup](our-community/meetup.md)
@@ -15,5 +16,5 @@
     * [Enterprise Certification](our-community/certification/enterprise-certification.md)
 * [Projects Documentation](projects-documentation/README.md)
   * [TARS Documentation](projects-documentation/tars-documentation/README.md)
-    * [Introduction](projects-documentation/tars-documentation/introduction.md)
+    * [Features](projects-documentation/tars-documentation/introduction.md)
 

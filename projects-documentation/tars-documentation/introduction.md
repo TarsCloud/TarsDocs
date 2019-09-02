@@ -1,16 +1,4 @@
-# Introduction
-
-## Introduction
-
-
-
-Tars is an open-source version of TAF which has being used in Tencent for years. The name, Tars, comes from the robot in the movie Interstellar. In the movie, Tars has a friendly interactive mode - everyone who first meets him can interact with him easily. The robot Tars can accomplish missions efficiently, even under hard conditions.
-
-The open-source project Tars carries the same mission as robot Tars does. It is designed for high reliability, high performance, and efficient service management. By significantly reducing system operation work, developers can focus on business logic and meet fast changes of user requirements.
-
-Right now, thousands of services in Tencent have been developed with TAF, running on tens of thousands of machines.
-
-Tars is an open-source microservics platform. It contains a high-performance RPC framework and a service management platform. Based on Tars, you can develop a reliable microservices system efficiently.
+# Features
 
 ## Design Principles
 
@@ -121,7 +109,7 @@ Callback：Base class for callback of client logic.
 
 ## Characters
 
-### tars protocol
+### Tars Protocol
 
 Tars protocol is an implementation for IDL language. It is binary, extensible and cross-platform. Thus, servant objects implemented in different languages can communicate with each other through RPC calls.
 
