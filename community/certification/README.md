@@ -8,7 +8,7 @@ The certification is global, authoritative and practical.
 
 TARS Foundation is an international, non-profit, software organization. Our certification is for all people from any country.
 
-* authoritative
+* Authoritative
 
 All content, such as certification process, training materials, exams, are developed by the TARS Foundation's official technical experts. The certification process is strictly in accordance with  rules.
 
@@ -16,7 +16,7 @@ All content, such as certification process, training materials, exams, are devel
 
 For individuals, certifications can be used as a strong technical proof of projects. 
 
-For enterprises, if an enterprise passes the certification, it means the enterprise has reached a higher level in the application of projects in microservices, which can be a guarantee for your partners and end user.
+For enterprises, if an enterprise passes the certification, it means the enterprise has reached a higher level in some aspects of this project, which can be a guarantee for your partners and end user.
 
 It is a guarantee for employees to cooperate with the project technology.
 

@@ -2,26 +2,26 @@
 
 * [Readme.md](README.md)
 
-## Organization <a id="our-organization-1"></a>
+## Organization
 
-* [End User Community](our-organization-1/end-user-community.md)
-* [Project Management Committee](our-organization-1/project-management-committee.md)
-* [Board](our-organization-1/board.md)
-* [Contacts](our-organization-1/contacts.md)
+* [End User Community](organization/end-user-community.md)
+* [Project Management Committee](organization/project-management-committee.md)
+* [Board](organization/board.md)
+* [Contacts](organization/contacts.md)
 
-## Community <a id="our-community-1"></a>
+## Community
 
-* [Communication](our-community-1/communication.md)
-* [Meetup](our-community-1/meetup.md)
-* [Conference](our-community-1/conference.md)
-* [Training](our-community-1/training.md)
-* [Certification](our-community-1/certification/README.md)
-  * [Individual Certification](our-community-1/certification/individual-certification.md)
-  * [Enterprise Certification](our-community-1/certification/enterprise-certification.md)
+* [Communication](community/communication.md)
+* [Meetup](community/meetup.md)
+* [Conference](community/conference.md)
+* [Training](community/training.md)
+* [Certification](community/certification/README.md)
+  * [Individual Certification](community/certification/individual-certification.md)
+  * [Enterprise Certification](community/certification/enterprise-certification.md)
 
-## Projects <a id="our-projects"></a>
+## Projects
 
-* [Projects Documentation](our-projects/projects-documentation/README.md)
-  * [TARS Documentation](our-projects/projects-documentation/tars-documentation/README.md)
-    * [Features](our-projects/projects-documentation/tars-documentation/introduction.md)
+* [TARS](projects/tars-documentation.md)
+* [TSeer](projects/tseer.md)
+* [DCache](projects/dcache.md)
 

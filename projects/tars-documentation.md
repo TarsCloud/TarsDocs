@@ -1,10 +1,16 @@
-# Features
+---
+description: 'https://github.com/tarsCloud'
+---
+
+# TARS
+
+TARS is a high-performance RPC framework based on TARS protocol that provides an integrated solution of microservice governance for developers and operators. TARS was developed by Tencent, TARS is multi-language and agile R&D, has high availability, efficient operation, and it is out-of-the-box. TARS is a perfect practice of DevOps and massive services dedicated to solving problems for developers and operators. For more information please refer to [github.com/tarscloud](www.github.com/tarscloud)
 
 ## Design Principles
 
 Tars manages services in microservice style. Tars partitions the system into abstraction layers:
 
-![Design Principles of Tars](../../../.gitbook/assets/tars-en.png)
+![Design Principles of Tars](../.gitbook/assets/tars-en.png)
 
 As shown in the picture, the bottom layer is the protocol layer which unifies bussiness communication protocols by providing an IDL \(Interface Definition Language\) file. The goal of the protocol layer is the interoperability of diverse communication with standard protocols. The design of this conceptual framework characterizes and standardizes the communication functions of frameworks without regard to their underlying network structure and technology.
 
@@ -18,7 +24,7 @@ The top layer is operation layer. It provides tools for SRE\(Site Reliability En
 
 ### Topology
 
-![Topology of Tars](../../../.gitbook/assets/tars_top_en.png)
+![Topology of Tars](../.gitbook/assets/tars_top_en.png)
 
 A platform built with Tars can be divided into two major parts: Service nodes and common framework nodes.
 
@@ -58,7 +64,7 @@ In summary, in order to deploy and operate a server, tarsnode on every service n
 
 ### Service Interaction Flow Chart
 
-![Service Interaction](../../../.gitbook/assets/tars_jiaohu.png)
+![Service Interaction](../.gitbook/assets/tars_jiaohu.png)
 
 When the platform is in operation, servers cooperate with each other. Interaction among servers can be classified into two categories: a\) Interaction among servers; b\) Interaction between servers and common framework services.
 
@@ -74,7 +80,7 @@ Client visit server: When a client try to visit a service, it needs to connect t
 
 ### Web Management System \(tarsweb\)
 
-![Sample of tarsweb](../../../.gitbook/assets/tars_web_system_en.png)
+![Sample of tarsweb](../.gitbook/assets/tars_web_system_en.png)
 
 It contains function as below:
 
@@ -83,7 +89,7 @@ It contains function as below:
 
 ### Service Architecture
 
-![Core Server and Client Architecture](../../../.gitbook/assets/tars_server_client.png)
+![Core Server and Client Architecture](../.gitbook/assets/tars_server_client.png)
 
 Server side: NetThread: It receives and sends packets. It manages connections and works in multiple threads using EPOLL ET mode. Both TCP and UDP connection are supported.
 
@@ -107,6 +113,26 @@ AsyncThread： The thread that process response for asynchronous requests.
 
 Callback：Base class for callback of client logic.
 
+## Features
+
+### Multi-programming Language
+
+TARS uses IDL, Interface Description Language, to support many programming languages, such as C++, Java, Node.JS, PHP, Python, and Golang. In this way, programs written in different languages or on different platforms can communicate with each other.
+
+### Agile R&D
+
+According to the interface description file, TARS can automatically generate basic communication code between client and server. Developers only need to focus on business logic and provide service to the outside. TARS can be integrated into component management, code scanning, testing, and other tools or platforms, by helping to detect and to fix the problems of code quality. TARS provides high extensibility of its microservices system, it does not affect the running of existing service when adding interface or expanding service.
+
+### High Availability
+
+The business service is registered with a naming service, and the client gets the actual service address from the service name. When the service node cannot report heartbeat due to breakdown, the naming service will no longer return the address of the faulty node to the client, and the client will automatically make a decision according to the abnormal situation and shield the fault. TARS supports intelligent scheduling based on network and server state, such as location and latency. It also provides IDC, SET grouping, and other functions to meet requirements of customized scheduling. In order to prevent system crash caused by traffic burst or server failure, TARS uses non-blocking asynchronous request queue and monitors the length of the queue to ensure operation of the system.
+
+### Efficient Operation
+
+The lossless change function of TARS makes the function module not affect the overall operation of the system in the process of changing through the way of grayscale. Additionally, it can support multi-dimensional monitoring based on service call data, log statistics, feature interface, and notification alarm. For self-management, TARS has a complete set of visual management platform in order to make monitoring more intuitive, the configuration modification is easier and safer, and service management is very convenient.
+
+By supporting multi-language, agile R&D, high availability, efficient operation, TARS has become the right hand to developers and operators, and the common choice of more than 100 typical applications. TARS was born on our decades of precipitation. TARS is a brainchild of the open-source community, a powerful and loyal partner, growing with millions of developers and operators in the mysterious Internet universe.
+
 ## Characters
 
 ### Tars Protocol
@@ -121,7 +147,7 @@ Composite type include: enum, const, struct, vector, and map.
 
 For example:
 
-![](../../../.gitbook/assets/tars_tarsproto.png)
+![](../.gitbook/assets/tars_tarsproto.png)
 
 ### Invoke Mode
 
@@ -133,13 +159,13 @@ The framework uses name service for service register and discovery. Client gets 
 
 The supported load balance policies are round-robin, hash, weighted policy.
 
-![](../../../.gitbook/assets/tars_junheng_en.png)
+![](../.gitbook/assets/tars_junheng_en.png)
 
 ### Fault Tolerance
 
 It's implemented with two ways: name service excluded and client shielding.
 
-![](../../../.gitbook/assets/tars_rongcuo_en.png)
+![](../.gitbook/assets/tars_rongcuo_en.png)
 
 ame service excluded: Servers send heartbeat to name service, if some server failed, name service will exclude it from address list. This policy needs server heartbeat and client pull address list, it'll take effect in one minute.
 
@@ -151,23 +177,23 @@ In order to exclude failed server more timely, client shields servers based on r
 
 To avoid overloading the system because of burst requests or machine fault, tars handles this scenario in the framework. In order to improve system throughput, server uses request queue to process request asynchronously. Server monitors the length of the queue. If the length exceeds a threshold, the server refuses new requests. If a request stays in the queue for a long time, the server drops the request, too.
 
-![](../../../.gitbook/assets/tars_overload_en.png)
+![](../.gitbook/assets/tars_overload_en.png)
 
 ### Request Tracing
 
 The framework provided functions for tracing a specific request of a service, the traced request is labeled. The label is forwarded to server which is called because of the labeled request. Servers report logs for traced request to log server. User can analysis logs for traced request and diagnose problems.
 
-![](../../../.gitbook/assets/tars_dye_en.png)
+![](../.gitbook/assets/tars_dye_en.png)
 
 ### IDC Group & Set Group
 
 In order to reduce response time of calls among servers and minimize influence of network failure, tars groups server according to their locations. When a client queries servers of a service, tars return servers in nearest locations.
 
-![Sample of IDC Group](../../../.gitbook/assets/tars_idc_en.png)
+![Sample of IDC Group](../.gitbook/assets/tars_idc_en.png)
 
 To facilitate service management, tars groups servers into sets. Clients in a set can only send request to servers in the same set. Thus, servers in different sets can be isolated and operators can manage user requests in a finer way.
 
-![Sample of Set Group](../../../.gitbook/assets/tars_set_en.png)
+![Sample of Set Group](../.gitbook/assets/tars_set_en.png)
 
 See details in tars\_idc\_set.md.
 
@@ -177,15 +203,15 @@ The framework supports following data report function in order to monitor the qu
 
 * It reports invoke statistics among servers to let user check flow, delay, timeout, exception about services.
 
-![](../../../.gitbook/assets/tars_stat_en.png)
+![](../.gitbook/assets/tars_stat_en.png)
 
 * It reports user-defined properties to tarsproperty. Thus developer can check the status of a server or service. The user-defined properties can be memory use, queue length, cache hit rate, etc.
 
-![](../../../.gitbook/assets/tars_property_en.png)
+![](../.gitbook/assets/tars_property_en.png)
 
 * It reports server status change and exception. Developers can check the time a server is published, restarted, crashed.
 
-![](../../../.gitbook/assets/tars_notify.png)
+![](../.gitbook/assets/tars_notify.png)
 
 ### Centralized Configuration
 
