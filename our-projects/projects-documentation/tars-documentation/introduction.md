@@ -4,7 +4,7 @@
 
 Tars manages services in microservice style. Tars partitions the system into abstraction layers:
 
-![Design Principles of Tars](../../.gitbook/assets/tars-en.png)
+![Design Principles of Tars](../../../.gitbook/assets/tars-en.png)
 
 As shown in the picture, the bottom layer is the protocol layer which unifies bussiness communication protocols by providing an IDL \(Interface Definition Language\) file. The goal of the protocol layer is the interoperability of diverse communication with standard protocols. The design of this conceptual framework characterizes and standardizes the communication functions of frameworks without regard to their underlying network structure and technology.
 
@@ -18,7 +18,7 @@ The top layer is operation layer. It provides tools for SRE\(Site Reliability En
 
 ### Topology
 
-![Topology of Tars](../../.gitbook/assets/tars_top_en.png)
+![Topology of Tars](../../../.gitbook/assets/tars_top_en.png)
 
 A platform built with Tars can be divided into two major parts: Service nodes and common framework nodes.
 
@@ -58,7 +58,7 @@ In summary, in order to deploy and operate a server, tarsnode on every service n
 
 ### Service Interaction Flow Chart
 
-![Service Interaction](../../.gitbook/assets/tars_jiaohu.png)
+![Service Interaction](../../../.gitbook/assets/tars_jiaohu.png)
 
 When the platform is in operation, servers cooperate with each other. Interaction among servers can be classified into two categories: a\) Interaction among servers; b\) Interaction between servers and common framework services.
 
@@ -74,7 +74,7 @@ Client visit server: When a client try to visit a service, it needs to connect t
 
 ### Web Management System \(tarsweb\)
 
-![Sample of tarsweb](../../.gitbook/assets/tars_web_system_en.png)
+![Sample of tarsweb](../../../.gitbook/assets/tars_web_system_en.png)
 
 It contains function as below:
 
@@ -83,7 +83,7 @@ It contains function as below:
 
 ### Service Architecture
 
-![Core Server and Client Architecture](../../.gitbook/assets/tars_server_client.png)
+![Core Server and Client Architecture](../../../.gitbook/assets/tars_server_client.png)
 
 Server side: NetThread: It receives and sends packets. It manages connections and works in multiple threads using EPOLL ET mode. Both TCP and UDP connection are supported.
 
@@ -121,7 +121,7 @@ Composite type include: enum, const, struct, vector, and map.
 
 For example:
 
-![](../../.gitbook/assets/tars_tarsproto.png)
+![](../../../.gitbook/assets/tars_tarsproto.png)
 
 ### Invoke Mode
 
@@ -133,13 +133,13 @@ The framework uses name service for service register and discovery. Client gets 
 
 The supported load balance policies are round-robin, hash, weighted policy.
 
-![](../../.gitbook/assets/tars_junheng_en.png)
+![](../../../.gitbook/assets/tars_junheng_en.png)
 
 ### Fault Tolerance
 
 It's implemented with two ways: name service excluded and client shielding.
 
-![](../../.gitbook/assets/tars_rongcuo_en.png)
+![](../../../.gitbook/assets/tars_rongcuo_en.png)
 
 ame service excluded: Servers send heartbeat to name service, if some server failed, name service will exclude it from address list. This policy needs server heartbeat and client pull address list, it'll take effect in one minute.
 
@@ -151,23 +151,23 @@ In order to exclude failed server more timely, client shields servers based on r
 
 To avoid overloading the system because of burst requests or machine fault, tars handles this scenario in the framework. In order to improve system throughput, server uses request queue to process request asynchronously. Server monitors the length of the queue. If the length exceeds a threshold, the server refuses new requests. If a request stays in the queue for a long time, the server drops the request, too.
 
-![](../../.gitbook/assets/tars_overload_en.png)
+![](../../../.gitbook/assets/tars_overload_en.png)
 
 ### Request Tracing
 
 The framework provided functions for tracing a specific request of a service, the traced request is labeled. The label is forwarded to server which is called because of the labeled request. Servers report logs for traced request to log server. User can analysis logs for traced request and diagnose problems.
 
-![](../../.gitbook/assets/tars_dye_en.png)
+![](../../../.gitbook/assets/tars_dye_en.png)
 
 ### IDC Group & Set Group
 
 In order to reduce response time of calls among servers and minimize influence of network failure, tars groups server according to their locations. When a client queries servers of a service, tars return servers in nearest locations.
 
-![Sample of IDC Group](../../.gitbook/assets/tars_idc_en.png)
+![Sample of IDC Group](../../../.gitbook/assets/tars_idc_en.png)
 
 To facilitate service management, tars groups servers into sets. Clients in a set can only send request to servers in the same set. Thus, servers in different sets can be isolated and operators can manage user requests in a finer way.
 
-![Sample of Set Group](../../.gitbook/assets/tars_set_en.png)
+![Sample of Set Group](../../../.gitbook/assets/tars_set_en.png)
 
 See details in tars\_idc\_set.md.
 
@@ -177,15 +177,15 @@ The framework supports following data report function in order to monitor the qu
 
 * It reports invoke statistics among servers to let user check flow, delay, timeout, exception about services.
 
-![](../../.gitbook/assets/tars_stat_en.png)
+![](../../../.gitbook/assets/tars_stat_en.png)
 
 * It reports user-defined properties to tarsproperty. Thus developer can check the status of a server or service. The user-defined properties can be memory use, queue length, cache hit rate, etc.
 
-![](../../.gitbook/assets/tars_property_en.png)
+![](../../../.gitbook/assets/tars_property_en.png)
 
 * It reports server status change and exception. Developers can check the time a server is published, restarted, crashed.
 
-![](../../.gitbook/assets/tars_notify.png)
+![](../../../.gitbook/assets/tars_notify.png)
 
 ### Centralized Configuration
 
