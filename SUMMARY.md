@@ -2,26 +2,26 @@
 
 * [Readme.md](README.md)
 
-## Organization
+## Organization <a id="development"></a>
 
-* [End User Community](organization/end-user-community.md)
-* [Project Management Committee](organization/project-management-committee.md)
-* [Board](organization/board.md)
-* [Contacts](organization/contacts.md)
+* [End User Community](development/end-user-community.md)
+* [Project Management Committee](development/project-management-committee.md)
+* [Board](development/board.md)
+* [Contacts](development/contacts.md)
 
-## Community
+## Community <a id="maintenance"></a>
 
-* [Communication](community/communication.md)
-* [Meetup](community/meetup.md)
-* [Conference](community/conference.md)
-* [Training](community/training.md)
-* [Certification](community/certification/README.md)
-  * [Individual Certification](community/certification/individual-certification.md)
-  * [Enterprise Certification](community/certification/enterprise-certification.md)
+* [Communication](maintenance/communication.md)
+* [Meetup](maintenance/meetup.md)
+* [Conference](maintenance/conference.md)
+* [Training](maintenance/training.md)
+* [Certification](maintenance/certification/README.md)
+  * [Individual Certification](maintenance/certification/individual-certification.md)
+  * [Enterprise Certification](maintenance/certification/enterprise-certification.md)
 
-## Projects
+## Projects <a id="contributing"></a>
 
-* [TARS](projects/tars-documentation.md)
-* [TSeer](projects/tseer.md)
-* [DCache](projects/dcache.md)
+* [TARS](contributing/tars-documentation.md)
+* [TSeer](contributing/tseer.md)
+* [DCache](contributing/dcache.md)
 
