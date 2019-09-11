@@ -2,12 +2,12 @@
 
 * [Readme.md](README.md)
 
-## Organization
+## Development
 
-* [End User Community](organization/end-user-community.md)
-* [Project Management Committee](organization/project-management-committee.md)
-* [Board](organization/board.md)
-* [Contacts](organization/contacts.md)
+* [End User Community](development/end-user-community.md)
+* [Project Management Committee](development/project-management-committee.md)
+* [Board](development/board.md)
+* [Contacts](development/contacts.md)
 
 ## Community
 
