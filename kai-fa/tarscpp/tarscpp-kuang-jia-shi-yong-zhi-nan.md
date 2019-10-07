@@ -11,7 +11,6 @@
 编写tars文件如下，Hello.tars：
 
 ```text
-
 module TestApp
 {
 
@@ -22,7 +21,6 @@ interface Hello
 };
 
 }; 
-
 ```
 
 ### 1.2. 编译接口文件

@@ -4,7 +4,7 @@
 
 我们基于 Tars 体系研发出 Tars.js 以便用户在不改变异构系统整体架构的情况下快速搭建（迁移） Node.js 服务，并可非常方便的将原来的单一服务拆分为多个（逻辑）子服务。
 
-![](../.gitbook/assets/tarsjs_architecture.png)
+![](../../.gitbook/assets/tarsjs_architecture.png)
 
 Tars.js 在腾讯内部经过 5 年多的沉淀与迭代（Node.js@0.10版本即提供支持），广泛运用于腾讯QQ浏览器、腾讯桌面浏览器、腾讯地图、应用宝、腾讯手机管家、互联网+、腾讯医疗、腾讯觅影、保险、彩票等几十个重要业务中，日承担了上百亿流量。
 
@@ -19,7 +19,7 @@ Tars.js 在腾讯内部经过 5 年多的沉淀与迭代（Node.js@0.10版本即
 * 支持 Tars RPC 调用与染色（模调自动上报）。
 * 支持在线发送管理命令、拉取服务配置。
 * 独创 LongStackTrace™ 异常跟踪机制。
-* …… 更多特性可访问 [@tars/node-agent](https://www.npmjs.com/package/@tars/node-agent) 了解
+* …… 更多特性可访问 [@tars/node-agent ](tars-node-agent.md)了解
 
 ### 设计理念
 
@@ -52,15 +52,15 @@ Tars.js 根据不同的业务类型提供差异化运营方案：
 
 由于篇幅有限未能展示所有能力，如果您有更多需求（如 RPC 调用等）可使用 Tars.js 所提供的模块（如下）实现：
 
-* [@tars/stream](https://www.npmjs.com/package/@tars/stream) : Tars\(Tup\) 协议编解码模块，可结合 [tars2node](https://github.com/tars-node/tars2node) 使用。
-* [@tars/rpc](https://www.npmjs.com/package/@tars/rpc) : Tars RPC 调用模块。
-* [@tars/logs](https://www.npmjs.com/package/@tars/logs)：日志组件，包含（按大小、时间）滚动与远程日志。
-* [@tars/config](https://www.npmjs.com/package/@tars/config)：用于在线获取服务配置文件。
-* [@tars/monitor](https://www.npmjs.com/package/@tars/monitor)：提供服务监控、特性监控与PP监控上报支持。
-* [@tars/notify](https://www.npmjs.com/package/@tars/notify)：用于服务（告警）消息上报。
-* [@tars/utils](https://www.npmjs.com/package/@tars/utils)：辅助工具集合，包含 Tars 配置文件与 Tars RPC Endpoint 解析器。
-* [@tars/dyeing](https://www.npmjs.com/package/@tars/dyeing)：Tars RPC 染色定义模块。
-* [@tars/registry](https://www.npmjs.com/package/@tars/registry)：用于 Tars 名字服务查询（Servant ===&gt; Endpoint）。
+* [@tars/stream ](tars-stream.md): Tars\(Tup\) 协议编解码模块，可结合 [tars2node](https://github.com/tars-node/tars2node) 使用。
+* [@tars/rpc](tars-rpc.md) : Tars RPC 调用模块。
+* [@tars/logs](tars-logs.md)：日志组件，包含（按大小、时间）滚动与远程日志。
+* [@tars/config](tars-config.md)：用于在线获取服务配置文件。
+* [@tars/monitor](tars-monitor.md)：提供服务监控、特性监控与PP监控上报支持。
+* [@tars/notify](tars-notify.md)：用于服务（告警）消息上报。
+* [@tars/utils](tars-utils.md)：辅助工具集合，包含 Tars 配置文件与 Tars RPC Endpoint 解析器。
+* [@tars/dyeing](tars-dyeing.md)：Tars RPC 染色定义模块。
+* @tars/registry：用于 Tars 名字服务查询（Servant ===&gt; Endpoint）。
 
 每个模块（点击名称跳转）均有极为详细的文档（README）方便您在任何时候查阅。
 
