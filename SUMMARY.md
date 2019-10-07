@@ -27,10 +27,10 @@
 
 ## 开发 & 运维 <a id="kai-fa"></a>
 
-* [tars http1/2支持](kai-fa/untitled.md)
-* [tars tls通信支持](kai-fa/tars-tls-tong-xin-zhi-chi.md)
-* [tars 调用链](kai-fa/tars-tiao-yong-lian.md)
-* [tars鉴权功能](kai-fa/tars-jian-quan-gong-neng.md)
+* [HTTP 1/2支持](kai-fa/untitled.md)
+* [TLS通信支持](kai-fa/tars-tls-tong-xin-zhi-chi.md)
+* [调用链](kai-fa/tars-tiao-yong-lian.md)
+* [鉴权功能](kai-fa/tars-jian-quan-gong-neng.md)
 * [业务配置](kai-fa/ye-wu-pei-zhi.md)
 * [服务监控](kai-fa/fu-wu-jian-kong.md)
 * [模板配置](kai-fa/mo-ban-pei-zhi.md)

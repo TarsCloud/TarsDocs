@@ -1,4 +1,4 @@
-# tars http1/2支持
+# HTTP 1/2支持
 
 Tars使用[nghttp2库](https://www.nghttp2.org/)支持了http2协议，对协议库做了RPC封装，使得对业务开发几乎透明，用起来非常方便。由于复用了 Tars rpc，因此也拥有了同步和异步以及超时的特性，并能够利用tars stat上报调用质量。
 
