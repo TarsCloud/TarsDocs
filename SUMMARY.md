@@ -68,6 +68,12 @@
   * [使用实践](kai-fa/tarsphp/shi-yong-shi-jian.md)
   * [Tars 平台针对 PHP 修改说明](kai-fa/tarsphp/tars-ping-tai-zhen-dui-php-xiu-gai-shuo-ming.md)
   * [tars2php 使用说明](kai-fa/tarsphp/tars2php-zi-dong-sheng-cheng-php-lei-gong-ju-shi-yong-shuo-ming.md)
+  * [Swoole框架如何接入Tars](kai-fa/tarsphp/swoole-kuang-jia-ru-he-jie-ru-tars.md)
+  * [与thinkphp结合使用](kai-fa/tarsphp/yu-thinkphp-jie-he-shi-yong.md)
+  * [与Swoft结合使用](kai-fa/tarsphp/yu-swoft-jie-he-shi-yong.md)
+  * [与Laravel结合使用](kai-fa/tarsphp/yu-laravel-jie-he-shi-yong.md)
+  * [与Yii2结合使用](kai-fa/tarsphp/yu-yii2-jie-he-shi-yong.md)
+  * [持续集成方案](kai-fa/tarsphp/chi-xu-ji-cheng-fang-an.md)
 * [Tars.js](kai-fa/tars.js/README.md)
   * [@tars/stream](kai-fa/tars.js/tars-stream.md)
   * [@tars/rpc](kai-fa/tars.js/tars-rpc.md)
@@ -83,8 +89,15 @@
 
 ## 案例 <a id="yun-wei"></a>
 
-* [TarsCPP](yun-wei/untitled/README.md)
-  * [Untitled](yun-wei/untitled/untitled-1.md)
+* [TarsCPP](yun-wei/untitled.md)
+* [TarsJava](yun-wei/tarsjava.md)
+* [TarsGo](yun-wei/tarsgo.md)
+* [TarsPHP](yun-wei/tarsphp/README.md)
+  * [搭建HttpServer](yun-wei/tarsphp/da-jian-httpserver.md)
+  * [搭建TimerServer](yun-wei/tarsphp/da-jian-timerserver.md)
+  * [搭建TcpServer](yun-wei/tarsphp/da-jian-tcpserver.md)
+  * [搭建WebSocketServer](yun-wei/tarsphp/da-jian-websocketserver.md)
+  * [弹幕活动实战](yun-wei/tarsphp/tan-mu-huo-dong-shi-zhan.md)
 
 ## 常见问题
 
