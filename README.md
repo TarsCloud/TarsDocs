@@ -32,7 +32,7 @@ Tars详细介绍参见 [简介](rumen/jian-jie.md)。
 2. 或者，可以利用 [脚本](rumen/an-zhuang/yi-jian-bu-shu.md) 进行安装（必要时需要修改）。
 3. 也可以选择采用 [Docker镜像安装 ](rumen/an-zhuang/docker.md)的方式进行快捷安装。
 
-**注：安装后为了提供更好的安全防护，强烈建议开启[用户体系鉴权登陆模块](https://github.com/TarsCloud/TarsWeb/blob/master/docs/TARS%20%E7%94%A8%E6%88%B7%E4%BD%93%E7%B3%BB%E6%A8%A1%E5%9D%97%2B%E8%B5%84%E6%BA%90%E6%A8%A1%E5%9D%97%E4%BD%BF%E7%94%A8%E6%8C%87%E5%BC%95.md)。**
+**注意：安装后为了提供更好的安全防护，强烈建议开启[用户体系鉴权登陆模块](https://github.com/TarsCloud/TarsWeb/blob/master/docs/TARS%20%E7%94%A8%E6%88%B7%E4%BD%93%E7%B3%BB%E6%A8%A1%E5%9D%97%2B%E8%B5%84%E6%BA%90%E6%A8%A1%E5%9D%97%E4%BD%BF%E7%94%A8%E6%8C%87%E5%BC%95.md)。**
 
 ### License
 
