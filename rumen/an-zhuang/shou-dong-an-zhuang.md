@@ -143,7 +143,6 @@ sort_buffer_size = 2M
 read_rnd_buffer_size = 2M
 
 sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
-
 ```
 
 **注意将bind-address改为部署机器的IP**
@@ -260,7 +259,7 @@ mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY '${your password}';
 
 ## Tars开发环境安装介绍
 
-###  web管理系统开发环境安装
+### web管理系统开发环境安装
 
 以linux环境为例：
 
@@ -335,7 +334,7 @@ cd ${source_folder}/build
 
 ！**需要修改tarscpp目录下CMakeLists.txt文件中的安装路径。**
 
-**！需要修改tarscpp/servant/makefile/makefile.tars文件中的TARS\_PATH的路径** 
+**！需要修改tarscpp/servant/makefile/makefile.tars文件中的TARS\_PATH的路径**
 
 **！需要修改tarscpp/servant/script/create\_tars\_server.sh文件中的DEMO\_PATH的路径**
 
@@ -399,7 +398,7 @@ tars\_property是服务属性监控数据存储的数据库。
 
 ```text
 手工部署的核心基础服务：tarsAdminRegistry, tarsregistry, tarsnode, tarsconfig, tarspatch
- 
+
 通过管理平台部署的普通基础服务：tarsstat, tarsproperty,tarsnotify, tarslog，tarsquerystat，tarsqueryproperty
 ```
 
@@ -582,7 +581,7 @@ mkdir -p /data/log/tars
 
 ![](../../.gitbook/assets/tars_web_system%20%281%29.png)
 
-**注：安装后为了提供更好的安全防护，强烈建议开启[用户体系鉴权登陆模块](https://github.com/TarsCloud/TarsWeb/blob/master/docs/TARS%20%E7%94%A8%E6%88%B7%E4%BD%93%E7%B3%BB%E6%A8%A1%E5%9D%97%2B%E8%B5%84%E6%BA%90%E6%A8%A1%E5%9D%97%E4%BD%BF%E7%94%A8%E6%8C%87%E5%BC%95.md)。**
+**注：安装后为了提供更好的安全防护，强烈建议开启**[**用户体系鉴权登陆模块**](https://github.com/TarsCloud/TarsWeb/blob/master/docs/TARS%20%E7%94%A8%E6%88%B7%E4%BD%93%E7%B3%BB%E6%A8%A1%E5%9D%97%2B%E8%B5%84%E6%BA%90%E6%A8%A1%E5%9D%97%E4%BD%BF%E7%94%A8%E6%8C%87%E5%BC%95.md)**。**
 
 ### 安装框架普通基础服务
 
@@ -612,8 +611,7 @@ mkdir -p /data/log/tars
 
 #### tarsproperty部署发布
 
-部署信息如下：  
-
+部署信息如下：
 
 ![](../../.gitbook/assets/tars_tarsproperty_bushu.png)
 
@@ -656,6 +654,4 @@ mkdir -p /data/log/tars
 ![](../../.gitbook/assets/tars_tarsproperty_patch%20%281%29.png)
 
 最后，在安装环境过程中，如果系统仍有问题，请到以下的目录查找日志文件分析问题所在： \(1\) ${安装目录}/log \(2\) /usr/local/app/tars/app\_log/tars
-
-
 

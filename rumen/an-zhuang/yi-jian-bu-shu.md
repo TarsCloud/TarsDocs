@@ -64,3 +64,4 @@ python ./deploy.py [option]
 8. `Error: npm command not found`, 删除 `source /etc/profile` 位于 `Tars/ deploy/comm/tarsDeploy.py: line 70: deployWeb()` 并重试.
 9. `Error: tarsDeploy.py: line 51 :shutil.copy: no such file or directory`, 可能是由于build失败导致的, 重新看注意事项 `2`.
 10. 安装后为了提供更好的安全防护，强烈建议开启[用户体系鉴权登陆模块](https://github.com/TarsCloud/TarsWeb/blob/master/docs/TARS%20%E7%94%A8%E6%88%B7%E4%BD%93%E7%B3%BB%E6%A8%A1%E5%9D%97%2B%E8%B5%84%E6%BA%90%E6%A8%A1%E5%9D%97%E4%BD%BF%E7%94%A8%E6%8C%87%E5%BC%95.md)。
+
