@@ -1,12 +1,15 @@
-# TarsJava
+# 目录
+> * [环境依赖](#chapter-1)
+> * [构建工程](#chapter-1)
+> * [配置依赖](#chapter-1)
 
-## 环境依赖
+# <a id="chapter-1"></a>环境依赖
 
 JDK 1.8 版本及以上
 
 Maven 2.2.1 版本及以上
 
-## 构建工程
+# <a id="chapter-2"></a>构建工程
 
 通过IDE或者maven创建一个maven web项目， 这里以eclipse为例，File -&gt; New -&gt; Project -&gt; Maven Project -&gt; maven-archetype-webapp，再输入groupId、artifactId，生成完成之后可以通过eclipse进行导入，目录结构如下
 
@@ -30,7 +33,7 @@ Maven 2.2.1 版本及以上
        └── resources
 ```
 
-## 依赖配置
+# <a id="chapter-3"></a>依赖配置
 
 在构建项目中pom.xml中添加依赖jar包
 
