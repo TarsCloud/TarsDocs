@@ -1,7 +1,10 @@
-# 目录
-> * [环境准备](#chapter-1)
+# TarsGo
 
-# 1 <a id="chapter-1"></a>环境准备
+## 目录
+
+> * [环境准备](tarsgo.md#chapter-1)
+
+## 1 环境准备 <a id="chapter-1"></a>
 
 Golang环境准备，tarsgo要求golang版本在1.9.x及以上。
 

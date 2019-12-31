@@ -1,23 +1,26 @@
-# 目录
-> * [简介](#chapter-1)
-> * [源码安装Mysql](#chapter-2)
-> * [yum安装mysql](#chapter-3)
-> * [docker安装mysql](#chapter-4)
+# Mysql安装
 
-# <a id="chapter-1"></a>简介
+## 目录
+
+> * [简介](mysql.md#chapter-1)
+> * [源码安装Mysql](mysql.md#chapter-2)
+> * [yum安装mysql](mysql.md#chapter-3)
+> * [docker安装mysql](mysql.md#chapter-4)
+
+## 简介 <a id="chapter-1"></a>
 
 Tars框架的数据最终都存储在mysql中, 因此需要安装mysql.
 
 mysql建议使用主从方式安装, 正常情况下, mysql即使crash了, 也不会影响Tars框架上服务的运行, 但是会影响服务的发布和部署, 以及影响管理平台的使用.
 
-# <a id="chapter-2"></a>源码安装
+## 源码安装 <a id="chapter-2"></a>
 
 源码安装可以对数据库进行自定义。
 
 安装前，确定系统是否安装依赖库，若没有，可以执行：
 
 ```text
-yum install -y ncurses-devel zlib-devel cmake make gcc gcc-c++ 
+yum install -y ncurses-devel zlib-devel cmake make gcc gcc-c++
 ```
 
 设置安装目录，切换至root用户
@@ -46,7 +49,7 @@ make install
 
 若要是搭建Tars框架的运行环境，需要以下步骤，切换至root用户，对mysql进行配置。
 
-**以下脚本有删除动作(rm -rf /usr/local/mysql/data), 请注意!!**
+**以下脚本有删除动作\(rm -rf /usr/local/mysql/data\), 请注意!!**
 
 ```text
 yum install perl
@@ -158,7 +161,7 @@ show slave status\G;
 
 **注意${备机Ip}需要修改成备机数据库的Ip**
 
-# <a id="chapter-3"></a>yum安装
+## yum安装 <a id="chapter-3"></a>
 
 在mysql 5.7版本之后删除了源码中的mysql\_install\_db.sh安装脚本，因此上述方法不适用。 yum安装相对便捷，但是没办法实现自定义安装。如果对自定义安装有需求的请使用源码安装。
 
@@ -212,17 +215,16 @@ mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY '${your password}';
 
 **mysql主从支持参照上一节**
 
-# <a id="chapter-4"></a>docker安装mysql
+## docker安装mysql <a id="chapter-4"></a>
 
-使用docker安装来安装mysql(目前只考虑了linux上, 时间和本机同步)
+使用docker安装来安装mysql\(目前只考虑了linux上, 时间和本机同步\)
 
-```sh
+```bash
 docker pull mysql:5.6
 docker run --name mysql --net=host -e MYSQL_ROOT_PASSWORD='root@appinside' -d -p 3306:3306 \
         -v/etc/localtime:/etc/localtime \
         -v /data/mysql-data:/var/lib/mysql mysql:5.6
 ```
- 
-**注意:--net-host表示Docker网络和本机一样** 
 
+**注意:--net-host表示Docker网络和本机一样**
 

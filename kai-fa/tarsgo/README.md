@@ -18,7 +18,7 @@
 
 ## 安装
 
-* 对于安装OSS和其他基本服务, 请[安装文档](../../rumen/an-zhuang/shou-dong-an-zhuang.md)， 快速安装，请查看[快速部署](../../rumen/an-zhuang/yi-jian-bu-shu.md)
+* 对于安装OSS和其他基本服务, 请[安装文档]()， 快速安装，请查看[快速部署]()
 * 要求Go 1.9.x 或以上版本,请查看[https://golang.org/doc/install](https://golang.org/doc/install)
 * go get -u github.com/TarsCloud/TarsGo/tars
 
