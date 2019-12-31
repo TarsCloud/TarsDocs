@@ -9,7 +9,6 @@
 * [简介](rumen/jian-jie.md)
 * [Tars 部署介绍\(必看\)](rumen/an-zhuang/README.md)
   * [Docker环境安装](rumen/an-zhuang/docker-huan-jing-an-zhuang.md)
-  * [Docker环境安装1](rumen/an-zhuang/docker-env.md)
   * [Mysql安装](rumen/an-zhuang/mysql.md)
   * [Tars源码编译部署](rumen/an-zhuang/source.md)
   * [TarsDocker部署](rumen/an-zhuang/docker.md)
