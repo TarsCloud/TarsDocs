@@ -1,18 +1,15 @@
-# TarsJava
+# 目录
+> * [环境依赖](#chapter-1)
+> * [构建工程](#chapter-1)
+> * [配置依赖](#chapter-1)
 
-## 目录
-
-> * [环境依赖](tarsjava.md#chapter-1)
-> * [构建工程](tarsjava.md#chapter-1)
-> * [配置依赖](tarsjava.md#chapter-1)
-
-## 环境依赖 <a id="chapter-1"></a>
+# <a id="chapter-1"></a>环境依赖
 
 JDK 1.8 版本及以上
 
 Maven 2.2.1 版本及以上
 
-## 构建工程 <a id="chapter-2"></a>
+# <a id="chapter-2"></a>构建工程
 
 通过IDE或者maven创建一个maven web项目， 这里以eclipse为例，File -&gt; New -&gt; Project -&gt; Maven Project -&gt; maven-archetype-webapp，再输入groupId、artifactId，生成完成之后可以通过eclipse进行导入，目录结构如下
 
@@ -36,7 +33,7 @@ Maven 2.2.1 版本及以上
        └── resources
 ```
 
-## 依赖配置 <a id="chapter-3"></a>
+# <a id="chapter-3"></a>依赖配置
 
 在构建项目中pom.xml中添加依赖jar包
 
@@ -44,10 +41,10 @@ Maven 2.2.1 版本及以上
 
 ```text
 <dependency>
-    <groupId>com.tencent.tars</groupId>
-         <artifactId>tars-server</artifactId>
-         <version>1.6.1</version>
-         <type>jar</type>
+	<groupId>com.tencent.tars</groupId>
+     	<artifactId>tars-server</artifactId>
+     	<version>1.6.1</version>
+     	<type>jar</type>
 </dependency>
 ```
 
@@ -55,21 +52,21 @@ Maven 2.2.1 版本及以上
 
 ```text
 <plugin>
-    <groupId>com.tencent.tars</groupId>
-       <artifactId>tars-maven-plugin</artifactId>
-       <version>1.6.1</version>
-      <configuration>
-           <tars2JavaConfig>
-              <tarsFiles>
-                   <tarsFile>${basedir}/src/main/resources/hello.tars</tarsFile>
-               </tarsFiles>
-              <tarsFileCharset>UTF-8</tarsFileCharset>
-               <servant>true</servant>
-              <srcPath>${basedir}/src/main/java</srcPath>
-              <charset>UTF-8</charset>
-               <packagePrefixName>com.qq.tars.quickstart.server.</packagePrefixName>
-          </tars2JavaConfig>
-       </configuration>
+	<groupId>com.tencent.tars</groupId>
+   	<artifactId>tars-maven-plugin</artifactId>
+   	<version>1.6.1</version>
+  	<configuration>
+   		<tars2JavaConfig>
+  			<tarsFiles>
+   				<tarsFile>${basedir}/src/main/resources/hello.tars</tarsFile>
+   			</tarsFiles>
+  			<tarsFileCharset>UTF-8</tarsFileCharset>
+   			<servant>true</servant>
+  			<srcPath>${basedir}/src/main/java</srcPath>
+  			<charset>UTF-8</charset>
+   			<packagePrefixName>com.qq.tars.quickstart.server.</packagePrefixName>
+  		</tars2JavaConfig>
+   	</configuration>
 </plugin>
 ```
 

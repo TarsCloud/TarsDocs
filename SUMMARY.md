@@ -26,7 +26,7 @@
   * [TarsCPP 快速入门](rumen/hello-world-1/tarscpp-kuai-su-ru-men.md)
   * [TarsPHP 快速入门](rumen/hello-world-1/tarsphp-kuai-su-ru-men.md)
   * [Tars.js 快速入门](rumen/hello-world-1/tars.js-kuai-su-ru-men.md)
-* [统一通信协议 TarsTup](rumen/tarstup.md)
+* [统一通信协议 TarsTup](kai-fa/tarstup.md)
 
 ## 开发 & 运维 <a id="kai-fa"></a>
 
@@ -81,18 +81,18 @@
 
 ## Web管理平台 <a id="kai-fa-1"></a>
 
-* [鉴权功能](kai-fa-1/tars-jian-quan-gong-neng.md)
-* [业务配置](kai-fa-1/ye-wu-pei-zhi.md)
-* [服务监控](kai-fa-1/fu-wu-jian-kong.md)
-* [模板配置](kai-fa-1/mo-ban-pei-zhi.md)
-* [Tars 用户体系模块使用指引](kai-fa-1/tars-yong-hu-ti-xi-mo-kuai-shi-yong-zhi-yin.md)
-* [管理平台 API](kai-fa-1/guan-li-ping-tai-api.md)
-* [调用链](kai-fa-1/tars-tiao-yong-lian.md)
+* [鉴权功能](kai-fa/tars-jian-quan-gong-neng.md)
+* [业务配置](kai-fa/ye-wu-pei-zhi.md)
+* [服务监控](kai-fa/fu-wu-jian-kong.md)
+* [模板配置](kai-fa/mo-ban-pei-zhi.md)
+* [Tars 用户体系模块使用指引](kai-fa/tars-yong-hu-ti-xi-mo-kuai-shi-yong-zhi-yin.md)
+* [管理平台 API](kai-fa/guan-li-ping-tai-api.md)
+* [调用链](kai-fa/tars-tiao-yong-lian.md)
 
 ## 其他重要特性
 
-* [HTTP 1/2支持](qi-ta-zhong-yao-te-xing/tars-http12.md)
-* [TLS通信支持](qi-ta-zhong-yao-te-xing/tars-tls-tong-xin-zhi-chi.md)
+* [HTTP 1/2支持](kai-fa/tars-http12.md)
+* [TLS通信支持](kai-fa/tars-tls-tong-xin-zhi-chi.md)
 
 ## 案例
 
@@ -108,7 +108,7 @@
 
 ## 常见问题
 
-* [性能数据](chang-jian-wen-ti/xing-neng-shu-ju.md)
+* [性能数据](rumen/xing-neng-shu-ju.md)
 * [安装常见问题](chang-jian-wen-ti/untitled.md)
 * [TarsCPP 常见问题](chang-jian-wen-ti/tarscpp-chang-jian-wen-ti.md)
 * [TarsJava 常见问题](chang-jian-wen-ti/tarsjava-chang-jian-wen-ti.md)

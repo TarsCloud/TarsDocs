@@ -28,7 +28,7 @@ Tars详细介绍参见 [简介](rumen/jian-jie.md)。
 
 ### 文档
 
-文档目录请参见 [目录](https://github.com/TarsCloud/TarsDocs/tree/45ddabc6b4471f2d9570dabe6e95c050bbf08a4a/SUMMARY.md)
+文档目录请参见 [目录](SUMMARY.md)
 
 ### License
 
