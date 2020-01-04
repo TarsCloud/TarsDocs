@@ -143,66 +143,66 @@ make tarsqueryproperty-tar
 
 默认tarsnotify在安装核心基础服务时，部署信息已初始化了，安装完管理平台后，就可以看到，如下：
 
-![tars](docs/images/tars_tarsnotify_bushu.png)
+![tars](../../.gitbook/assets/tars_tarsnotify_bushu.png)
 
 上传发布包后，发布如下：
 
-![tars](docs/images/tars_tarsnotify_patch.png)
+![tars](../../.gitbook/assets/tars_tarsnotify_patch.png)
 
 ### 5.5.2 tarsstat部署发布
 
 部署信息如下：
 
-![tars](docs/images/tars_tarsstat_bushu.png)
+![tars](../../.gitbook/assets/tars_tarsstat_bushu.png)
 
 上传发布包后，发布如下：
 
-![tars](docs/images/tars_tarsstat_patch.png)
+![tars](../../.gitbook/assets//tars_tarsstat_patch.png)
 
 ### 5.5.3 tarsproperty部署发布
 
 部署信息如下：
 
-![tars](docs/images/tars_tarsproperty_bushu.png)
+![tars](../../.gitbook/assets/tars_tarsproperty_bushu.png)
 
 上传发布包后，发布如下：
 
-![tars](docs/images/tars_tarsproperty_patch.png)
+![tars](../../.gitbook/assets/tars_tarsproperty_patch.png)
 
 ### 5.5.4 tarslog部署发布
 
 部署信息如下：
 
-![tars](docs/images/tars_tarslog_bushu.png)
+![tars](../../.gitbook/assets/tars_tarslog_bushu.png)
 
 上传发布包后，发布如下：
 
-![tars](docs/images/tars_tarslog_patch.png)
+![tars](../../.gitbook/assets/tars_tarslog_patch.png)
 
 ### 5.5.5 tarsquerystat部署发布
 
 部署信息如下：
 
-![tars](docs/images/tars_tarsquerystat_bushu.png)
+![tars](../../.gitbook/assets/tars_tarsquerystat_bushu.png)
 
 **注意在服务部署时，选择非Tars协议，因为Web是以json协议来获取服务监控的数据的**
 
 上传发布包后，发布如下：
 
-![tars](docs/images/tars_tarsquerystat_patch.png)
+![tars](../../.gitbook/assets/ars_tarsquerystat_patch.png)
 
 
 ### 5.5.6 tarsqueryproperty部署发布
 
 部署信息如下：
 
-![tars](docs/images/tars_tarsqueryproperty_bushu.png)
+![tars](../../.gitbook/assets/tars_tarsqueryproperty_bushu.png)
 
 **注意在服务部署时，选择非Tars协议，因为Web是以json协议来获取属性监控的数据的**
 
 上传发布包后，发布如下：
 
-![tars](docs/images/tars_tarsqueryproperty_patch.png)
+![tars](../../.gitbook/assets/tars_tarsqueryproperty_patch.png)
 
 最后，在安装环境过程中，如果系统仍有问题，请到以下的目录查找日志文件分析问题所在：
 (1) ${TarsWeb}/log  
