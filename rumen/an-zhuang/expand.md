@@ -189,7 +189,7 @@ make tarsqueryproperty-tar
 
 上传发布包后，发布如下：
 
-![tars](../../.gitbook/assets/ars_tarsquerystat_patch.png)
+![tars](../../.gitbook/assets/tars_tarsquerystat_patch.png)
 
 
 ### 5.5.6 tarsqueryproperty部署发布
