@@ -1,4 +1,5 @@
 # Tars.js
 
-Node.js 0.10 版本及以上
+建议使用Node.js v10 版本及以上
+
 
