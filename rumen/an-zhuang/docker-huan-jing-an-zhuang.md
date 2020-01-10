@@ -11,6 +11,9 @@
 
 docker的详细资料, 请上docker官网了解.
 
+如果不采用docker部署Tars环境, 请忽略该步骤.
+
+
 ## 2 如何安装Docker <a id="chapter-2"></a>
 
 **本文只介绍在centos中安装docker环境**

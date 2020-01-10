@@ -85,20 +85,20 @@ chmod a+x get_tarsnode
 如果希望业务服务运行在一个docker里面, 可以采用该方式:
 
 ```sh
-docker pull tarscloud/tars-node
+docker pull tarscloud/tars-node:stable
 ```
 
 ```sh
 docker run -d --net=host -eINET=eth0 -eWEB_HOST=xxxxx \
         -v/data/tars:/data/tars \
         -v/etc/localtime:/etc/localtime \
-        tarscloud/tars-node
+        tarscloud/tars-node:stable
 
 #例如:
 docker run -d --net=host -eINET=eth0 -eWEB_HOST=http://172.16.0.7:3000 \
         -v/data/tars:/data/tars \
         -v/etc/localtime:/etc/localtime \
-        tarscloud/tars-node        
+        tarscloud/tars-node:stable     
 ```
 
 **注意: http://172.16.0.7:3000 是TarsWeb的访问地址**

@@ -24,7 +24,7 @@
 
 1. 拉取镜像
 ```sh
-docker pull tarscloud/framework
+docker pull tarscloud/framework:stable
 ```
 
 2. 启动镜像(目前只考虑了linux上, 时间和本机同步)
@@ -40,7 +40,7 @@ docker run -d --net=host -e MYSQL_HOST=xxxxx -e MYSQL_ROOT_PASSWORD=xxxxx \
 
 1. 拉取镜像
 ```sh
-docker pull tarscloud/tars
+docker pull tarscloud/tars:stable
 ```
 
 2. 启动镜像(目前只考虑了linux上, 时间和本机同步)
