@@ -62,6 +62,13 @@ rpm -ivh https://repo.mysql.com/mysql57-community-release-el7.rpm
 yum install -y mysql 
 ```
 
+## 1.4. Mysql安装
+
+Tars框架安装需要在mysql中读写数据, 因此需要安装mysql, 如果你已经存在mysql, 可以忽略该步骤.
+
+安装mysql请参考[mysql安装](mysql.md)
+
+
 # 2. <a id="chapter-2"></a>Tars C++开发环境(源码安装框架必备)
 
 **源码安装框架才需要做这一步, 如果只是用c++写服务, 只需要下载tarscpp代码即可**

@@ -5,6 +5,8 @@
 > * [K8s Docker部署](#chapter-4)
 > * [K8s融合部署](#chapter-5)
 
+在了解部署之前, 请务必整体了解Tars的[设计](../jian-jie.md)
+
 # 1 <a id="chapter-1"></a>部署简介
 
 需要了解Tars部署基础知识:

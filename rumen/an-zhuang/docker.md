@@ -2,6 +2,8 @@
 # 目录
 > * [介绍](#chapter-1)
 > * [Docker部署Tars框架](#chapter-2)
+> * [安装示例](#chapter-3)
+> * [问题检查](#chapter-4)
 
 # 1 <a id="chapter-1"></a>介绍
 
@@ -73,11 +75,36 @@ SLAVE: 是否是从节点, 可以部署多台机器, 通常一主一从即可.
 
 安装完毕后, 访问 `http://${your_machine_ip}:3000` 打开web管理平台
 
-### 2.4 问题检查
+## 3 <a id="chapter-3"></a>安装示例
+
+举例, 安装两台节点, 一台数据库(假设: 主[192.168.7.151], 从[192.168.7.152], mysql:[192.168.7.153])
+
+主节点上执行(192.168.7.151)
+```
+docker run -d --net=host -e MYSQL_HOST=192.168.7.153 -e MYSQL_ROOT_PASSWORD=xxxxx \
+        -eREBUILD=false -eINET=eth0 -eSLAVE=false \
+        -v/data/tars:/data/tars \
+        -v/etc/localtime:/etc/localtime \
+        tarscloud/framework:stable
+
+```
+主节点执行完毕后, 从节点执行:
+```
+docker run -d --net=host -e MYSQL_HOST=192.168.7.153 -e MYSQL_ROOT_PASSWORD=xxxxx \
+        -eREBUILD=false -eINET=eth0 -eSLAVE=true \
+        -v/data/tars:/data/tars \
+        -v/etc/localtime:/etc/localtime \
+        tarscloud/framework:stable
+```
+
+**注意:SLAVE参数不同**
+
+## 4 <a id="chapter-4"></a>问题检查
 
 如果docker运行后, 仍然无法打开管理平台, 可以如下检查:
 - 关闭docker, 注意需要用docker stop .... 来关闭(docker的使用请自行搜索)
 - 启动镜像, 注意不要 -d 参数
+
 ```sh
 docker run --net=host -e MYSQL_HOST=xxxxx -e MYSQL_ROOT_PASSWORD=xxxxx \
         -eREBUILD=false -eINET=eth0 -eSLAVE=false \
