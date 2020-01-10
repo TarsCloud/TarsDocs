@@ -16,15 +16,15 @@ It is important to read and understand this legal agreement.
 
 1. Create a pull request, the system will remind you the CLA is not signed yet. Click the url. You will recive an email at the same time.
 
-![](.gitbook/assets/cla1.png)
+![](assets/cla1.png)
 
 2. Click to sign in with Github to agree.
 
-![](.gitbook/assets/cla2.png)
+![](assets/cla2.png)
 
 3. That's it, for real!
 
-![](.gitbook/assets/cla3.png)
+![](assets/cla3.png)
 
 ### Ensure your Github e-mail address matches address used to sign CLA
 

@@ -8,7 +8,7 @@ TARS服务框架默认情况下只支持TARS自有的tars协议，但是在实�
 
 开发第三方协议服务端,要实现协议解析器并将其加载到服务中,同时需要建立一个非TAF框架的服务对象,该类继承于Servant类,通过重载Servant类中的doRequest方法来建立协议处理器。 而客户端要访问服务，需要通过调用proxy的rpc函数，在调用之前，要为proxy设置请求包编码函数和响应包解码函数。
 
-![](../../.gitbook/assets/tars_cpp_third_protocol.png)
+![](../../assets/tars_cpp_third_protocol.png)
 
 图中的黑色线代表了数据流向：数据（客户端）-〉请求包的编码器（客户端）-〉协议解析器（服务端）-〉doRequest协议处理器（服务端）-〉生成返回数据（服务端）-〉响应包的解码器（客户端）-〉响应数据（客户端）
 

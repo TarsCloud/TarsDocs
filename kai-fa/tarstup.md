@@ -48,7 +48,7 @@ TUP（Tars Uni-Protocol的简称），Tars统一协议，是基于Tars编码的�
 
 ### 类结构图
 
-![](../.gitbook/assets/tars_tupclass.png)
+![](../assets/tars_tupclass.png)
 
 ### 类的使用
 

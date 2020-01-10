@@ -8,7 +8,7 @@
 
 父模版和主模版的配置信息，存放在db\_tars/t\_profile\_template数据表里，表结构如下
 
-![](../.gitbook/assets/tars_template_table1.png)
+![](../assets/tars_template_table1.png)
 
 私有模版信息，存放在db\_tars/t\_server\_conf数据表的profile字段里面。
 

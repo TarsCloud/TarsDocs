@@ -16,7 +16,7 @@ Set应用配置继承自应用级配置，即一个Set应用配置必须有相�
 
 如下图所示：
 
-![](../.gitbook/assets/tars_config_jiegoutu.png)
+![](../assets/tars_config_jiegoutu.png)
 
 Tars框架通过两个数据表来维护这些配置信息，t\_config\_files和t\_config\_references。
 
@@ -24,13 +24,13 @@ t\_config\_files表的主要信息：服务配置文件名称、配置文件类�
 
 如下图所示：
 
-![](../.gitbook/assets/tars_config_table1.png)
+![](../assets/tars_config_table1.png)
 
 t\_config\_references表的主要信息：配置文件的索引id以及该id所引用的配置文件索引id。
 
 如下图所示：
 
-![](../.gitbook/assets/tars_config_table2.png)
+![](../assets/tars_config_table2.png)
 
 注意：本文所指的引用配置文件都是指应用配置文件或者相应的Set配置文件。
 
@@ -52,11 +52,11 @@ bool addAppConfig(const string &filename);
 
 主要逻辑如下图：
 
-![](../.gitbook/assets/tars_config_appconfig.png)
+![](../assets/tars_config_appconfig.png)
 
 拉取应用配置的结果图如下：
 
-![](../.gitbook/assets/tars_config_appconfig_result.png)
+![](../assets/tars_config_appconfig_result.png)
 
 #### 获取服务级配置
 
@@ -72,7 +72,7 @@ bool addConfig(const string &filename);
 
 2.其次，通过（1）中索引id从数据表t\_config\_referencses获取该id所引用的配置信息索引id（references\_id\)，索引id的具体对应关系如下图：
 
-![](../.gitbook/assets/tars_config_references.png)
+![](../assets/tars_config_references.png)
 
 如果存在引用信息，则检索数据表t\_config\_files中references\_id对应的配置信息，同时检索该references\_id对应的配置文件是否有“Set级配置信息”，如果有则再获取该set级别配置信息。
 
@@ -88,21 +88,21 @@ bool addConfig(const string &filename);
 
 在业务树上选择相应的应用（业务），在右边打开的管理界面选择“应用配置”一页，就可以进行添加配置、编辑配置等操作。如下图：
 
-![](../.gitbook/assets/tars_config_app1.png)
+![](../assets/tars_config_app1.png)
 
 添加应用配置Test.conf,如下图：
 
-![](../.gitbook/assets/tars_config_app2.png)
+![](../assets/tars_config_app2.png)
 
 ### Set配置
 
 在业务树上选择相应的Set分组，在右边打开的管理界面选择“Set配置”一页，就可以进行添加配置、编辑配置等操作，如下图：
 
-![](../.gitbook/assets/tars_config_set1.png)
+![](../assets/tars_config_set1.png)
 
 添加应用配置Test.conf,如下图：
 
-![](../.gitbook/assets/tars_config_set2.png)
+![](../assets/tars_config_set2.png)
 
 > * 注意：只有添加了相应的应用配置文件，才能添加相应的Set配置。
 
@@ -110,17 +110,17 @@ bool addConfig(const string &filename);
 
 在左边的业务树选择需要维护的业务服务，点击左边打开的管理界面中“服务配置”一页，就可以进行服务配置的的添加、编辑和删除等操作。如下图：
 
-![](../.gitbook/assets/tars_config_server1.png)
+![](../assets/tars_config_server1.png)
 
 添加应用配置Test.conf,如下图：
 
-![](../.gitbook/assets/tars_config_server2.png)
+![](../assets/tars_config_server2.png)
 
 在服务配置里就可以引用上一级的配置内容（即所属应用\(业务）的应用配置的内容以及所属Set的配置内容）如下图：
 
-![](../.gitbook/assets/tars_config_server3_ref1.png)
+![](../assets/tars_config_server3_ref1.png)
 
-![](../.gitbook/assets/tars_config_server3_ref2.png)
+![](../assets/tars_config_server3_ref2.png)
 
 
 

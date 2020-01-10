@@ -4,7 +4,7 @@
 
 用户登录成功后，会进入Tars管理系统，如下图
 
-![](../../.gitbook/assets/tars_web_index.png)
+![](../../assets/tars_web_index.png)
 
 TARS管理系统的菜单树下，有以下功能：
 
@@ -33,7 +33,7 @@ TARS管理系统的菜单树下，有以下功能：
 
 点击主菜单“运维管理”-&gt;“服务部署”，如下图：
 
-![](../../.gitbook/assets/tars_go_quickstart_bushu1.png)
+![](../../assets/tars_go_quickstart_bushu1.png)
 
 * “应用”指你的服务程序归在哪一个应用下，例如：“TestApp”。 
 * “服务名称”指你的服务程序的标识名字，例如：“HelloServer”。 
@@ -52,7 +52,7 @@ TARS管理系统的菜单树下，有以下功能：
 
 点击“提交“，成功后，菜单数下的TestApp应用将出现HelloServer名称，同时将在右侧看到你新增的服务程序信息，如下图：
 
-![](../../.gitbook/assets/tars_go_quickstart_service_inactive.png)
+![](../../assets/tars_go_quickstart_service_inactive.png)
 
 在管理系统上的部署暂时先到这里，到此为止，只是使你的服务在管理系统上占了个位置，真实程序尚未发布。
 
@@ -62,13 +62,13 @@ TARS管理系统的菜单树下，有以下功能：
 
 选择“发布管理”，选中要发布的节点，点击“发布选中节点”，点击“上传发布包”，选择已经编译好的发布包，如下图：
 
-![](../../.gitbook/assets/tars_go_quickstart_release.png)
+![](../../assets/tars_go_quickstart_release.png)
 
 上传好发布包后，点击“选择发布版本”下拉框就会出现你上传的服务程序，选择最上面的一个（最新上传的）。
 
 点击“发布”，服务开始发布，发布成功后，出现下面的界面，如下图：
 
-![](../../.gitbook/assets/tars_go_quickstart_service_ok.png)
+![](../../assets/tars_go_quickstart_service_ok.png)
 
 若失败的话，可能是命名问题，上传问题，以及其他环境问题。欢迎开启Issue进行讨论。
 

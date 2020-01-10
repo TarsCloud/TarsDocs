@@ -92,7 +92,7 @@ tars框架内部采用opentracing api来封装调用链数据采集功能，并�
 
 1. 在tars管理平台上选中要开启调用链的服务，点击“编辑”。
 
-![](../.gitbook/assets/trace_1.png)
+![](../assets/trace_1.png)
 
 2. 选择编辑私有模版，填写以下内容：
 
@@ -183,13 +183,13 @@ trace_html=zipkin_address(include http://)
 
 * 最终效果如下图所示
 
-![](../.gitbook/assets/trace_2.png)
+![](../assets/trace_2.png)
 
-![](../.gitbook/assets/trace_3.png)
+![](../assets/trace_3.png)
 
 点开单次调用链查看详细信息：
 
-![](../.gitbook/assets/trace_4.png)
+![](../assets/trace_4.png)
 
 调用链key-value信息说明：
 
@@ -208,7 +208,7 @@ trace_html=zipkin_address(include http://)
 
 依赖分析展示：
 
-![](../.gitbook/assets/trace_5.png)
+![](../assets/trace_5.png)
 
 
 

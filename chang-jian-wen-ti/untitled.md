@@ -29,11 +29,11 @@
 
 ### 7. 没有对mysql使用的`my.cnf`的sql\_mode进行设置的话，在tars web前台部署时，会出现"部署申请失败!请联系管理员"的提示信息。
 
-![](../.gitbook/assets/mysql_sqlmode.png)
+![](../assets/mysql_sqlmode.png)
 
 ### 8. 编译web管理系统源码前，要编译tars java框架源码，因为web依赖tars java的一些jar包。
 
-![](../.gitbook/assets/tars-java-jar.png)
+![](../assets/tars-java-jar.png)
 
 ### 9. 框架服务的安装分两种：一种是核心基础服务\(必须的\)，必须手工部署; 另一种是普通基础服务，通过管理平台发布的\(和普通服务一样）。
 
@@ -96,37 +96,37 @@
 
 ### 12. java的服务部署时，模版配置要选择 `tars.tarsjava.default`
 
-![](../.gitbook/assets/java_server_deploy.png)
+![](../assets/java_server_deploy.png)
 
 ### 13. 上传发布包超过50M的问题，修改`spring-context-mvc.xml`文件，如下
 
-![](../.gitbook/assets/50mb.png)
+![](../assets/50mb.png)
 
 源代码路径为`web/src/main/resources/conf-spring`，部署的时候实际路径 `WEB-INF/classes`
 
 ### 14. 服务监控数据展示问题，注意查询条件
 
-![](../.gitbook/assets/stat.png)
+![](../assets/stat.png)
 
 ### 15. resin 显示乱码问题
 
-![](../.gitbook/assets/encoding_error.png)
+![](../assets/encoding_error.png)
 
 修改 `/usr/local/app/resin/conf/app-default.xml`
 
-![](../.gitbook/assets/resin.png)
+![](../assets/resin.png)
 
 修改后清除浏览器缓存
 
 ### 16. mvn 编译的时候，无法找到tars依赖项
 
-![](../.gitbook/assets/tars_not_resolve.png)
+![](../assets/tars_not_resolve.png)
 
 需要先编译框架再mvn 编译war包
 
 ### 17. 发布失败显示无法链接registry
 
-![](../.gitbook/assets/registry_not_founded.png)
+![](../assets/registry_not_founded.png)
 
 首先，确定核心基础服务tarsregistry、tarsAdminRegistry、tarsnode、tarsconfig、tarspatch的进程是否是活的，比如用 `ps -ef|grep tars` 命令查看，如果进程不存在，看看是否是db配置信息有问题
 
@@ -134,15 +134,15 @@
 
 最后，查看tarsnode的日志，看看有什么错误日志。
 
-![](../.gitbook/assets/registry_not_invoker.png)
+![](../assets/registry_not_invoker.png)
 
 **看看 `Install.md` 的第4.3节中的安装web管理系统部分，是否正确配置，如下：**
 
-![](../.gitbook/assets/registry_web_endpoint.png)
+![](../assets/registry_web_endpoint.png)
 
 **错误的示例如下：**
 
-![](../.gitbook/assets/registry_web_empty.png)
+![](../assets/registry_web_empty.png)
 
 ### 18. 发布失败，发现上传tars java的war包大小有问题
 

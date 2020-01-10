@@ -93,7 +93,7 @@ tars:
 
 * 启动Application类，打开注册中心地址[http://localhost:8761](http://localhost:8761/)（以自己的实际情况为准，这是Eureka默认地址），可以看到Tars服务已经注册在Eureka上了：
 
-![](../../.gitbook/assets/eureka-tars-java.png)
+![](../../assets/eureka-tars-java.png)
 
 TESTAPP.HELLOJAVASERVER就是我们刚才注册的服务，其中TESTAPP对应配置文件中的应用名称（tars.server.application对应的属性），HELLOJAVASERVER对应配置文件中的服务名称（tars.server.server-name对应的属性）。Eureka上注册的名称为配置文件的应用名称加上服务名称，中间使用'.'号分割。Eureka页面上显示的服务名称为全部大写，但实际上还是我们配置文件中填写的名称。。
 
