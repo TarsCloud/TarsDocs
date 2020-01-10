@@ -31,7 +31,7 @@ docker run -d --net=host -e MYSQL_HOST=xxxxx -e MYSQL_ROOT_PASSWORD=xxxxx \
         -eREBUILD=false -eINET=eth0 -eSLAVE=false \
         -v/data/tars:/data/tars \
         -v/etc/localtime:/etc/localtime \
-        tarscloud/framework
+        tarscloud/framework:stable
 ```
 
 ### 2.2 使用tarscloud/tars部署
@@ -47,7 +47,7 @@ docker run -d --net=host -e MYSQL_HOST=xxxxx -e MYSQL_ROOT_PASSWORD=xxxxx \
         -eREBUILD=false -eINET=eth0 -eSLAVE=false \
         -v/data/tars:/data/tars \
         -v/etc/localtime:/etc/localtime \
-        tarscloud/tars
+        tarscloud/tars:stable
 ```
 
 ### 2.3 参数解释
@@ -73,3 +73,18 @@ SLAVE: 是否是从节点, 可以部署多台机器, 通常一主一从即可.
 
 安装完毕后, 访问 `http://${your_machine_ip}:3000` 打开web管理平台
 
+### 2.4 问题检查
+
+如果docker运行后, 仍然无法打开管理平台, 可以如下检查:
+- 关闭docker, 注意需要用docker stop .... 来关闭(docker的使用请自行搜索)
+- 启动镜像, 注意不要 -d 参数
+```sh
+docker run --net=host -e MYSQL_HOST=xxxxx -e MYSQL_ROOT_PASSWORD=xxxxx \
+        -eREBUILD=false -eINET=eth0 -eSLAVE=false \
+        -v/data/tars:/data/tars \
+        -v/etc/localtime:/etc/localtime \
+        tarscloud/framework:stable
+```
+- 查看docker输出是否有明显问题
+
+如果web平台打开, 但是显示错误, 就需要检查web的问题, 可以进入docker, 请参考[检查web的问题](web.md)中的检查web问题

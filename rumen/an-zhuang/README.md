@@ -33,6 +33,8 @@ Tars部署方式有以下几种:
 - K8s Docker部署
 - K8s 融合部署
 
+根据你的需要选择一种即可.
+
 **建议部署都在linux上完成, 即使是docker安装, 推荐使用centos7**
 
 # 2 <a id="chapter-2"></a>源码编译方式部署
@@ -91,6 +93,8 @@ Tars框架的Docker制作分三种模式:
 建议解决方式如下:
 - 所有pod可以采用stateful headless模式部署, 每个都有独立的域名, 比如tars-0, tars-1, tarsnode-1, tarsnode-2等...
 - 业务服务部署时, 业务节点都采用域名(不要采用ip)
+
+Tars团队已经制作了一个[一键部署k8s的方案](k8s-docker-1.md)
 
 # 5 <a id="chapter-5"></a>K8s融合部署
 
