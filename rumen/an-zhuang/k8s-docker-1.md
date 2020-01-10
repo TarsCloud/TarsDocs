@@ -15,15 +15,17 @@
 
 ## 2 <a id="chapter-2"></a>k8s部署
 
-先安装helm, heml的使用自己学习, 简单的说heml一种部署服务到k8s的工具.
+先安装helm, heml的使用自己学习, 简单的说helm是一种部署服务到k8s的工具.
 
 ```
 helm repo add tars-stable https://tarscloud.github.io/TarsDocker/charts/stable
 
 kubectl create namespace tars-test
 
+#部署tars(主控两台, 节点机5台)
 helm install tars-stable/tars --name tars-test --namespace tars-test \
     --set tars.replicas=2,tarsnode.replicas=5,tars.namespace=tars-test,tars.host=domain.com,tars.port=6080
+
 
 ```
 

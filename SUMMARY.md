@@ -12,6 +12,7 @@
   * [Mysql安装](rumen/an-zhuang/mysql.md)
   * [Tars源码编译部署](rumen/an-zhuang/source.md)
   * [TarsDocker部署](rumen/an-zhuang/docker.md)
+  * [K8s Docker部署](rumen/an-zhuang/k8s-docker-1.md)
   * [TarsNode部署](rumen/an-zhuang/node.md)
   * [Tars框架更新及扩容](rumen/an-zhuang/expand.md)
   * [TarsWeb说明](rumen/an-zhuang/web.md)
