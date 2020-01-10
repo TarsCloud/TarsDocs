@@ -9,7 +9,7 @@ It integrated extensible protocol for encoding/decoding, high-performance RPC co
 
 Nowadays it's used by hundreds of bussiness in Tencent, services that developed base on TAF run on 16 thousands of machines.
 
-See the detailed introduction [SUMMARY.md](SUMMARY.en.md).
+See the detailed introduction [SUMMARY.md](SUMMARY.md).
 
 ## Supported platforms
 For now it supports OS as below:
