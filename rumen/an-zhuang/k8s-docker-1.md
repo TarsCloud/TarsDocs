@@ -17,6 +17,24 @@
 
 先安装helm, heml的使用自己学习, 简单的说helm是一种部署服务到k8s的工具.
 
+下面给出helm安装的一种方式, 其他请参见helm官网
+```
+#下载 helm, 解开, 得到可执行程序helm (https://helm.sh/docs/using_helm/#installing-helm)
+#tiller是helm的服务器端, 会部署在框架上, 它来完成其他docker部署到k8s上的工作
+#创建helm的用户(tiller), 绑定到cluster-admin上, 拥有整个集群的管理权限
+kubectl -n kube-system create serviceaccount tiller
+kubectl create clusterrolebinding tiller   --clusterrole=cluster-admin   --serviceaccount=kube-system:tiller
+
+#安装tiller
+helm init --service-account tiller --tiller-image  sapcc/tiller:v2.14.3 --stable-repo-url https://kubernetes.oss-cn-hangzhou.aliyuncs.com/charts
+
+#检查helm是否安装好:
+helm version
+kubectl -n kube-system  rollout status deploy/tiller-deploy
+
+```
+
+下面使用helm安装tars框架, tars-test换成你希望的namespace
 ```
 helm repo add tars-stable https://tarscloud.github.io/TarsDocker/charts/stable
 
@@ -24,7 +42,7 @@ kubectl create namespace tars-test
 
 #部署tars(主控两台, 节点机5台)
 helm install tars-stable/tars --name tars-test --namespace tars-test \
-    --set tars.replicas=2,tarsnode.replicas=5,tars.namespace=tars-test,tars.host=domain.com,tars.port=6080
+    --set tars.namespace=tars-test, tars.replicas=2, tarsnode.replicas=5, tars.host=domain.com,tars.port=6080
 
 
 ```
