@@ -42,7 +42,7 @@ kubectl create namespace tars-test
 
 #部署tars(主控两台, 节点机5台)
 helm install tars-stable/tars --name tars-test --namespace tars-test \
-    --set tars.namespace=tars-test, tars.replicas=2, tarsnode.replicas=5, tars.host=domain.com,tars.port=6080
+    --set tars.namespace=tars-test,tars.replicas=2,tarsnode.replicas=5,tars.host=domain.com,tars.port=6080
 
 
 ```
