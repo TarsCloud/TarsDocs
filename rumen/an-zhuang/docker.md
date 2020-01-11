@@ -36,6 +36,16 @@ docker run -d --net=host -e MYSQL_HOST=xxxxx -e MYSQL_ROOT_PASSWORD=xxxxx \
         tarscloud/framework:stable
 ```
 
+3. 目录说明
+
+创建时, 会将docker的目录/data/tars映射到宿主机目录/data/tars, 启动docker后, 请检查宿主机目录: /data/tars, 正常情况下会有创建以下几个目录:
+- app_log: tars服务的日志目录
+- web_log: web中tars-node-web模块的日志
+- demo_log: web中tars-user-system模块的日志
+- patchs: 上传的发布包
+
+如果这几个目录没有创建, 你可以手工创建, 再重启docker.
+
 ### 2.2 使用tarscloud/tars部署
 
 1. 拉取镜像
@@ -52,6 +62,9 @@ docker run -d --net=host -e MYSQL_HOST=xxxxx -e MYSQL_ROOT_PASSWORD=xxxxx \
         tarscloud/tars:stable
 ```
 
+映射路径同tarscloud/framework
+
+
 ### 2.3 参数解释
 
 MYSQL_IP: mysql数据库的ip地址
@@ -63,9 +76,6 @@ INET: 网卡的名称(ifconfig可以看到, 比如eth0), 表示框架绑定本�
 REBUILD: 是否重建数据库,通常为false, 如果中间装出错, 希望重置数据库, 可以设置为true
 
 SLAVE: 是否是从节点, 可以部署多台机器, 通常一主一从即可.
-
-映射目录到宿主机
-- -v/data/tars:/data/tars, include: tars应用日志, web日志, 发布包目录
 
 **如果希望多节点部署, 则在不同机器上执行docker run ...即可, 注意参数设置!**
 

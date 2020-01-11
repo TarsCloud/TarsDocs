@@ -149,21 +149,21 @@ cp -rf web /usr/local/tars/cpp/deploy/
 
 例如, 这是/usr/local/tars/cpp/deploy下的文件:
 ```
-[root@cb7ea6560124 deploy]# ls -l
-total 52
--rw-rw-r-- 1 tars tars 1923 Nov  2 17:31 centos7_base.repo
--rwxrwxr-x 1 tars tars 1515 Nov  5 18:21 Dockerfile
--rwxrwxr-x 1 tars tars 2844 Nov  5 18:21 docker-init.sh
--rwxrwxr-x 1 tars tars  215 Nov  5 18:21 docker.sh
--rw-rw-r-- 1 tars tars  664 Nov  2 17:31 epel-7.repo
-drwxrwxr-x 4 tars tars   30 Nov  2 17:31 framework
--rwxrwxr-x 1 tars tars 4599 Nov  8 09:41 linux-install.sh
--rw-rw-r-- 1 tars tars  191 Nov  2 17:31 MariaDB.repo
--rwxrwxr-x 1 tars tars  565 Nov  8 09:23 README.md
--rwxrwxr-x 1 tars tars  539 Nov  8 09:23 README.zh.md
--rwxrwxr-x 1 tars tars 9713 Nov  7 09:42 tars-install.sh
-drwxrwxr-x 2 tars tars   44 Nov  7 10:04 tools
-drwxr-xr-x 11 tars tars  4096 Oct 31 11:01 web
+[root@vm-0-15-centos deploy]# ls -l
+total 64
+-rw-r--r--  1 root root  1922 Jan 10 21:44 centos7_base.repo
+-rw-r--r--  1 root root  1229 Jan 10 21:44 Dockerfile
+-rwxr-x---  1 root root  2959 Jan  8 21:46 docker-init.sh
+-rwxr-x---  1 root root   215 Dec 31 15:37 docker.sh
+drwxr-xr-x  4 root root  4096 Jan 10 21:41 framework
+-rwxr-x---  1 root root  4876 Jan 10 21:38 linux-install.sh
+-rw-r--r--  1 root root   565 Dec 31 15:37 README.md
+-rw-r--r--  1 root root   539 Dec 31 15:37 README.zh.md
+-rwxr-x---  1 root root  1157 Jan  7 16:38 tar-server.sh
+-rwxr-x---  1 root root 12162 Jan 10 15:36 tars-install.sh
+-rwxr-x---  1 root root   311 Dec 31 15:37 tars-stop.sh
+drwxr-xr-x  2 root root  4096 Jan 10 21:41 tools
+drwxr-xr-x 12 root root  4096 Jan  5 12:03 web
 ```
 
 ## 3.2. 框架部署说明
@@ -203,6 +203,8 @@ tars_property是服务属性监控数据存储的数据库；
 **注意: 执行完毕以后, 可以检查nodejs环境变量是否生效: node --version, 如果输出不是v12.13.0, 则表示nodejs环境变量没生效**
 **如果没生效, 手动执行:  centos: source ~/.bashrc or ubuntu: source ~/.profile**
 
+请参考[检查web的问题](web.md)中的检查web问题章节, 如果没有问题, 请检查机器防火墙
+ 
 ## 3.3. (centos or ubuntu)一键部署
 
 进入/usr/local/tars/cpp/deploy, 执行:
@@ -361,40 +363,7 @@ npm run start 启动服务, 可以观察控制台的输出, 如果有问题, 会
 
 **正式运行建议: pm2 start tars-node-web; pm2 start tars-user-system**
 
-
-## 4.2 权限说明
-
-tar-web默认起来后, 默认有一个admin账号, 第一次登录需要修改admin用户的密码
-
-admin用户可以创建其他用户, 并给其他用户授权(三种权限admin, operator, developer)
-
-三种权限的能力不同, admin权限拥有超级管理权限, operator运维权限(包含developer权限, 能发布), developer(查看)
-
-权限可以精确到应用或者服务级别
-
-## 4.3 部署说明
-
-tars-node-web & tars-user-system默认是部署在同一台机器上, 并且都绑定了0.0.0.0 (即也绑定了127.0.0.1)
-
-tars-node-web通过localhost(127.0.0.1)来访问tars-user-system, 如果未绑定127.0.0.1, 则无权限, 此时需要修改tars-user-system模块的配置(demo/config/loginConf.js), 开放白名单:ignoreIps
-
-如果demo未绑定127.0.0.1, 则默认web过来的调用无权限, 此时需要修改demo/config/loginConf.js, 开放白名单:ignoreIps
-
-web & demo 的登录态通过cookie传递, 因此需要部署在同一个域名下面
-
-如果web & demo前面挂了nginx代理, 通过不同域名来访问, 则需要指定两个环境变量, 来方便web&demo互通
-
-比如: web的nginx的入口域名是: http://user.tars.com, demo的nginx域名是: http://auth.tars.com, 那么需要在服务器上设定环境变量:
-
-```
-export USER_CENTER_HOST=http://auth.tars.com
-export COOKIE_DOMAIN=.tars.com
-```
-
-**注意COOKIE_DOMAIN不要少了.**
-
-设定环境变量后, 即可正常访问demo
-
+web系统相关说明请参考[web](web.md)
 
 最后，在安装环境过程中，如果系统仍有问题，请到以下的目录查找日志文件分析问题所在：
 (1) ${TarsWeb}/log  

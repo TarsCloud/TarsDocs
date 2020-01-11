@@ -3,8 +3,9 @@
 > * [介绍](#chapter-1)
 > * [模块说明](#chapter-2)
 > * [权限说明](#chapter-3)
-> * [检查问题](#chapter-4)
-> * [web开发](#chapter-5)
+> * [模块调用](#chapter-4)
+> * [检查问题](#chapter-5)
+> * [web开发](#chapter-6)
 
 # 1 <a id="chapter-1"></a>介绍
 
@@ -74,7 +75,29 @@ tars-user-system 负责维护tars web的权限, 用户权限分为三种:
 
 你可以在web管理平台, 点击具体服务->点击权限管理-> 在运维, 开发的输入框中输入用户名称, 多用户以;分隔
 
-## 4 <a id="chapter-4"></a>检查问题
+
+## 4 <a id="chapter-4"></a>模块调用
+
+tars-node-web & tars-user-system默认是部署在同一台机器上, 并且都绑定了0.0.0.0 (即也绑定了127.0.0.1)
+
+tars-node-web通过localhost(127.0.0.1)来访问tars-user-system, 如果未绑定127.0.0.1, 则无权限, 此时需要修改tars-user-system模块的配置(demo/config/loginConf.js), 修改ignoreIps, 开放白名单.
+
+正常情况你可以通过机器的外网ip来访问, 例如:http://xxx.xxx.xxx.xxx:3000 web管理平台
+
+如果web & demo前面挂了nginx代理, 反向代理到不同端口(一个3000, 一个3001)来访问, 则需要设置不同域名来访问, web & demo 的登录态通过cookie传递, 因此需要部署在同一个根域名下面.
+
+比如: web的nginx的入口域名是: http://user.tars.com, demo的nginx域名是: http://auth.tars.com, (注意根域名都是tars.com), 那么需要在web服务器上设定环境变量:
+
+```
+export USER_CENTER_HOST=http://auth.tars.com
+export COOKIE_DOMAIN=.tars.com
+```
+
+**注意COOKIE_DOMAIN不要少了.**
+
+设定环境变量后, 即可正常访问demo
+
+## 5 <a id="chapter-4"></a>检查问题
 
 如果tars web运行异常, 比如:页面打不开, 可以通过以下方式检查:
 
@@ -97,7 +120,7 @@ pm2 start tars-node-web
 pm2 start tars-user-system
 ```
 
-## 5 <a id="chapter-5"></a>web开发
+## 6 <a id="chapter-5"></a>web开发
 
 如果你是nodejs开发者, 你也可以参与到web的开发中, web开发方式如下:
 
