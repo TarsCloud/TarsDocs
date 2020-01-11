@@ -34,7 +34,7 @@ kubectl -n kube-system  rollout status deploy/tiller-deploy
 
 ```
 
-下面使用helm安装tars框架, tars-test换成你希望的namespacecd
+下面使用helm安装tars框架, tars-test换成你希望的namespace
 ```
 helm repo add tars-stable https://tarscloud.github.io/TarsDocker/charts/stable
 
