@@ -30,6 +30,7 @@ docker pull tarscloud/framework:stable
 2. 启动镜像(目前只考虑了linux上, 时间和本机同步)
 ```sh
 docker run -d --net=host -e MYSQL_HOST=xxxxx -e MYSQL_ROOT_PASSWORD=xxxxx \
+        -e MYSQL_USER=root -e MYSQL_PORT=3306 \
         -eREBUILD=false -eINET=eth0 -eSLAVE=false \
         -v/data/tars:/data/tars \
         -v/etc/localtime:/etc/localtime \
@@ -56,6 +57,7 @@ docker pull tarscloud/tars:stable
 2. 启动镜像(目前只考虑了linux上, 时间和本机同步)
 ```sh
 docker run -d --net=host -e MYSQL_HOST=xxxxx -e MYSQL_ROOT_PASSWORD=xxxxx \
+        -e MYSQL_USER=root -e MYSQL_PORT=3306 \
         -eREBUILD=false -eINET=eth0 -eSLAVE=false \
         -v/data/tars:/data/tars \
         -v/etc/localtime:/etc/localtime \
@@ -77,6 +79,10 @@ REBUILD: 是否重建数据库,通常为false, 如果中间装出错, 希望重�
 
 SLAVE: 是否是从节点, 可以部署多台机器, 通常一主一从即可.
 
+MYSQL_USER: mysql用户, 默认是root
+
+MYSQL_PORT: mysql端口
+
 **如果希望多节点部署, 则在不同机器上执行docker run ...即可, 注意参数设置!**
 
 **这里必须使用 --net=host, 表示docker和宿主机在相同网络** 
@@ -92,6 +98,7 @@ SLAVE: 是否是从节点, 可以部署多台机器, 通常一主一从即可.
 主节点上执行(192.168.7.151)
 ```
 docker run -d --net=host -e MYSQL_HOST=192.168.7.153 -e MYSQL_ROOT_PASSWORD=xxxxx \
+        -e MYSQL_USER=root -e MYSQL_PORT=3306 \
         -eREBUILD=false -eINET=eth0 -eSLAVE=false \
         -v/data/tars:/data/tars \
         -v/etc/localtime:/etc/localtime \
@@ -101,6 +108,7 @@ docker run -d --net=host -e MYSQL_HOST=192.168.7.153 -e MYSQL_ROOT_PASSWORD=xxxx
 主节点执行完毕后, 从节点执行:
 ```
 docker run -d --net=host -e MYSQL_HOST=192.168.7.153 -e MYSQL_ROOT_PASSWORD=xxxxx \
+        -e MYSQL_USER=root -e MYSQL_PORT=3306 \
         -eREBUILD=false -eINET=eth0 -eSLAVE=true \
         -v/data/tars:/data/tars \
         -v/etc/localtime:/etc/localtime \
@@ -117,6 +125,7 @@ docker run -d --net=host -e MYSQL_HOST=192.168.7.153 -e MYSQL_ROOT_PASSWORD=xxxx
 
 ```sh
 docker run --net=host -e MYSQL_HOST=xxxxx -e MYSQL_ROOT_PASSWORD=xxxxx \
+        -e MYSQL_USER=root -e MYSQL_PORT=3306 \
         -eREBUILD=false -eINET=eth0 -eSLAVE=false \
         -v/data/tars:/data/tars \
         -v/etc/localtime:/etc/localtime \

@@ -210,7 +210,7 @@ tars_property是服务属性监控数据存储的数据库；
 进入/usr/local/tars/cpp/deploy, 执行:
 ```
 chmod a+x linux-install.sh
-./linux-install.sh MYSQL_HOST MYSQL_ROOT_PASSWORD INET REBUILD(false[default]/true) SLAVE(false[default]/true)
+./linux-install.sh MYSQL_HOST MYSQL_ROOT_PASSWORD INET REBUILD(false[default]/true) SLAVE(false[default]/true) MYSQL_USER MYSQL_PORT
 ```
 
 MYSQL_HOST: mysql数据库的ip地址
@@ -223,17 +223,21 @@ REBUILD: 是否重建数据库,通常为false, 如果中间装出错, 希望重�
 
 SLAVE: 是否是从节点
 
+MYSQL_USER: mysql用户, 默认是root
+
+MYSQL_PORT: mysql端口
+
 举例, 安装两台节点, 一台数据库(假设: 主[192.168.7.151], 从[192.168.7.152], mysql:[192.168.7.153])
 
 主节点上执行(192.168.7.151)
 ```
 chmod a+x linux-install.sh
-./linux-install.sh 192.168.7.153 tars2015 eth0 false false
+./linux-install.sh 192.168.7.153 tars2015 eth0 false false root 3306
 ```
 主节点执行完毕后, 从节点执行:
 ```
 chmod a+x linux-install.sh
-./linux-install.sh 192.168.7.153 tars2015 eth0 false true
+./linux-install.sh 192.168.7.153 tars2015 eth0 false true root 3306
 ```
 
 执行过程中的错误参见屏幕输出, 如果出错可以重复执行(一般是下载资源出错)
@@ -256,6 +260,7 @@ docker ps
 
 ```
 docker run -d --net=host -e MYSQL_HOST=xxxxx -e MYSQL_ROOT_PASSWORD=xxxxx \
+        -e MYSQL_USER=root -e MYSQL_PORT=3306 \
         -eREBUILD=false -eINET=enp3s0 -eSLAVE=false \
         -v/data/tars:/data/tars \
         -v/etc/localtime:/etc/localtime \
@@ -272,6 +277,10 @@ REBUILD: 是否重建数据库,通常为false, 如果中间装出错, 希望重�
 
 SLAVE: 是否是从节点
 
+MYSQL_USER: mysql用户, 默认是root
+
+MYSQL_PORT: mysql端口
+
 映射三个目录到宿主机
 - -v/data/tars:/data/tars, 包含了 tars应用日志, web日志, 发布包目录
 
@@ -279,7 +288,31 @@ SLAVE: 是否是从节点
 
 **这里必须使用 --net=host, 表示docker和宿主机在相同网络** 
 
-## 3.5. 核心模块
+## 3.5. mysql权限问题
+
+上诉安装mysql默认都是需要root权限, 但是在某些场景不具备root用户或者root用户必须交互式输入密码的情况下(比如腾讯云cdb), 你可以这样安装:
+
+- 首先在mysql中创建用户(可能管理员分配给你的), 比如:admin
+- admin用户具备以下权限(重点是创建用户的权限):
+```
+SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, RELOAD, PROCESS, REFERENCES, INDEX, ALTER, SHOW DATABASES, CREATE TEMPORARY TABLES, LOCK TABLES, EXECUTE, REPLICATION SLAVE, REPLICATION CLIENT, CREATE VIEW, SHOW VIEW, CREATE ROUTINE, ALTER ROUTINE, CREATE USER, EVENT, TRIGGER, CREATE TABLESPACE
+```
+- 执行安装脚本
+
+```
+./linux-install.sh 192.168.7.153 tars2015 eth0 false true admin 3306
+
+```
+
+```
+docker run -d --net=host -e MYSQL_HOST=xxxxx -e MYSQL_ROOT_PASSWORD=xxxxx -eMYSQL_USER=admin \
+        -eREBUILD=false -eINET=enp3s0 -eSLAVE=false \
+        -v/data/tars:/data/tars \
+        -v/etc/localtime:/etc/localtime \
+        tars-docker:v
+```
+
+## 3.6. 核心模块
 
 无论是那种安装方式, 最终Tars Framework都是由几个核心模块组成的, 例如:
 
