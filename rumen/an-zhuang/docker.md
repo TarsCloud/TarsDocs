@@ -7,10 +7,11 @@
 
 # 1 <a id="chapter-1"></a>介绍
 
-本节主要介绍了两种框架的docker, 可以采用docker来完成框架的部署
-目录介绍
+本节主要介绍采用docker来完成框架的部署, 有两种docker可用:
 - framework: Tars框架Docker制作脚本, 制作的docker包含了框架核心服务和web管理平台
 - tars: Tars框架Docker制作脚本, 和framework比, 增加了java, nodejs等运行时支持, 即可以把java, nodejs服务发布到docker里面(docker里面安装了jdk, node, php环境)
+
+首先确保你的服务上已经安装了docker环境, 如果没有, 可以参考[docker install](docker-huan-jing-an-zhuang.md)
 
 ## 2 <a id="chapter-2"></a>Docker部署Tars框架
 
