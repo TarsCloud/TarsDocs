@@ -282,7 +282,9 @@ MYSQL_USER: mysql用户, 默认是root
 MYSQL_PORT: mysql端口
 
 映射三个目录到宿主机
-- -v/data/tars:/data/tars, 包含了 tars应用日志, web日志, 发布包目录
+- -v/data/tars:/data/tars
+  >- 包含了 tars应用日志,  tarsnode/data目录(业务服务的运行包, 保证docker重启, 发布到docker内部的服务不会丢失)
+  >- 如果是主机则还包含: web日志, 发布包目录
 
 **如果希望多节点部署, 则在不同机器上执行docker run ...即可, 注意参数设置!**
 
@@ -305,7 +307,8 @@ SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, RELOAD, PROCESS, REFERENCES, INDEX
 ```
 
 ```
-docker run -d --net=host -e MYSQL_HOST=xxxxx -e MYSQL_ROOT_PASSWORD=xxxxx -eMYSQL_USER=admin \
+docker run -d --net=host -e MYSQL_HOST=xxxxx -e MYSQL_ROOT_PASSWORD=xxxxx \
+        -eMYSQL_USER=admin -eMYSQL_PORT=3306 \
         -eREBUILD=false -eINET=enp3s0 -eSLAVE=false \
         -v/data/tars:/data/tars \
         -v/etc/localtime:/etc/localtime \

@@ -41,9 +41,10 @@ docker run -d --net=host -e MYSQL_HOST=xxxxx -e MYSQL_ROOT_PASSWORD=xxxxx \
 
 创建时, 会将docker的目录/data/tars映射到宿主机目录/data/tars, 启动docker后, 请检查宿主机目录: /data/tars, 正常情况下会有创建以下几个目录:
 - app_log: tars服务的日志目录
-- web_log: web中tars-node-web模块的日志
-- demo_log: web中tars-user-system模块的日志
-- patchs: 上传的发布包
+- tarsnode-data: tarsnode/data目录(存放发布到docker的业务服务), 保证docker重启, 数据不丢失
+- web_log: web中tars-node-web模块的日志(主机才有)
+- demo_log: web中tars-user-system模块的日志(主机才有)
+- patchs: 上传的发布包(主机才有)
 
 如果这几个目录没有创建, 你可以手工创建, 再重启docker.
 
@@ -65,7 +66,6 @@ docker run -d --net=host -e MYSQL_HOST=xxxxx -e MYSQL_ROOT_PASSWORD=xxxxx \
 ```
 
 映射路径同tarscloud/framework
-
 
 ### 2.3 参数解释
 
