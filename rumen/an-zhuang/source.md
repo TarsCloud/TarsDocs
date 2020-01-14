@@ -399,10 +399,6 @@ npm run start 启动服务, 可以观察控制台的输出, 如果有问题, 会
 
 **正式运行建议: pm2 start tars-node-web; pm2 start tars-user-system**
 
-web系统相关说明请参考[web](web.md)
-
-最后，在安装环境过程中，如果系统仍有问题，请到以下的目录查找日志文件分析问题所在：
-(1) ${TarsWeb}/log  
-(2) /usr/local/app/tars/app_log/tars
+如果安装完成后web页面打不开, 请参考[web](web.md), 检查问题章节, 定位问题
 
 

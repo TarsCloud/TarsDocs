@@ -120,6 +120,10 @@ pm2 start tars-node-web
 pm2 start tars-user-system
 ```
 
+两个重要的web日志:
+- tars-node-web模块运行过程中的日志, 会输出在 /usr/local/web/log/ 目录下, 便于定位问题
+- tars-user-system模块运行过程中的日志, 会输出在 /usr/local/web/demo/log 目录下, 便于定位问题.
+
 ## 6 <a id="chapter-5"></a>web开发
 
 如果你是nodejs开发者, 你也可以参与到web的开发中, web开发方式如下:
