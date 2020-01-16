@@ -1,70 +1,70 @@
-# Table of Contents
-> * [Tars Language](#main-chapter-2)
-> * [Tars Protocol](#main-chapter-3)
+# 目录
+> * [Tars语言](#main-chapter-1)
+> * [Tars协议](#main-chapter-2)
 
-# 1. Tars language <a id="main-chapter-1"></a>
+# 1. Tars语言 <a id="main-chapter-1"></a>
 
-## 1.1. Interface file
+## 1.1. 接口文件
 
-The Tars language is a C++-like identifier language used to generate specific service interface files.
+Tars语言是一种类c++标识符的语言，用于生成具体的服务接口文件
 
-The Tars file is the communication interface between the client and the server in the Tars framework, and realizes the remote procedure call through the mapping of Tars.
+Tars文件是Tars框架中客户端和服务端的通信接口，通过Tars的映射实现远程对象调用
 
-Tars file extension must have a .tars extension
+Tars文件的扩展名必须以.tars为扩展名
 
-For structure definitions, extended fields can be supported, that is, fields can be added without affecting the resolution of the original structure, and can be used separately in places such as storage /protocol.
+对于结构定义，可以支持扩展字段，即可以增加字段而不影响原有结构的解析，可以在存储/协议等地方单独使用
 
-Case Sensitive
+大小写敏感
 
-## 1.2. Lexical rules
+## 1.2. 词法规则
 
-### 1.2.1. Notes
+### 1.2.1. 注释
 
-Use the C++ annotation specification.
+采用c++的注释规范。
 ```
-// indicates a comment line, /**/ indicates all the code in the comment range.
+//表示注释一行，/**/表示注释范围中的所有代码。
 ```
-### 1.2.2. Keywords
+### 1.2.2. 关键字
 ```
 void,struct,bool,byte,short,int,double,float,long,string,vector,map,key,routekey,module,interface,out,require,optional,false,true,enum,const
 ```
-### 1.2.3. Identifier
+### 1.2.3. 标识符
 
-All identifiers cannot have the 'tars_' symbol and must start with a letter and cannot conflict with the keyword.
+所有标识符不能带有'tars_’符号，且必须以字母开头，同时不能和关键字冲突。
 
-## 1.3. Basic types
+## 1.3. 基本类型
 
-The basic types of support include the following:
+支持的基本类型包括以下：
 
-void : can only be represented in the return value of the function
+void	：只能在函数的返回值表示
 
-bool : boolean type, mapped to tars::Bool
+bool	：布尔类型，映射到tars::Bool
 
-byte : signed characters, mapped to tars::Char
+byte	：有符号字符，映射到 tars::Char
 
-short : signed short integer, mapped to tars::Short
+short	：有符号短整型，映射到 tars::Short
 
-int : signed integer, mapped to tars::Int32
+int		：有符号整型，映射到 tars::Int32
 
-long : signed long integer, mapped to tars::Int64
+long	：有符号长整型，映射到 tars::Int64
 
-float : Map to tars::Float
+float	：映射到tars::Float
 
-double : Map to tars::Double
+double	：映射到tars::Double
 
-string : Map to std::string, java:String
+string	：映射到 std::string，java:String
 
-unsigned byte : unsigned character, c++ mapped to unsigend char other versions tars::Short
+unsigned byte ：无符号字符,c++映射到 unsigend char 其它版本tars::Short
 
-unsigned short : unsigned short integer c++ mapped to unsigned short other versions tars::Int32
+unsigned short：无符号短整形c++映射到 unsigned short其它版本 tars::Int32 
 
-unsigned int : unsigned integer c++ mapped to unsigned int other versions tars::Int64
+Unsigned int:无符号整形c++映射到 unsigned int其它版本 tars::Int64
 
-## 1.4. Complex types
+## 1.4. 复杂类型
 
-### 1.4.1. Enumeration
+### 1.4.1. 枚举
 
-The definition of the enumerated type is as follows:
+枚举类型的定义如下：
 ```
 enum TE
 {
@@ -73,153 +73,155 @@ enum TE
     E3
 };
 ```
-Description:
+说明：
 
-> * Enumeration type supports the value of the specified enumeration variable, for example, support: E1 = 1;
+> * 枚举类型支持在指定枚举变量的值，例如支持：E1 = 1这种定义方式；
 
-> * The first defined enumeration type value is 0, where E1 is 0;
+> * 第一个定义的枚举类型值为0，这里E1的值为0；
 
-> * For Enumeration type, after the tars file is defined and generated through tars2cpp, we will not only get the corresponding enum definition but also the etos and stoe functions which convert enumeration value to string or convert string to enumeration value, respectively. It is convenient when debugging code.
+> * 枚举类型在tars文件定义后，通过tars2cpp生成以后，除了会生成相应的enum定义之外，会生成etos和stoe函数，将枚举值转换成字符串，以及将字符串转换成枚举值，在代码调试时会非常方便。
 
-> * It is recommended that in the C++ tars file, all interfaces are returned as int, and the return value is defined in the tars file as an enumeration.
+> * 建议在c++的tars文件中，所有接口都以int返回，且返回值在tars文件中以枚举来定义。
 
-### 1.4.2. Constants
 
-Constants can be defined in the Tars file, for example:
+### 1.4.2. 常量
+
+Tars文件中可以定义常量，例如：
 ```
 const int a = 0;
 
-const string s = "abc";
+const string s = “abc”;
 ```
-Description:
+说明：
 
-> * Since map, vector does not describe the value of a constant, it does not support the definition of map, vector;
+> * 由于map，vector没有描述常量的值，因此不支持map，vector的定义；
 
-### 1.4.3. Structure
+### 1.4.3. 结构
 
-The structure is defined as follows:
+结构定义如下：
 ```
 struct Test
 {
-    0 require string s;
-    1 optional int i = 23;
+    0  require  string s;
+    1  optional int  i = 23;
 };
 
 key[Test, s, i];
 ```
-Description:
+说明：
 
-> * The first column of numbers indicates the tag of the field. Regardless of the structure increase or decrease field, the value of the field does not change and must correspond to the response field.
+> * 第一列数字表示该字段的标识（tag），无论结构增减字段，该字段得值都不变，必须和响应的字段对应；
 
-> * The value of Tag must be >=0 and <=255;
+> * Tag的值必须要>=0且<=255；
 
-> * 'require' indicates that the field is mandatory;
+> * require表示该字段必选；
 
-> * 'optional' indicates that this field is optional;
+> * optional表示该字段可选；
 
-> * For the 'optional' field, there can be a default value, the default value is not packaged by default when encoding;
+> * 对于optional字段，可以有一个缺省值，缺省值在编码时默认不打包；
 
-'key' description:
+key说明：
 
-> * Indicates the '<' symbol for structure. By default, Struct does not support the '<' operation. If the key is defined, it will generate '<' symbol.
+> * 表示结构的小于比较符号，缺省时Struct是没有小于操作的，如果定义了key，则生成小于比较符。
 
-'key' details:
+key详细说明：
 
-> * key[Stuct, member...]:
+> * key[Stuct, member…]：
 
-> * Struct: indicates the name of the structure
+> * Struct：表示结构的名称
 
-> * Member: indicates the member variable of the structure and more than one variable is allowed;
+> * Member：表示该结构的成员变量，可以有多个；
 
-> * Implement the comparison between Structs according to the order defined by the member variables in the key.
+> * 生成的小于比较操作符，按照key中成员变量定义的顺序进行优先<比较；
 
-> * After generating '<' operator, the structure can be used as the key of map;
+> * 生成小于比较操作符以后，该结构就可以作为map的key；
 
-other instructions:
+其他说明：
 
-> * In the C++ language of Tars, for the structure, two member functions are provided for directly printing out the contents of the structure, which can be used for debugging and logging:
+> * 在Tars的c++语言中，对于结构而言，提供两个成员函数用于直接打印出结构的内容，可以用于调试和记录日志：
 
-> * ostream& display(ostream& _os, int _level=0): directly prints the details of the structure, mainly for debugging;
+> * ostream& display(ostream& _os, int _level=0)：直接打印结构的详细内容，主要用于调试；
 
-> * ostream& displaySimple(ostream& _os, int _level=0): All member variables are automatically printed in the order separated by | for logging;
+> * ostream& displaySimple(ostream& _os, int _level=0)：所有成员变量自动按照顺序以|分隔打印出来，用于记录日志；
 
-### 1.4.4. Sequence
+### 1.4.4. 序列
 
-The sequence is defined by vector as follows:
+序列用vector来定义，如下：
 ```
 vector<int> vi;
 ```
-### 1.4.5. Dictionary
+### 1.4.5. 字典
 
-The dictionary is defined by map as follows:
+字典用map来定义，如下：
 ```
 map<int, string> m;
 ```
-Description:
+说明：
 
-> * Struct usually can not be used as the map key because it does not support '<' operation;
+> * 对于struct，通常不能作为map的key，因此struct没有大小比较符号；
 
-> * If the struct needs to be used as the map key, you should use key(defined in 2.4.3) to define the comparison order of the members in the struct;
+> * 如果需要struct能够作为map的key，需要用less定义struct中成员的比较顺序；
 
-### 1.4.6. Array
+### 1.4.6. 数组
 
-The array type can be defined in the structure, and the array is defined by [], as follows:
+结构中可以定义数组类型，数组用[]来定义，如下：
 ```
 byte m[5];
 ```
-Description:
+说明：
+> * 对数组类型，在C++生成代码中会同时生成数组长度mLen
 
-> * For array types, the length of the array(mLen) is also generated in the C++ generated code.
+> * 对数组赋值后必须同时对数组长度赋值
 
-> * After assigning an array, you must assign an array length at the same time.
+> * 在非c++版本中数组类型将翻译为vector<类型>
 
-> * Array types will be translated to vector<type> in non-c++ versions
+> * byte m[5] 等价于定义vector<byte>:5
 
-> * byte m[5] is equivalent to defining vector&lt;byte&gt; m(5)
+### 1.4.7 指针
 
-### 1.4.7 Pointer
-
-The byte pointer type can be defined in the structure, and the pointer is defined by *, as follows:
+结构中可以定义byte指针类型，指针用*来定义，如下：
 ```
 byte *m;
 ```
-When the pointer type is used, the memory block needs to be pre-allocated in advance. When the pointer needs memory, it points to the pre-allocated memory block by offset, which reduces the memory application during decoding.
+指针类型使用时需要提前预分配内存块，指针需要内存时通过偏移指向预分配内存块，减少解码过程中的内存申请。
 
-Description:
+说明：
 
-> * For pointer types, mLen is generated in the c++ code to specify the pointer length.
+> * 对于指针类型，在c++代码中会同时生成mLen，用来指定指针长度。
 
-> * Must assign a value to the length mLen after assigning a pointer
+> * 对指针赋值后必须对长度mLen赋值
 
-> * In non-c++ versions the pointer type will be translated to vector<type>
+> * 在非c++版本中指针类型将翻译为vector<类型>
 
-> * BufferReader must use MapBufferReader when reading data with pointer type, and need to set pointer to memory buffer in advance.
+> * 含有指针类型的数据读取时BufferReader必须用MapBufferReader,同时需要提前设定指针指向内存的buffer
 
-### 1.4.8 Nesting
+### 1.4.8 嵌套
 
-Any struct, map, or vector can be nested;
+任何struct，map，vector都可以嵌套；
 
-## 1.5. Interface
+## 1.5. 接口
 
-The interface is defined as follows, for example:
+接口定义如下，例如：
 ```
 interface Demo
 {
     int get(out vector<map<int, string>> v);
+    
     int set(vector<map<int, string>> v);
 };
+
 ```
-Description
-> * indicates output parameters
-> * After the interface is defined, the code such as synchronous interface and asynchronous interface are generated by an automatic code generation tool (such as tars2cpp).
+说明：
+> * 表示输出参数
+> * 接口定义后，通过自动代码生成工具（如：tars2cpp)会生成同步接口和异步接口等代码
 
-## 1.6. Namespace
+## 1.6. 名字空间
 
-All structs, interfaces must be in the namespace, for example:
+所有的struct，interface必须在名字空间中，例如：
 ```
 module MemCache
 {
-    struct key
+    struct Key
     {
         0 require string s;
     };
@@ -232,163 +234,166 @@ module MemCache
     interface MemCacheI
     {
         int get(Key k, out Value v);
+
         int set(Key k, Value v);
     };
 };
 ```
-Description:
-> * Namespaces cannot be nested;
-> * Can reference other namespaces, for example: Demo1::Key
+说明：
+> * 名字空间不能嵌套;
+> * 可以引用其他名字空间,例如:Demo1::Key
 
-# 2. Tars Protocol <a id="main-chapter-2"></a>
+# 2. Tars协议 <a id="main-chapter-2"></a>
 
-## 2.1. Data Encoding
+## 2.1. 数据编码
 
-### 2.1.1. Basic structure
+### 2.1.1. 基本结构
 
-Each piece of data consists of two parts, as shown below:
+每一个数据由两个部分组成，如下图：
 ```
-| Header Information | Actual Data |
+| 头信息 | 实际数据 |
 ```
-The header information includes the following parts:
+而其中头信息包括以下几个部分：
 ```
 | Type(4 bits) | Tag 1(4 bits) | Tag 2(1 byte) |
 ```
-Tag 2 is optional. When the value of Tag does not exceed 14, it only needs to be represented by Tag 1. When the value of Tag exceeds 14 and is less than 256, Tag 1 is fixed to 15 and Tag 2 is used to indicate the value of Tag. . Tag does not allow greater than 255.
+Tag 2是可选的，当Tag的值不超过14时，只需要用Tag 1就可以表示；当Tag的值超过14而小于256时，Tag 1固定为15，而用Tag 2表示Tag的值。Tag不允许大于255。
 
-'Type' indicates the type, which is represented by 4 binary digits. The value ranges from 0 to 15. It is used to identify the type of the data. Different types of data, followed by the actual data length and format are not the same, see the type table.
+Type表示类型，用4个二进制位表示，取值范围是0~15，用来标识该数据的类型。不同类型的数据，其后紧跟着的实际数据的长度和格式都是不一样的，详见一下的类型表。
 
-Tag is represented by Tag 1 and Tag 2. The value ranges from 0 to 255, that is, the field ID of the data in the structure, used to distinguish different fields.
+Tag由Tag 1和Tag 2一起表示。取值范围是0~255，即该数据在结构中的字段ID，用来区分不同的字段。
 
-### 2.1.2. Encoding type table
+### 2.1.2. 编码类型表
 
-Note that the types defined here and the types defined by the tars file are two different concepts. The type here is just the type that identifies the data store, not the type of the data definition.
+注意，这里的类型与tars文件定义的类型是两个不同的概念，这里的类型只是标识数据存储的类型，而不是数据定义的类型。
 
-Value | Type | Notes
+取值 |类型|备注
 ------|----|----
-0 | int1| followed by 1 byte integer data
-1|int2| followed by 2 bytes of integer data
-2|int4| followed by 4 bytes of integer data
-3|int8|close to 8 bytes of integer data
-4|float|following 4 bytes of floating point data
-5|double|following 8 bytes of floating point data
-6|String1|Following 1 byte length, followed by content
-7|String4| followed by 4 bytes in length, followed by the content
-8|Map|Follow an integer data to indicate the size of the Map, followed by the list of [key, value] pairs
-9|List|Follow an integer data to represent the size of the List, followed by a list of elements
-10|Custom Structure Start|Custom Structure Start Mark
-11|Custom structure end|Custom structure end flag, Tag is 0
-12|Number 0| indicates the number 0, followed by the data
-13|SimpleList|Simple list (currently used in byte array), followed by a type field (currently only supports byte), followed by an integer data representation length, followed by byte data
+0 |int1|紧跟1个字节整型数据
+1|int2|紧跟2个字节整型数据
+2|int4|紧跟4个字节整型数据
+3|int8|紧跟8个字节整型数据
+4|float|紧跟4个字节浮点型数据
+5|double|紧跟8个字节浮点型数据
+6|String1|紧跟1个字节长度，再跟内容
+7|String4|紧跟4个字节长度，再跟内容
+8|Map|紧跟一个整型数据表示Map的大小，再跟[key, value]对列表
+9|List|紧跟一个整型数据表示List的大小，再跟元素列表
+10|自定义结构开始|自定义结构开始标志
+11|自定义结构结束|自定义结构结束标志，Tag为0
+12|数字0|表示数字0，后面不跟数据
+13|SimpleList|简单列表（目前用在byte数组），紧跟一个类型字段（目前只支持byte），紧跟一个整型数据表示长度，再跟byte数据
 
-### 2.1.3. Detailed description of each type
+### 2.1.3. 各类型详细描述
 
-1.Basic types (including int1, int2, int4, int8, float, double)
+1.基本类型（包括int1、int2、int4、int8、float、double）
 
-The header information is followed by the numeric data. 'char' and 'bool' are also considered integers. There is no distinction between all integer data, that is, a 'short' value can be assigned to an int.
+头信息后紧跟数值数据。char、bool也被看作整型。所有的整型数据之间不做区分，也就是说一个short的值可以赋值给一个int。
 
-2.Number 0
+2.数字0
 
-The header information does not follow the data, indicating a value of 0. The value of 0 for all basic types can be represented as such.
+头信息后不跟数据，表示数值0。所有基本类型的0值都可以这样来表示。
 
-This is because the probability of the occurrence of the number 0 is relatively large, so a type is added separately to save space.
+这是考虑到数字0出现的概率比较大，所以单独提一个类型，以节省空间。
 
-3.String (including String1, String4)
+3.字符串（包括String1、String4）
 
-String1 is the length of a byte (the length data does not include header information), followed by the content.
+String1跟一个字节的长度（该长度数据不包括头信息），接着紧跟内容。
 
-String4 is similar.
+String4与之类似。
 
 4.Map
 
-Immediately following an integer data (including header information) indicates the size of the Map, and then follows the [Key data (Tag is 0), Value data (Tag is 1)] pair list.
+紧跟一个整形数据（包括头信息）表示Map的大小，然后紧跟[Key数据（Tag为0），Value数据（Tag为1）]对列表。
 
 5.List
 
-Immediately followed by an integer data (including header information) indicating the size of the List, followed by a list of elements (Tag is 0)
+紧跟一个整形数据（包括头信息）表示List的大小，然后紧跟元素列表（Tag为0）
 
-6.Custom structure begins
+6.自定义结构开始
 
-Custom structure start flag, followed by field data, fields are sorted in ascending order of tags
+自定义结构开始标志，后面紧跟字段数据，字段按照tag升序顺序排列
 
-7.End of custom structure
+7.自定义结构结束
 
-Custom structure end flag, Tag is 0
+自定义结构结束标志，Tag为0
 
-### 2.1.4 Object persistence
 
-Persistence for custom structures is identified by a start and end flags.
+### 2.1.4 对象持久化
 
-For example, the following structure definition:
+对于自定义结构的持久化，由开始标志与结束标志来标识。
+
+比如如下结构定义：
 ```
 struct TestInfo
 {
-    1 require int ii = 34;
-    2 optional string s = "abc";
+    1  require  int    ii  = 34;
+    2  optional string s   = "abc";
 };
 
 struct TestInfo2
 {
-    1 require TestInfo t;
-    2 require int a = 12345;
+    1  require TestInfo  t;
+    2  require int       a = 12345;
 };
+
 ```
-Among them, the default TestInfo2 structure encoding results are:
+其中，默认的TestInfo2结构编码后结果为：
 
-![tars](../assets/tars_tupstruct_en.png)
+![tars](../assets/tars_tupstruct.png)
 
-## 2.2. Message format
+## 2.2. 消息格式
 
-The underlying TUP protocol is completely defined by Tars, which is consistent with the underlying data packet definition of Tars. The required field is the required field of TUP, and optional is the additional field needed to access the Tars service.
+TUP底层协议完全采用Tars定义，与Tars的底层数据包定义一致，其中require的字段为TUP必须的字段，optional为访问Tars服务时额外需要用到的字段。
 
-### 2.2.1. Request package
+### 2.2.1. 请求包
 ```
-/ / Request the package body
+//请求包体
 struct RequestPacket
 {
-    1 require short iVersion; //version number
-    2 optional byte cPacketType; //package type
-    3 optional int iMessageType; //message type
-    4 require int iRequestId; //Request ID
-    5 require string sServantName; //servant name
-    6 require string sFuncName; / / function name
-    7 require vector<byte> sBuffer; //binary buffer
-    8 optional int iTimeout; //timeout time (ms)
-    9 optional map<string, string> context; //business context
-    10 optional map<string, string> status; //framework protocol context
-    };
+    1  require short        iVersion;         //版本号
+    2  optional byte        cPacketType;      //包类型
+    3  optional int         iMessageType;     //消息类型
+    4  require int          iRequestId;       //请求ID
+    5  require string       sServantName;     //servant名字
+    6  require string       sFuncName;        //函数名称
+    7  require vector<byte> sBuffer;          //二进制buffer
+    8  optional int         iTimeout;         //超时时间（毫秒）
+    9  optional map<string, string> context;  //业务上下文
+    10 optional map<string, string> status;   //框架协议上下文
+};
 ```
-### 2.2.2. Response package
+### 2.2.2. 响应包
 ```
-/ / Response body
+//响应包体
 struct ResponsePacket
 {
-    1 require short iVersion; //version number
-    2 optional byte cPacketType; //package type
-    3 require int iRequestId; / / request ID
-    4 optional int iMessageType; //message type
-    5 optional int iRet; / / return value
-    6 require vector<byte> sBuffer; //binary stream
-    7 optional map<string, string> status; //protocol context
-    8 optional string sResultDesc; //Result description
+    1 require short         iVersion;       //版本号
+    2 optional byte         cPacketType;    //包类型
+    3 require int           iRequestId;     //请求ID
+    4 optional int          iMessageType;   //消息类型
+    5 optional int          iRet;           //返回值
+    6 require vector<byte>  sBuffer;        //二进制流
+    7 optional map<string, string> status;  //协议上下文
+    8 optional string       sResultDesc;    //结果描述
 };
 
-//return value
-const int TAFSERVERSUCCESS = 0; //Server side processing succeeded
-const int TAFSERVERDECODEERR = -1; //Server-side decoding exception
-const int TAFSERVERENCODEERR = -2; //Server-side encoding exception
-const int TAFSERVERNOFUNCERR = -3; //There is no such function on the server side
-const int TAFSERVERNOSERVANTERR = -4; //The server does not have the Servant object
-const int TAFSERVERRESETGRID = -5; // server grayscale state is inconsistent
-const int TAFSERVERQUEUETIMEOUT = -6; // server queue exceeds limit
-const int TAFASYNCCALLTIMEOUT = -7; // Asynchronous call timeout
-const int TAFINVOKETIMEOUT = -7; //call timeout
-const int TAFPROXYCONNECTERR = -8; //proxy link exception
-const int TAFSERVEROVERLOAD = -9; //Server overload, exceeding queue length
-const int TAFADAPTERNULL = -10; //The client routing is empty, the service does not exist or all services are down.
-const int TAFINVOKEBYINVALIDESET = -11; //The client is illegally called by the set rule
-const int TAFCLIENTDECODEERR = -12; //Client decoding exception
-const int TAFSERVERUNKNOWNERR = -99; //The server is in an abnormal position
+//返回值
+const int TAFSERVERSUCCESS       = 0;       //服务器端处理成功
+const int TAFSERVERDECODEERR     = -1;      //服务器端解码异常
+const int TAFSERVERENCODEERR     = -2;      //服务器端编码异常
+const int TAFSERVERNOFUNCERR     = -3;      //服务器端没有该函数
+const int TAFSERVERNOSERVANTERR  = -4;      //服务器端没有该Servant对象
+const int TAFSERVERRESETGRID     = -5;      //服务器端灰度状态不一致
+const int TAFSERVERQUEUETIMEOUT  = -6;      //服务器队列超过限制
+const int TAFASYNCCALLTIMEOUT    = -7;      //异步调用超时
+const int TAFINVOKETIMEOUT       = -7;      //调用超时
+const int TAFPROXYCONNECTERR     = -8;      //proxy链接异常
+const int TAFSERVEROVERLOAD      = -9;      //服务器端超负载,超过队列长度
+const int TAFADAPTERNULL         = -10;     //客户端选路为空，服务不存在或者所有服务down掉了
+const int TAFINVOKEBYINVALIDESET = -11;     //客户端按set规则调用非法
+const int TAFCLIENTDECODEERR     = -12;     //客户端解码异常
+const int TAFSERVERUNKNOWNERR    = -99;     //服务器端位置异常
 ```
 
-    
+
