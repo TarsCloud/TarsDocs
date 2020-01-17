@@ -40,20 +40,12 @@ HelloImp.js接口逻辑：
 var Hello = require("./Hello.js").Hello;
 module.exports.Hello = Hello;
 
-<<<<<<< HEAD
-* 服务基本信息：
-  * 服务名称：HelloWorld
-  * 服务类型：NODEJS
-  * 模板名称：tars.default
-* OBJ 部署信息：
-  * OBJ名称：HttpObj
-  * 是TARS：选择否（移除复选框）
-  * 端口：自动生成端口
-=======
 Hello.HelloProxyImp.prototype.initialize = function () {
     //TODO::
 };
->>>>>>> update tars nodejs doc
+Hello.HelloProxyImp.prototype.initialize = function () {
+    //TODO::
+};
 
 Hello.HelloProxyImp.prototype.add = function (current, a, b, c) {
     c = a + b;
