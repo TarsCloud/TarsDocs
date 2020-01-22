@@ -32,7 +32,7 @@
 * [统一通信协议 Tup](kai-fa/tarstup.md)
 
 ## 开发 & 运维 <a id="kai-fa"></a>
-* [TarsCPP](kai-fa/tarscpp/README.md)
+* [TarsCPP]
   * [使用指南](kai-fa/tarscpp/tarscpp-kuang-jia-shi-yong-zhi-nan.md)
   * [开发规范](kai-fa/tarscpp/kai-fa-gui-fan.md)
   * [服务线程说明文档](kai-fa/tarscpp/fu-wu-xian-cheng-shuo-ming-wen-dang.md)
@@ -40,7 +40,7 @@
   * [Future/Promise使用](kai-fa/tarscpp/futurepromise-shi-yong.md)
   * [protobuf协议支持文档](kai-fa/tarscpp/protobuf-xie-yi-zhi-chi-wen-dang.md)
   * [HTTP协议支持示例](kai-fa/tarscpp/http-xie-yi-zhi-chi-shi-li.md)
-* [TarsJava](kai-fa/tarsjava/README.md)
+* [TarsJava]
   * [Tars-Spring 使用说明](kai-fa/tarsjava/tarsspring-shi-yong-shuo-ming.md)
   * [Tars-Spring-boot 使用说明](kai-fa/tarsjava/tarsspringboot-shi-yong-shuo-ming.md)
   * [Tars-Spring-Cloud 使用说明](kai-fa/tarsjava/tarsspringcloud-shi-yong-shuo-ming.md)
