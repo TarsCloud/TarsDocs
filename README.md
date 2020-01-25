@@ -1,4 +1,4 @@
-# Readme.md
+[Click to View English](https://github.com/TarsCloud/TarsDocs_en/README.md)
 
 ## Tars
 
@@ -25,6 +25,21 @@ Tars详细介绍参见 [目录](SUMMARY.md)。
 * Nodejs
 * PHP
 * Go
+
+
+## 子模块
+
+目录             | 说明
+------------------|----------------
+framework         |c++实现的基础服务
+cpp               |c++ rpc框架源码
+java              |java rpc框架源码
+go                |go rpc框架源码
+nodejs            |nodejs rpc框架源码
+php               |php rpc框架源码
+tup               |tup 协议源码
+web               |web管理平台
+docker            |构建tars docker脚本
 
 ### License
 

@@ -1,19 +1,19 @@
 # 目录
-> * [依赖环境](#chapter-1)
-> * [Tars C++开发环境](#chapter-2)
-> * [Tars框架安装](#chapter-3)
-> * [Tars-web说明](#chapter-4)
-> * [框架扩容及更新](#chapter-5)
+> * [介绍](#chapter-1)
+> * [框架服务扩容](#chapter-2)
+> * [Tarsnode扩容和更新](#chapter-3)
+> * [Tars-web更新](#chapter-4)
+> * [框架基础服务更新](#chapter-5)
 
-## 1 介绍
+## 1 <a id="chapter-1"></a> 介绍
 
 当我们谈到框架的扩容和更新时, 主要讨论的内容包括:
 - 框架核心服务如何扩容到多台机器上
-- 如果新增节点服务器
+- 如何新增节点服务器
 - tarsweb如何更新
 - 框架各个核心服务如何更新到最新版本
 
-## 2 框架服务扩容
+## 2 <a id="chapter-2"></a>框架服务扩容
 
 框架服务的扩容会随着部署方式的不同而不同:
 
@@ -29,12 +29,7 @@
 
 **注意: 务必不要设置REBUILD为true, 数据库会被重置!!!**
 
-- 通过源码编译的方式使用linux-install.sh安装的框架, 可以重新执行linux-install.sh即可(注意: 务必不要设置REBUILD为true, 数据库会被重置!!!)
-- tarsnode的扩容和更新可以在web平台(>=1.3.1)上在线安装和更新tarsnode
-
-**如果需要手工更新, 可以参考以下章节, 手工更新各个模块**
-
-## 3 tarsnode安装和更新
+## 3 <a id="chapter-3"></a> tarsnode安装和更新
 
 核心基础服务的安装成功后，如果需要在其他机器也能部署基于tars框架的服务，那么在通过管理平台扩容和部署服务前，需要在其他节点机上安装tarsnode并连接到框架上。
 
@@ -72,7 +67,7 @@ locator=tars.tarsregistry.QueryObj@tcp -h xxx2 -p 17890:tcp -h xxx2 -p 17890
 
 **注意:之前安装的框架的服务器, 如果用check.sh做了监控, 则无需再配置tarsnode的监控了**
 
-## 5.3 Tar-web更新
+## 4 <a id="chapter-4"></a> Tar-web更新
 
 **更新步骤**
 - 下载最新的Tars-web的代码, 覆盖 /usr/local/app/web
@@ -94,7 +89,7 @@ mysql -hxxx -pxxx db_user_system < web/demo/sql/db_user_system.sql
 
 ```
 
-## 5.4 框架基础服务更新
+## <a id="chapter-5"></a> 框架基础服务更新
 
 框架服务的安装分两种：
 
@@ -130,16 +125,15 @@ make tarslog-tar
 make tarsquerystat-tar
 make tarsqueryproperty-tar
 ```
-具体参见5.5章节。
+具体参见下一节。
 
 **注意在管理平台进行部署时，选择正确的服务模板即可（默认是有的，若没有相应的模版，可以在管理平台上创建，具体服务的模版内容可以参见源码目录deploy/sql/template目录下的文件）!**
 
-## 5.5. 基础服务手工上传示意图
-
+**基础服务手工上传示意图**
 
 在执行上述的make语句后，/usr/local/app/TarsFramework/build就会生成几个*.tgz文件，例如tarslog.tgz, tarsnotify.tgz等等，这些文件就是下面章节中所需要部署的包文件。
 
-### 5.5.1 tarsnotify部署发布
+### 5.1 tarsnotify部署发布
 
 默认tarsnotify在安装核心基础服务时，部署信息已初始化了，安装完管理平台后，就可以看到，如下：
 
@@ -149,7 +143,7 @@ make tarsqueryproperty-tar
 
 ![tars](../../assets/tars_tarsnotify_patch.png)
 
-### 5.5.2 tarsstat部署发布
+### 5.2 tarsstat部署发布
 
 部署信息如下：
 
@@ -159,7 +153,7 @@ make tarsqueryproperty-tar
 
 ![tars](../../assets//tars_tarsstat_patch.png)
 
-### 5.5.3 tarsproperty部署发布
+### 5.3 tarsproperty部署发布
 
 部署信息如下：
 
@@ -169,7 +163,7 @@ make tarsqueryproperty-tar
 
 ![tars](../../assets/tars_tarsproperty_patch.png)
 
-### 5.5.4 tarslog部署发布
+### 5.4 tarslog部署发布
 
 部署信息如下：
 
@@ -179,7 +173,7 @@ make tarsqueryproperty-tar
 
 ![tars](../../assets/tars_tarslog_patch.png)
 
-### 5.5.5 tarsquerystat部署发布
+### 5.5 tarsquerystat部署发布
 
 部署信息如下：
 
@@ -192,7 +186,7 @@ make tarsqueryproperty-tar
 ![tars](../../assets/tars_tarsquerystat_patch.png)
 
 
-### 5.5.6 tarsqueryproperty部署发布
+### 5.6 tarsqueryproperty部署发布
 
 部署信息如下：
 
@@ -204,8 +198,5 @@ make tarsqueryproperty-tar
 
 ![tars](../../assets/tars_tarsqueryproperty_patch.png)
 
-最后，在安装环境过程中，如果系统仍有问题，请到以下的目录查找日志文件分析问题所在：
-(1) ${TarsWeb}/log  
-(2) /usr/local/app/tars/app_log/tars
 
 
