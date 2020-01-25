@@ -1,4 +1,4 @@
-[Click to View English](https://github.com/TarsCloud/TarsDocs_en/README.md)
+[Click to View English](https://tarscloud.github.io/TarsDocs_en/)
 
 ## Tars
 
