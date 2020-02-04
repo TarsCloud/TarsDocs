@@ -1,8 +1,12 @@
-# TarsCPP 快速入门
+# 目录
+> * [创建服务](#chapter-1)
+> * [服务实现](#chapter-2)
+> * [服务编译](#chapter-3)
+> * [扩展接口](#chapter-4)
+> * [远程调用](#chapter-5)
+> * [其它](#chapter-6)
 
-## 创建服务
-
-### 运行tars脚本
+## 1 <a id="chapter-1"></a> 创建服务
 
 ```text
 /usr/local/tars/cpp/script/create_tars_server.sh [App] [Server] [Servant]
@@ -17,6 +21,8 @@ HelloServer.h HelloServer.cpp Hello.tars HelloImp.h HelloImp.cpp makefile
 ```
 
 这些文件，已经包含了最基本的服务框架和默认测试接口实现。
+
+## 2 <a id="chapter-3"></a> 服务实现
 
 ### tars接口文件
 
@@ -200,7 +206,9 @@ main(int argc, char* argv[])
 /////////////////////////////////////////////////////////////////
 ```
 
-## 服务编译
+**每个Servant(Obj)对象对应一个业务处理线程, 因此如果是成HelloImp的成员变量, 并且只被当前的HelloImp对象处理, 是不需要加锁的**
+
+## 3 <a id="chapter-3"></a> 服务编译
 
 进入代码目录,首先做
 
@@ -210,7 +218,7 @@ make
 make tar
 ```
 
-## 扩展功能
+## 4 <a id="chapter-4"></a> 扩展功能
 
 Tars框架提供了接口定义语言的功能，可以在tars文件中，增加一下接口和方法，扩展服务的功能。
 
@@ -252,7 +260,7 @@ int HelloImp::testHello(const std::string &sReq, std::string &sRsp, tars::TarsCu
 
 重新make cleanall;make;make tar，会重新生成HelloServer.tgz发布包。
 
-## 客户端同步/异步调用服务
+## 5 <a id="chapter-5"></a> 客户端同步/异步调用服务
 
 在开发环境上，创建/home/tarsproto/\[APP\]/\[Server\]目录。
 
@@ -405,3 +413,9 @@ include /usr/local/tars/cpp/makefile/makefile.tars
 
 make出目标文件，上传到能访问服务器的环境中进行运行测试即
 
+## 6 <a id="chapter-6"></a> 其它 
+
+其他你可能需要知道的重点:
+- examples下有几个非常重要的调用例子:同步, 异步, 协程, 代理模式, push模式, HTTP服务支持等, 建议仔细读一读
+- 代码中的Communicator是管理客户端资源的, 建议做成全局, 如果不是独立的Client客户端, 而是在服务框架中, 直接获取框架提供好的Communicator, 参见ProxyServer
+- 上述Client例子中`comm.stringToProxy("TestApp.HelloServer.HelloObj@tcp -h 10.120.129.226 -p 20001" , prx);`  指定了HelloServer的ip:port, 实际情况下, 当你的服务部署在框架上, 需要调用另外一个服务时, 只需要: `comm.stringToProxy("TestApp.HelloServer.HelloObj")`即可, 框架会自动寻址后端的HelloServer服务, 并自动完成容灾切换

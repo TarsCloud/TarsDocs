@@ -4,6 +4,17 @@
 * [CLA](cla.md)
 * [LICENSE](license.md)
 
+# Directory
+> * [入门](#rumen)
+> * [TarsCPP](#TarsCPP)
+> * [TarsJava](#TarsJava)
+> * [TarsGo](#TarsGo)
+> * [Tarsjs](#Tars.js)
+> * [TarsPHP](#TarsPHP)
+> * [其他重要特性](#important)
+> * [常见问题](#question)
+
+
 ## 入门 <a id="rumen"></a>
 
 * [简介](rumen/jian-jie.md)
@@ -31,23 +42,44 @@
 * [基础通信协议 Tars](kai-fa/tars_protocol.md)
 * [统一通信协议 Tup](kai-fa/tarstup.md)
 
-## 开发 & 运维 <a id="kai-fa"></a>
-* [TarsCPP]
+## TarsCPP <a id="TarsCPP"></a>
   * [使用指南](kai-fa/tarscpp/tarscpp-kuang-jia-shi-yong-zhi-nan.md)
   * [开发规范](kai-fa/tarscpp/kai-fa-gui-fan.md)
   * [服务线程说明文档](kai-fa/tarscpp/fu-wu-xian-cheng-shuo-ming-wen-dang.md)
   * [Tars的push功能](kai-fa/tarscpp/tars-de-push-gong-neng.md)
-  * [Future/Promise使用](kai-fa/tarscpp/futurepromise-shi-yong.md)
   * [protobuf协议支持文档](kai-fa/tarscpp/protobuf-xie-yi-zhi-chi-wen-dang.md)
   * [HTTP协议支持示例](kai-fa/tarscpp/http-xie-yi-zhi-chi-shi-li.md)
-* [TarsJava]
+  * [案例]
+    * [Tars C++ 框架快速入门.md](an-li/tarscpp/tars_cpp_quickstart.md) 
+    * [Tars C++ Http服务示例.md](an-li/tarscpp/tars_cpp_http_demo.md)  
+    * [Tars C++ push功能说明.md](an-li/tarscpp/tars_push.md) 
+    * [Tars C++ 协程说明.md](an-li/tarscpp/tars_co.md) 
+
+## TarsJava <a id="TarsJava"></a>
   * [Tars-Spring 使用说明](kai-fa/tarsjava/tarsspring-shi-yong-shuo-ming.md)
   * [Tars-Spring-boot 使用说明](kai-fa/tarsjava/tarsspringboot-shi-yong-shuo-ming.md)
   * [Tars-Spring-Cloud 使用说明](kai-fa/tarsjava/tarsspringcloud-shi-yong-shuo-ming.md)
   * [使用指南](kai-fa/tarsjava/shi-yong-zhi-nan.md)
-* [TarsGo](kai-fa/tarsgo/README.md)
+    * [案例](an-li/tarsjava.md)
+    * [快速开发入门客户端示例](https://github.com/TarsCloud/TarsJava/tree/master/examples/quickstart-client) 
+    * [快速开发入门服务端示例](https://github.com/TarsCloud/TarsJava/tree/master/examples/quickstart-server) 
+    * [tars java 压测代码 ](https://github.com/TarsCloud/TarsJava/tree/master/examples/stress-server)
+    * [spring boot服务端示例 ](https://github.com/TarsCloud/TarsJava/tree/master/examples/tars-spring-boot-server) 
+    * [spring cloud客户端示例 ](https://github.com/TarsCloud/TarsJava/tree/master/examples/tars-spring-cloud-client)
+    * [spring cloud服务端示例](https://github.com/TarsCloud/TarsJava/tree/master/examples/tars-spring-cloud-server) 
+    * [tars-spring-server](https://github.com/TarsCloud/TarsJava/tree/master/examples/tars-spring-server) 
+
+## TarsGo <a id="TarsGo"></a>
   * [pb2tarsgo](kai-fa/tarsgo/pb2tarsgo.md)
   * [性能数据](kai-fa/tarsgo/xing-neng-ce-shi.md)
+    * [案例](an-li/tarsgo.md)]
+    * [服务端使用context示例](https://github.com/TarsCloud/TarsGo/tree/master/examples/ContextTestServer) 
+    * [tars客户端示例 ](https://github.com/TarsCloud/TarsGo/tree/master/examples/EchoClientServer)
+    * [tars服务端示例](https://github.com/TarsCloud/TarsGo/tree/master/examples/EchoTestServer) 
+    * [zipkin调用链追踪客户端示例](https://github.com/TarsCloud/TarsGo/tree/master/examples/ZipkinTraceClient) 
+    * [zipkin调用链追踪服务端示例](https://github.com/TarsCloud/TarsGo/tree/master/examples/ZipkinTraceServer) 
+
+## TarsPHP <a id="TarsPHP"></a>
 * [TarsPHP](kai-fa/tarsphp/README.md)
   * [tars-client](kai-fa/tarsphp/tars-client.md)
   * [tars-config](kai-fa/tarsphp/tars-config.md)
@@ -68,6 +100,14 @@
   * [与Laravel结合使用](kai-fa/tarsphp/yu-laravel-jie-he-shi-yong.md)
   * [与Yii2结合使用](kai-fa/tarsphp/yu-yii2-jie-he-shi-yong.md)
   * [持续集成方案](kai-fa/tarsphp/chi-xu-ji-cheng-fang-an.md)
+    * [案例](an-li/tarsphp/README.md)
+    * [搭建HttpServer](an-li/tarsphp/da-jian-httpserver.md)
+    * [搭建TimerServer](an-li/tarsphp/da-jian-timerserver.md)
+    * [搭建TcpServer](an-li/tarsphp/da-jian-tcpserver.md)
+    * [搭建WebSocketServer](an-li/tarsphp/da-jian-websocketserver.md)
+    * [弹幕活动实战](an-li/tarsphp/tan-mu-huo-dong-shi-zhan.md)
+
+## Tars.js <a id="Tars.js></a>
 * [Tars.js](kai-fa/tars.js/README.md)
   * [@tars/stream](kai-fa/tars.js/tars-stream.md)
   * [@tars/rpc](kai-fa/tars.js/tars-rpc.md)
@@ -81,7 +121,7 @@
   * [@tars/winston-tars](kai-fa/tars.js/tars-winston-tars.md)
   * [tars2node](kai-fa/tars.js/tars2node.md)
 
-## 其他重要特性 <a id="kai-fa-1"></a>
+## 其他重要特性 <a id="important"></a>
 
 * [业务配置](kai-fa/ye-wu-pei-zhi.md)
 * [服务监控](kai-fa/fu-wu-jian-kong.md)
@@ -94,40 +134,7 @@
 * [IDC分组](kai-fa/tars-idc-set.md)
 * [鉴权功能](kai-fa/tars-jian-quan-gong-neng.md)
 
-## 案例
-* [TarsCPP](an-li/tarscpp/README.md)
-  * [Tars C++开发规范.md](an-li/tarscpp/tars_cpp_develop_specification.md)
-  * [Tars C++ FAQ.md](an-li/tarscpp/tars_cpp_faq.md) 
-  * [Tars C++ future/promise功能.md](an-li/tarscpp/tars_cpp_future_promise.md)  
-  * [Tars C++ Http服务示例.md](an-li/tarscpp/tars_cpp_http_demo.md)  
-  * [Tars C++框架快速入门.md](an-li/tarscpp/tars_cpp_quickstart.md) 
-  * [Tars C++框架的服务线程说明文档.md](an-li/tarscpp/tars_cpp_server_thread.md)
-  * [Tars C++用户指南.md](an-li/tarscpp/tars_cpp_user_guide.md)  
-  * [Tars C++支持protobuf说明.md](an-li/tarscpp/tars_protobuf_cpp.md)  
-  * [Tars C++push功能说明.md](an-li/tarscpp/tars_push.md) 
-* [TarsJava](an-li/tarsjava.md)
-  * [快速开发入门客户端示例](https://github.com/TarsCloud/TarsJava/tree/master/examples/quickstart-client) 
-  * [快速开发入门服务端示例](https://github.com/TarsCloud/TarsJava/tree/master/examples/quickstart-server) 
-  * [tars java 压测代码 ](https://github.com/TarsCloud/TarsJava/tree/master/examples/stress-server)
-  * [spring boot服务端示例 ](https://github.com/TarsCloud/TarsJava/tree/master/examples/tars-spring-boot-server) 
-  * [spring cloud客户端示例 ](https://github.com/TarsCloud/TarsJava/tree/master/examples/tars-spring-cloud-client)
-  * [spring cloud服务端示例](https://github.com/TarsCloud/TarsJava/tree/master/examples/tars-spring-cloud-server) 
-  * [tars-spring-server](https://github.com/TarsCloud/TarsJava/tree/master/examples/tars-spring-server) 
-* [TarsGo](an-li/tarsgo.md)
-  * [服务端使用context示例](https://github.com/TarsCloud/TarsGo/tree/master/examples/ContextTestServer) 
-  * [tars客户端示例 ](https://github.com/TarsCloud/TarsGo/tree/master/examples/EchoClientServer)
-  * [tars服务端示例](https://github.com/TarsCloud/TarsGo/tree/master/examples/EchoTestServer) 
-  * [zipkin调用链追踪客户端示例](https://github.com/TarsCloud/TarsGo/tree/master/examples/ZipkinTraceClient) 
-  * [zipkin调用链追踪服务端示例](https://github.com/TarsCloud/TarsGo/tree/master/examples/ZipkinTraceServer) 
-* [TarsPHP](an-li/tarsphp/README.md)
-  * [搭建HttpServer](an-li/tarsphp/da-jian-httpserver.md)
-  * [搭建TimerServer](an-li/tarsphp/da-jian-timerserver.md)
-  * [搭建TcpServer](an-li/tarsphp/da-jian-tcpserver.md)
-  * [搭建WebSocketServer](an-li/tarsphp/da-jian-websocketserver.md)
-  * [弹幕活动实战](an-li/tarsphp/tan-mu-huo-dong-shi-zhan.md)
-
-## 常见问题
-
+## 常见问题 <a id="question"></a>
 * [性能数据](rumen/xing-neng-shu-ju.md)
 * [安装常见问题](chang-jian-wen-ti/Install_faq.md)
 * [TarsCPP 常见问题](chang-jian-wen-ti/tarscpp-chang-jian-wen-ti.md)

@@ -201,7 +201,7 @@ proxy.add(6, 7).then((data)=>{
 ### 3.3 复杂数据结构的操作  
 第1节中示例协议只包含了很简单的int类型数据结构，实际应用中数据结构会相当复杂多变，Tars nodejs使用 [@tars/stream 模块](https://github.com/tars-node/stream) 来处理数据的编解码。  
 
-要记住一点，Tars rpc中接口调用过程中，除了基本类型数据可以直接使用js原生类型外，strcut/map/list类型的数据都必须通过编解码模块封装的类型来操作，例如add接口的入参、出参变成这样：  
+要记住一点，Tars rpc中接口调用过程中，除了基本类型数据可以直接使用js原生类型外，struct/map/list类型的数据都必须通过编解码模块封装的类型来操作，例如add接口的入参、出参变成这样：  
 
 ```
 module Hello

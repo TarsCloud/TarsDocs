@@ -17,13 +17,13 @@ TARS管理系统的菜单树下，有以下功能：
 
 * APP：应用名，标识一组服务的一个小集合，在Tars系统中，应用名必须唯一。例如：TestApp；
 * Server：服务名，提供服务的进程名称，Server名字根据业务服务功能命名，一般命名为：XXServer，例如HelloServer；
-* Servant：服务者，提供具体服务的接口或实例。例如:HelloImp；
+* Servant：服务者，提供具体服务的接口或实例。例如:HelloObj；
 
 说明：
 
-一个Server可以包含多个Servant，系统会使用服务的App + Server + Servant，进行组合，来定义服务在系统中的路由名称，称为路由Obj，其名称在整个系统中必须是唯一的，以便在对外服务时，能唯一标识自身。
-
-因此在定义APP时，需要注意APP的唯一性。
+- 一个Server可以包含多个Servant，系统会使用服务的App + Server + Servant，进行组合，来定义服务在系统中的路由名称，称为路由Obj，其名称在整个系统中必须是唯一的，以便在对外服务时，能唯一标识自身。
+- 每个Servant对应一个独立的端口, 对外服务.
+- 因此在定义APP时，需要注意APP的唯一性。
 
 例如：TestApp.HelloServer.HelloObj。
 
@@ -38,7 +38,7 @@ TARS管理系统的菜单树下，有以下功能：
 * “应用”指你的服务程序归在哪一个应用下，例如：“TestApp”。 
 * “服务名称”指你的服务程序的标识名字，例如：“HelloServer”。 
 * “服务类型”指你的服务程序用什么语言写的，例如：java的选择“tars\_java”。 
-* “模版“ 指你的服务程序在启动时，设置的配置文件的名称，默认用”tars.tarsjavadefault“即可。 
+* “模版“ 指你的服务程序在启动时，设置的配置文件的名称
 * “节点“ 指服务部署的机器IP。 
 * “Set分组“ 指设置服务的Set分组信息，Set信息包括3部分：Set名、Set地区、Set组名。 
 * “OBJ名称“ 指Servant的名称。 -“OBJ绑定IP“ 指服务绑定的机器IP，一般与节点一样。 
