@@ -46,14 +46,13 @@
   * [使用指南](kai-fa/tarscpp/tarscpp-kuang-jia-shi-yong-zhi-nan.md)
   * [开发规范](kai-fa/tarscpp/kai-fa-gui-fan.md)
   * [服务线程说明文档](kai-fa/tarscpp/fu-wu-xian-cheng-shuo-ming-wen-dang.md)
-  * [Tars的push功能](kai-fa/tarscpp/tars-de-push-gong-neng.md)
   * [protobuf协议支持文档](kai-fa/tarscpp/protobuf-xie-yi-zhi-chi-wen-dang.md)
-  * [HTTP协议支持示例](kai-fa/tarscpp/http-xie-yi-zhi-chi-shi-li.md)
+  * [性能数据](kai-fa/tarscpp/xing-neng-shu-ju.md)
   * [案例]
-    * [Tars C++ 框架快速入门.md](an-li/tarscpp/tars_cpp_quickstart.md) 
-    * [Tars C++ Http服务示例.md](an-li/tarscpp/tars_cpp_http_demo.md)  
-    * [Tars C++ push功能说明.md](an-li/tarscpp/tars_push.md) 
-    * [Tars C++ 协程说明.md](an-li/tarscpp/tars_co.md) 
+    * [Tars C++ 框架快速入门](an-li/tarscpp/tars_cpp_quickstart.md) 
+    * [Tars C++ Http服务示例](an-li/tarscpp/tars_cpp_http_demo.md)  
+    * [Tars C++ push功能说明](an-li/tarscpp/tars_push.md) 
+    * [Tars C++ 协程说明](an-li/tarscpp/tars_co.md) 
 
 ## TarsJava <a id="TarsJava"></a>
   * [Tars-Spring 使用说明](kai-fa/tarsjava/tarsspring-shi-yong-shuo-ming.md)
@@ -135,7 +134,6 @@
 * [鉴权功能](kai-fa/tars-jian-quan-gong-neng.md)
 
 ## 常见问题 <a id="question"></a>
-* [性能数据](rumen/xing-neng-shu-ju.md)
 * [安装常见问题](chang-jian-wen-ti/Install_faq.md)
 * [TarsCPP 常见问题](chang-jian-wen-ti/tarscpp-chang-jian-wen-ti.md)
 * [TarsJava 常见问题](chang-jian-wen-ti/tarsjava-chang-jian-wen-ti.md)
