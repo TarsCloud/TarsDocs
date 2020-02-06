@@ -106,7 +106,7 @@
     * [搭建WebSocketServer](an-li/tarsphp/da-jian-websocketserver.md)
     * [弹幕活动实战](an-li/tarsphp/tan-mu-huo-dong-shi-zhan.md)
 
-## Tars.js <a id="Tars.js></a>
+## Tars.js <a id="Tars.js"></a>
 * [Tars.js](kai-fa/tars.js/README.md)
   * [@tars/stream](kai-fa/tars.js/tars-stream.md)
   * [@tars/rpc](kai-fa/tars.js/tars-rpc.md)
