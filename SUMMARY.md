@@ -47,6 +47,8 @@
   * [开发规范](kai-fa/tarscpp/kai-fa-gui-fan.md)
   * [服务线程说明文档](kai-fa/tarscpp/fu-wu-xian-cheng-shuo-ming-wen-dang.md)
   * [protobuf协议支持文档](kai-fa/tarscpp/protobuf-xie-yi-zhi-chi-wen-dang.md)
+  * [HTTP 1/2支持](kai-fa/tars-http12.md)
+  * [TLS通信支持](kai-fa/tars-tls-tong-xin-zhi-chi.md)
   * [性能数据](kai-fa/tarscpp/xing-neng-shu-ju.md)
   * [案例]
     * [Tars C++ 框架快速入门](an-li/tarscpp/tars_cpp_quickstart.md) 
@@ -128,8 +130,6 @@
 * [Tars 用户体系模块使用指引](kai-fa/tars-yong-hu-ti-xi-mo-kuai-shi-yong-zhi-yin.md)
 * [管理平台 API](kai-fa/guan-li-ping-tai-api.md)
 * [调用链](kai-fa/tars-tiao-yong-lian.md)
-* [HTTP 1/2支持](kai-fa/tars-http12.md)
-* [TLS通信支持](kai-fa/tars-tls-tong-xin-zhi-chi.md)
 * [IDC分组](kai-fa/tars-idc-set.md)
 * [鉴权功能](kai-fa/tars-jian-quan-gong-neng.md)
 
