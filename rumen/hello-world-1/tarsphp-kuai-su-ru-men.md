@@ -107,7 +107,7 @@ tars 进行配置文件解析的模块
 ### 开发 guideline
 
 1. 新建对应的目录结构,固定为 scripts、src 和 tars
-2. 新建 composer.json 文件,内容如下:
+2. 新建 `src/composer.json` 文件,内容如下:
 
 ```json
 {
@@ -140,7 +140,7 @@ tars 进行配置文件解析的模块
 
 其中 name、description、autoload 中的 psr-4 可以修改为自己需要的,我们这里以此为例子。
 
-3. 在 src 下新建 index.php,内容如下:
+3. 新建 `src/index.php` ,内容如下:
 
 ```php
 <?php
@@ -165,7 +165,7 @@ $class->run();
 
 这个文件负责进行启动和入口加载工作
 
-4. 新建 services.php 文件,内容如下:
+4. 新建 `src/services.php` 文件,内容如下:
 
 ```php
 <?php
@@ -212,7 +212,7 @@ monitorStoreConf 为主调上报信息的存储配置
 - config 为主调上报信息的存储实现类的配置信息，在实现类初始化时作为参数传入，默认对应*swoole_table*的 size
 
 5. composer install,加载对应的依赖包
-6. tars 文件夹下面新建 tars.proto.php 文件, 里面需要包含对你服务本身的说明:
+6. 新建 `tars/tars.proto.php` 文件, 里面需要包含对你服务本身的说明:
 
 ```php
 <?php
@@ -226,7 +226,7 @@ return [
 
 这个名称要与在 tars 平台上面的名称完全一一对应。
 
-7. 新建 component/Controller.php
+7. 新建 `src/component/Controller.php`
 
 ```php
 <?php
@@ -283,7 +283,7 @@ class Controller
 
 - 这是所有 Controller 的基类
 
-8. 新建 controller/IndexController.php
+8. 新建 `src/controller/IndexController.php`
 
 ```php
 <?php
@@ -554,7 +554,7 @@ return array(
 
 4. 打包发布
 
-- 发布完成之后可以访问`http://{machine_ip/index/TestGreeting}`观察效果
+- 发布完成之后可以访问`http://{machine_ip}/index/TestGreeting`观察效果
 
 ## 5. <a id="chapter-5"></a>论坛邀请
 
