@@ -1,20 +1,29 @@
 # 目录
-> * [IDC分组逻辑介绍] (#main-chapter-1)
-> * [Set分组逻辑介绍] (#main-chapter-2)
-> * [IDC分组与Set分组的调用规则] (#main-chapter-3)
+> * [分组介绍] (#main-chapter-1)
+> * [IDC分组逻辑介绍] (#main-chapter-2)
+> * [Set分组逻辑介绍] (#main-chapter-3)
+> * [IDC分组与Set分组的调用规则] (#main-chapter-4)
 
-# 1. IDC分组逻辑介绍 <a id="main-chapter-1"></a>
+# 1. 分组介绍 <a id="main-chapter-1"></a>
 
-## 1.1. IDC组的含义
+当你的集群上了规模之后, 服务器可能部署在不同机房或网段, 为了能够减少跨网调用, 保证同一个分组的服务调用时优先, Tars设计了分组机制.
+
+目前Tars设计了两种分组: IDC分组和SET分组
+- IDC分组简单的说, 通过IP网段自动将服务器分组.
+- SET分组可以根据你的设置, 将服务器设置分组.
+
+# 2. IDC分组逻辑介绍 <a id="main-chapter-2"></a>
+
+## 2.1. IDC组的含义
 
 > * 按照IP地址的前三段定位出属于哪个具体的机房。
 > * 被调服务属于哪个组的信息可以修改，如果不指定就按照IP段的规则来匹配。
 
-## 1.2. 分组信息的更改
+## 2.2. 分组信息的更改
 
 在管理平台的“服务编辑”中由操作者更改，更改后保存入Tars DB 中，主控Registry每隔一定时间会读取到自身的缓存中。
 
-## 1.3. 分组逻辑的执行流程
+## 2.3. 分组逻辑的执行流程
 
 主调会定期从主控中取被调的Obj列表信息，在接受到主调请求后，由主控Registry完成IDC分组的核心逻辑。
 
@@ -26,9 +35,9 @@
 > * 5.遍历“活动列表”，将属于组“-1”，也就是将没有启动分组的IP检索出来。如果找到了，将这些IP反馈给用户。如果没有找到，则进行第6步。
 > * 6.将从数据库中检索出的“活动列表”直接返回。
 
-## 1.4. 示例
+## 2.4. 示例
 
-![tars](images/tars_idc_pic.png)
+![tars](../assets/tars_idc_pic.png)
 
 某服务A(A1,A2,A3,A4,A5,A6,A7)在各个地区各个IDC的部署情况如上图。
 
@@ -45,39 +54,39 @@
 说明
 > * 主调的出身已经决定了主调的物理组和逻辑组。
 > * 被调的出身可修改，将影响主调调用的活动列表。
-> * 是否启用IDC分组，完全取决于被调！！！
+> * 是否启用IDC分组，完全取决于服务端！！！
 
-# 2. Set分组逻辑介绍 <a id="main-chapter-2"></a>
+# 3. Set分组逻辑介绍 <a id="main-chapter-3"></a>
 
-## 2.1. Set分组的含义
+## 3.1. Set分组的含义
 
 > * Set名:   定义一个大的Set名称，可以以业务名称来定义。
 > * Set地区：可以按照地区来对划分，如n,b(南北)，也可以以城市来分，如sh(上海),sz(深圳)等。
 > * Set组名：实际可以重复的组单元的名称，一般是 0,1,2,3,4,5,…
 
-## 2.2. Set分组场景
+## 3.2. Set分组场景
 
 没有Set分组之前，如下图：
 
-![tars](images/tars_set_pic1.png)
+![tars](../assets/tars_set_pic1.png)
 
 有Set分组后，如下图：
 
-![tars](images/tars_set_pic2.png)
+![tars](../assets/tars_set_pic2.png)
 
-## 2.3. Set分组的调用逻辑规则
+## 3.3. Set分组的调用逻辑规则
 
 以下图为例：
 
-![tars](images/tars_set_pic3.png)
+![tars](../assets/tars_set_pic3.png)
 
 具体部署情况如下表：
 
 Set名 |Set地区 |Set组名 |服务列表
 ------|-----|------|----
-APP |SZ |1 |A,B,C
+APP |SZ |1 |A,B,C,F
 APP |SZ |2 |A,B,C
-APP |SZ |\*(通配符) |C,E,D 
+APP |SZ |\*(通配符) |C,E,D,F
 APP |SH |1 |A,B,C
 APP |SH |2 |A,B,C
 
@@ -97,7 +106,7 @@ APP |SH |2 |A,B,C
 > * 3.通配组服务可调用SET内和通配组的任何服务*D->*C+1C+2C
 > * 4.如果不满足1，则按照IDC分组逻辑调用。
 
-# 3. IDC分组与Set分组的调用规则 <a id="main-chapter-3"></a>
+# 4. IDC分组与Set分组的调用规则 <a id="main-chapter-4"></a>
 
 编号 |客户端 |服务端 |规则
 ------|-----|------|----

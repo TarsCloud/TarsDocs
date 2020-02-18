@@ -12,12 +12,12 @@
 
 但是在实际的应用场景中，需要在TARS服务框架中支持其他服务端到客户端的push模式
 
-具体程序示例，参见examples/pushDemo/.
+具体程序示例，参见examples/PushDemo/.
 
 ## push模式的流程图
 下面是push模式的示意图
 
-![tars](images/tars_flow.PNG)
+![tars](../../assets/tars_flow.PNG)
 
 - 黑色线代表了数据流向：数据（客户端）-〉请求包的编码器（客户端）-〉协议解析器（服务端）-〉doRequest协议处理器（服务端）-〉生成返回数据（服务端）-〉响应包的解码器（客户端）-〉响应数据（客户端）
 - 黄色线代表客户端访问服务端
@@ -37,7 +37,7 @@
 首先我们按照第三方协议代码部署一个TestPushServant 服务
 如下图所示在管理平台部署一个服务端
 
-![tars](images/tars_push_deploy.PNG)
+![tars](../../assets/tars_push_deploy.PNG)
 
 参考tars 支持第三方协议
 
@@ -315,34 +315,40 @@ TestPushServer g_app;
 
 /////////////////////////////////////////////////////////////////
 
-static int parse(string &in, string &out)
+static TC_NetWorkBuffer::PACKET_TYPE parse(TC_NetWorkBuffer &in, vector<char> &out)
 {
-    if(in.length() < sizeof(unsigned int))
-    {
-        return TC_EpollServer::PACKET_LESS;
-    }
+	size_t len = sizeof(tars::Int32);
 
-    unsigned int iHeaderLen;
+	if (in.getBufferLength() < len)
+	{
+		return TC_NetWorkBuffer::PACKET_LESS;
+	}
 
-    memcpy(&iHeaderLen, in.c_str(), sizeof(unsigned int));
+	string header;
+	in.getHeader(len, header);
 
-    iHeaderLen = ntohl(iHeaderLen);
+	assert(header.size() == len);
 
-    if(iHeaderLen < (unsigned int)(sizeof(unsigned int))|| iHeaderLen > 1000000)
-    {
-        return TC_EpollServer::PACKET_ERR;
-    }
+	tars::Int32 iHeaderLen = 0;
 
-    if((unsigned int)in.length() < iHeaderLen)
-    {
-        return TC_EpollServer::PACKET_LESS;
-    }
+	::memcpy(&iHeaderLen, header.c_str(), sizeof(tars::Int32));
 
-    out = in.substr(0, iHeaderLen);
+	iHeaderLen = ntohl(iHeaderLen);
 
-    in  = in.substr(iHeaderLen);
+	if (iHeaderLen > 100000 || iHeaderLen < sizeof(unsigned int))
+	{
+		throw TarsDecodeException("packet length too long or too short,len:" + TC_Common::tostr(iHeaderLen));
+	}
 
-    return TC_EpollServer::PACKET_FULL;
+	if (in.getBufferLength() < (uint32_t)iHeaderLen)
+	{
+		return TC_NetWorkBuffer::PACKET_LESS;
+	}
+
+	in.getHeader(iHeaderLen, out);
+    in.moveHeader(iHeaderLen);
+
+    return TC_NetWorkBuffer::PACKET_FULL;
 }
 
 
@@ -405,13 +411,13 @@ main(int argc, char* argv[])
 -  编写proxy的请求包的编码器和响应包的解码器并设置，代码格式如下：
   ```
 请求包的编码器格式：
-static void FUN1(const RequestPacket& request, string& buff)
+static vector<char> pushRequest(RequestPacket& request, Transceiver *)
 响应包的解码器格式：
-static size_t FUN2(const char* recvBuffer, size_t length, list<ResponsePacket>& done)
+static TC_NetWorkBuffer::PACKET_TYPE pushResponse(TC_NetWorkBuffer &in, ResponsePacket& rsp)
 proxy设置代码为：
 ProxyProtocol prot;
-prot.requestFunc = FUN1;
-prot.responseFunc = FUN2 ;
+prot.requestFunc = pushRequest;
+prot.responseFunc = pushResponse ;
 _prx->tars_set_protocol(prot);
 ```
  - 同步方法或者异步方法访问服务端
@@ -512,78 +518,81 @@ TestRecvThread.cpp
 /*
  响应包解码函数，根据特定格式解码从服务端收到的数据，解析为ResponsePacket
 */
-static size_t pushResponse(const char* recvBuffer, size_t length, list<ResponsePacket>& done)
+static TC_NetWorkBuffer::PACKET_TYPE pushResponse(TC_NetWorkBuffer &in, ResponsePacket& rsp)
 {
-	size_t pos = 0;
-    while (pos < length)
-    {
-        unsigned int len = length - pos;
-        if(len < sizeof(unsigned int))
-        {
-            break;
-        }
+	size_t len = sizeof(tars::Int32);
 
-        unsigned int iHeaderLen = ntohl(*(unsigned int*)(recvBuffer + pos));
+	if (in.getBufferLength() < len)
+	{
+		return TC_NetWorkBuffer::PACKET_LESS;
+	}
 
-        //做一下保护,长度大于M
-        if (iHeaderLen > 100000 || iHeaderLen < sizeof(unsigned int))
-        {
-            throw TarsDecodeException("packet length too long or too short,len:" + TC_Common::tostr(iHeaderLen));
-        }
+	string header;
+	in.getHeader(len, header);
 
-        //包没有接收全
-        if (len < iHeaderLen)
-        {
-            break;
-        }
-        else
-        {
-            ResponsePacket rsp;
-			rsp.iRequestId = ntohl(*((unsigned int *)(recvBuffer + pos + sizeof(unsigned int))));
-			rsp.sBuffer.resize(iHeaderLen - 2*sizeof(unsigned int));
-		  ::memcpy(&rsp.sBuffer[0], recvBuffer + pos + 2*sizeof(unsigned int), iHeaderLen - 2*sizeof(unsigned int));
+	assert(header.size() == len);
 
-			pos += iHeaderLen;
+	tars::Int32 iHeaderLen = 0;
 
-            done.push_back(rsp);
-        }
-    }
+	::memcpy(&iHeaderLen, header.c_str(), sizeof(tars::Int32));
 
-    return pos;
+	iHeaderLen = ntohl(iHeaderLen);
+
+	//做一下保护,长度大于M
+	if (iHeaderLen > 100000 || iHeaderLen < (int)sizeof(unsigned int))
+	{
+		throw TarsDecodeException("packet length too long or too short,len:" + TC_Common::tostr(iHeaderLen));
+	}
+
+	//包没有接收全
+	if (in.getBufferLength() < (uint32_t)iHeaderLen)
+	{
+		return TC_NetWorkBuffer::PACKET_LESS;
+	}
+
+	in.moveHeader(sizeof(iHeaderLen));
+
+	tars::Int32 iRequestId = 0;
+	string sRequestId;
+	in.getHeader(sizeof(iRequestId), sRequestId);
+	in.moveHeader(sizeof(iRequestId));
+
+	rsp.iRequestId = ntohl(*((unsigned int *)(sRequestId.c_str())));
+	len =  iHeaderLen - sizeof(iHeaderLen) - sizeof(iRequestId);
+	in.getHeader(len, rsp.sBuffer);
+	in.moveHeader(len);
+
+    return TC_NetWorkBuffer::PACKET_FULL;
 }
 /*
    请求包编码函数，本函数的打包格式为
-   整个包长度（字节）+iRequestId（字节）+包内容
+   整个包长度（4字节）+iRequestId（4字节）+包内容
 */
-static void pushRequest(const RequestPacket& request, string& buff)
+static vector<char> pushRequest(RequestPacket& request, Transceiver *)
 {
     unsigned int net_bufflength = htonl(request.sBuffer.size()+8);
     unsigned char * bufflengthptr = (unsigned char*)(&net_bufflength);
 
-    buff = "";
-    for (int i = 0; i<4; ++i)
-    {
-        buff += *bufflengthptr++;
-    }
+	vector<char> buffer;
+	buffer.resize(request.sBuffer.size()+8);
+
+	memcpy(buffer.data(), bufflengthptr, sizeof(unsigned int));
 
     unsigned int netrequestId = htonl(request.iRequestId);
     unsigned char * netrequestIdptr = (unsigned char*)(&netrequestId);
 
-    for (int i = 0; i<4; ++i)
-    {
-        buff += *netrequestIdptr++;
-    }
+	memcpy(buffer.data() + sizeof(unsigned int), netrequestIdptr, sizeof(unsigned int));
+	memcpy(buffer.data() + sizeof(unsigned int) * 2, request.sBuffer.data(), request.sBuffer.size());
 
-    string tmp;
-    tmp.assign((const char*)(&request.sBuffer[0]), request.sBuffer.size());
-    buff+=tmp;
+	return buffer;
+	// sbuff->addBuffer(buffer);
 }
 
 static void printResult(int iRequestId, const string &sResponseStr)
 {
-	cout << "request id: " << iRequestId << endl;
-	cout << "response str: " << sResponseStr << endl;
+	cout << "request id: " << iRequestId << ", response str: " << sResponseStr << endl;
 }
+
 static void printPushInfo(const string &sResponseStr)
 {
 	cout << "push message: " << sResponseStr << endl;
@@ -594,15 +603,14 @@ int TestPushCallBack::onDispatch(ReqMessagePtr msg)
 	if(msg->request.sFuncName == "printResult")
 	{
 		string sRet;
-		cout << "sBuffer: " << msg->response.sBuffer.size() << endl;
-		sRet.assign(&(msg->response.sBuffer[0]), msg->response.sBuffer.size());
+		sRet.assign(&(msg->response->sBuffer[0]), msg->response->sBuffer.size());
 		printResult(msg->request.iRequestId, sRet);
 		return 0;
 	}
-	else if(msg->response.iRequestId == 0)
+	else if(msg->response->iRequestId == 0)
 	{
 		string sRet;
-		sRet.assign(&(msg->response.sBuffer[0]), msg->response.sBuffer.size());
+		sRet.assign(&(msg->response->sBuffer[0]), msg->response->sBuffer.size());
 		printPushInfo(sRet);
 		return 0;
 	}
@@ -675,7 +683,7 @@ void RecvThread::run(void)
 
 如果push 成功，结果如下
 
-![tars](images/tars_result.PNG)
+![tars](../../assets/tars_result.PNG)
 
 
 

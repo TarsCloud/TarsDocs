@@ -8,7 +8,7 @@ TARS服务框架默认情况下只支持TARS自有的tars协议，但是在实�
 开发第三方协议服务端,要实现协议解析器并将其加载到服务中,同时需要建立一个非TAF框架的服务对象,该类继承于Servant类,通过重载Servant类中的doRequest方法来建立协议处理器。
 而客户端要访问服务，需要通过调用proxy的rpc函数，在调用之前，要为proxy设置请求包编码函数和响应包解码函数。
 
-![tars](images/tars_cpp_third_protocol.png)
+![tars](../../assets/tars_cpp_third_protocol.png)
 
 图中的黑色线代表了数据流向：数据（客户端）-〉请求包的编码器（客户端）-〉协议解析器（服务端）-〉doRequest协议处理器（服务端）-〉生成返回数据（服务端）-〉响应包的解码器（客户端）-〉响应数据（客户端）
 
@@ -143,49 +143,11 @@ extern HttpServer g_app;
 ```cpp
 #include "HttpServer.h"
 #include "HttpImp.h"
+#include "util/tc_network_buffer.h"
 
 using namespace std;
 
 HttpServer g_app;
-
-/////////////////////////////////////////////////////////////////
-struct HttpProtocol
-{
-    /**
-     * 解析http请求
-     * @param in
-     * @param out
-     *
-     * @return int
-     */
-    static int parseHttp(string &in, string &out)
-    {
-        try
-        {
-            //判断请求是否是HTTP请求
-            bool b = TC_HttpRequest ::checkRequest(in.c_str(), in.length());
-            //完整的HTTP请求
-            if(b)
-            {
-                out = in;
-                in  = "";
-                //TLOGDEBUG("out size: " << out.size() << endl);
-                return TC_EpollServer::PACKET_FULL;
-            }
-            else
-            {
-                return TC_EpollServer::PACKET_LESS;
-            }
-        }
-        catch(exception &ex)
-        {
-            return TC_EpollServer::PACKET_ERR;
-        }
-
-        return TC_EpollServer::PACKET_LESS;             //表示收到的包不完全
-    }
-
-};
 
 void
 HttpServer::initialize()
@@ -194,7 +156,7 @@ HttpServer::initialize()
     //...
 
     addServant<HttpImp>(ServerConfig::Application + "." + ServerConfig::ServerName + ".HttpObj");
-    addServantProtocol(ServerConfig::Application + "." + ServerConfig::ServerName + ".HttpObj",&HttpProtocol::parseHttp);
+    addServantProtocol(ServerConfig::Application + "." + ServerConfig::ServerName + ".HttpObj",&TC_NetWorkBuffer::parseHttp);
 }
 /////////////////////////////////////////////////////////////////
 void

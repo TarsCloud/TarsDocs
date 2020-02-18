@@ -39,18 +39,18 @@
   * [TarsCPP 快速入门](rumen/hello-world-1/tarscpp-kuai-su-ru-men.md)
   * [TarsPHP 快速入门](rumen/hello-world-1/tarsphp-kuai-su-ru-men.md)
   * [Tars.js 快速入门](rumen/hello-world-1/tars.js-kuai-su-ru-men.md)
-* [基础通信协议 Tars](kai-fa/tars_protocol.md)
-* [统一通信协议 Tup](kai-fa/tarstup.md)
+* [基础通信协议 Tars](kai-fa/tars-protocol.md)
+* [统一通信协议 Tup](kai-fa/tars-tup.md)
 
 ## TarsCPP <a id="TarsCPP"></a>
-  * [使用指南](kai-fa/tarscpp/tarscpp-kuang-jia-shi-yong-zhi-nan.md)
-  * [开发规范](kai-fa/tarscpp/kai-fa-gui-fan.md)
-  * [服务线程说明文档](kai-fa/tarscpp/fu-wu-xian-cheng-shuo-ming-wen-dang.md)
-  * [protobuf协议支持文档](kai-fa/tarscpp/protobuf-xie-yi-zhi-chi-wen-dang.md)
-  * [2.0版本变化](kai-fa/tarscpp/tars-2.0-change.md)
-  * [HTTP 1/2支持](kai-fa/tars-http12.md)
-  * [TLS通信支持](kai-fa/tars-tls-tong-xin-zhi-chi.md)
-  * [性能数据](kai-fa/tarscpp/xing-neng-shu-ju.md)
+  * [使用指南](kai-fa/tarscpp/tars-guide.md)
+  * [开发规范](kai-fa/tarscpp/tars-spec.md)
+  * [服务线程说明文档](kai-fa/tarscpp/tars-server-thread.md)
+  * [protobuf协议支持文档](kai-fa/tarscpp/tars-protobuf.md)
+  * [2.0版本变化](kai-fa/tarscpp/tars-2.0-update.md)
+  * [HTTP2支持](kai-fa/tarscpp/tars-http2.md)
+  * [TLS通信支持](kai-fa/tarscpp/tars-tls.md)
+  * [性能数据](kai-fa/tarscpp/tars-performance.md)
   * [案例]
     * [Tars C++ 框架快速入门](an-li/tarscpp/tars_cpp_quickstart.md) 
     * [Tars C++ Http服务示例](an-li/tarscpp/tars_cpp_http_demo.md)  
@@ -125,14 +125,14 @@
 
 ## 其他重要特性 <a id="important"></a>
 
-* [业务配置](kai-fa/ye-wu-pei-zhi.md)
-* [服务监控](kai-fa/fu-wu-jian-kong.md)
-* [模板配置](kai-fa/mo-ban-pei-zhi.md)
-* [Tars 用户体系模块使用指引](kai-fa/tars-yong-hu-ti-xi-mo-kuai-shi-yong-zhi-yin.md)
-* [管理平台 API](kai-fa/guan-li-ping-tai-api.md)
-* [调用链](kai-fa/tars-tiao-yong-lian.md)
+* [业务配置](kai-fa/tars-config.md)
+* [服务监控](kai-fa/tars-monitor.md)
+* [模板配置](kai-fa/tars-template.md)
+* [Tars 用户体系模块使用指引](kai-fa/tars-web-user.md)
+* [管理平台 API](kai-fa/tars-web-api.md)
+* [调用链](kai-fa/tars-call-chain.md)
 * [IDC分组](kai-fa/tars-idc-set.md)
-* [鉴权功能](kai-fa/tars-jian-quan-gong-neng.md)
+* [鉴权功能](kai-fa/tars-auth.md)
 
 ## 常见问题 <a id="question"></a>
 * [安装常见问题](chang-jian-wen-ti/Install_faq.md)
