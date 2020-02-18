@@ -1,12 +1,12 @@
-# Tars-Spring-boot 使用说明
+# Tars-Spring-boot Instructions
 
-## 功能说明
+## Function Description
 
-Tars支持使用通过spring boot的方式编写tars服务，使用此功能需要依赖tars-spring-boot-starter.jar包，以及spring boot 2.0及以上版本。你可以将你的servant作为一个Spring bean，注解暴露spring bean即可。
+Tars supports writing tars services using spring boot. To use this function, you need to rely on the tars-spring-boot-starter.jar package, and spring boot 2.0 and above. You can use your servant as a Spring bean, and the annotation exposes the spring bean.
 
-## 依赖配置
+## Dependency Configuration
 
-使用此功能需要添加依赖，在pom.xml中添加如下配置：
+To use this function, you need to add dependencies. Add the following configuration in pom.xml:
 
 ```text
     <properties>
@@ -34,9 +34,9 @@ Tars支持使用通过spring boot的方式编写tars服务，使用此功能需�
     </dependencies>
 ```
 
-### Servant配置
+### Servant configuration
 
-在spring boot中，需要通过注解开启tars服务相关功能：
+In spring boot, you need to enable the tars service related functions through annotations:
 
 ```text
 @SpringBootApplication
@@ -48,9 +48,9 @@ public class QuickStartApplication {
 }
 ```
 
-通过注解@EnableTarsServer标识这是一个TARS服务，并开启服务相关功能。
+Annotate @EnableTarsServer to identify this as a TARS service and enable service-related functions.
 
-编写tars协议文件，如：
+Write tars protocol files, such as:
 
 ```text
 module TestApp
@@ -62,7 +62,7 @@ module TestApp
 };
 ```
 
-并通过TARS提供的maven插件生成对应的接口代码：
+And generate the corresponding interface code through the maven plugin provided by TARS:
 
 ```text
 @Servant
@@ -72,7 +72,7 @@ public interface HelloServant {
 }
 ```
 
-服务逻辑通过实现接口来编写：
+The service logic is written by implementing the interface:
 
 ```text
 @TarsServant("HelloObj")
@@ -85,11 +85,11 @@ public class HelloServantImpl implements HelloServant {
 }
 ```
 
-接口的实现类通过注解@TarsServant来暴露服务，其中填写的'HelloObj'为servant名，该名称与管理平台上的名称对应即可。
+The implementation class of the interface exposes the service by annotating @TarsServant. The 'HelloObj' filled in is the servant name, which can correspond to the name on the management platform.
 
-## 编写一个Http服务
+## Write an HTTP service
 
-此外如果你想使用spring-boot来编写一个http服务，而不使用taf接口的话也是可以的：
+In addition, if you want to use spring-boot to write an http service without using the taf interface:
 
 ```text
 @SpringBootApplication
@@ -108,11 +108,11 @@ public class DemoApplication {
 }
 ```
 
-此时添加一个@TarsHttpService注解，这个注解中需要添加你希望绑定的非tars协议 servant的名称，框架会自动将spring-boot中嵌入的容器的端口绑定到对应Servant的端口上，这样你就可以方便的使用spring-mvc的各种注解来开发http和web服务了。
+At this time, add a @TarsHttpService annotation. In this annotation, you need to add the name of the non-tars protocol servant you want to bind. The framework will automatically bind the port of the container embedded in spring-boot to the port of the corresponding servant. It is convenient to use various annotations of spring-mvc to develop http and web services.
 
-## 客户端注入
+## Client injection
 
-为了简化客户端的构造，spring-boot-starter提供了客户端自动注入的功能，在你需要注入客户端的属性上加上@TarsClient注解，框架会自动帮你构造并注入客户端：
+In order to simplify the construction of the client, spring-boot-starter provides the function of client automatic injection. Add the @TarsClient annotation to the properties you need to inject the client, and the framework will automatically help you construct and inject the client:
 
 ```text
 @TarsServant("HelloObj")
@@ -122,7 +122,7 @@ public class HelloWorldServantImpl implements HelloWordServant {
 }
 ```
 
-如上述代码，通过@TarsClient\("TarsJavaTest.SpringBootServer.HelloObj"\)即可注入HelloWordPrx客户端，如果只填写Obj名称则采用默认值注入客户端，当然你也可以在注解中自定义客户端配置：
+As in the above code, the HelloWordPrx client can be injected through @TarsClient \ ("TarsJavaTest.SpringBootServer.HelloObj" \). If you only fill in the Obj name, the default value is injected into the client. Of course, you can also customize the client configuration in the annotation. :
 
 ```text
 @TarsServant("HelloObj")
@@ -131,8 +131,7 @@ public class HelloWorldServantImpl implements HelloWordServant {
     HelloWordPrx prx;
 }
 ```
-
-这样就设置了客户端同步超时时间，该注解提供了所有常用配置的配置项：
+This sets the client synchronization timeout. This annotation provides configuration items for all common configurations:
 
 ```text
 @Target({ ElementType.FIELD })
@@ -165,24 +164,23 @@ public @interface TarsClient {
 }
 ```
 
-包括连接数、同步异步超时时间，字符集等均可以在注解中配置。
+Including the number of connections, synchronous asynchronous timeout time, character set, etc. can be configured in the annotation.
 
-## 服务发布
+## Service Release
 
-编写完成代码后，可以通过spring boot提供的spring-boot-maven-plugin插件进行打包，将服务打包为jar包后上传即可启动。
+After writing the code, you can use the spring-boot-maven-plugin plugin provided by spring boot to package, package the service into a jar package, and upload it to start.
 
-## 如何在本地启动和开发调试tars
+## How to start and develop debugging tars locally
 
-拷贝node生成的模板文件到本地（在服务器 tasnode/data/服务名/conf 目录下），修改其中每个servant的启动ip和端口文本地ip端口 配置启动参数。-Dconfig=\(模板路径\) 通过ide启动MainClass
+Copy the template file generated by node to the local (in the tasnode / data / service name / conf directory of the server), modify the startup ip and port text of each servant and configure the startup parameters. -Dconfig = \ (template path \) start MainClass via ide
 
-## 版本升级指南
+## Version Upgrade Guide
 
-如需使用tars-spring-boot的新功能需要将tars升级到1.6.1版本及以上版本，本次改动相对较大，附上版本升级指南：
+If you need to use the new functions of tars-spring-boot, you need to upgrade tars to version 1.6.1 and above.
 
-1. 管理平台需要重新编译升级。
-2. tars-node需要升级到新版本。
-3. 模板选择需要选tars.tarsjava.springboot模版。如果不是重新搭建环境可自行添加模板，父模板选择tars.tarsjava.default，内容如下：
-
+1. The management platform needs to be recompiled and upgraded.
+2. tars-node needs to be upgraded to the new version.
+3. For template selection, select tars.tarsjava.springboot template. If you are not rebuilding the environment, you can add templates by yourself. The parent template selects tars.tarsjava.default, as follows:
 ```text
 <tars>
 <application>
