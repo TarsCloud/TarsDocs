@@ -47,10 +47,11 @@
   * [开发规范](kai-fa/tarscpp/tars-spec.md)
   * [服务线程说明文档](kai-fa/tarscpp/tars-server-thread.md)
   * [protobuf协议支持文档](kai-fa/tarscpp/tars-protobuf.md)
-  * [2.0版本变化](kai-fa/tarscpp/tars-2.0-update.md)
+  * [第三方协议支持](kai-fa/tarscpp/tars-thirdparty-protocol.md)
   * [HTTP2支持](kai-fa/tarscpp/tars-http2.md)
   * [TLS通信支持](kai-fa/tarscpp/tars-tls.md)
   * [性能数据](kai-fa/tarscpp/tars-performance.md)
+  * [2.0版本变化](kai-fa/tarscpp/tars-2.0-update.md)
   * [案例]
     * [Tars C++ 框架快速入门](an-li/tarscpp/tars_cpp_quickstart.md) 
     * [Tars C++ Http服务示例](an-li/tarscpp/tars_cpp_http_demo.md)  

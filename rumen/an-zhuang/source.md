@@ -33,22 +33,7 @@ node版本：          |   12.13.0及以上版本（web管理系统依赖, 脚�
 yum install glibc-devel gcc gcc-c++ bison flex cmake which
 ```
 
-## 1.2. Mysql依赖库安装
-
-Tars代码编译需要依赖mysql头文件和静态库, 依赖路径如下:
-
-- 头文件: /usr/local/mysql/include
-- 库路径: /usr/local/mysql/lib
-
-如果系统已经存在mysql头文件和静态库, 则可跳过次步骤, 否则建议: 
-
-```
-rpm -ivh https://repo.mysql.com/mysql57-community-release-el7.rpm
-yum install -y mysql-devel 
-mkdir -p /usr/local/mysql && ln -s /usr/lib64/mysql /usr/local/mysql/lib && ln -s /usr/include/mysql /usr/local/mysql/include && echo "/usr/local/mysql/lib/" >> /etc/ld.so.conf && ldconfig 
-```
-
-## 1.3. Mysql客户端安装
+## 1.2. Mysql客户端安装
 
 Tars环境部署需要依赖mysql客户端
 
@@ -62,7 +47,7 @@ rpm -ivh https://repo.mysql.com/mysql57-community-release-el7.rpm
 yum install -y mysql 
 ```
 
-## 1.4. Mysql安装
+## 1.3. Mysql安装
 
 Tars框架安装需要在mysql中读写数据, 因此需要安装mysql, 如果你已经存在mysql, 可以忽略该步骤.
 
@@ -88,12 +73,7 @@ chmod u+x build.sh
 ./build.sh all
 ```
 
-**编译时默认使用的mysql开发库路径：include的路径为/usr/local/mysql/include，lib的路径为/usr/local/mysql/lib/**
-
-若mysql开发库的安装路径不在默认路径需要修改CMakeLists文件中mysql开发库的路径。CMakeLists在`${source_folder}/TarsFramework/`和`${source_folder}/TarsFramework/tarscpp/` 目录下各有一个同名文件。
-修改文件中上述路径为本机mysql开发库的路径
-(参考路径："/usr/include/mysql"；"/usr/lib64/mysql")。
-
+默认情况下, 编译Tars会自动下载mysql源码(目前默认是mysql-5.6.26), 并编译libmyqlclient.a
 
 如果需要重新编译
 ```
@@ -113,11 +93,14 @@ chown ${普通用户}:${普通用户} ./tars/
 cd ${source_folder}/build
 ./build.sh install或者make install
 ```
+
 **默认的安装路径为/usr/local/tars/cpp**
+
+install以后, 依赖的库(mysql静态库)和头文件也会安装到该目录下, 如果开启了ssl, nghttp2同理.
 
 **如要修改安装路径:**
 ```
-**需要修改tarscpp目录下CMakeLists.txt文件中的安装路径。**
+**需要修改tarscpp/cmake/Common.cmake文件中的安装路径。**
 **需要修改tarscpp/servant/makefile/makefile.tars文件中的TARS_PATH的路径**
 **需要修改tarscpp/servant/script/create_tars_server.sh文件中的DEMO_PATH的路径**
 ```
