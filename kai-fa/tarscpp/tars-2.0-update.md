@@ -115,9 +115,9 @@ cd TarsCpp;
 mkdir vs_build;
 cd vs_build;
 cmake .. -G "Visual Studio 16 2019"
-cmake --build .. --config release
+cmake --build . --config release
 #install
-cmake --build .. --config release --target install
+cmake --build . --config release --target install
 ```
 
 注意: Visual Studio 16 2019 可以选择你需要的版本, 可以用 cmake .. -G查看
