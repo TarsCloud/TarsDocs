@@ -26,11 +26,11 @@ node版本：          |   12.13.0及以上版本（web管理系统依赖, 脚�
 
 ## 1.1. 编译包依赖下载安装介绍
 
-源码编译过程需要安装:gcc, glibc, bison, flex, cmake
+源码编译过程需要安装:gcc, glibc, bison, flex, cmake, ncurses-devel zlib-devel
 
 例如，在Centos7下，执行：
 ```
-yum install glibc-devel gcc gcc-c++ bison flex cmake which
+yum install glibc-devel gcc gcc-c++ bison flex cmake which psmisc ncurses-devel zlib-devel
 ```
 
 ## 1.2. Mysql客户端安装
