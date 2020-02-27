@@ -35,7 +35,7 @@ yum install glibc-devel gcc gcc-c++ bison flex cmake which psmisc ncurses-devel
 
 在ubuntu下执行:
 ```
-sudo apt-get install build-essential bison flex cmake psmisc libncurses5-dev 
+sudo apt-get install build-essential bison flex cmake psmisc libncurses5-dev zlib1g-dev
 ```
 
 ## 1.2. Mysql客户端安装
