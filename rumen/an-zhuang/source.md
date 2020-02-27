@@ -30,7 +30,12 @@ node版本：          |   12.13.0及以上版本（web管理系统依赖, 脚�
 
 例如，在Centos7下，执行：
 ```
-yum install glibc-devel gcc gcc-c++ bison flex cmake which psmisc ncurses-devel zlib-devel
+yum install glibc-devel gcc gcc-c++ bison flex cmake which psmisc ncurses-devel 
+```
+
+在ubuntu下执行:
+```
+sudo apt-get install build-essential bison flex cmake psmisc libncurses5-dev 
 ```
 
 ## 1.2. Mysql客户端安装
