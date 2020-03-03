@@ -17,7 +17,7 @@
 
 ## 入门 <a id="rumen"></a>
 
-* [简介](base/jian-jie.md)
+* [简介](base/tars-intro.md)
 * [Tars 部署介绍\(必看\)](installation/README.md)
   * [Docker环境安装](installation/docker-huan-jing-an-zhuang.md)
   * [Mysql安装](installation/mysql.md)
