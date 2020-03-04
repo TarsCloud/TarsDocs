@@ -19,7 +19,7 @@
 
 * [简介](base/tars-intro.md)
 * [Tars 部署介绍\(必看\)](installation/README.md)
-  * [Docker环境安装](installation/docker-huan-jing-an-zhuang.md)
+  * [Docker环境安装](installation/docker-install.md)
   * [Mysql安装](installation/mysql.md)
   * [Tars源码编译部署](installation/source.md)
   * [TarsDocker部署](installation/docker.md)
@@ -35,10 +35,10 @@
   * [Tars.js](env/tars.js.md)
 * [Hello World](hello-world/README.md)
   * [TarsGo 快速入门](hello-world/hello-world.md)
-  * [TarsJava 快速入门](hello-world/tarsjava-kuai-su-ru-men.md)
-  * [TarsCPP 快速入门](hello-world/tarscpp-kuai-su-ru-men.md)
-  * [TarsPHP 快速入门](hello-world/tarsphp-kuai-su-ru-men.md)
-  * [Tars.js 快速入门](hello-world/tars.js-kuai-su-ru-men.md)
+  * [TarsJava 快速入门](hello-world/tarsjava.md)
+  * [TarsCPP 快速入门](hello-world/tarscpp.md)
+  * [TarsPHP 快速入门](hello-world/tarsphp.md)
+  * [Tars.js 快速入门](hello-world/tars.js.md)
 * [基础通信协议 Tars](base/tars-protocol.md)
 * [统一通信协议 Tup](base/tars-tup.md)
 
