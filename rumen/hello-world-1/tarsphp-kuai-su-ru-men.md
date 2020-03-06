@@ -102,7 +102,7 @@ tars 进行配置文件解析的模块
 8. 最大连接数和队列最大长度、队列超时时间,对 php 服务不生效
 9. 点击添加和提交即可,接下来请进入开发 guidline
 
-![服务部署](./assets/deploy_php_http_servant.png)
+![服务部署](https://tars-thirdpart-1300910346.cos.ap-guangzhou.myqcloud.com/assets/PHP/deploy_php_http_servant.png)
 
 ### 开发 guideline
 
@@ -312,10 +312,10 @@ class IndexController extends Controller
 - 若服务启动失败，可以在 node 机器或 docker 的`/data/app/tars/app_log/HelloWorld/PHPHttp`的日志中排查原因
 
 - 发布操作见下图：
-  ![发布管理](./assets/php_http_release_1.png)
-  ![选择版本](./assets/php_http_release_2.png)
-  ![上传代码](./assets/php_http_release_3.png)
-  ![选择发布](./assets/php_http_release_4.png)
+  ![发布管理](https://tars-thirdpart-1300910346.cos.ap-guangzhou.myqcloud.com/assets/PHP/php_http_release_1.png)
+  ![选择版本](https://tars-thirdpart-1300910346.cos.ap-guangzhou.myqcloud.com/assets/PHP/php_http_release_2.png)
+  ![上传代码](https://tars-thirdpart-1300910346.cos.ap-guangzhou.myqcloud.com/assets/PHP/php_http_release_3.png)
+  ![选择发布](https://tars-thirdpart-1300910346.cos.ap-guangzhou.myqcloud.com/assets/PHP/php_http_release_4.png)
 
 11. 浏览器打开 `http://{machine_ip}:9000/index/index` 页面将显示 Hello Tars!
 
@@ -336,7 +336,7 @@ class IndexController extends Controller
 
 ### 部署服务
 
-![部署服务](./assets/deploy_php_tars_servant.png)
+![部署服务](https://tars-thirdpart-1300910346.cos.ap-guangzhou.myqcloud.com/assets/PHP/deploy_php_tars_servant.png)
 
 ### 开发 guideline
 
