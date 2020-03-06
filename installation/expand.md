@@ -137,66 +137,66 @@ make tarsqueryproperty-tar
 
 默认tarsnotify在安装核心基础服务时，部署信息已初始化了，安装完管理平台后，就可以看到，如下：
 
-![tars](../../assets/tars_tarsnotify_bushu.png)
+![tars](../assets/tars_tarsnotify_bushu.png)
 
 上传发布包后，发布如下：
 
-![tars](../../assets/tars_tarsnotify_patch.png)
+![tars](../assets/tars_tarsnotify_patch.png)
 
 ### 5.2 tarsstat部署发布
 
 部署信息如下：
 
-![tars](../../assets/tars_tarsstat_bushu.png)
+![tars](../assets/tars_tarsstat_bushu.png)
 
 上传发布包后，发布如下：
 
-![tars](../../assets//tars_tarsstat_patch.png)
+![tars](../assets//tars_tarsstat_patch.png)
 
 ### 5.3 tarsproperty部署发布
 
 部署信息如下：
 
-![tars](../../assets/tars_tarsproperty_bushu.png)
+![tars](../assets/tars_tarsproperty_bushu.png)
 
 上传发布包后，发布如下：
 
-![tars](../../assets/tars_tarsproperty_patch.png)
+![tars](../assets/tars_tarsproperty_patch.png)
 
 ### 5.4 tarslog部署发布
 
 部署信息如下：
 
-![tars](../../assets/tars_tarslog_bushu.png)
+![tars](../assets/tars_tarslog_bushu.png)
 
 上传发布包后，发布如下：
 
-![tars](../../assets/tars_tarslog_patch.png)
+![tars](../assets/tars_tarslog_patch.png)
 
 ### 5.5 tarsquerystat部署发布
 
 部署信息如下：
 
-![tars](../../assets/tars_tarsquerystat_bushu.png)
+![tars](../assets/tars_tarsquerystat_bushu.png)
 
 **注意在服务部署时，选择非Tars协议，因为Web是以json协议来获取服务监控的数据的**
 
 上传发布包后，发布如下：
 
-![tars](../../assets/tars_tarsquerystat_patch.png)
+![tars](../assets/tars_tarsquerystat_patch.png)
 
 
 ### 5.6 tarsqueryproperty部署发布
 
 部署信息如下：
 
-![tars](../../assets/tars_tarsqueryproperty_bushu.png)
+![tars](../assets/tars_tarsqueryproperty_bushu.png)
 
 **注意在服务部署时，选择非Tars协议，因为Web是以json协议来获取属性监控的数据的**
 
 上传发布包后，发布如下：
 
-![tars](../../assets/tars_tarsqueryproperty_patch.png)
+![tars](../assets/tars_tarsqueryproperty_patch.png)
 
 
 
