@@ -3,7 +3,7 @@
 > * [框架服务扩容](#chapter-2)
 > * [Tarsnode扩容和更新](#chapter-3)
 > * [Tars-web更新](#chapter-4)
-> * [框架基础服务更新](#chapter-5)
+> * [框架基础服务独立更新](#chapter-5)
 
 ## 1 <a id="chapter-1"></a> 介绍
 
@@ -28,6 +28,8 @@
 以docker形式安装的框架, 可以通过docker整体更新的方式来操作, 只需要升级docker, 重启即可
 
 **注意: 务必不要设置REBUILD为true, 数据库会被重置!!!**
+
+推荐在正式环境中使用docker的部署方式, 未来框架的版本升级更加简单便捷!
 
 ## 3 <a id="chapter-3"></a> tarsnode安装和更新
 
@@ -67,7 +69,9 @@ locator=tars.tarsregistry.QueryObj@tcp -h xxx2 -p 17890:tcp -h xxx2 -p 17890
 
 **注意:之前安装的框架的服务器, 如果用check.sh做了监控, 则无需再配置tarsnode的监控了**
 
-## 4 <a id="chapter-4"></a> Tar-web更新
+## 4 <a id="chapter-4"></a> Tars-web独立更新
+
+注意不建议单独更新tars-web, tarsweb可能依赖其他组件的版本!!!
 
 **更新步骤**
 - 下载最新的Tars-web的代码, 覆盖 /usr/local/app/web
@@ -89,7 +93,9 @@ mysql -hxxx -pxxx db_user_system < web/demo/sql/db_user_system.sql
 
 ```
 
-## <a id="chapter-5"></a> 框架基础服务更新
+## <a id="chapter-5"></a> 框架基础服务独立更新
+
+注意不建议单独独立更新各个组件, 因为各组件间有相互依赖的版本关系, 已经相关的配置都需要对应模板配置都需要更新!!!
 
 框架服务的安装分两种：
 

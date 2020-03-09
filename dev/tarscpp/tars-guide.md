@@ -432,10 +432,6 @@ HelloServer --config=config.conf
        refresh-endpoint-interval=60000
        #上报数据的时间间隔
        report-interval=60000
-       #采样率
-       sample-rate=100000
-       #最大采样数
-       max-sample-count=50
        #异步线程数
        asyncthread=3
        #模版名称

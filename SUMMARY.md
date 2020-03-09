@@ -33,6 +33,7 @@
   * [TarsJava](env/tarsjava.md)
   * [TarsPHP](env/tarsphp.md)
   * [Tars.js](env/tars.js.md)
+* [基础概念(开发必看)](base/tars-concept.md)
 * [Hello World](hello-world/README.md)
   * [TarsGo 快速入门](hello-world/hello-world.md)
   * [TarsJava 快速入门](hello-world/tarsjava.md)
