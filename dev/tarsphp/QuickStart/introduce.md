@@ -4,5 +4,5 @@
 * [搭建HttpServer](./tars-http-server.md)
 * [搭建TimerServer](./tars-timer-server.md)
 * [搭建TcpServer](./tars-tcp-server.md)
-* [搭建WebSocketServer](./tars-websocket-demo.md)
+* [搭建WebSocketServer](./tars-websocket-server.md)
 * [弹幕活动范例](./tars-act-demo.md)
