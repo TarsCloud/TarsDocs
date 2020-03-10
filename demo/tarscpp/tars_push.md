@@ -17,7 +17,7 @@
 ## push模式的流程图
 下面是push模式的示意图
 
-![tars](../../assets/tars_flow.PNG)
+![tars](../../assets/tars_flow.png)
 
 - 黑色线代表了数据流向：数据（客户端）-〉请求包的编码器（客户端）-〉协议解析器（服务端）-〉doRequest协议处理器（服务端）-〉生成返回数据（服务端）-〉响应包的解码器（客户端）-〉响应数据（客户端）
 - 黄色线代表客户端访问服务端
@@ -37,7 +37,7 @@
 首先我们按照第三方协议代码部署一个TestPushServant 服务
 如下图所示在管理平台部署一个服务端
 
-![tars](../../assets/tars_push_deploy.PNG)
+![tars](../../assets/tars_push_deploy.png)
 
 参考tars 支持第三方协议
 
@@ -683,7 +683,7 @@ void RecvThread::run(void)
 
 如果push 成功，结果如下
 
-![tars](../../assets/tars_result.PNG)
+![tars](../../assets/tars_result.png)
 
 
 

@@ -122,6 +122,12 @@ set(TARS_WEB_HOST "http://127.0.0.1:4001")
 
 并且打开web的上传配置(通常测试环境才这么做), 参考[基础概念](../../base/tars-concept.md)
 
+### 1.6. 第三方包
+
+tars编译时, 根据设置会自动编译mysql openssl nghttp2 gtest gpref等常用库, 这些库安装时都会安装到 /usr/local/tars/cpp/thirdparty目录下.
+
+如果你需要引用这些库, 只需要在CMakeLists.txt中引用即可, 非常方便!
+
 ## 2. <a id="main-chapter-2"></a> Makefile规范
 
 使用Tars实现的服务，tarscpp 1.x版本提供了Makefile的管理规范, >=2.1.0不再维护, 建议新版本用户升级到cmake管理方式.
