@@ -15,7 +15,7 @@
 - framework: Tars 框架 Docker 制作脚本, 制作的 docker 包含了框架核心服务和 web 管理平台
 - tars: Tars 框架 Docker 制作脚本, 和 framework 比, 增加了 java, nodejs 等运行时支持, 即可以把 java, nodejs 服务发布到 docker 里面(docker 里面安装了 jdk, node, php 环境)
 
-首先确保你的服务上已经安装了 docker 环境, 如果没有, 可以参考[docker install](docker-huan-jing-an-zhuang.md)
+首先确保你的服务上已经安装了 docker 环境, 如果没有, 可以参考[docker install](docker-install.md)
 
 ## 2 <a id="chapter-2"></a>Docker 部署 Tars 框架
 
