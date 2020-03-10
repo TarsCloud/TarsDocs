@@ -1,8 +1,8 @@
 # 目录
-> * [分组介绍] (#main-chapter-1)
-> * [IDC分组逻辑介绍] (#main-chapter-2)
-> * [Set分组逻辑介绍] (#main-chapter-3)
-> * [IDC分组与Set分组的调用规则] (#main-chapter-4)
+> * [分组介绍](#main-chapter-1)
+> * [IDC分组逻辑介绍](#main-chapter-2)
+> * [Set分组逻辑介绍](#main-chapter-3)
+> * [IDC分组与Set分组的调用规则](#main-chapter-4)
 
 # 1. 分组介绍 <a id="main-chapter-1"></a>
 
