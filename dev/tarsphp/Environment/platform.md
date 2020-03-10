@@ -38,13 +38,13 @@ npm install -g pm2
 
 ### 4.安装TARS
 
-#####4.1 下载TarsFramework源码
+##### 4.1 下载TarsFramework源码
 
 ```
 git clone https://github.com/TarsCloud/TarsFramework.git
 ```
 
-#####4.2 检查MYSQL路径
+##### 4.2 检查MYSQL路径
 
 **查看源码目录下的CMakeLists.txt文件，确保MYSQL的相关路径配置与本机一致。**
 
@@ -55,7 +55,7 @@ set(MYSQL_DIR_INC "/usr/local/mysql/include")
 set(MYSQL_DIR_LIB "/usr/lib64/mysql")
 ```
 
-#####4.3 编译安装TARS
+##### 4.3 编译安装TARS
 
 ```
 cd {$source_folder}/build
@@ -87,7 +87,7 @@ mysql>\q
 service mysqld restart
 ```
 
-#####5.2 添加用户
+##### 5.2 添加用户
 
 ${your machine ip}需要修改成自身机器内网ip，可以通过`ifconfig`查看。
 
@@ -98,7 +98,7 @@ grant all on *.* to 'tars'@'${your machine ip}' identified by 'tars2015' with gr
 flush privileges;
 ```
 
-#####5.3 创建数据库
+##### 5.3 创建数据库
 
 进入源码的sql目录
 
@@ -126,7 +126,7 @@ chmod u+x exec-sql.sh
 * tars_stat：服务监控数据存储的数据库；
 * tars_property：服务属性监控数据存储的数据库；
 
-###6.安装框架基础服务
+### 6.安装框架基础服务
 
 框架服务的安装分两种：
 
@@ -135,7 +135,7 @@ chmod u+x exec-sql.sh
 
 核心基础服务必须手工部署，普通基础服务可以通过管理平台发布。
 
-#####6.1 准备核心基础服务包
+##### 6.1 准备核心基础服务包
 
 ```
 cd {$source_folder}/build
@@ -144,7 +144,7 @@ make framework-tar
 
 命令执行后，会在当前目录生成framework.tgz，这个包包含了tarsAdminRegistry, tarsregistry, tarsnode, tarsconfig, tarspatch 部署相关的文件。
 
-#####6.2 准备普通基础服务安装包
+##### 6.2 准备普通基础服务安装包
 
 ```
 make tarsstat-tar
@@ -157,7 +157,7 @@ make tarsqueryproperty-tar
 
 命令执行后，会在当前目录生成基础服务发布包，可以在管理平台部署完成后，通过管理平台进行部署发布。
 
-#####6.3 安装核心基础服务
+##### 6.3 安装核心基础服务
 
 将核心基础服务包copy到/usr/local/app/tars目录下，并解压。
 
@@ -191,7 +191,7 @@ chmod u+x tars_install.sh
 tarspatch/util/init.sh
 ```
 
-#####6.4.安装web管理平台
+##### 6.4.安装web管理平台
 
 下载web源码
 
@@ -225,7 +225,7 @@ mkdir -p /data/log/tars
 
 ![alt text](https://github.com/TarsCloud/Tars/raw/master/docs/images/tars_web_system_index.png)
 
-#####6.5 安装普通基础服务
+##### 6.5 安装普通基础服务
 
 **平台部署的端口号仅供参考，保证端口无冲突即可**
 
