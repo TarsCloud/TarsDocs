@@ -93,8 +93,8 @@
                 }
     ```
 4. 执行构建
-    ![PNG](../image/build_with_parameters.png)
+    ![PNG](../../../assets/build_with_parameters.png)
 5. 查看构建结果（邮件通知）
-    ![PNG](../image/stage_view.png)
+    ![PNG](../../../assets/stage_view.png)
 5. 查看tars web管理界面
-    ![PNG](../image/tars_web.png)
+    ![PNG](../../../assets/tars_web.png)

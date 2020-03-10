@@ -223,7 +223,7 @@ mkdir -p /data/log/tars
 
 访问站点 浏览器输入${your machine ip}:3000，即可看到web管理界面，如访问不了，可尝试关闭防火墙。
 
-![alt text](https://github.com/TarsCloud/Tars/raw/master/docs/images/tars_web_system_index.png)
+![alt text](../../../assets/tars_web_system_index.png)
 
 ##### 6.5 安装普通基础服务
 
@@ -233,11 +233,11 @@ mkdir -p /data/log/tars
 
 点击`运维管理` => `服务部署`
 
-![alt_text](https://github.com/TarsCloud/Tars/raw/master/docs/images/tars_tarsstat_bushu.png)
+![alt_text](../../../assets/tars_tarsstat_bushu.png)
 
 点击`服务管理` => 选中一个服务 => `发布管理`，上传发布包，即6.2中生成的基础发布包，点击发布即可。
 
-![alt_text](https://github.com/TarsCloud/Tars/raw/master/docs/images/tars_tarsnotify_patch.png)
+![alt_text](../../../assets/tars_tarsnotify_patch.png)
 
 按照此方式逐个部署tarsnotify、tarsproperty、tarslog、tarsquerystat、tarsqueryproperty。
 
