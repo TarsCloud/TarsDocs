@@ -1,16 +1,16 @@
-##安装tarsphp依赖环境
+## 安装tarsphp依赖环境
     建议安装php7+swoole2+
 
-##安装php
+## 安装php
     项目地址 https://github.com/php/php-src 
 
-##安装swoole
+## 安装swoole
     项目地址 https://github.com/swoole/swoole-src
     编译安装 https://wiki.swoole.com/wiki/page/6.html
     PECL一键下载安装
         pecl install swoole
         
-##安装tarsphp扩展
+## 安装tarsphp扩展
     项目地址 https://github.com/TarsPHP/tars-extension
     
         下载&解压 https://github.com/TarsPHP/tars-extension/archive/master.zip
@@ -21,7 +21,7 @@
         sudo make install
         在php.ini里面加入extension=phptars.so
 
-##TarsPHP开发相关
+## TarsPHP开发相关
 ### [快速运行tars-http-server](../QuickStart/tars-http-server.md)
 
 ### 开发和打包
