@@ -13,9 +13,9 @@
 
 框架基础服务是由c++开发的，在linux下运行。
 
-### 3. Tars依赖的软件或者工具，在部署Tars时，必须事先安装好，参见 [手动安装](../rumen/an-zhuang/shou-dong-an-zhuang.md).
+### 3. Tars依赖的软件或者工具，在部署Tars时，必须事先安装好，参见 [手动安装](https://github.com/TarsCloud/TarsDocs/blob/master/installation/source.md).
 
-### 4. Tars部署安装步骤要按 [手动安装](../rumen/an-zhuang/shou-dong-an-zhuang.md) 文档先后顺序进行。
+### 4. Tars部署安装步骤要按 [手动安装](https://github.com/TarsCloud/TarsDocs/blob/master/installation/source.md) 文档先后顺序进行。
 
 ### 5. mysql可以源码安装，也或者通过yum等工具来安装，注意的是Tars编译时默认使用的mysql开发库路径：include 的路径为`/usr/local/mysql/include`，lib 的路径为`/usr/local/mysql/lib/`。
 
