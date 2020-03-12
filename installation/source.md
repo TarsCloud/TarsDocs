@@ -16,9 +16,8 @@ linux内核版本:      |	2.6.18及以上版本（操作系统依赖）
 gcc版本:          	|   4.8.2及以上版本、glibc-devel（c++语言框架依赖）
 bison工具版本:      |	2.5及以上版本（c++语言框架依赖）
 flex工具版本:       |	2.5及以上版本（c++语言框架依赖）
-cmake版本：       	|   2.8.8及以上版本（c++语言框架依赖）
+cmake版本：       	|   3.2及以上版本（c++语言框架依赖）
 mysql版本:          |   4.1.17及以上版本（框架运行依赖）
-rapidjson版本:      |   1.0.2版本（c++语言框架依赖）
 nvm版本：           |   0.35.1及以上版本（web管理系统依赖, 脚本安装过程中自动安装）
 node版本：          |   12.13.0及以上版本（web管理系统依赖, 脚本安装过程中自动安装）
 
@@ -72,18 +71,20 @@ git clone https://github.com/TarsCloud/TarsFramework.git --recursive
 
 然后进入build源码目录
 ```
-cd ${source_folder}/TarsFramework/build
-chmod u+x build.sh
-./build.sh prepare
-./build.sh all
+cd TarsFramework
+git submodule update --remote --recursive
+cd build
+cmake ..
+make -j4
 ```
 
-默认情况下, 编译Tars会自动下载mysql源码(目前默认是mysql-5.6.26), 并编译libmyqlclient.a
+默认情况下, 编译Tars会自动下载mysql-client源码, 并编译libmyqlclient.a
 
 如果需要重新编译
 ```
-./build.sh cleanall
-./build.sh all
+cd build
+make clean
+make -j4
 ```
 
 切换至root用户，创建安装目录
@@ -95,8 +96,8 @@ chown ${普通用户}:${普通用户} ./tars/
 
 安装
 ```
-cd ${source_folder}/build
-./build.sh install或者make install
+cd build
+make install
 ```
 
 **默认的安装路径为/usr/local/tars/cpp**
