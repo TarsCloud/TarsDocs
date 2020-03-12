@@ -1,6 +1,10 @@
 ﻿# 其他协议支持
 
 ## 概述
+
+请务必先阅读 [concept](../../base/tars-concept.md) and [spec](../../dev/tarscpp/tars-spec.md)
+
+
 TARS服务框架默认情况下只支持TARS自有的tars协议，但是在实际的应用场景中，需要在TARS服务框架中支持其他协议，例如HTTP，这种情况下就不能用通信器来发送据，需要业务自己来实现这部分代码。对于自定义的协议， 处理方式也类似
 
 具体程序示例，参见 https://github.com/TarsCloud/TarsCpp/tree/master/examples/HttpDemo.
@@ -17,7 +21,7 @@ TARS服务框架默认情况下只支持TARS自有的tars协议，但是在实�
 ## 	服务端Http协议实例
 
 
-/usr/local/tars/cpp/script/create_tars_server.sh TestApp HttpServer Http
+/usr/local/tars/cpp/script/cmake_http_server.sh TestApp HttpServer Http
 
 在目录下会生成六个文件，将http.tars 删除（因为不是tars协议），然后手动的实现一些方法
 

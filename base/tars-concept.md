@@ -52,7 +52,7 @@ Tars文件是TARS服务的协议通信接口，尤其某Tars Server的客户端�
 - tars的接口原则上只能增加，不能减少或修改；
 - 各语言提供的Tars服务框架, 都提供了快速release tars文件到/home/tarsproto/\[namespace\]/\[server\]下的工具
 
-## <a id="main-chapter-5"></a> 服务端开发方式
+## 5. <a id="main-chapter-5"></a> 服务端开发方式
 
 任何Tars服务端和客户端的开发方式都基本一样:
 - 确定APP, Server, Servant名称
@@ -61,6 +61,28 @@ Tars文件是TARS服务的协议通信接口，尤其某Tars Server的客户端�
 - 实现Tars服务(请参考不同语言的文档), 继承生成的文件中的Servant类, 实现Servant的interface
 - 编译服务, 发布在管理平台上(在管理平台需要配置App, Server, Servant Obj名称等), 可以参考后续章节
 - 当然你的服务也可以本地运行, 可以在平台上启动服务后, ```ps -ef```看到服务的启动方式后, 放在本地执行即可(注意可能有配置文件, 需要修改端口等信息)
+
+正常情况下, 服务最终都通过tarsweb发布运行在tars平台上的各个节点服务器上, 但是在调试过程中希望在本机运行, 该如何处理?
+
+服务启动实际上无非是一条命令行, 比如c++服务是: 
+```
+HelloServer --config=xxxxx.conf
+```
+这里配置config表示服务启动的配置文件, 在tars平台上是由tarsnode通过拉取模板配置生成的, 并拉起HelloServer, 如果你想本地运行服务, 就必须本地具备这个配置文件.
+
+**注意这个配置文件不是业务配置, 而是服务框架的配置, 对应tars平台上的模板!**
+
+如何获取这个配置文件呢?
+
+你可以先将服务发布到平台的某个节点上, 然后登陆节点服务器, 运行:
+```
+ps -efww | grep ${your server name}
+```
+
+你可以看到服务启动的命令行, 将对应的配置文件copy到本地, 并且打开配置文件, 修改配置文件里面对应ip port以及相关路径, 然后使用相同的命令行本地运行即可!
+
+其他语言方式类似!
+
 
 ## 6. <a id="main-chapter-6"></a> 客户端开发方式
 
@@ -111,11 +133,14 @@ tarsnode会去平台拉取服务对应的模板(服务部署时配置好的), �
 - 完成框架安装后, 修改web配置: web/config/webConf.js, uploadLogin设置为true, 重启web
 - linux上使用curl命令即可完成服务的上传和发布,以Test/HelloServer为例:
 ```
-curl http://${your-web-host}/pages/server/api/upload_and_publish -Fsuse=@HelloServer.tgz -Fapplication=Test -Fmodule_name=HelloServer -Fcomment=dev)\n")
+curl http://${your-web-host}/pages/server/api/upload_and_publish -Fsuse=@HelloServer.tgz -Fapplication=Test -Fmodule_name=HelloServer -Fcomment=dev
 ```
 
 c++版本的cmake已经内嵌了命令行在服务的CMakeLists.txt中, 使用者只需要:
 ```
 make HelloServer-upload
 ```
-即可完成服务的上传
+即可完成服务的上传和发布(提前需要在web平台配置好)
+
+注意:
+- HelloServer.tgz是c++的发布包, java对应是war包, 其他语言类似, 对应你上传到web平台的发布包

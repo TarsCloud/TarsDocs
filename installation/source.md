@@ -107,7 +107,7 @@ install以后, 依赖的库(mysql静态库)和头文件也会安装到该目录�
 ```
 **需要修改tarscpp/cmake/Common.cmake文件中的安装路径。**
 **需要修改tarscpp/servant/makefile/makefile.tars文件中的TARS_PATH的路径**
-**需要修改tarscpp/servant/script/create_tars_server.sh文件中的DEMO_PATH的路径**
+**需要修改tarscpp/servant/script/*.sh文件中的DEMO_PATH的路径**
 ```
 
 # 3 <a id="chapter-3"></a>Tars框架安装

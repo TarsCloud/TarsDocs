@@ -9,7 +9,9 @@
 # 1. 环境搭建  <a id="main-chapter-1"></a>
 
 Tars C++环境搭建参考tars_install.md
- 
+
+请务必先阅读 [concept](../../base/tars-concept.md) and [spec](../../dev/tarscpp/tars-spec.md)
+
 # 2. 服务命名  <a id="main-chapter-2"></a>
 
 使用Tars框架的服务，其的服务名称有三个部分：
@@ -32,7 +34,7 @@ Servant：服务者，提供具体服务的接口或实例。例如:HelloImp；
 
 用户登录成功后，会进入Tars管理系统，如下图
 
-![tars](images/tars_web_index.png)
+![tars](../../assets/tars_web_index.png)
 
 TARS管理系统的菜单树下，有以下功能：
 
@@ -46,7 +48,7 @@ TARS管理系统的菜单树下，有以下功能：
 
 如下图：
 
-![tars](images/tars_cpp_quickstart_bushu1.png)
+![tars](../../assets/tars_cpp_quickstart_bushu1.png)
 
 -	“应用”指你的服务程序归在哪一个应用下，例如：“TestApp”。
 -	“服务名称”指你的服务程序的标识名字，例如：“HelloServer”。
@@ -66,7 +68,7 @@ TARS管理系统的菜单树下，有以下功能：
 
 点击“提交“，成功后，菜单数下的TestApp应用将出现HelloServer名称，同时将在右侧看到你新增的服务程序信息，如下图：
 
-![tars](images/tars_cpp_quickstart_bushu2.png)
+![tars](../../assets/tars_cpp_quickstart_bushu2.png)
 
 在管理系统上的部署暂时先到这里，到此为止，只是使你的服务在管理系统上占了个位置，真实程序尚未发布。
 
@@ -76,14 +78,14 @@ TARS管理系统的菜单树下，有以下功能：
 
 ### 5.1.1. 运行tars脚本
 ``` shell
-/usr/local/tars/cpp/script/create_tars_server.sh [App] [Server] [Servant]
+/usr/local/tars/cpp/script/cmake_tars_server.sh [App] [Server] [Servant]
 ```
 
-本例中执行：/usr/local/tars/cpp/script/create_tars_server.sh TestApp HelloServer Hello
+本例中执行：/usr/local/tars/cpp/script/cmake_tars_server.sh TestApp HelloServer Hello
 
-命令执行后，会在当前目录的TestApp/HelloServer/ 目录下，生成下面文件：
+命令执行后，会在当前目录的TestApp/HelloServer/src 目录下，生成下面文件：
 ``` shell
-HelloServer.h HelloServer.cpp Hello.tars HelloImp.h HelloImp.cpp makefile
+HelloServer.h HelloServer.cpp Hello.tars HelloImp.h HelloImp.cpp CMakeLists 
 ```
 这些文件，已经包含了最基本的服务框架和默认测试接口实现。
 
@@ -274,15 +276,16 @@ main(int argc, char* argv[])
 
 进入代码目录,首先做
 ```shell
-make cleanall
-make	
-make tar
+cd build
+cmake ..
+make -j4
+make HelloServer-tar
 ``` 
 ## 5.3. 扩展功能
 
 Tars框架提供了接口定义语言的功能，可以在tars文件中，增加一下接口和方法，扩展服务的功能。 
 
-可以修改由create_tars_server.sh生成的tars文件，以下3个接口方法中，test是默认生成的，testHello是新增加的接口。
+可以修改由cmake_tars_server.sh生成的tars文件，以下3个接口方法中，test是默认生成的，testHello是新增加的接口。
 ```cpp
 
 module TestApp
@@ -325,7 +328,7 @@ int HelloImp::testHello(const std::string &sReq, std::string &sRsp, tars::TarsCu
 
 例如：/home/tarsproto/TestApp/HelloServer在刚才编写服务器的代码目录下，
 
-执行 make release 这时会在/home/tarsproto/TestApp/HelloServer目录下生成h、tars和mk文件。
+执行 make HelloServer-release 这时会在/home/tarsproto/TestApp/HelloServer目录下生成h、tars和mk文件。
 
 这样在有某个服务需要访问HelloServer时，就直接引用HelloServer服务make release的内容，不需要把HelloServer的tars拷贝过来（即代码目录下不需要存放HelloServer的tars文件）。
 
@@ -450,7 +453,7 @@ int main(int argc,char ** argv)
     return 0;
 }
 ```
-编写makefile,里面包含刚才通过make release生成的/home/tarsproto/APP/Server目录下的mk文件，如下：
+编写makefile, 引用刚才/home/tarsproto/APP/Server，如下：
 
 ```makefile
 #-----------------------------------------------------------------------
@@ -459,28 +462,30 @@ TARGET      :=TestHelloClient
 CONFIG      :=
 STRIP_FLAG  := N
 
-INCLUDE     += 
+INCLUDE     += -I/home/tarsproto/TestApp/HelloServer/
 LIB         +=
 #-----------------------------------------------------------------------
-include /home/tarsproto/TestApp/HelloServer/HelloServer.mk
 include /usr/local/tars/cpp/makefile/makefile.tars
 #-----------------------------------------------------------------------
 ```
 make出目标文件，上传到能访问服务器的环境中进行运行测试即可
+
+**这里你也可以通过cmake来管理, 也强烈建议你通过cmake管理!**
+
 
 # 6. 服务发布  <a id="main-chapter-6"></a>
 在管理系统的菜单树下，找到你部署的服务，点击进入服务页面。 
 
 选择“发布管理”，选中要发布的节点，点击“发布选中节点”，点击“上传发布包”，选择已经编译好的发布包，如下图：
 
-![tars](images/tars_cpp_quickstart_upload.png)
+![tars](../../assets/tars_cpp_quickstart_upload.png)
 
  上传好发布包后，点击“选择发布版本”下拉框就会出现你上传的服务程序，选择最上面的一个（最新上传的）。如下图：
 
- ![tars](images/tars_cpp_quickstart_patch.png)
+ ![tars](../../assets/tars_cpp_quickstart_patch.png)
 
  点击“发布”，服务开始发布，发布成功后，出现下面的界面，如下图：
 
- ![tars](images/tars_cpp_quickstart_patchresult.png)
+ ![tars](../../assets/tars_cpp_quickstart_patchresult.png)
  
 若失败的话，可能是命名问题，上传问题，以及其他环境问题。

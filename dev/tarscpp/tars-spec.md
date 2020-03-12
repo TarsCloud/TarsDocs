@@ -19,7 +19,7 @@ tarscpp >=2.1.0版本建议以cmake管理方式为主, 不再默认支持Makefil
 
 TARS框架提供了一个基础的tars-tools.cmake (/usr/local/tars/cpp/makefile/tars-tools.cmake), 业务服务的CMakeLists.txt引用该文件即可.
 
-TARS框架也提供了脚本\(/usr/local/tars/cpp/script/create\_tars\_server.sh\)可以自动生成空的服务框架和CMakeLists.txt
+TARS框架也提供了脚本\(/usr/local/tars/cpp/script/cmake\_tars\_server.sh\)可以自动生成空的服务框架和CMakeLists.txt
 
 业务服务CMakeLists.txt示例如下:
 

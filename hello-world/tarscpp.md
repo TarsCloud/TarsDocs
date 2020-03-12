@@ -8,18 +8,26 @@
 
 ## 1 <a id="chapter-1"></a> 创建服务
 
-```text
-/usr/local/tars/cpp/script/create_tars_server.sh [App] [Server] [Servant]
-```
-
-本例中执行：/usr/local/tars/cpp/script/create\_tars\_server.sh TestApp HelloServer Hello
-
-命令执行后，会在当前目录的TestApp/HelloServer/ 目录下，生成下面文件：
+请务必先阅读 [concept](../../base/tars-concept.md) and [spec](../../dev/tarscpp/tars-spec.md)
 
 ```text
-HelloServer.h HelloServer.cpp Hello.tars HelloImp.h HelloImp.cpp makefile
+/usr/local/tars/cpp/script/cmake_tars_server.sh [App] [Server] [Servant]
 ```
 
+本例中执行：/usr/local/tars/cpp/script/cmake\_tars\_server.sh TestApp HelloServer Hello
+
+命令执行后，会在当前目录的TestApp/HelloServer/src 目录下，生成下面文件：
+
+```text
+HelloServer.h HelloServer.cpp Hello.tars HelloImp.h HelloImp.cpp CMakeLists.txt 
+```
+
+编译服务
+```
+cd build;
+cmake ..
+make -j4
+```
 这些文件，已经包含了最基本的服务框架和默认测试接口实现。
 
 ## 2 <a id="chapter-3"></a> 服务实现
@@ -45,7 +53,7 @@ interface Hello
 
 ```
 
-采用tars2cpp工具自动生成c++文件：/usr/local/tars/cpp/tools/tars2cpp hello.tars会生成hello.h文件，里面包含客户端和服务端的代码。
+采用tars2cpp工具自动生成c++文件：/usr/local/tars/cpp/tools/tars2cpp hello.tars会生成hello.h文件，里面包含客户端和服务端的代码( 编译时会自动处理)。
 
 ### HelloImp是Servant的接口实现类
 
@@ -213,16 +221,18 @@ main(int argc, char* argv[])
 进入代码目录,首先做
 
 ```text
-make cleanall
-make	
-make tar
+cd build
+cmake ..
+make -j4
+make HelloServer-tar
+make HelloServer-upload
 ```
 
 ## 4 <a id="chapter-4"></a> 扩展功能
 
 Tars框架提供了接口定义语言的功能，可以在tars文件中，增加一下接口和方法，扩展服务的功能。
 
-可以修改由create\_tars\_server.sh生成的tars文件，以下3个接口方法中，test是默认生成的，testHello是新增加的接口。
+可以修改由cmake\_tars\_server.sh生成的tars文件，以下3个接口方法中，test是默认生成的，testHello是新增加的接口。
 
 ```text
 module TestApp
@@ -394,7 +404,7 @@ int main(int argc,char ** argv)
 }
 ```
 
-编写makefile,里面包含刚才通过make release生成的/home/tarsproto/APP/Server目录下的mk文件，如下：
+编写makefile,里面/home/tarsproto/APP/Serve, 如下：
 
 ```text
 #-----------------------------------------------------------------------
@@ -403,15 +413,16 @@ TARGET      :=TestHelloClient
 CONFIG      :=
 STRIP_FLAG  := N
 
-INCLUDE     += 
+INCLUDE     += -I/home/tarsproto/TestApp/HelloServer/
 LIB         +=
 #-----------------------------------------------------------------------
-include /home/tarsproto/TestApp/HelloServer/HelloServer.mk
 include /usr/local/tars/cpp/makefile/makefile.tars
 #-----------------------------------------------------------------------
 ```
 
 make出目标文件，上传到能访问服务器的环境中进行运行测试即
+
+**也强烈建议你用cmake管理, 方式和服务端一样**
 
 ## 6 <a id="chapter-6"></a> 其它 
 
