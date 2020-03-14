@@ -5,7 +5,8 @@
 > * [权限说明](#chapter-3)
 > * [模块调用](#chapter-4)
 > * [检查问题](#chapter-5)
-> * [web开发](#chapter-6)
+> * [Token管理](#chapter-6)
+> * [web开发](#chapter-7)
 
 # 1 <a id="chapter-1"></a>介绍
 
@@ -97,7 +98,7 @@ export COOKIE_DOMAIN=.tars.com
 
 设定环境变量后, 即可正常访问demo
 
-## 5 <a id="chapter-4"></a>检查问题
+## 5 <a id="chapter-5"></a>检查问题
 
 如果tars web运行异常, 比如:页面打不开, 可以通过以下方式检查:
 
@@ -124,7 +125,11 @@ pm2 start tars-user-system
 - tars-node-web模块运行过程中的日志, 会输出在 /usr/local/app/web/log/ 目录下, 便于定位问题
 - tars-user-system模块运行过程中的日志, 会输出在 /usr/local/app/web/demo/log 目录下, 便于定位问题.
 
-## 6 <a id="chapter-5"></a>web开发
+## 6 <a id="chapter-6"></a>Token管理
+
+Web的用户模块, 提供了token管理功能, 即可以创建token, 并通过web api来调用和获取相关数据, [请参见](../dev/tars-web-api.md)
+
+## 7 <a id="chapter-7"></a>web开发
 
 如果你是nodejs开发者, 你也可以参与到web的开发中, web开发方式如下:
 
