@@ -1,16 +1,80 @@
 # 管理平台 API
+> * [Auth](#auth)
+> * [业务树](#tree)
+> * [服务管理](#server)
+>- * [部署服务](#deploy-server)
+>- * [修改服务](#modify-server)
+>- * [取服务](#get-server)
+>- * [取服务列表](#get-server-list)
+>- * [取设置状态为inactive的服务列表](#get-inactive)
+>- * [取服务notify日志列表](#get-notify-server)
+>- * [取服务实时状态](#get-server-status)
+>- * [加载服务](#load-server)
+>- * [预扩容](#pre-expand)
+>- * [扩容](#expand)
+>- * [新增Adapter](#add-adapter)
+>- * [删除Adapter](#delete-adapter)
+>- * [修改Adapter](#modify-adapter)
+>- * [取Adapter](#get-adapter)
+>- * [取Adapter列表](#get-adapter-list)
+> * [服务配置](#config)
+>- * [新增配置文件](#add-config)
+>- * [删除配置文件](#del-config)
+>- * [修改配置文件](#modify-config)
+>- * [取配置文件](#get-config)
+>- * [取配置文件列表](#get-config-list)
+>- * [取节点配置文件列表](#get-node-config-list)
+>- * [取配置文件修改记录](#get-config-modify-history)
+>- * [取配置文件修改记录列表](#get-config-modify-list)
+>- * [新增引用](#add-ref)
+>- * [删除引用](#del-ref)
+>- * [引用列表](#ref-list)
+>- * [合并后节点配置](#merge-node-config)
+>- * [下发节点配置](#push-config)
+> * [任务管理](#task)
+>- * [新增任务](#add-task)
+>- * [取任务及子任务详细信息](#get-task)
+>- * [取任务列表](#get-task-list)
+> * [发布包](#publish)
+>- * [上传发布包](#upload-publish)
+>- * [取发布版本列表](#get-publish-list)
+> * [模板](#template)
+>- * [新增模板](#add-template)
+>- * [删除模板](#del-template)
+>- * [修改模板](#modify-template)
+>- * [取模板](#get-template)
+>- * [查询模板](#query-template)
+> * [监控](#monitor)
+>- * [取tarsstat监控数据](#get-tarsstat)
+>- * [取tarsproperty监控数据](#get-tarspropery)
+> * [字典](#dict)
+>- * [取服务类型列表](#get-server-type)
+>- * [取模板列表](#get-template-list)
+>- * [级联选择服务](#choose-server)
+> * [资源](#resource)
+>- * [安装Tars Node](#install-tarsnode)
+>- * [卸载Tars Node](#uninstall-tarsnode)
+> * [其他](#other)
+>- * [发送自定义命令](#send-command)
+>- * [自动获取未被占用的端口](#get-port)
 
-## 接口调用说明
+## <a id="auth"></a>权限说明
 
-假设部署在localhost，80端口，接口为**tree** 访问的url地址为
+请使用web >= 2.0.0 版本
 
-```text
-http://localhost/pages/tree
+在用户中心中新建token, 获取token后方可使用web api.
+
+web api使用方式如下:
+```
+http://xx.xx.xx.xx/api/[command]?ticket=[token]
+
 ```
 
-## 业务树
+ticket: web平台中生成的token
 
-### tree
+## <a id="tree"></a>业务树
+
+/api/tree
 
 取业务树
 
@@ -31,11 +95,11 @@ http://localhost/pages/tree
 }
 ```
 
-## 服务管理
+## <a id="server"></a>服务管理
 
-### server/api/deploy\_server
+### <a id="deploy-server"></a>部署服务
 
-部署服务
+/api/deploy\_server
 
 #### 参数
 
@@ -108,9 +172,9 @@ http://localhost/pages/tree
 
 只支持POST方式，Header中指定Content-Type:application/json
 
-### server/api/update\_server
+### <a id="modify-server"></a>修改服务
 
-修改服务
+/api/update\_server
 
 #### 参数
 
@@ -169,9 +233,9 @@ http://localhost/pages/tree
 
 只支持POST方式，Header中指定Content-Type:application/json
 
-### server/api/server
+### <a id="get-server"></a>取服务
 
-取服务
+/api/server
 
 #### 参数
 
@@ -210,9 +274,9 @@ id // 服务ID
 }
 ```
 
-### server/api/server\_list
+### <a id="get-server-list"></a>取服务列表
 
-取服务列表
+/api/server\_list
 
 #### 参数
 
@@ -251,9 +315,9 @@ tree_node_id // 树节点ID
 }]
 ```
 
-### server/api/inactive\_server\_list
+### <a id="get-inactive"></a>取设置状态为inactive的服务列表
 
-取设置状态为inactive的服务列表
+/api/inactive\_server\_list
 
 #### 参数
 
@@ -294,9 +358,9 @@ node_name   // 节点
 }]
 ```
 
-### server/api/server\_notify\_list
+### <a id="get-notify-server"></a>取服务notify日志列表
 
-取服务notify日志列表
+/api/server\_notify\_list
 
 #### 参数
 
@@ -323,9 +387,10 @@ tree_node_id // 树节点ID
 
 是
 
-### server/api/get\_realtime\_state
 
-取服务实时状态
+### <a id="get-server-status"></a>取服务实时状态
+
+/api/get\_realtime\_state
 
 #### 参数
 
@@ -341,9 +406,9 @@ id // 服务ID
 }
 ```
 
-### server/api/load\_server
+### <a id="load-server"></a>加载服务
 
-加载服务
+/api/load\_server
 
 #### 参数
 
@@ -359,9 +424,9 @@ node_name    // 节点
 "" // 执行结果
 ```
 
-### server/api/expand\_server\_preview
+### <a id="pre-expand"></a>预扩容
 
-预扩容
+/api/expand\_server\_preview
 
 #### 参数
 
@@ -400,9 +465,9 @@ node_name    // 节点
 
 只支持POST方式，Header中指定Content-Type:application/json
 
-### server/api/expand\_server
+### <a id="expand"></a>扩容
 
-扩容
+/api/expand\_server
 
 #### 参数
 
@@ -469,9 +534,9 @@ node_name    // 节点
 
 只支持POST方式，Header中指定Content-Type:application/json
 
-### server/api/add\_adapter\_conf
+### <a id="add-adapter"></a>新增Adapter
 
-新增Adapter
+/api/add\_adapter\_conf
 
 #### 参数
 
@@ -518,9 +583,9 @@ node_name    // 节点
 
 只支持POST方式，Header中指定Content-Type:application/json
 
-### server/api/delete\_adapter\_conf
+### <a id="delete-adapter"></a>删除Adapter
 
-删除Adapter
+/api/delete\_adapter\_conf
 
 #### 参数
 
@@ -534,9 +599,9 @@ id // Adapter ID
 [0] // 删除的Adapter ID
 ```
 
-### server/api/update\_adapter\_conf
+### <a id="modify-adapter"></a>修改Adapter
 
-修改Adapter
+/api/update\_adapter\_conf
 
 #### 参数
 
@@ -581,9 +646,9 @@ id // Adapter ID
 
 只支持POST方式，Header中指定Content-Type:application/json
 
-### server/api/adapter\_conf
+### <a id="get-adapter"></a>取Adapter
 
-取Adapter
+/api/adapter\_conf
 
 #### 参数
 
@@ -613,9 +678,10 @@ id // Adapter ID
 }
 ```
 
-### server/api/adapter\_conf\_list
 
-取Adapter列表
+### <a id="get-adapter-list"></a>取Adapter列表
+
+/api/adapter\_conf\_list
 
 #### 参数
 
@@ -645,11 +711,11 @@ id // 服务ID
 }]
 ```
 
-## 服务配置
+## <a id="config"></a>服务配置
 
-### server/api/add\_config\_file
+### <a id="add-config"></a>新增配置文件
 
-新增配置文件
+/api/add\_config\_file
 
 #### 参数
 
@@ -684,9 +750,9 @@ id // 服务ID
 }
 ```
 
-### server/api/delete\_config\_file
+### <a id="del-config"></a>删除配置文件
 
-删除配置文件
+/api/delete\_config\_file
 
 #### 参数
 
@@ -700,9 +766,9 @@ id // 配置文件ID
 [0] // 删除的配置文件ID
 ```
 
-### server/api/update\_config\_file
+### <a id="modify-config"></a>修改配置文件
 
-修改配置文件
+/api/update\_config\_file
 
 #### 参数
 
@@ -735,9 +801,9 @@ id // 配置文件ID
 
 只支持POST方式，Header中指定Content-Type:application/json
 
-### server/api/config\_file
+### <a id="get-config"></a>取配置文件
 
-取配置文件
+/api/config\_file
 
 #### 参数
 
@@ -762,9 +828,9 @@ id // 配置文件ID
 }
 ```
 
-### server/api/config\_file\_list
+### <a id="get-config-list"></a>取配置文件列表
 
-取配置文件列表
+/api/config\_file\_list
 
 #### 参数
 
@@ -794,9 +860,9 @@ set_group   // Set组
 }]
 ```
 
-### server/api/node\_config\_file\_list
+### <a id="get-node-config-list"></a>取节点配置文件列表
 
-取节点配置文件列表
+/api/node\_config\_file\_list
 
 #### 参数
 
@@ -830,9 +896,9 @@ config_id   // 配置文件ID
 
 只支持POST方式，Header中指定Content-Type:application/json
 
-### server/api/config\_file\_history
+### <a id="get-config-modify-history"></a>取配置文件修改记录
 
-取配置文件修改记录
+server/api/config\_file\_history
 
 #### 参数
 
@@ -852,9 +918,9 @@ id  // 变更记录ID
 }
 ```
 
-### server/api/config\_file\_history\_list
+### <a id="get-config-modify-list"></a>取配置文件修改记录列表
 
-取配置文件修改记录
+server/api/config\_file\_history\_list
 
 #### 参数
 
@@ -881,9 +947,9 @@ config_id // 配置文件ID
 
 是
 
-### server/api/add\_config\_ref
+### <a id="add-ref"></a>新增引用
 
-新增引用
+server/api/add\_config\_ref
 
 #### 参数
 
@@ -902,9 +968,9 @@ reference_id // 引用配置文件ID
 }
 ```
 
-### server/api/delete\_config\_ref
+### <a id="del-ref"></a>删除引用
 
-删除引用
+/api/delete\_config\_ref
 
 #### 参数
 
@@ -918,9 +984,9 @@ id // 引用ID
 [0] // 删除的引用ID
 ```
 
-### server/api/config\_ref\_list
+### <a id="ref-list"></a>引用列表
 
-引用列表
+/api/config\_ref\_list
 
 #### 参数
 
@@ -949,9 +1015,9 @@ config_id // 配置文件ID
 }]
 ```
 
-### server/api/merged\_node\_config
+### <a id="merge-node-config"></a>合并后节点配置
 
-合并后节点配置
+/api/merged\_node\_config
 
 #### 参数
 
@@ -965,9 +1031,9 @@ id // 配置文件ID
 "" // 配置文件内容
 ```
 
-### server/api/push\_config\_file
+### <a id="push-config"></a>下发节点配置
 
-下发节点配置
+/api/push\_config\_file
 
 #### 参数
 
@@ -987,13 +1053,13 @@ ids // 配置文件ID，用;分隔
 }]
 ```
 
-## 任务管理
+## <a id="task"></a>任务管理
 
 > 涵盖启动、停止、发布、下线
 
-### server/api/add\_task
+### <a id="add-task"></a>新增任务
 
-新增任务
+/api/add\_task
 
 #### 参数
 
@@ -1028,9 +1094,9 @@ ids // 配置文件ID，用;分隔
 
 只支持POST方式，Header中指定Content-Type:application/json
 
-### server/api/task
+### <a id="get-task"></a>取任务及子任务详细信息
 
-取任务及子任务详细信息
+/api/task
 
 #### 参数
 
@@ -1065,9 +1131,9 @@ task_no // 任务ID
 
 #### 
 
-### server/api/task\_list
+### <a id="get-task-list"></a>取任务列表
 
-取任务列表
+/api/task\_list
 
 #### 参数
 
@@ -1103,11 +1169,11 @@ to          // 结束日期
 }]
 ```
 
-## 发布包
+## <a id="publish"></a>发布包
 
-### server/api/upload\_patch\_package
+### <a id="upload-publish"></a>上传发布包
 
-上传发布包
+/api/upload\_patch\_package
 
 #### 参数
 
@@ -1132,9 +1198,9 @@ md5         // 发布包的md5值（不填则不校验）
 }
 ```
 
-### server/api/server\_patch\_list
+### <a id="get-publish-list"></a>取发布版本列表
 
-取发布版本列表
+/api/server\_patch\_list
 
 #### 参数
 
@@ -1162,11 +1228,11 @@ module_name // 模块名
 
 是
 
-## 模板
+## <a id="template"></a>模板
 
-### server/api/add\_profile\_template
+### <a id="get-template"></a>新增模板
 
-新增模板
+server/api/add\_profile\_template
 
 #### 参数
 
@@ -1190,9 +1256,9 @@ module_name // 模块名
 }
 ```
 
-### server/api/delete\_profile\_template
+### <a id="del-template"></a>删除模板
 
-修改模板
+/api/delete\_profile\_template
 
 #### 参数
 
@@ -1206,9 +1272,9 @@ id  // 模板ID
 [0] // 删除的模板ID
 ```
 
-### server/api/update\_profile\_template
+### <a id="modify-template"></a>修改模板
 
-修改模板
+server/api/update\_profile\_template
 
 #### 参数
 
@@ -1233,9 +1299,9 @@ id  // 模板ID
 }
 ```
 
-### server/api/profile\_template
+### <a id="get-template"></a>取模板
 
-取模板
+/api/profile\_template
 
 #### 参数
 
@@ -1255,9 +1321,9 @@ template_name // 模板名称
 }
 ```
 
-### server/api/query\_profile\_template
+### <a id="query-template"></a>查询模板
 
-查询模板
+/api/query\_profile\_template
 
 #### 参数
 
@@ -1278,11 +1344,11 @@ parents_name   // 父模板名称
 }]
 ```
 
-## 监控
+## <a id="monitor"></a>监控
 
-### server/api/tarsstat\_monitor\_data
+### <a id="get-tarsstat"></a>取tarsstat监控数据
 
-取tarsstat监控数据
+/api/tarsstat\_monitor\_data
 
 #### 参数
 
@@ -1322,9 +1388,9 @@ group_by        // 分组
 }]
 ```
 
-### server/api/tarsproperty\_monitor\_data
+### <a id="get-tarsproperty"></a>取tarsproperty监控数据
 
-取tarsproperty监控数据
+/api/tarsproperty\_monitor\_data
 
 #### 参数
 
@@ -1354,80 +1420,11 @@ policy          // 策略
 }]
 ```
 
-## 鉴权
+## <a id="dick"></a>字典
 
-### server/api/get\_tokens
+### <a id="get-server-type"></a>取服务类型列表
 
-获取鉴权列表
-
-#### 参数
-
-```text
-application // 应用
-server_name // 模块名
-```
-
-#### 返回值
-
-```text
-[
-{
-"s_obj_name": "Robin.TestServer2.TestObj",
-"m_tokens": {
-		"application.server_name": "68765dd7b5fe92b3"
-			}
-}
-]
-```
-
-### server/api/add\_token
-
-新增鉴权信息
-
-#### 参数
-
-```text
-obj_name	//需要鉴权的OBJ
-application // 授权的主调应用名
-server_name // 授权的主调服务名
-```
-
-#### 返回值
-
-```text
-{
-        "s_key": {
-            "s_application": "application",
-            "s_server": "server_name",
-            "s_obj_name": "Robin.TestServer2.TestObj",
-        },
-        "s_token": "4969ebf04a7f82c0",
-    }
-```
-
-### server/api/delete\_token
-
-删除鉴权信息
-
-#### 参数
-
-```text
-obj_name	//需要鉴权的OBJ
-application // 授权的主调应用名
-server_name // 授权的主调服务名
-```
-
-#### 返回值
-
-```text
-"data":0
-```
-
-## 字典
-
-### server/api/server\_type\_list
-
-取服务类型列表
+/api/server\_type\_list
 
 #### 参数
 
@@ -1439,9 +1436,9 @@ server_name // 授权的主调服务名
 ["tars_cpp"]
 ```
 
-### server/api/template\_name\_list
+### <a id="get-template-list"></a>取模板列表
 
-取模板列表
+/api/template\_name\_list
 
 #### 参数
 
@@ -1453,9 +1450,9 @@ server_name // 授权的主调服务名
 ["tars.default"]
 ```
 
-### server/api/cascade\_select\_server
+### <a id="choose-server"></a>级联选择服务
 
-级联选择服务
+/api/cascade\_select\_server
 
 #### 参数
 
@@ -1472,11 +1469,11 @@ set          // Set，level>3时必填，格式：Set名.Set区.Set组
 [""] 对应层级数据
 ```
 
-## 资源
+## <a id="resource"></a>资源
 
-### /server/api/install\_tars\_node
+### <a id="install-tarsnode"></a>安装Tars Node
 
-安装Tars Node
+/server/api/install\_tars\_node
 
 #### 参数
 
@@ -1496,9 +1493,9 @@ ips	//需要安装tarsnode的机器IP
 ]
 ```
 
-### /server/api/uninstall\_tars\_node
+### <a id="uninstall-tarsnode"></a>卸载Tars Node
 
-卸载Tars Node
+/api/uninstall\_tars\_node
 
 #### 参数
 
@@ -1518,11 +1515,11 @@ ips	//需要卸载tarsnode的机器IP
 ]
 ```
 
-## 其他
+## <a id="other"></a>其他
 
-### server/api/send\_command
-
-发送自定义命令
+### <a id="send-command"></a>发送自定义命令
+ 
+/api/send\_command
 
 #### 参数
 
@@ -1543,9 +1540,9 @@ command    // 命令
 }]
 ```
 
-### server/api/auto\_port
+### <a id="get-port"></a>自动获取未被占用的端口
 
-自动获取未被占用的端口
+/api/auto\_port
 
 #### 参数
 
