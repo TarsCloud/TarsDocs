@@ -58,5 +58,17 @@ tars2node Protocol.tars --server
 
 1. 安装对应平台的 build-essential
 2. 安装 [CMake](https://cmake.org/)
-3. 在源码 build 目录下执行 `cmake ../ && make`
 
+linux & mac:
+```
+cd build
+cmake ..
+make -j4
+```
+
+windows:
+```
+cd build
+cmake ..
+cmake --build . --config Release
+``` 
