@@ -129,6 +129,7 @@ install以后, 依赖的库(mysql静态库)和头文件也会安装到该目录�
 **框架有两种模式:**
 
 - centos/ubuntu/mac一键部署, 安装过程中需要网络从外部下载资源
+- tars-framework>=2.1.0支持mac部署
 - 制作成docker镜像来完成安装, 制作docker过程需要网络下载资源, 但是启动docker镜像不需要外网
 
 **框架安装注意事项:**
