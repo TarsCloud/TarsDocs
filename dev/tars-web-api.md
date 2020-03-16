@@ -37,6 +37,7 @@
 >- * [取任务列表](#get-task-list)
 > * [发布包](#publish)
 >- * [上传发布包](#upload-publish)
+>- * [上传并发布](#upload-and-publish)
 >- * [取发布版本列表](#get-publish-list)
 > * [模板](#template)
 >- * [新增模板](#add-template)
@@ -1196,6 +1197,31 @@ md5         // 发布包的md5值（不填则不校验）
     "comment": "",  // 备注
     "posttime": ""  // 更新时间
 }
+```
+
+### <a id="upload-and-publish"></a>上传并发布
+
+/api/upload\_and\_publish
+
+#### 参数
+
+```text
+application // 应用
+module_name // 模块名
+comment     // 备注
+suse        // 发布包上传组件名称
+```
+
+#### 返回值
+
+```text
+msg
+```
+
+#### 示例(使用curl)
+
+```
+curl http://${TARS_WEB_HOST}/api/upload_and_publish?ticket=${TARS_TOKEN} -Fsuse=@${TARGET}.tgz -Fapplication=${APP} -Fmodule_name=${ServerName} -Fcomment=developer-auto-upload
 ```
 
 ### <a id="get-publish-list"></a>取发布版本列表
