@@ -54,12 +54,42 @@ docker run -d \
 
 1. 拉取镜像
 
+最新版本
+```sh
+docker pull tarscloud/framework:latest
+```
+
+稳定版本:
 ```sh
 docker pull tarscloud/framework:stable
 ```
 
 2. 启动镜像(目前只考虑了 linux 上, 时间和本机同步)
 
+最新版本:
+```sh
+# 挂载的/etc/localtime是用来设置容器时区的，若没有可以去掉
+# 3000端口为web程序端口
+# 3001端口为web授权相关服务端口
+docker run -d \
+    --name=tars-framework \
+    --net=tars \
+    -e MYSQL_HOST="172.25.0.2" \
+    -e MYSQL_ROOT_PASSWORD="123456" \
+    -e MYSQL_USER=root \
+    -e MYSQL_PORT=3306 \
+    -e REBUILD=false \
+    -e INET=eth0 \
+    -e SLAVE=false \
+    --ip="172.25.0.3" \
+    -v /data/framework:/data/tars \
+    -v /etc/localtime:/etc/localtime \
+    -p 3000:3000 \
+    -p 3001:3001 \
+    tarscloud/framework:latest
+```
+
+稳定版本:
 ```sh
 # 挂载的/etc/localtime是用来设置容器时区的，若没有可以去掉
 # 3000端口为web程序端口
@@ -116,6 +146,25 @@ MYSQL_PORT: mysql 端口
 
 **如果希望多节点部署, 则在不同机器上执行 docker run ...即可, 注意参数设置!**
 
+最新版本:
+```sh
+docker run -d \
+    --name=tars-framework-slave \
+    --net=tars \
+    -e MYSQL_HOST="172.25.0.2" \
+    -e MYSQL_ROOT_PASSWORD="123456" \
+    -e MYSQL_USER=root \
+    -e MYSQL_PORT=3306 \
+    -e REBUILD=false \
+    -e INET=eth0 \
+    -e SLAVE=true \
+    --ip="172.25.0.4" \
+    -v /data/framework-slave:/data/tars \
+    -v /etc/localtime:/etc/localtime \
+    docker.tarsyun.com/tarscloud/framework:stable
+```
+
+稳定版本:
 ```sh
 docker run -d \
     --name=tars-framework-slave \
@@ -139,12 +188,34 @@ docker run -d \
 
 1. 拉取镜像
 
+最新版本:
+
+```sh
+docker pull tarscloud/tars-node:latest
+```
+
+稳定版本
 ```sh
 docker pull tarscloud/tars-node:stable
 ```
 
 2. 启动 Node(目前只考虑了 linux 上, 时间和本机同步)
 
+最新版本:
+```sh
+docker run -d \
+    --name=tars-node \
+    --net=tars \
+    -e INET=eth0 \
+    -e WEB_HOST="http://172.25.0.3:3000" \
+    --ip="172.25.0.5" \
+    -v /data/node:/data/tars \
+    -v /etc/localtime:/etc/localtime \
+    -p 9000-9010:9000-9010 \
+    tarscloud/tars-node:latest
+```
+
+稳定版本:
 ```sh
 docker run -d \
     --name=tars-node \
@@ -168,6 +239,26 @@ docker run -d \
 - 关闭 docker, 注意需要用 docker stop .... 来关闭(docker 的使用请自行搜索)
 - 启动镜像, 注意不要 -d 参数
 
+最新版本:
+```sh
+docker --name=tars-framework \
+    --net=tars \
+    -e MYSQL_HOST="172.25.0.2" \
+    -e MYSQL_ROOT_PASSWORD="123456" \
+    -e MYSQL_USER=root \
+    -e MYSQL_PORT=3306 \
+    -e REBUILD=false \
+    -e INET=eth0 \
+    -e SLAVE=false \
+    --ip="172.25.0.3" \
+    -v /data/framework:/data/tars \
+    -v /etc/localtime:/etc/localtime \
+    -p 3000:3000 \
+    -p 3001:3001 \
+    tarscloud/framework:stable
+```
+
+稳定版本:
 ```sh
 docker --name=tars-framework \
     --net=tars \
@@ -193,7 +284,7 @@ docker --name=tars-framework \
 
 ## 5 <a id="chapter-5"></a>镜像加速
 
-- 目前已搭建了 `docker.tarsyun.com/tarscloud/framework:stable` 和 `docker.tarsyun.com/tarscloud/tars-node:stable` 的镜像加速
+- 目前已搭建了 `docker.tarsyun.com/tarscloud/framework` 和 `docker.tarsyun.com/tarscloud/tars-node` 的镜像加速
 
 **此方法仅适用于 linux 环境**
 

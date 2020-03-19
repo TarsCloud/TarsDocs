@@ -129,18 +129,23 @@ tarsnode会去平台拉取服务对应的模板(服务部署时配置好的), �
 如果开发过程中, 每次都需要手工发布到web平台调试, 调试效率是非常低, 因此Tars平台提供了一个方式, 能够一键发布服务到Tars框架上.
 
 使用方式如下:
-- 这需要Web >= 2.0.0的版本才能支持.
-- 完成框架安装后, 修改web配置: web/config/webConf.js, uploadLogin设置为true, 重启web
-- linux上使用curl命令即可完成服务的上传和发布,以Test/HelloServer为例:
+- 这需要web >= 2.0.0, tarscpp>=2.1.0 的版本才能支持.
+- 完成框架安装后, 登录用户中心, 创建一个token
+- linux上使用curl命令即可完成服务的上传和发布,以Test/HelloServer为例, [参考cmake管理规范](../dev/tarscpp/tars-spec.md)
 ```
-curl http://${your-web-host}/pages/server/api/upload_and_publish -Fsuse=@HelloServer.tgz -Fapplication=Test -Fmodule_name=HelloServer -Fcomment=dev
+curl http://${your-web-host}/pages/server/api/upload_and_publish?ticket=${token} -Fsuse=@HelloServer.tgz -Fapplication=Test -Fmodule_name=HelloServer -Fcomment=dev
 ```
+**注意替换你的token**
 
-c++版本的cmake已经内嵌了命令行在服务的CMakeLists.txt中, 使用者只需要:
+c++版本的cmake已经内嵌了命令行在服务的CMakeLists.txt中, 比如用cmake_tars_server.sh创建服务之后, 只需要:
 ```
+cd build
+cmake .. -DTARS_WEB_HOST=${WEB_HOST} -DTARS_TOKEN=${TOKEN}
+make HelloServer-tar
 make HelloServer-upload
 ```
 即可完成服务的上传和发布(提前需要在web平台配置好)
 
 注意:
+- 替换WEB_HOST 和 token
 - HelloServer.tgz是c++的发布包, java对应是war包, 其他语言类似, 对应你上传到web平台的发布包

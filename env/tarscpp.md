@@ -36,6 +36,7 @@ yum install glibc-devel gcc gcc-c++ bison flex cmake
 git clone https://github.com/TarsCloud/TarsCpp.git --recursive
 cd TarsCpp
 mkdir build
+cd build
 cmake ..
 make
 make install
@@ -46,7 +47,16 @@ make install
 你如果要开启SSL, HTTP2等的支持, 你可以:
 
 ```
-cmake .. -DTARS_SSL=ON -DTARS_HTTP2
+cmake .. -DTARS_SSL=ON -DTARS_HTTP2=ON
 make
 make install
 ```
+
+关闭:
+```
+cmake .. -DTARS_SSL=OFF -DTARS_HTTP2=OFF
+make
+make install
+```
+
+
