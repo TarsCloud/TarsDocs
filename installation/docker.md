@@ -161,7 +161,7 @@ docker run -d \
     --ip="172.25.0.4" \
     -v /data/framework-slave:/data/tars \
     -v /etc/localtime:/etc/localtime \
-    docker.tarsyun.com/tarscloud/framework:stable
+    docker.tarsyun.com/tarscloud/framework:latest
 ```
 
 稳定版本:
@@ -255,7 +255,7 @@ docker --name=tars-framework \
     -v /etc/localtime:/etc/localtime \
     -p 3000:3000 \
     -p 3001:3001 \
-    tarscloud/framework:stable
+    tarscloud/framework:latest
 ```
 
 稳定版本:
