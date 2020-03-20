@@ -71,6 +71,18 @@ cmake ..
 make -j4
 ```
 
+注意:
+- TARS_SSL, TARS_HTTP2等需要匹配tars编译的开关, 如果tars编译时没打开, 这里也应该关闭:
+```
+#off
+cmake .. -DTARS_SSL=OFF -DTARS_HTTP2=OFF
+#on
+cmake .. -DTARS_SSL=ON -DTARS_HTTP2=ON
+
+```
+
+tars编译打开关闭类似, 请参见[http2](tars-http2.md), [ssl](tars-tls.md)
+
 ### 1.2. 管理多个服务
 
 使用cmake管理服务, 可以一个目录下可以管理多个服务, 每个服务一个目录即可, 在根CMakeLists.txt中, 调用:

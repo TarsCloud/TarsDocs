@@ -70,6 +70,14 @@ HelloServer --config=xxxxx.conf
 ```
 这里配置config表示服务启动的配置文件, 在tars平台上是由tarsnode通过拉取模板配置生成的, 并拉起HelloServer, 如果你想本地运行服务, 就必须本地具备这个配置文件.
 
+注意:
+- 建议弄清楚config的主要配置项含义, [参考开发指南](../dev/tarscpp/tars-guide.md)
+- config中的ip要注意提供成本机的
+- ```node=tars.tarsnode.ServerObj@xxxx```, 表示连接的tarsnode的地址, 如果本地没有tarsnode, 这项配置可以去掉
+- ```local=...```, 表示开放的本机给tarsnode连接的端口, 如果没有tarsnode, 可以掉这项配置
+- ```locator=...```, 表示主控中心的地址(框架地址), 用于根据服务名字获取ip list的
+- 如果你是独立的客户端, 有这项配置, 就可以不用指定其他服务地址, 进行访问
+
 **注意这个配置文件不是业务配置, 而是服务框架的配置, 对应tars平台上的模板!**
 
 如何获取这个配置文件呢?
