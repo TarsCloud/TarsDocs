@@ -18,7 +18,7 @@ APP即应用名，标识一组服务的一个小集合, 开发者可以根据需
 - 通常应用名对应代码中的某个名字空间
 - tars应用名是框架使用的, 业务服务请不要使用
 
-## 2. <a id="main-chapter-1"></a> Server
+## 2. <a id="main-chapter-2"></a> Server
 
 Server即服务名，提供服务的进程名称
 - Server名字根据业务服务功能命名, 它会在TARS web平台上左边服务树上展示
@@ -26,7 +26,7 @@ Server即服务名，提供服务的进程名称
 - 一般命名为：XXServer，例如LogServer，TimerServer等
 - 一个Server代表一个独立的程序, 绑定至少一个ip, 实现一组相关的接口
 
-## 3. <a id="main-chapter-2"></a> Servant
+## 3. <a id="main-chapter-3"></a> Servant
 
 Servant即服务提供者, 提供了一个多个具体的接口(interface), 提供给客户端调用
 - Servant对应服务代码中一个类, 继承于tars协议文件中的interface(内涵多个具体的函数), 由业务开发者实现
@@ -36,11 +36,11 @@ Servant即服务提供者, 提供了一个多个具体的接口(interface), 提�
 
 **Tars采取这种三层结构, 尽可能的避免不同业务开发者开发的服务名称和Servant名称冲突**
 
-## 4. <a id="main-chapter-3"></a> module
+## 4. <a id="main-chapter-4"></a> module
 
 module是tars协议文件中的关键字, 定义了协议的空间, 也对应了各语言名字空间(c++)或者包名(java, go)或模块(nodejs,php)
 
-## 5. <a id="main-chapter-4"></a> Tars文件目录规范
+## 5. <a id="main-chapter-5"></a> Tars文件目录规范
 
 Tars文件是TARS服务的协议通信接口，尤其某Tars Server的客户端调用Server时都需要依赖该Server的tars protocol文件, 因此非常重要，在管理上我们推荐按照如下方式管理(当然你可以不采取改模式, 构建你自己合适的开放方式):
 
@@ -52,7 +52,7 @@ Tars文件是TARS服务的协议通信接口，尤其某Tars Server的客户端�
 - tars的接口原则上只能增加，不能减少或修改；
 - 各语言提供的Tars服务框架, 都提供了快速release tars文件到/home/tarsproto/\[namespace\]/\[server\]下的工具
 
-## 5. <a id="main-chapter-5"></a> 服务端开发方式
+## 6. <a id="main-chapter-6"></a> 服务端开发方式
 
 任何Tars服务端和客户端的开发方式都基本一样:
 - 确定APP, Server, Servant名称
@@ -92,7 +92,7 @@ ps -efww | grep ${your server name}
 其他语言方式类似!
 
 
-## 6. <a id="main-chapter-6"></a> 客户端开发方式
+## 7. <a id="main-chapter-7"></a> 客户端开发方式
 
 完成服务端编写和启动后, 即可编写客户端, 通过引用tars文件生成的客户端代码, 并构建通信器, 使用通信器并根据Servant名称获取到对应的服务的代理对象, 使用代理对象完成通信.
 
@@ -120,7 +120,7 @@ communicator->setProperty("property", "tars.tarspropery.PropertyObj");
 ```
 当然你可以直接用配置文件来初始化通信器, 参考web平台模板配置中的client部分. 另外上报服务这里类同, 如果没有locator指定框架的主控地址, 你就需要自己指定上报的ip port.
 
-## 7 <a id="main-chapter-7"></a> 模板配置
+## 8 <a id="main-chapter-8"></a> 模板配置
 
 web平台上, 运维管理中有模板配置, 模板配置对于框架非常重要, 需要去理解模板配置的作用.
 
@@ -132,7 +132,7 @@ tarsnode会去平台拉取服务对应的模板(服务部署时配置好的), �
 
 **强烈建议你不需要修改框架自带的模板, 因为后续框架升级可能会修改这些模板内容, 如果你需要修改, 你可以继承该模板, 让你的服务使用继承的模板**
 
-## 8 <a id="main-chapter-9"></a> 开发调试发布
+## 9 <a id="main-chapter-9"></a> 开发调试发布
 
 如果开发过程中, 每次都需要手工发布到web平台调试, 调试效率是非常低, 因此Tars平台提供了一个方式, 能够一键发布服务到Tars框架上.
 
