@@ -132,7 +132,15 @@ make HelloServer-upload
 set(TARS_WEB_HOST "http://127.0.0.1:4001")
 ```
 
-并且打开web的上传配置(通常测试环境才这么做), 参考[基础概念](../../base/tars-concept.md)
+你需要如下设置:
+```
+cd build
+cmake .. -DTARS_WEB_HOST=http://xxx.xxx.xxx.xxx:3000
+```
+
+这里TARS_WEB_HOST是你web平台地址
+
+参考[基础概念](../../base/tars-concept.md)
 
 ### 1.6. 第三方包
 
