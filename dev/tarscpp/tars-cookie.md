@@ -48,3 +48,39 @@ map<string, string> & cookie = current->getCookie();
 TLOGDEBUG("current cookie:" << TC_Common::tostr(cookie.begin(), cookie.end()) << endl);
 TLOGDEBUG("msgno:" << cookie["msgno"] << endl);
 ```
+
+
+## 具体应用
+### 接入服务设置cookie
+接入服务在RPC调用之前，在cookie中设置msgno和uid
+```text
+#include "servant/TarsCookie.h"
+
+TarsCookieOp cookieOp;
+map<string, string> cookie;
+cookie["msgno"] = genMsgNo();
+cookie["uid"] = uid;
+cookieOp.setCookie(cookie);
+UserInfoServantPrx->async_getUserInfo(cb, ...); 
+```
+
+
+### 后端服务打印日志
+后端服务使用如下定制的宏来打印日志，日志头会自动带上msgno和uid
+```text
+LOG_ERROR("call DBProxy.getUserInfo failed, ret:" << ret);
+```
+
+LOG_ERROR宏定义如下
+```text
+#define LOG_ERROR(msg) \
+    TLOGERROR(__FILENAME__ << ":" << __LINE__ << ":" << __FUNCTION__ << "|" << TarsCookieOp::getCookie()["msgno"] << "|" << TarsCookieOp::getCookie()["uid"] << "|" << msg << endl);
+```
+
+
+### 查看日志
+查看每个后端服务的日志，可以看到每条日志上都带上了msgno和uid, 其中af4686091585191682152580023和10001分别为msgno和uid
+```text
+2020-03-26 11:01:22|24209|ERROR|UserInfoServantImp.cpp:1019:getUserInfo|af4686091585191682152580023|10001|call DBProxy.getUserInfo failed, ret:-1
+2020-03-26 11:01:22|12359|ERROR|DBProxyServantImp.cpp:723:getUserInfo|af4686091585191682152580023|10001|access db timeout, ret:-3
+```
