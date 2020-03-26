@@ -79,8 +79,15 @@ LOG_ERROR宏定义如下
 
 
 ### 查看日志
-查看每个后端服务的日志，可以看到每条日志上都带上了msgno和uid, 其中af4686091585191682152580023和10001分别为msgno和uid
+查看每个后端服务的日志，可以看到每条日志上都带上了msgno和uid, 同一个请求在所有服务中的日志，msgno和uid相同，其中af4686091585191682152580023和10001分别为msgno和uid
+#### UserInfoSvr的日志
 ```text
-2020-03-26 11:01:22|24209|ERROR|UserInfoServantImp.cpp:1019:getUserInfo|af4686091585191682152580023|10001|call DBProxy.getUserInfo failed, ret:-1
-2020-03-26 11:01:22|12359|ERROR|DBProxyServantImp.cpp:723:getUserInfo|af4686091585191682152580023|10001|access db timeout, ret:-3
+2020-03-26 11:01:22|24209|DEBUG|UserInfoServantImp.cpp:1019:getUserInfo|af4686091585191682152580023|10001|call DBProxy.getUserInfo failed, ret:-1
 ```
+
+#### DBProxySvr的日志
+```text
+2020-03-26 11:01:22|12359|DEBUG|DBProxyServantImp.cpp:720:getUserInfo|af4686091585191682152580023|10001|sql is: select * from t_user wehre uid = '10001'
+2020-03-26 11:01:22|12359|ERROR|DBProxyServantImp.cpp:723:getUserInfo|af4686091585191682152580023|10001|access db timeout
+```
+
