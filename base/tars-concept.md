@@ -141,7 +141,7 @@ tarsnode会去平台拉取服务对应的模板(服务部署时配置好的), �
 - 完成框架安装后, 登录用户中心, 创建一个token
 - linux上使用curl命令即可完成服务的上传和发布,以Test/HelloServer为例, [参考cmake管理规范](../dev/tarscpp/tars-spec.md)
 ```
-curl http://${your-web-host}/pages/server/api/upload_and_publish?ticket=${token} -Fsuse=@HelloServer.tgz -Fapplication=Test -Fmodule_name=HelloServer -Fcomment=dev
+curl http://${your-web-host}/api/upload_and_publish?ticket=${token} -Fsuse=@HelloServer.tgz -Fapplication=Test -Fmodule_name=HelloServer -Fcomment=dev
 ```
 **注意替换你的token**
 
