@@ -52,6 +52,8 @@ Tars框架安装需要在mysql中读写数据, 因此需要安装mysql, 如果�
 
 ## 1.3. Mysql client安装
 
+tars>=2.1.0 不再需要这一步了
+
 **注意请保证mysql在PATH环境变量的目录下**
 
 ```
@@ -298,7 +300,7 @@ MYSQL_PORT: mysql端口
 - 首先在mysql中创建用户(可能管理员分配给你的), 比如:admin
 - admin用户具备以下权限(重点是创建用户的权限):
 ```
-SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, RELOAD, PROCESS, REFERENCES, INDEX, ALTER, SHOW DATABASES, CREATE TEMPORARY TABLES, LOCK TABLES, EXECUTE, REPLICATION SLAVE, REPLICATION CLIENT, CREATE VIEW, SHOW VIEW, CREATE ROUTINE, ALTER ROUTINE, CREATE USER, EVENT, TRIGGER, CREATE TABLESPACE
+GRANT, SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, RELOAD, PROCESS, REFERENCES, INDEX, ALTER, SHOW DATABASES, CREATE TEMPORARY TABLES, LOCK TABLES, EXECUTE, REPLICATION SLAVE, REPLICATION CLIENT, CREATE VIEW, SHOW VIEW, CREATE ROUTINE, ALTER ROUTINE, CREATE USER, EVENT, TRIGGER, CREATE TABLESPACE
 ```
 - 执行安装脚本
 
@@ -315,6 +317,8 @@ docker run -d --net=host -e MYSQL_HOST=xxxxx -e MYSQL_ROOT_PASSWORD=xxxxx \
         -v/etc/localtime:/etc/localtime \
         tars-docker:v
 ```
+
+**实际框架安装过程中, 会再创建一个用户, 并用这个用户来连接db,可以参见tars-install.sh脚本**
 
 ## 3.6. 核心模块
 
@@ -335,23 +339,18 @@ root     32709     1  0 09:20 pts/0    00:00:12 /usr/local/app/tars/tarsquerypro
 root     32718     1  0 09:20 pts/0    00:00:12 /usr/local/app/tars/tarsquerystat/bin/tarsquerystat --config=/usr/local/app/tars/tarsquerystat/conf/tars.tarsquerystat.config.conf
 ```
 
-- 对于主机节点 tarsAdminRegistry  tarsnode  tarsregistry tars-web 必须活着, 其他tars服务会被tarsnode自动拉起
-- 对于从机节点 tarsnode  tarsregistry 必须活着, 其他tars服务会被tarsnode拉起
+- 对于主机节点 tarsnode tars-web 必须活着, 其他tars服务会被tarsnode自动拉起
+- 对于从机节点 tarsnode 必须活着, 其他tars服务会被tarsnode拉起
 - tars-web是nodejs实现的服务, 由两个服务组成, 具体参见后面章节
-- 为了保证核心服务是启动的, 可以通过check.sh来控制, 在crontab 中配置
+- 为了保证核心服务是启动的, 可以通过monitor.sh来控制, 在crontab 中配置
 
-主机(add to contab):
+add to contab:
 
 ```
-* * * * * /usr/local/app/tars/check.sh master
+* * * * * /usr/local/app/tars/tarsnode/util/monitor.sh 
 ```
 
-从机(add to contab):
-```
-* * * * * /usr/local/app/tars/check.sh 
-```
-
-如果配置了check.sh, 就不需要配置后面章节中的tarsnode的监控了
+- web的自启需要自己添加
 
 # 4. <a id="chapter-4"></a>Tars-web说明
 
