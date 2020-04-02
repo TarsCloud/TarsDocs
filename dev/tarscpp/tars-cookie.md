@@ -27,8 +27,8 @@ tars cookie是在服务调用链上传播的信息，业务可以在调用链的
 ## 使用示例
 ### 设置cookie
 ```text
-#include "servant/TarsCookie.h"
-TarsCookieOp cookieOp;
+#include "servant/Cookie.h"
+CookieOp cookieOp;
 map<string, string> cookie;
 cookie["msgno"] = "12345";
 cookie["uid"] = "67890";
@@ -37,8 +37,8 @@ cookieOp.setCookie(cookie);
 ### 获取cookie
 #### 从线程私有数据中获取cookie
 ```text
-#include "servant/TarsCookie.h"
-map<string, string> & cookie = TarsCookieOp::getCookie();
+#include "servant/Cookie.h"
+map<string, string> & cookie = CookieOp::getCookie();
 TLOGDEBUG("cookie:" << TC_Common::tostr(cookie.begin(), cookie.end()) << endl);
 TLOGDEBUG("msgno:" << cookie["msgno"] << endl);
 ```
@@ -54,9 +54,9 @@ TLOGDEBUG("msgno:" << cookie["msgno"] << endl);
 ### 接入服务设置cookie
 接入服务在RPC调用之前，在cookie中设置msgno和uid
 ```text
-#include "servant/TarsCookie.h"
+#include "servant/Cookie.h"
 
-TarsCookieOp cookieOp;
+CookieOp cookieOp;
 map<string, string> cookie;
 cookie["msgno"] = genMsgNo();
 cookie["uid"] = uid;
@@ -74,7 +74,7 @@ LOG_ERROR("call DBProxy.getUserInfo failed, ret:" << ret);
 LOG_ERROR宏定义如下
 ```text
 #define LOG_ERROR(msg) \
-    TLOGERROR(__FILENAME__ << ":" << __LINE__ << ":" << __FUNCTION__ << "|" << TarsCookieOp::getCookie()["msgno"] << "|" << TarsCookieOp::getCookie()["uid"] << "|" << msg << endl);
+    TLOGERROR(__FILENAME__ << ":" << __LINE__ << ":" << __FUNCTION__ << "|" << CookieOp::getCookie()["msgno"] << "|" << CookieOp::getCookie()["uid"] << "|" << msg << endl);
 ```
 
 

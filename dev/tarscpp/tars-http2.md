@@ -6,6 +6,7 @@ Tars使用[nghttp2库](https://www.nghttp2.org/)支持了http2协议，对协议
 
 本文简单介绍一下使用http2的方法和步骤，包括同步调用和异步调用, 实例代码参见tarscpp/example/HttpDemo。
 
+**注意 tarscpp>=2.3版本后接口变更成最新的了, 不在兼容老版本!并保持和http1接口一致性**
 
 ## http2开启
 
@@ -115,27 +116,23 @@ cmake .. -DTARS_HTTP2=ON
 
 ```text
 CommunicatorPtr& comm = Application::getCommunicator();
-YourPrx prx = comm->stringToProxy<YourPrx>("test.server.yourobj");
+ServantPrx prx = comm->stringToProxy<ServantPrx>("test.server.yourobj");
 
 // set protocol
-ProxyProtocol proto;
-proto.requestFunc = tars::http2Request;
-proto.responseExFunc = tars::http2Response;
-prox->tars_set_protocol(proto);
+prox->tars_set_protocol(ServantProxy::PROTOCOL_HTTP2);
 ```
 
 ### 发起同步调用
 
 ```text
-map<string, string> headers;
-headers[":authority"] = "domain.com";
-headers[":scheme"] = "http";
+	shared_ptr<TC_HttpResponse> rsp;
+	shared_ptr<TC_HttpRequest> req = std::make_shared<TC_HttpRequest>();
+	req->setPostRequest("http://domain.com/hello", string("helloworld-") + TC_Common::tostr(i), true);
 
-map<string, string> rspHeaders;
-string rspBody;
-
-prx->http_call("GET", "/", headers, "", rspHeaders, rspBody);
+	prx->http_call("hello", req, rsp);
 ```
+
+注意: 这里http_call第一个参数没有实际涵义, 只是用来监控用, 即在web管理平台接口统计看到函数名是"hello"
 
 ### 发起异步调用
 
@@ -143,24 +140,24 @@ prx->http_call("GET", "/", headers, "", rspHeaders, rspBody);
 // 编写callback
 class MyHttpCb : public HttpCallback
 {
-    public:
-            int onHttpResponse(const map<string, string>& reqHeaders,
-                               const map<string, string>& rspHeaders,
-                               const vector<char>& rspBody)
-            {
-               // your process
-               return 0;
-            }
-            int onHttpResponseException(const map<string, string>& reqHeaders, int eCode)
-            {
-                //  process exception
-                return 0;
-            }
+public:
+	virtual int onHttpResponse(const shared_ptr<TC_HttpResponse> &rsp)
+	{
+		return 0;
+	}
+	virtual int onHttpResponseException(int expCode)
+	{
+		return 0;
+	}
 };
 
 // 发起调用
-headers[":authority"] = "domain.com";
-headers[":scheme"] = "http";
-prx->http_call_async("GET", "/", headers, "", new MyHttpCb());
-```
+shared_ptr<TC_HttpRequest> req = std::make_shared<TC_HttpRequest>();
 
+string buff = string("helloworld-") + TC_Common::tostr(i);
+req->setPostRequest("http://domain.com/hello", buff, true);
+
+prx->http_call_async("hello", req, p);
+
+```
+注意: 这里http_call_async第一个参数没有实际涵义, 只是用来监控用, 即在web管理平台接口统计看到函数名是"hello"
