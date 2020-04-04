@@ -3,6 +3,8 @@
 > * [Tars C++开发环境](#chapter-2)
 > * [Tars框架安装](#chapter-3)
 > * [Tars-web说明](#chapter-4)
+> * [脚本说明](#chapter-5)
+> * [建议部署方案](#chapter-6)
 
 本安装文档描述在一台或多台服务器上安装搭建整个Tars框架的过程，目的是为了让用户对Tars框架的部署搭建、运行、测试等有个整体的认识。
 
@@ -354,7 +356,7 @@ root     32718     1  0 09:20 pts/0    00:00:12 /usr/local/app/tars/tarsquerysta
 add to contab:
 
 ```
-* * * * * /usr/local/app/tars/tarsnode/util/monitor.sh 
+* * * * * /usr/local/app/tars/check.sh 
 ```
 
 - web的自启需要自己添加
@@ -421,4 +423,32 @@ npm run start 启动服务, 可以观察控制台的输出, 如果有问题, 会
 
 如果安装完成后web页面打不开, 请参考[web](web.md), 检查问题章节, 定位问题
 
+# 5. <a id="chapter-5"></a>脚本说明
 
+框架自带了脚本, 可以控制服务的起停, 比如:
+
+- 启动框架: /usr/local/app/tars/tars-start.sh
+- 停止框架: /usr/local/app/tars/tars-stop.sh
+- 控制某个组件:
+>- * /usr/local/app/tars/xxxx/util/start.sh
+>- * /usr/local/app/tars/xxxx/util/stop.sh
+
+Note:
+- 框架核心服务中, tarsnode必须活着, 他会监控其他组件的死活, 一旦其他组件crash, 会自动拉起
+- web组件的是有pm2来监控的
+- 部署了框架的机器重启后, 可以执行 ```/usr/local/app/tars/tars-start.sh``` 来重启所有服务
+- tarsnode的监控可以在crontab中定时执行: ```/usr/local/app/tars/check.sh```
+- 只部署了tarsnode的节点机器, 只需要监控tarsnode即可
+
+# 6. <a id="chapter-6"></a>建议部署方案
+
+虽然本章节是介绍的源码部署tars框架的方案, 但是实际使用上, 不建议源码部署, 会导致升级维护比较麻烦, 下面介绍实际使用过程重点部署方案:
+
+- 采用docker化部署框架(参考相关文档), 部署两台机器, 主从模式, 并启用--net=host模式
+- 节点机采用物理化部署方案, tarsnode连接到框架即可
+- 升级框架的情况下, 可以升级docker即可, 停止老的docker, 启动新docker, 注意参与不要选择rebuild db!!!
+- 在web上可以远程升级tarsnode, 正常情况下, tarsnode一般可以不用升级, 除非有重大功能优化(这里未来不排除会做成自动升级!)
+- tarslog需要大硬盘机器, 部署完框架以后, 建议将框架的tarslog服务扩容到其他大硬盘的节点机上
+- 如果你使用windows, 你可以考虑框架部署使用docker, 节点机使用windows部署tarsnode
+
+如果你对k8s比较熟悉, 也可以将Tars部署在k8s上, [请参见k8s部署文档](k8s-docker-1.md)
