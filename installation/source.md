@@ -52,7 +52,7 @@ Tars框架安装需要在mysql中读写数据, 因此需要安装mysql, 如果�
 
 ## 1.3. Mysql client安装
 
-tars>=2.1.0 不再需要这一步了
+tars>=2.1.0 可以跳过这一步
 
 **注意请保证mysql在PATH环境变量的目录下**
 
@@ -116,7 +116,9 @@ make install
 
 install以后, 依赖的库(mysql静态库)和头文件也会安装到该目录下(/usr/local/tars/cpp/thirdparty), 如果开启了ssl, nghttp2同理.
 
-**如要修改安装路径:**
+开启了ssl, nghttp2请参见相关文章
+
+**如果你想调整安装目录(建议不要调整, 需要修改好几个的地方, 容易出错):**
 ```
 **需要修改tarscpp/cmake/Common.cmake文件中的安装路径。**
 **需要修改tarscpp/servant/makefile/makefile.tars文件中的TARS_PATH的路径**
@@ -138,7 +140,7 @@ install以后, 依赖的库(mysql静态库)和头文件也会安装到该目录�
 
 - 安装过程中, 由于tars-web依赖nodejs, 所以会自动下载nodejs, npm, pm2以及相关的依赖, 并设置好环境变量, 保证nodejs生效.
 - nodejs的版本目前默认下载的v12.13.0
-- 如果你本机以及安装了nodejs, 最好卸载掉
+- 如果你本机装了低版本nodejs, 最好提前卸载掉
 
 **注意:需要完成TarsFramework的编译和安装**
 
@@ -152,21 +154,23 @@ cp -rf web /usr/local/tars/cpp/deploy/
 
 例如, 这是/usr/local/tars/cpp/deploy下的文件:
 ```
-[root@vm-0-15-centos deploy]# ls -l
-total 64
--rw-r--r--  1 root root  1922 Jan 10 21:44 centos7_base.repo
--rw-r--r--  1 root root  1229 Jan 10 21:44 Dockerfile
--rwxr-x---  1 root root  2959 Jan  8 21:46 docker-init.sh
--rwxr-x---  1 root root   215 Dec 31 15:37 docker.sh
-drwxr-xr-x  4 root root  4096 Jan 10 21:41 framework
--rwxr-x---  1 root root  4876 Jan 10 21:38 linux-install.sh
--rw-r--r--  1 root root   565 Dec 31 15:37 README.md
--rw-r--r--  1 root root   539 Dec 31 15:37 README.zh.md
--rwxr-x---  1 root root  1157 Jan  7 16:38 tar-server.sh
--rwxr-x---  1 root root 12162 Jan 10 15:36 tars-install.sh
--rwxr-x---  1 root root   311 Dec 31 15:37 tars-stop.sh
-drwxr-xr-x  2 root root  4096 Jan 10 21:41 tools
-drwxr-xr-x 12 root root  4096 Jan  5 12:03 web
+ubuntu@VM-0-14-ubuntu:/usr/local/tars/cpp/deploy$ ls -l
+total 10304
+-rw-r--r--  1 root root  443392 Apr  3 17:22 busybox.exe
+-rw-r--r--  1 root root    1922 Apr  3 17:22 centos7_base.repo
+-rw-r--r--  1 root root    1395 Apr  3 17:22 Dockerfile
+-rwxr-xr-x  1 root root    3260 Apr  4 11:31 docker-init.sh
+-rwxr-xr-x  1 root root     319 Apr  3 22:13 docker.sh
+drwxr-xr-x  7 root root    4096 Apr  3 17:57 framework
+-rwxr-xr-x  1 root root    4537 Apr  4 11:31 linux-install.sh
+-rwxr-xr-x  1 root root 9820288 Apr  3 22:16 mysql-tool
+-rwxr-xr-x  1 root root     811 Apr  4 11:31 tar-server.sh
+-rwxr-xr-x  1 root root   16449 Apr  3 17:22 tars-install.sh
+-rwxr-xr-x  1 root root     320 Apr  4 11:31 tars-stop.sh
+drwxr-xr-x  2 root root    4096 Apr  3 17:57 tools
+drwxr-xr-x 12 root root    4096 Apr  3 21:07 web
+-rwxr-xr-x  1 root root    3590 Apr  3 17:22 web-install.sh
+-rwxr-xr-x  1 root root    1476 Apr  3 17:22 windows-install.sh
 ```
 
 ## 3.2. 框架部署说明
@@ -202,9 +206,6 @@ tars_property是服务属性监控数据存储的数据库；
  2019-10-31 11:06:13 You can start tars web manual: cd /usr/local/app/web; npm run prd 
 ```
 打开你的浏览器输入: http://xxx.xxx.xxx.xxx:3000/ 如果顺利, 可以看到web管理平台
-
-**注意: 执行完毕以后, 可以检查nodejs环境变量是否生效: node --version, 如果输出不是v12.13.0, 则表示nodejs环境变量没生效**
-**如果没生效, 手动执行:  centos: source ~/.bashrc or ubuntu: source ~/.profile**
 
 请参考[检查web的问题](web.md)中的检查web问题章节, 如果没有问题, 请检查机器防火墙
  
@@ -245,6 +246,11 @@ chmod a+x linux-install.sh
 
 执行过程中的错误参见屏幕输出, 如果出错可以重复执行(一般是下载资源出错)
 
+**如果是ubuntu, 需要sudo linux-install.sh ...来执行**
+**注意: 执行完毕以后, 可以检查nodejs环境变量是否生效: node --version**
+**安装完成以后, 会在/etc/profile下写入nodejs相关的环境变量**
+**如果没生效, 手动执行: source /etc/profile, 如果是ubuntu请注意权限的问题**
+
 ## 3.4. 制作成docker
 
 目标: 将框架制作成一个docker, 部署时启动docker即可.
@@ -254,7 +260,7 @@ chmod a+x linux-install.sh
 chmod a+x docker.sh
 ./docker.sh v1
 ```
-docker制作完毕: tar-docker:v1
+docker制作完毕: tarscloud/framework:v1
 ```
 docker ps
 ```
@@ -267,7 +273,7 @@ docker run -d --net=host -e MYSQL_HOST=xxxxx -e MYSQL_ROOT_PASSWORD=xxxxx \
         -eREBUILD=false -eINET=enp3s0 -eSLAVE=false \
         -v/data/tars:/data/tars \
         -v/etc/localtime:/etc/localtime \
-        tars-docker:v1
+        tarscloud/framework:v1
 ```
 
 MYSQL_IP: mysql数据库的ip地址
@@ -315,7 +321,7 @@ docker run -d --net=host -e MYSQL_HOST=xxxxx -e MYSQL_ROOT_PASSWORD=xxxxx \
         -eREBUILD=false -eINET=enp3s0 -eSLAVE=false \
         -v/data/tars:/data/tars \
         -v/etc/localtime:/etc/localtime \
-        tars-docker:v
+        tarscloud/framework:v1
 ```
 
 **实际框架安装过程中, 会再创建一个用户, 并用这个用户来连接db,可以参见tars-install.sh脚本**
@@ -374,7 +380,13 @@ pm2 list
 └────┴─────────────────────────┴─────────┴─────────┴──────────┴────────┴──────┴──────────┴──────────┴──────────┴──────────┴──────────┘
 ```
 
-**如果找不到pm2, 一般是环境变量没生效, 请先执行: centos: source ~/.bashrc or ubuntu: source ~/.profile or mac: source ~/.bash_profile, 安装过程中会写这个文件**
+**如果找不到pm2, 一般是环境变量没生效, 请先执行: source /etc/profile, 安装过程中会写这个文件**
+ubuntu下由于权限问题, 如果执行pm2出错(环境变量没生效): 
+```
+sudo -s source /etc/profile
+sudo chown ubuntu:ubuntu /home/ubuntu/.pm2/rpc.sock /home/ubuntu/.pm2/pub.sock
+pm2 list
+```
 
 **tars-web由两个模块组成**
 - tars-node-web: tars-web主页面服务, 默认绑定3000端口, 源码对应web目录
@@ -398,6 +410,12 @@ cd /usr/local/app/web; npm run start
 npm run start 启动服务, 可以观察控制台的输出, 如果有问题, 会有提示.
 
 **正式运行建议: pm2 start tars-node-web; pm2 start tars-user-system**
+
+注意重启机器后, pm2模块会丢失, 请将以下语句加入到开机启动中(比如: /etc/rc.local):
+```
+cd /usr/local/app/web/demo; npm run prd
+cd /usr/local/app/web; npm run prd
+```
 
 如果安装完成后web页面打不开, 请参考[web](web.md), 检查问题章节, 定位问题
 
