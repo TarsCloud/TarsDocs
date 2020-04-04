@@ -246,10 +246,11 @@ chmod a+x linux-install.sh
 
 执行过程中的错误参见屏幕输出, 如果出错可以重复执行(一般是下载资源出错)
 
-**如果是ubuntu, 需要sudo linux-install.sh ...来执行**
-**注意: 执行完毕以后, 可以检查nodejs环境变量是否生效: node --version**
-**安装完成以后, 会在/etc/profile下写入nodejs相关的环境变量**
-**如果没生效, 手动执行: source /etc/profile, 如果是ubuntu请注意权限的问题**
+注意:
+- 如果是ubuntu, 需要sudo linux-install.sh ...来执行
+- 注意: 执行完毕以后, 可以检查nodejs环境变量是否生效: node --version
+- 安装完成以后, 会在/etc/profile下写入nodejs相关的环境变量
+- 如果没生效, 手动执行: source /etc/profile, 如果是ubuntu请注意权限的问题
 
 ## 3.4. 制作成docker
 
@@ -381,7 +382,9 @@ pm2 list
 ```
 
 **如果找不到pm2, 一般是环境变量没生效, 请先执行: source /etc/profile, 安装过程中会写这个文件**
+
 ubuntu下由于权限问题, 如果执行pm2出错(环境变量没生效): 
+
 ```
 sudo -s source /etc/profile
 sudo chown ubuntu:ubuntu /home/ubuntu/.pm2/rpc.sock /home/ubuntu/.pm2/pub.sock
@@ -413,8 +416,7 @@ npm run start 启动服务, 可以观察控制台的输出, 如果有问题, 会
 
 注意重启机器后, pm2模块会丢失, 请将以下语句加入到开机启动中(比如: /etc/rc.local):
 ```
-cd /usr/local/app/web/demo; npm run prd
-cd /usr/local/app/web; npm run prd
+/usr/local/app/tars/tars-start.sh
 ```
 
 如果安装完成后web页面打不开, 请参考[web](web.md), 检查问题章节, 定位问题
