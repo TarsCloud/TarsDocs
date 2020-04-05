@@ -160,4 +160,5 @@
 * [TarsPHP 常见问题](question/tarsphp-question.md)
 
 ## 其它资源分享 <a id="resourcesSharing"></a>
+* [下载](resources-sharing/summary.md)
 * [Tars介绍.pptx](resources-sharing/ppt/TARS.pptx)
