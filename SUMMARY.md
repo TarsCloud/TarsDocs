@@ -13,6 +13,7 @@
 > * [TarsPHP](#TarsPHP)
 > * [其他重要特性](#important)
 > * [常见问题](#question)
+> * [其它资源分享](#resourcesSharing)
 
 
 ## 入门 <a id="rumen"></a>
@@ -156,3 +157,5 @@
 * [TarsJava 常见问题](question/tarsjava-question.md)
 * [TarsPHP 常见问题](question/tarsphp-question.md)
 
+## 其它资源分享 <a id="resourcesSharing"></a>
+* [资源分享](resources-sharing/summary.md)
