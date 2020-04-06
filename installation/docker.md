@@ -1,23 +1,26 @@
 # 目录
 
 > - [介绍](#chapter-1)
-> - [Docker 部署 Tars 框架](#chapter-2)
-> - [Docker 部署 Tars Node](#chapter-3)
+> - [Docker 部署 Tars 开发环境](#chapter-2)
+> - [Docker 部署 Tars 生产环境](#chapter-3)
 > - [问题检查](#chapter-4)
 > - [镜像加速](#chapter-5)
-> - [docker-compose](#chapter-6)
+> - [docker-compose 部署开发环境](#chapter-6)
 > - [论坛邀请](#chapter-7)
 
-# 1 <a id="chapter-1"></a>介绍
+## 1 <a id="chapter-1"></a>介绍
 
-本节主要介绍采用 docker 来完成框架的部署, 有两种 docker 可用:
+本节主要介绍采用 docker 来完成框架的部署:
 
 - framework: Tars 框架 Docker 制作脚本, 制作的 docker 包含了框架核心服务和 web 管理平台
 - tars: Tars 框架 Docker 制作脚本, 和 framework 比, 增加了 java, nodejs 等运行时支持, 即可以把 java, nodejs 服务发布到 docker 里面(docker 里面安装了 jdk, node, php 环境)
+- 在本地开发环境中也可以使用`tarscloud/tars`镜像来替代 framework+node， tarscloud/tars 镜像是一个 framework+node 的集合环境镜像
 
-首先确保你的服务上已经安装了 docker 环境, 如果没有, 可以参考[docker install](docker-install.md)
+Docker 开发环境部署可以很方便的在本地拉起服务开始服务的部署、开发和测试。开发环境部署采用单机多容器的部署方式模拟生产环境的服务部署结构。Docker 生产环境部署为生产主机部署 tars 服务提供参考，相关参数需要根据具体环境变更调整。
 
-## 2 <a id="chapter-2"></a>Docker 部署 Tars 框架
+开始操作之前，请确保你的服务上已经安装了 docker 环境, 如果没有, 可以参考[docker install](docker-install.md)
+
+## 2 <a id="chapter-2"></a>Docker 部署服务开发环境
 
 **如果你想源码自己编译 docker, 请参见 [Install](source.md)**
 
@@ -25,7 +28,7 @@
 
 **注意: 区别在于是否希望把业务服务部署在镜像内(不推荐, 不方便 Tars 框架升级)**
 
-### 2.1 创建 docker 虚拟网络
+#### 2.1 创建 docker 虚拟网络
 
 为了方便虚拟机、Mac、Linux 主机等各种环境下的 docker 部署，在本示例中先创建虚拟网络，模拟现实中的局域网内网环境
 
@@ -34,7 +37,7 @@
 docker network create -d bridge --subnet=172.25.0.0/16 --gateway=172.25.0.1 tars
 ```
 
-### 2.2 启动 MySQL
+#### 2.2 启动 MySQL
 
 - 为框架运行提供 MySQL 服务，若使用宿主机或现有的 MySQL 可以跳过此步骤，建议框架和应用使用不同的 MySQL 服务。
 - 注意 MySQL 的 IP 和 root 密码，后续构建中需要使用
@@ -50,16 +53,18 @@ docker run -d \
     mysql:5.6
 ```
 
-### 2.3 使用 tarscloud/framework 部署
+#### 2.3 使用 tarscloud/framework 部署框架
 
 1. 拉取镜像
 
 最新版本
+
 ```sh
 docker pull tarscloud/framework:latest
 ```
 
 稳定版本:
+
 ```sh
 docker pull tarscloud/framework:stable
 ```
@@ -67,6 +72,7 @@ docker pull tarscloud/framework:stable
 2. 启动镜像(目前只考虑了 linux 上, 时间和本机同步)
 
 最新版本:
+
 ```sh
 # 挂载的/etc/localtime是用来设置容器时区的，若没有可以去掉
 # 3000端口为web程序端口
@@ -90,6 +96,7 @@ docker run -d \
 ```
 
 稳定版本:
+
 ```sh
 # 挂载的/etc/localtime是用来设置容器时区的，若没有可以去掉
 # 3000端口为web程序端口
@@ -147,6 +154,7 @@ MYSQL_PORT: mysql 端口
 **如果希望多节点部署, 则在不同机器上执行 docker run ...即可, 注意参数设置!**
 
 最新版本:
+
 ```sh
 docker run -d \
     --name=tars-framework-slave \
@@ -165,6 +173,7 @@ docker run -d \
 ```
 
 稳定版本:
+
 ```sh
 docker run -d \
     --name=tars-framework-slave \
@@ -184,7 +193,9 @@ docker run -d \
 
 **注意:SLAVE 参数不同**
 
-## 3 <a id="chapter-3"></a>Docker 部署 Tars Node
+#### 2.4 Docker 部署 Tars 应用节点
+
+**Tars 应用节点镜像默认为集合环境(Java+GoLang+NodeJs+PHP)的镜像，如果需要可登陆 Docker Hub 查看各语言相关 tag**
 
 1. 拉取镜像
 
@@ -195,6 +206,7 @@ docker pull tarscloud/tars-node:latest
 ```
 
 稳定版本
+
 ```sh
 docker pull tarscloud/tars-node:stable
 ```
@@ -202,6 +214,7 @@ docker pull tarscloud/tars-node:stable
 2. 启动 Node(目前只考虑了 linux 上, 时间和本机同步)
 
 最新版本:
+
 ```sh
 docker run -d \
     --name=tars-node \
@@ -216,6 +229,7 @@ docker run -d \
 ```
 
 稳定版本:
+
 ```sh
 docker run -d \
     --name=tars-node \
@@ -232,6 +246,45 @@ docker run -d \
 - 初始开放了 9000~9010 端口供应用使用，若不够可自行添加
 - Node 启动之后会自动向框架 172.25.0.3 进行注册，部署完成之后在框架的 运维管理-》节点管理 中可以看到 IP 为 `172.25.0.5` 的节点启动
 
+## 3 <a id="chapter-3"></a>Docker 部署服务生产环境
+
+### 3.1 Docker 部署 Tars 框架服务
+
+```bash
+# 挂载的/etc/localtime是用来设置容器时区的，若没有可以去掉
+# --net=host 代表docker使用宿主机网络
+# INET=eth0 eth0为网卡名称，tars脚本会根据网卡名称获取IP并将服务绑定到获取到的IP上
+docker run -d \
+    --name=tars-framework \
+    --net=host \
+    -e MYSQL_HOST="Host IP For MySQL Service" \
+    -e MYSQL_ROOT_PASSWORD="Your Root Password" \
+    -e MYSQL_USER=root \
+    -e MYSQL_PORT=3306 \
+    -e REBUILD=false \
+    -e SLAVE=false \
+    -e INET=eth0 \
+    -v /etc/localtime:/etc/localtime \
+    -v /tmp/test/data:/data/tars \
+    tarscloud/framework:stable
+```
+
+### 3.2 Docker 部署 Tars 应用节点
+
+```bash
+# 挂载的/etc/localtime是用来设置容器时区的，若没有可以去掉
+# --net=host 代表docker使用宿主机网络
+# INET=eth0 eth0为网卡名称，tars脚本会根据网卡名称获取IP并将服务绑定到获取到的IP上
+docker run -d \
+    --name=tars-node \
+    --net=host \
+    -e INET=eth0 \
+    -e WEB_HOST="The Accessible Http Address and Port Of Your Tars Framework" \
+    -v /data/tars:/data/tars \
+    -v /etc/localtime:/etc/localtime \
+    tarscloud/tars-node:stable
+```
+
 ## 4 <a id="chapter-4"></a>问题检查
 
 如果 docker 运行后, 仍然无法打开管理平台, 可以如下检查:
@@ -240,6 +293,7 @@ docker run -d \
 - 启动镜像, 注意不要 -d 参数
 
 最新版本:
+
 ```sh
 docker --name=tars-framework \
     --net=tars \
@@ -259,6 +313,7 @@ docker --name=tars-framework \
 ```
 
 稳定版本:
+
 ```sh
 docker --name=tars-framework \
     --net=tars \
@@ -293,7 +348,7 @@ curl -sSL https://doc.tarsdoc.com/docker_set_mirror.sh | sh -s https://w1mnep2c.
 systemctl restart docker
 ```
 
-## 6 <a id="chapter-6"></a>docker-compose
+## 6 <a id="chapter-6"></a>开发环境 docker-compose
 
 - 下面是使用 docker-compose 直接拉起开发环境的示例，仅供学习参考
 - ./source/Shanghai 是 linux 时区设置文件，需要自行获取
