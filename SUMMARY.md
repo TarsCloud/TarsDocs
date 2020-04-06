@@ -164,6 +164,6 @@
 ## 其它资源分享 <a id="resourcesSharing"></a>
 * [下载](resources-sharing/summary.md)
 * [Tars介绍.pptx](resources-sharing/ppt/TARS.pptx)
-* [TarsPHP解密.pdf](pdf/TARS微服务解密-PHP构建高性能WEB后台.pdf)
-* [TarsJava本地调试.pdf](pdf/TarsJava服务端的本地调试--正风.pdf)
-* [微服务在腾讯的业务实践.pptx](ppt/微服务架构在腾讯系业务的实践.pptx)
+* [TarsPHP解密.pdf](resources-sharing/pdf/TARS微服务解密-PHP构建高性能WEB后台.pdf)
+* [TarsJava本地调试.pdf](resources-sharing/pdf/TarsJava服务端的本地调试--正风.pdf)
+* [微服务在腾讯的业务实践.pptx](resources-sharing/ppt/微服务架构在腾讯系业务的实践.pptx)
