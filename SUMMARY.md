@@ -23,8 +23,8 @@
   * [部署总体介绍](installation/README.md)
   * [Docker环境安装](installation/docker-install.md)
   * [Mysql安装](installation/mysql.md)
-  * [Tars源码编译部署 For Linux/Mac](installation/source.md)
-  * [Tars源码编译部署 For Windows](installation/source-windows.md)
+  * [Linux/Mac源码部署](installation/source.md)
+  * [Windows源码部署](installation/source-windows.md)
   * [TarsDocker部署](installation/docker.md)
   * [K8s Docker部署](installation/k8s-docker-1.md)
   * [TarsNode部署](installation/node.md)
@@ -61,10 +61,10 @@
 * [性能数据](dev/tarscpp/tars-performance.md)
 * [2.0版本变化](dev/tarscpp/tars-2.0-update.md)
 * [案例]
-  * [Tars C++ 框架快速入门](demo/tarscpp/tars_cpp_quickstart.md) 
-  * [Tars C++ Http服务示例](demo/tarscpp/tars_cpp_http_demo.md)  
-  * [Tars C++ push功能说明](demo/tarscpp/tars_push.md) 
-  * [Tars C++ 协程说明](demo/tarscpp/tars_co.md) 
+  * [框架快速入门](demo/tarscpp/tars_cpp_quickstart.md) 
+  * [Http服务示例](demo/tarscpp/tars_cpp_http_demo.md)  
+  * [Push功能说明](demo/tarscpp/tars_push.md) 
+  * [协程说明](demo/tarscpp/tars_co.md) 
 
 ## TarsJava <a id="TarsJava"></a>
 * [Tars-Spring使用说明](dev/tarsjava/tarsspring-shi-yong-shuo-ming.md)
