@@ -91,12 +91,7 @@
   * [zipkin调用链追踪服务端示例](demo/tarsgo/zipkin-server.md) 
 
 ## TarsPHP <a id="TarsPHP"></a>
-* [介绍](dev/tarsphp/README.md)
-  * [TARS介绍](dev/tarsphp/Introduction/tars.md)
-  * [TARSPHP介绍](dev/tarsphp/Introduction/tarsphp.md)
-  * [TARS协议和TUP协议](dev/tarsphp/Introduction/protocol.md)
 * [环境搭建]
-  * [搭建平台环境](dev/tarsphp/Environment/platform.md)
   * [搭建php环境](dev/tarsphp/Environment/php.md)
   * [使用docker](dev/tarsphp/Environment/docker.md)
 * [快速起步]

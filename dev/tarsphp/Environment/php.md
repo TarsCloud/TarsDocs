@@ -1,3 +1,7 @@
+
+## 说明
+搭建php开发环境之前, 请先部署TARS框架
+
 ## 安装tarsphp依赖环境
     建议安装php7+swoole2+
 
