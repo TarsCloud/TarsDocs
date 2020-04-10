@@ -8,7 +8,7 @@
 
 ## 1 <a id="chapter-1"></a> 创建服务
 
-请务必先阅读 [concept](../../base/tars-concept.md) and [spec](../../dev/tarscpp/tars-spec.md)
+请务必先阅读 [concept](https://github.com/TarsCloud/TarsDocs/blob/master/base/tars-concept.md) and [spec](https://github.com/TarsCloud/TarsDocs/blob/master/dev/tarscpp/tars-spec.md)
 
 ```text
 /usr/local/tars/cpp/script/cmake_tars_server.sh [App] [Server] [Servant]
