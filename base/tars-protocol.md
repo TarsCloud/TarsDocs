@@ -161,7 +161,7 @@ map<int, string> m;
 > * 对于struct，通常不能作为map的key，因此struct没有大小比较符号；
 
 > * 如果需要struct能够作为map的key，需要用less定义struct中成员的比较顺序；
-
+<!-- 
 ### 1.4.6. 数组
 
 结构中可以定义数组类型，数组用[]来定义，如下：
@@ -193,9 +193,9 @@ byte *m;
 
 > * 在非c++版本中指针类型将翻译为vector<类型>
 
-> * 含有指针类型的数据读取时BufferReader必须用MapBufferReader,同时需要提前设定指针指向内存的buffer
+> * 含有指针类型的数据读取时BufferReader必须用MapBufferReader,同时需要提前设定指针指向内存的buffer -->
 
-### 1.4.8 嵌套
+### 1.4.7 嵌套
 
 任何struct，map，vector都可以嵌套；
 
