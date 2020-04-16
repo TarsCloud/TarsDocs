@@ -1,11 +1,11 @@
-# Tars协议用例压测指南
+## Tars协议用例压测指南
 
-下面通过一个完整的例子介绍如何使用tb工具来实现压测自己的tars服务。
+下面通过一个完整的例子介绍如何使用tb工具来实现压测tars service。
 
 以下步骤示例描述了如何tb客户端发送test接口请求到服务端，服务端返回结果返回给tb客户端，经过一段周期统计回包情况。
 
 
-### 1.1. 定义接口
+### 1.1. 接口定义实例
 
 编写tars文件如下，Demo.tars：
 
@@ -32,9 +32,9 @@ module tars
 };
 ```
 
-### 1.2. Tars用例文件生成
+### <a id="tb-chapter-1"></a>1.2. 用例文件生成
 
-用例文件一般建议使用tars2case工具自动生成，工具可以细化到接口级，用户可以根据业务需要修改参数的值
+使用tars2case工具自动生成tb工具所需的用例，工具根据各interface的rpc函数生成各自的case，用户可以根据业务需要修改参数的值
 
 ```text
 /usr/local/tars/cpp/tools/tars2case Demo.tars --dir=benchmark
@@ -43,7 +43,7 @@ cd benchmark && ls
 echo.case  test.case
 ```
 
-### 1.3. Tars用例编写说明:
+### <a id="tb-chapter-2"></a> 1.3. 用例编写说明
 
 文件分为上下部分，用"#"开头行分割，上半部分为RPC参数，下半部分为RPC调用参数的值，跟参数一一对应
 
@@ -82,7 +82,7 @@ tars协议参数说明
 ```text
   -S                   tars服务servant名称
   -M                   tars服务接口方法
-  -C                   压测用例文件，详见<Tars用例文件生成>和<Tars用例编写说明>
+  -C                   压测用例文件，详见[用例文件生成](#main-chapter-1)和[用例编写说明](#main-chapter-2)
 ```
 
 ### 1.5. 压测停止
