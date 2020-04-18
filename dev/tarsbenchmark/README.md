@@ -3,7 +3,7 @@
 tb工具可以直接[下载源码编译](../../env/tarsbenchmark.md)，默认支持 [TARS协议](tars-guide.md) / [HTTP协议](http-guide.md) 2类service的压测，无需额外编写代码，十分简单方便，也很灵活拓展支持到第三类协议的压测。
 
 ### 新协议开发
-如果你服务协议非TARS/HTTP，按照如下规范去适配开发新服务协议也可以利用tb的底层机制实现目标service高性能压测和实时反馈。工具通过动态注册机制来发现新协议，开发者通过实现{new}Protocol.h和{new}Protocol.cpp来完成，一定要注意声明这两个宏:DECLARE_DYNCREATE/IMPLEMENT_DYNCREATE(必须在cpp中声明)，三步搞定：
+如果你服务协议非TARS/HTTP，按照如下规范去适配开发新服务协议，也很容易实现目标服务高性能压测和实时反馈。工具通过动态注册机制来发现新协议，开发者通过实现{new}Protocol.h和{new}Protocol.cpp来完成服务的编解码，实现过程中要注意声明如下两个宏定义:DECLARE_DYNCREATE/IMPLEMENT_DYNCREATE(必须在cpp中声明)，三步搞定：
 
  - 1.参考httpProtocol继承Protocol协议类。
  - 2.实现input/encode/decode三个函数方法。
@@ -28,7 +28,7 @@ public:
     virtual int initialize(int argc, char** argv);
 
     /**
-     * @brief  协议是否支持有序的
+     * @brief  协议是否支持序号返回
      *
      * @return true: 支持; false: 不支持
      */
