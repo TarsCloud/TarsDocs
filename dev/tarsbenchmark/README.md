@@ -1,6 +1,6 @@
 ## TarsBenchmark使用说明
 
-tb工具可以直接[下载源码编译](../../env/tarsbenchmark.md)，默认支持 [TARS协议](tars-guide.md) / [HTTP协议](http-guide.md) 2类service的压测，无需额外编写代码，十分简单方便，也可以灵活支持第三类协议的开发。
+tb工具可以直接[下载源码编译](../../env/tarsbenchmark.md)，默认支持 [TARS协议](tars-guide.md) / [HTTP协议](http-guide.md) 2类service的压测，无需额外编写代码，十分简单方便，也很灵活拓展支持到第三类协议的压测。
 
 ### 新协议开发
 如果你服务协议非TARS/HTTP，按照如下规范去适配开发新服务协议也可以利用tb的底层机制实现目标service高性能压测和实时反馈。工具通过动态注册机制来发现新协议，开发者通过实现{new}Protocol.h和{new}Protocol.cpp来完成，一定要注意声明这两个宏:DECLARE_DYNCREATE/IMPLEMENT_DYNCREATE(必须在cpp中声明)，三步搞定：
