@@ -30,7 +30,7 @@
 yum install glibc-devel gcc gcc-c++ bison flex cmake
 ```
 
-## 2.2. 下载源码 
+## 2.2. 下载源码
 
 ```text
 git clone https://github.com/TarsCloud/TarsCpp.git --recursive
