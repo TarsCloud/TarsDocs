@@ -48,7 +48,7 @@ make install
 
 # 3 <a id="chapter-3"></a>工具构建
 
-主要编译步骤如下
+主要编译步骤如下，编译成功后文件生成在build/bin/tb目录下。
 ```
 git clone https://github.com/TarsCloud/TarsBenchmark.git
 cd TarsBenchmark && mkdir build && cd build
