@@ -7,7 +7,7 @@
 
 本节主要介绍tb工具编译时需要的开发环境, 以centos7来介绍.
 
-**注意: 如果本机上之前已经安装TarsCpp环境, 那么需要升级到最新的TarsCpp版本**
+**注意: 如果本机上之前已经安装TarsCpp环境, 那么需要升级到最新的TarsCpp版本(>=v2.4.0)**
 
 # 2 <a id="chapter-1"></a>依赖环境
 
@@ -17,7 +17,7 @@
 | gcc版本: | 4.8 及以上版本、glibc-devel |
 | bison工具版本: | 2.5及以上版本 |
 | flex工具版本: | 2.5及以上版本 |
-| cmake版本： | 2.8.8及以上版本 |
+| cmake版本： | 3.2及以上版本 |
 | TarsCpp版本： | 最新master版本 |
 
 
@@ -38,7 +38,7 @@ git clone https://github.com/TarsCloud/TarsCpp.git --recursive
 cd TarsCpp
 mkdir build
 cd build
-cmake .. -DTARS_MYSQL=OFF
+cmake ..
 make
 make install
 ```

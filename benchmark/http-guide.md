@@ -23,4 +23,4 @@ http协议参数说明
 
 
 ### 1.3. 压测结果显示
-![压测结果](../../assets/tb_http_result.png)
+![压测结果](../assets/tb_http_result.png)

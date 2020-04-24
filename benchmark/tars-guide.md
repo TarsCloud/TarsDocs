@@ -91,4 +91,4 @@ tars协议参数说明
 
 
 ### 1.6. 压测结果显示
-![压测结果](../../assets/tb_tars_result.png)
+![压测结果](../assets/tb_tars_result.png)
