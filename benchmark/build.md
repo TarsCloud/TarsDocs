@@ -9,7 +9,7 @@
 
 **注意: 如果本机上之前已经安装TarsCpp环境, 那么需要升级到最新的TarsCpp版本(>=v2.4.0)**
 
-# 2 <a id="chapter-1"></a>依赖环境
+# 2 <a id="chapter-2"></a>依赖环境
 
 | 软件 | 软件要求 |
 | :--- | :--- |
@@ -21,7 +21,7 @@
 | TarsCpp版本： | 最新master版本 |
 
 
-# 2 <a id="chapter-2"></a>依赖环境
+## 2.1. 安装依赖包
 
 
 源码编译过程需要安装:gcc, glibc, bison, flex, cmake
