@@ -42,7 +42,7 @@ module是tars协议文件中的关键字, 定义了协议的空间, 也对应了
 
 ## 5. <a id="main-chapter-5"></a> Tars文件目录规范
 
-Tars文件是TARS服务的协议通信接口，尤其某Tars Server的客户端调用Server时都需要依赖该Server的tars protocol文件, 因此非常重要，在管理上我们推荐按照如下方式管理(当然你可以不采取改模式, 构建你自己合适的开放方式):
+Tars文件是TARS服务的协议通信接口，尤其某Tars Server的客户端调用Server时都需要依赖该Server的tars protocol文件, 因此非常重要，在管理上我们推荐按照如下方式管理(当然你可以不采取该模式, 构建你自己合适的开发方式):
 
 - tars文件原则上和相应的server放在一起；
 - 每个server在开发机上建立/home/tarsproto/\[namespace\]/\[server\]子目录；
