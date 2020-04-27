@@ -222,7 +222,7 @@ docker run -d \
     -e INET=eth0 \
     -e WEB_HOST="http://172.25.0.3:3000" \
     --ip="172.25.0.5" \
-    -v /data/node:/data/tars \
+    -v /data/node:/data/app \
     -v /etc/localtime:/etc/localtime \
     -p 9000-9010:9000-9010 \
     tarscloud/tars-node:latest
@@ -237,7 +237,7 @@ docker run -d \
     -e INET=eth0 \
     -e WEB_HOST="http://172.25.0.3:3000" \
     --ip="172.25.0.5" \
-    -v /data/node:/data/tars \
+    -v /data/node:/data/app \
     -v /etc/localtime:/etc/localtime \
     -p 9000-9010:9000-9010 \
     tarscloud/tars-node:stable
@@ -280,7 +280,7 @@ docker run -d \
     --net=host \
     -e INET=eth0 \
     -e WEB_HOST="The Accessible Http Address and Port Of Your Tars Framework" \
-    -v /data/tars:/data/tars \
+    -v /data/tars:/data/app \
     -v /etc/localtime:/etc/localtime \
     tarscloud/tars-node:stable
 ```
@@ -402,7 +402,7 @@ services:
       internal:
         ipv4_address: 172.25.1.5
     volumes:
-      - ./node/data:/data/:rw
+      - ./node/data:/data/app:rw
       - ./source/Shanghai:/etc/localtime
     environment:
       INET: eth0
