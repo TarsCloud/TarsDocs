@@ -2,7 +2,7 @@
 
 ## 简介
 
-[TarsFramework](https://github.com/TarsCloud/TarsFramework)项目中的TarsRegistry、TarsNode、TarsProperty...等应用依赖于[TarsCpp](https://github.com/TarsCloud/TarsCpp)项目，[TarsWeb](https://github.com/TarsCloud/TarsWeb)为TarsFramework的Web管理端，为了更好的提供Tars的多版本支持和迭代，选定v2.4为Tars的第一个LTS版本，并在这第一个LTS版本中将TarsCpp、TarsWeb、TarsFramework三个项目的主版本和子版本进行统一。
+[TarsFramework](https://github.com/TarsCloud/TarsFramework)项目中的TarsRegistry、TarsNode、TarsProperty...等应用依赖于[TarsCpp](https://github.com/TarsCloud/TarsCpp)项目，TarsCpp项目依赖于[TarsProtocol](https://github.com/TarsCloud/TarsProtocol)，[TarsWeb](https://github.com/TarsCloud/TarsWeb)为TarsFramework的Web管理端，为了更好的提供Tars的多版本支持和迭代，选定v2.4为Tars的第一个LTS版本，并在这第一个LTS版本中将TarsCpp、TarsProtocol、TarsWeb、TarsFramework四个项目的主版本和子版本进行统一。
 
 ## 版本规划
 
