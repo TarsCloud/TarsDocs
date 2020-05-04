@@ -13,6 +13,7 @@
 > * [TarsPHP](#TarsPHP)
 > * [其他重要特性](#important)
 > * [常见问题](#question)
+> * [开源合作](#cooperation)
 > * [其它资源分享](#resourcesSharing)
 
 
