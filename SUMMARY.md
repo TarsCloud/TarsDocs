@@ -163,7 +163,7 @@
 * [TarsJava 常见问题](question/tarsjava-question.md)
 * [TarsPHP 常见问题](question/tarsphp-question.md)
 
-## 开元合作 <a id="cooperation">
+## 开源合作 <a id="cooperation">
 * [TarsFramework项目Git合作规范](cooperation/tars_framework_git_flows.md)
 
 ## 其它资源分享 <a id="resourcesSharing"></a>
