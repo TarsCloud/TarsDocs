@@ -17,12 +17,12 @@
 
 1. 请先fork对应的GitHub仓库
 2. 在开发之前请谨记，release/x.x为对应版本的发布分支，这个分支相当于单版本项目仓库的master分支
-3. 务必在动手之前先获取远端仓库对应release分支的最新变动，避免出现合并冲突
-4. 请从对应版本的release分支检出一个feature分支进行功能开发，feature分支命名规范为：feature/`{Git用户名}`/`{需求名称}`，如：`feature/franklee/correct_error_message_on_property_table_missing`
+3. 务必在动手之前先拉取远端仓库对应release分支的最新变动到本地release分支，避免出现合并冲突
+4. 请从本地对应版本的release分支检出一个feature分支进行功能开发，feature分支命名规范为：feature/`{Git用户名}`/`{需求名称}`，如：`feature/franklee/correct_error_message_on_property_table_missing`
 5. 若是紧急修复，请检出hotfix分支，命名规范为：hotfix/`{Git用户名}`/`{需求名称}`，如：`hotfix/franklee/fix_wrong_typing_on_servant_status_enum_define`
-5. 开发完成后请务必将对应的feature分支合并到develop分支并充分测试
-6. 测试完成后，请将当前的feature分支合并到对应的release分支
-7. 提交Pull Request到远端仓库，并撰写必要说明
+5. 开发完成后请务必先对对应的feature或hotfix分支进行充分测试
+6. 测试完成后，请将当前的feature分支合并到本地的release分支
+7. 提交Pull Request到远端仓库release分支，并撰写必要说明
 
 详细工作流见下图：
 
@@ -30,6 +30,10 @@
 
 ### 特别注意
 
-1. 为了保证master版本与最新版release分支同步，最新版本框架的release版本在发布完成后需要合并到master
-2. 只有新开release版本才需要从master检出
-3. 严禁合并除最新版release分支以外的分支到master
+1. 远端仓库：TarsCloud/xxx 的官方仓库
+2. 远端分支：远端仓库TarsCloud/xxx下的分支
+3. 本地仓库：从远端仓库fork出来的仓库
+4. 本地分支：从本地仓库检出的分支
+5. 为了保证master版本与最新版release分支同步，最新版本框架的release版本在发布完成后需要合并到master
+6. 只有新开release版本才需要从master检出
+7. 严禁合并除最新版release分支以外的分支到master
