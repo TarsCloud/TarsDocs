@@ -191,7 +191,7 @@ docker run -d -it --name tars_java \
 <plugin>
 	<groupId>com.tencent.tars</groupId>
 	<artifactId>tars-maven-plugin</artifactId>
-	<version>  1.7.0</version>
+	<version>1.7.0</version>
 	<configuration>
 		<tars2JavaConfig>
 			<!-- tars文件位置 -->
@@ -330,7 +330,7 @@ public class QuickStartApplication {
 
 服务部署成功后，刷新主页面可以看到新增的服务：
 
-![tars-testserve](images/tars-testserver.png)
+![tars-testserver](images/tars-testserver.png)
 
 
 
@@ -354,7 +354,7 @@ public class QuickStartApplication {
 
 ### 接口调试
 
-进入接口调试界面，点击添加，并上传resources目录下的tars文件：
+进入接口调试界面，点击添加，并上传resources目录下的hello.tars文件：
 
 ![tars-uploadtar](images/tars-uploadtars.png)
 
