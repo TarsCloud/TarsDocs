@@ -2,7 +2,7 @@
 
 
 ## Docker部署Tars
-若尚未部署Tars服务，请参考tars-quick-start-server中的部署流程，[Docker部署Tars](./tars-quick-start-client.md)。
+若尚未部署Tars服务，请参考tars-quick-start-server中的部署流程，[Docker部署Tars](./tars-quick-start-server.md)。
 
 
 
