@@ -59,7 +59,7 @@ sudo apt-get install docker-ce
 docker run hello-world
 ```
 
-![image-20200504164653246](images/docker-hello-world.png)
+![docker-hello-world](images/docker-hello-world.png)
 
 出现如上界面表示docker安装成功。
 
@@ -118,7 +118,7 @@ docker run -d -it --name tars_java \
 
 容器启动后， 访问 `http://${你的机器IP}:3000` 即可打开 web 管理平台，界面如下：
 
-![image-20200504164945575](images/tars-chinese.png)
+![tars-chinese](images/tars-chinese.png)
 
 
 
@@ -309,7 +309,7 @@ public class QuickStartApplication {
 
 ### 服务部署
 
-![image-20200505152526646](images/tars-deployment.png)
+![tars-deployment](images/tars-deployment.png)
 
 如上图进行配置，一些参数如下：
 
@@ -330,25 +330,25 @@ public class QuickStartApplication {
 
 服务部署成功后，刷新主页面可以看到新增的服务：
 
-![image-20200505153504563](images/tars-testserver.png)
+![tars-testserve](images/tars-testserver.png)
 
 
 
 选择该服务，进入发布管理，选中需要发布的节点，点击发布选中节点：
 
-![image-20200505153740671](images/tars-publication.png)
+![tars-publication](images/tars-publication.png)
 
 点击上传发布包，并把jar包上传：
 
-![image-20200505154356428](images/tars-uploadjar.png)
+![tars-uploadjar](images/tars-uploadjar.png)
 
 上传完成后，会自动生成一个带有时间戳的版本号，选择该版本，点击发布：
 
-![image-20200505154411768](images/tars-pubjar.png)
+![tars-pubjar](images/tars-pubjar.png)
 
 发布成功后，回到服务管理界面可以看到状态为Active，即表示成功：
 
-![image-20200505154835852](images/tars-state.png)
+![tars-state](images/tars-state.png)
 
 
 
@@ -356,14 +356,14 @@ public class QuickStartApplication {
 
 进入接口调试界面，点击添加，并上传resources目录下的tars文件：
 
-![image-20200505155043970](images/tars-uploadtars.png)
+![tars-uploadtar](images/tars-uploadtars.png)
 
 上传完成后点击调试，在tars文件列表中会显示新增的服务，点击调试：
 
-![image-20200505155209500](images/tars-tarstest.png)
+![tars-tarstest](images/tars-tarstest.png)
 
 选择需要调试的方法，并输入入参，点击调试，即可获得方法出参：
 
-![image-20200505155409774](images/tars-test.png)
+![tars-test](images/tars-test.png)
 
 至此服务端部署完毕。
