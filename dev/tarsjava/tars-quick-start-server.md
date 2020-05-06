@@ -41,7 +41,7 @@ sudo add-apt-repository "deb [arch=amd64]  https://download.docker.com/linux/ubu
 sudo add-apt-repository "deb [arch=amd64] https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu $(lsb_release -cs) stable" 
 ```
 
-**5. 再次更新包索引 **
+**5. 再次更新包索引**
 
 ```text
 sudo apt-get update
