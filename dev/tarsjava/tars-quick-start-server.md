@@ -287,7 +287,7 @@ public class HelloServantImpl implements HelloServant {
 
 #### 开启Tars服务
 
-在Spring Boot启动类QuickStartApplication中添加@EnableTarsServer注解开启：
+在Spring Boot启动类QuickStartApplication中添加@EnableTarsServer注解来开启Tars服务：
 
 ```java
 @SpringBootApplication
@@ -358,7 +358,7 @@ public class QuickStartApplication {
 
 ![tars-uploadtar](images/tars-uploadtars.png)
 
-上传完成后点击调试，在tars文件列表中会显示新增的服务，点击调试：
+上传完成后，在tars文件列表中会显示新增的服务，点击调试：
 
 ![tars-tarstest](images/tars-tarstest.png)
 
