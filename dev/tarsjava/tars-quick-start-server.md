@@ -272,7 +272,7 @@ public interface HelloServant {
 
 #### 实现接口
 
-新建HelloServantImpl.java文件，实现HelloServant.java接口，并通过@TarsServant注解来暴露服务，其中HelloObj为servant名称，与web管理平台对应。
+新建HelloServantImpl.java文件，实现HelloServant.java接口，并通过@TarsServant注解来暴露服务，其中HelloObj为servant名称，与web管理平台中的名称对应。
 
 ```java
 @TarsServant("HelloObj")
