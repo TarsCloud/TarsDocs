@@ -23,10 +23,10 @@ sudo apt-get install  apt-transport-https  ca-certificates curl  software-proper
 curl -fsSL  https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add
 ```
 
-国内用户可使用中科大源：
+国内用户可使用腾讯云源：
 
 ```text
-curl -fsSL  https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu/gpg | sudo apt-key add -
+curl -fsSL https://mirrors.cloud.tencent.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add -
 ```
 
 **4. 设置版本库类型**
@@ -35,10 +35,10 @@ curl -fsSL  https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu/gpg | sudo apt-ke
 sudo add-apt-repository "deb [arch=amd64]  https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" 
 ```
 
-国内用户可使用中科大源：
+国内用户可使用腾讯云源：
 
 ```text
-sudo add-apt-repository "deb [arch=amd64] https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu $(lsb_release -cs) stable" 
+sudo add-apt-repository "deb [arch=amd64] https://mirrors.cloud.tencent.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable" 
 ```
 
 **5. 再次更新包索引**
