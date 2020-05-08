@@ -75,13 +75,12 @@
   * [协程说明](demo/tarscpp/tars_co.md) 
 
 ## TarsJava <a id="TarsJava"></a>
-* [快速起步](/dev/tarsjava/tars-quick-start.md)
+* [快速起步](dev/tarsjava/tars-quick-start.md)
 * [开发指南]
   * [Tars-Spring使用说明](dev/tarsjava/tarsspring-shi-yong-shuo-ming.md)
-  * [Tars-Spring-Boot使用说明](/dev/tarsjava/tars-tutorials.md)
+  * [Tars-Spring-Boot使用说明](dev/tarsjava/tars-tutorials.md)
   * [Tars-Spring-Cloud 使用说明](dev/tarsjava/tarsspringcloud-shi-yong-shuo-ming.md)
-  * [使用指南](dev/tarsjava/shi-yong-zhi-nan.md)
-* [参考](/dev/tarsjava/tars-reference.md)
+* [参考](dev/tarsjava/tars-reference.md)
 * [案例]
   * [快速开发入门客户端示例](demo/tarsjava/quickstart-client.md) 
   * [快速开发入门服务端示例](demo/tarsjava/quickstart-server.md) 
