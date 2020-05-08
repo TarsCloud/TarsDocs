@@ -1,20 +1,198 @@
-# Tars客户端快速入门
+# Tars开发教程
+
+本教程为Java开发者提供了Tars的基本开发指南，主要包括以下几个方面：
+
+- 添加Tars依赖配置
+- 定义Tars接口文件
+- 使用Tars插件生成接口代码
+- 使用Tars编写简单的服务端和客户端服务
 
 
-## Docker部署Tars
-若尚未部署Tars服务，请参考tars-quick-start-server中的部署流程，[Docker部署Tars](./tars-quick-start-server.md)。
+
+## 环境需求
+
+- JDK 1.8或以上版本
+- Maven 3.5或以上版本
+- Spring Boot 2.0或以上版本
+
+
+
+## 服务端开发
+
+### 工程目录
+
+```text
+├── pom.xml
+└── src
+   └── main
+       ├── java
+       │   └── tars
+       │       └── testapp
+       │          ├── HelloServant.java
+       │          ├── QuickStartApplication.java
+       │          └── impl
+       │                └── HelloServantImpl.java
+       └── resources
+           └── hello.tars
+       
+```
+
+
+
+### 依赖配置
+
+在pom.xml文件中需要添加如下配置:
+
+**spring boot及框架依赖**
+
+```xml
+    <properties>
+        <spring-boot.version>2.0.3.RELEASE</spring-boot.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.tencent.tars</groupId>
+            <artifactId>tars-spring-boot-starter</artifactId>
+            <version>1.7.0</version>
+        </dependency>
+    </dependencies>
+```
+
+**插件依赖**
+
+```xml
+<!--tars2java插件-->
+<plugin>
+	<groupId>com.tencent.tars</groupId>
+	<artifactId>tars-maven-plugin</artifactId>
+	<version>1.7.0</version>
+	<configuration>
+		<tars2JavaConfig>
+			<!-- tars文件位置 -->
+			<tarsFiles>
+				<tarsFile>${basedir}/src/main/resources/hello.tars</tarsFile>
+			</tarsFiles>
+			<!-- 源文件编码 -->
+			<tarsFileCharset>UTF-8</tarsFileCharset>
+			<!-- 生成服务端代码 -->
+			<servant>true</servant>
+			<!-- 生成源代码编码 -->
+			<charset>UTF-8</charset>
+			<!-- 生成的源代码目录 -->
+			<srcPath>${basedir}/src/main/java</srcPath>
+			<!-- 生成源代码包前缀 -->
+			<packagePrefixName>com.qq.tars.quickstart.server.</packagePrefixName>
+		</tars2JavaConfig>
+	</configuration>
+</plugin>
+<!--打包插件-->
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-jar-plugin</artifactId>
+     <version>2.6</version>
+     <configuration>
+         <archive>
+             <manifestEntries>
+                 <Class-Path>conf/</Class-Path>
+             </manifestEntries>
+          </archive>
+     </configuration>
+</plugin>
+<plugin>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-maven-plugin</artifactId>
+    <configuration>
+        <!--设置打包主类-->
+        <mainClass>com.qq.tars.quickstart.server.QuickStartApplication</mainClass>
+    </configuration>
+    <executions>
+        <execution>
+            <goals>
+                <goal>repackage</goal>
+             </goals>
+     </executions>
+</plugin>
+```
+
+
+
+### 服务开发
+
+#### Tars接口文件定义
+
+Tars有自己的接口文件格式，首先我们需要定义Tars接口文件，在resources目录下新建hello.tars文件，内容如下：
+
+```text
+module TestApp
+{
+	interface Hello
+	{
+	    string hello(int no, string name);
+	};
+};
+```
+
+#### 使用插件生成接口代码
+
+然后我们需要通过Tars插件将Tars接口文件转换为服务端接口代码。在工程根目录下，执行mvn tars:tars2java，即可得到HelloServant.java，内容如下：
+
+```java
+@Servant
+public interface HelloServant {
+
+	public String hello(int no, String name);
+}
+```
+
+#### 实现接口
+
+接着我们需要实现生成的服务端接口。新建HelloServantImpl.java文件，实现HelloServant.java接口，并通过@TarsServant注解来暴露服务，其中HelloObj为servant名称，与web管理平台中的名称对应。
+
+```java
+@TarsServant("HelloObj")
+public class HelloServantImpl implements HelloServant {
+
+    @Override
+    public String hello(int no, String name) {
+        return String.format("hello no=%s, name=%s, time=%s", no, name, System.currentTimeMillis());
+    }
+}
+```
+
+#### 开启Tars服务
+
+最后，在Spring Boot启动类QuickStartApplication中添加@EnableTarsServer注解来开启Tars服务：
+
+```java
+@SpringBootApplication
+@EnableTarsServer
+public class QuickStartApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(QuickStartApplication.class, args);
+    }
+}
+```
+
+#### 服务打包
+
+通过spring-boot-maven-plugin，在根目录下执行mvn package即可打包为jar包进行部署。
 
 
 
 ## 客户端开发
-
-### 环境需求
-
-- JDK 1.8或以上版本
-- Maven 2.2.1或以上版本
-- Spring Boot 2.0或以上版本
-
-
 
 ### 工程目录
 
@@ -132,7 +310,7 @@
 
 #### 使用插件生成服务端服务接口代码
 
-将服务端的hello.tars文件复制到resources目录下，并在工程根目录下，执行mvn tars:tars2java，即可得到HelloPrx.java。此时得到的是服务端服务的代理接口，并且提供了三种调用方式，分别为同步调用、异步调用和promise调用，具体内容如下：
+服务端服务开发完成后，在客户端我们首先需要获得服务端服务的客户端接口代码。将服务端的hello.tars文件复制到resources目录下，并在工程根目录下，执行mvn tars:tars2java，即可得到HelloPrx.java。此时得到的是服务端服务的代理接口，并且提供了三种调用方式，分别为同步调用、异步调用和promise调用，具体内容如下：
 
 ```java
 @Servant
@@ -152,7 +330,7 @@ public interface HelloPrx {
 
 #### Tars客户端接口文件定义
 
-在resources目录下新建client.tars文件，内容如下：
+然后对客户端服务进行接口文件的定义。在resources目录下新建client.tars文件，内容如下：
 
 ```text
 module TestApp
@@ -164,9 +342,9 @@ module TestApp
 };
 ```
 
-#### 使用插件生成服务端服务接口代码
+#### 使用插件生成客户端服务接口代码
 
-修改pom.xml的tars2java插件依赖为:
+接着，使用Tars的maven插件生成客户端服务接口代码。修改pom.xml的tars2java插件依赖为，注意将`<servant></servant>`这一项设置为true。
 
 ```xml
 <!--tars2java插件-->
@@ -206,7 +384,7 @@ public interface ClientServant {
 
 #### 实现接口
 
-新建ClientServantImpl.java文件，实现ClientServant.java接口，并通过@TarsServant注解来暴露客户端服务，其中ClientObj为servant名称，与web管理平台中的名称对应。
+我们需要对生成的客户端服务接口进行实现。新建ClientServantImpl.java文件，实现ClientServant.java接口，并通过@TarsServant注解来暴露客户端服务，其中ClientObj为servant名称，与web管理平台中的名称对应。
 
 通过给客户端属性添加@TarsClient注解，可以自动注入对应服务，如果只填写Obj名称则采用默认值注入客户端，此外也可以在注解中自定义客户端配置，例如设置同步调用超时时间等。
 
@@ -284,7 +462,7 @@ public @interface TarsClient {
 
 #### 开启Tars服务
 
-在Spring Boot启动类App中添加@EnableTarsServer注解来开启Tars服务：
+最后，在Spring Boot启动类App中添加@EnableTarsServer注解来开启Tars服务：
 
 ```java
 @SpringBootApplication
@@ -298,69 +476,5 @@ public class App {
 
 #### 服务打包
 
-通过spring-boot-maven-plugin，在根目录下执行mvn package即可打包为jar包。
+通过spring-boot-maven-plugin，在根目录下执行mvn package即可打包为jar包进行部署。
 
-
-
-## 服务发布
-
-### 服务部署
-
-![tars-deployment-client](images/tars-deployment-client.png)
-
-如上图进行配置，一些参数如下：
-
-- 应用名：表示一组服务的集合
-- 服务名称：提供服务的进程名称
-- OBJ：提供具体服务的接口
-
-系统通过应用名+服务名称+OBJ来定义服务在系统中的路由名称，例如TestClient.HelloClient.ClientObj
-
-- 服务类型：tars_java
-- 模板：tars.springboot
-- 节点：选择启动的Tars节点IP
-- 端口：选择对外开放的端口
-
-
-
-### 发布节点
-
-服务部署成功后，刷新主页面可以看到新增的服务：
-
-![tars-testclient](images/tars-testclient.png)
-
-
-
-选择该服务，进入发布管理，选中需要发布的节点，点击发布选中节点：
-
-![tars-publication](images/tars-publication.png)
-
-点击上传发布包，并把jar包上传：
-
-![tars-uploadjarclient](images/tars-uploadjarclient.png)
-
-上传完成后，会自动生成一个带有时间戳的版本号，选择该版本，点击发布：
-
-![tars-pubjar-client](images/tars-pubjar-client.png)
-
-发布成功后，回到服务管理界面可以看到状态为Active，即表示成功：
-
-![tars-state-client](images/tars-state-client.png)
-
-
-
-### 接口调试
-
-进入接口调试界面，点击添加，并上传resources目录下的client.tars文件：
-
-![tars-uploadtars-client](images/tars-uploadtars-client.png)
-
-上传完成后，在tars文件列表中会显示新增的服务，点击调试：
-
-![tars-tarstest-client](images/tars-tarstest-client.png)
-
-选择需要调试的方法，并输入入参，点击调试，即可获得方法出参：
-
-![tars-test-client](images/tars-test-client.png)
-
-至此客户端部署完毕。
