@@ -75,20 +75,13 @@
   * [协程说明](demo/tarscpp/tars_co.md) 
 
 ## TarsJava <a id="TarsJava"></a>
-* [快速起步](dev/tarsjava/tars-quick-start.md)
-* [开发指南]
-  * [Tars-Spring使用说明](dev/tarsjava/tarsspring-shi-yong-shuo-ming.md)
-  * [Tars-Spring-Boot使用说明](dev/tarsjava/tars-tutorials.md)
-  * [Tars-Spring-Cloud 使用说明](dev/tarsjava/tarsspringcloud-shi-yong-shuo-ming.md)
-* [参考](dev/tarsjava/tars-reference.md)
-* [案例]
-  * [快速开发入门客户端示例](demo/tarsjava/quickstart-client.md) 
-  * [快速开发入门服务端示例](demo/tarsjava/quickstart-server.md) 
-  * [tars java 压测代码 ](demo/tarsjava/stress-server.md)
-  * [spring boot服务端示例 ](demo/tarsjava/tars-spring-boot-server.md) 
-  * [spring cloud客户端示例 ](demo/tarsjava/tars-spring-cloud-client.md)
-  * [spring cloud服务端示例](demo/tarsjava/tars-spring-cloud-server.md) 
-  * [tars-spring-server](demo/tarsjava/tars-spring-server.md) 
+* [快速开始](dev/tarsjava/tars-quick-start.md)
+* [使用指南]
+  * [Tars服务开发与上线](dev/tarsjava/tars-tutorials.md)
+  * [HTTP服务开发与上线](dev/tarsjava/tars-http-server.md)
+  * [生成接口调用文件](dev/tarsjava/tars-reference.md)
+* [性能测试]
+  * [tars java 压测代码 ](https://github.com/TarsCloud/TarsJava/tree/master/examples/stress-server)
 
 ## TarsGo <a id="TarsGo"></a>
 * [pb2tarsgo](dev/tarsgo/pb2tarsgo.md)
