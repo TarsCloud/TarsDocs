@@ -216,12 +216,12 @@ tars_property是服务属性监控数据存储的数据库；
 进入/usr/local/tars/cpp/deploy, 执行:
 ```
 chmod a+x linux-install.sh
-./linux-install.sh MYSQL_HOST MYSQL_ROOT_PASSWORD INET REBUILD(false[default]/true) SLAVE(false[default]/true) MYSQL_USER MYSQL_PORT
+./linux-install.sh MYSQL_HOST MYSQL_PASSWORD INET REBUILD(false[default]/true) SLAVE(false[default]/true) MYSQL_USER MYSQL_PORT
 ```
 
 MYSQL_HOST: mysql数据库的ip地址
 
-MYSQL_ROOT_PASSWORD: mysql数据库的root密码(注意root不要有太特殊的字符, 例如!, 否则shell脚本识别有问题, 因为是特殊字符)
+MYSQL_PASSWORD: mysql数据库的MYSQL_USER的密码(注意密码不要有太特殊的字符, 例如!, 否则shell脚本识别有问题, 因为是特殊字符)
 
 INET: 网卡的名称(ifconfig可以看到, 比如eth0), 表示框架绑定的本机IP, 注意不能是127.0.0.1
 
@@ -249,6 +249,7 @@ chmod a+x linux-install.sh
 执行过程中的错误参见屏幕输出, 如果出错可以重复执行(一般是下载资源出错)
 
 注意:
+- 脚本会自动根据传入的MYSQL_USER和MYSQL_PASSWORD来登录数据库，创建TarsAdmin账号和授权Tars相关数据库供框架使用
 - 如果是ubuntu, 需要sudo linux-install.sh ...来执行
 - 注意: 执行完毕以后, 可以检查nodejs环境变量是否生效: node --version
 - 安装完成以后, 会在/etc/profile下写入nodejs相关的环境变量

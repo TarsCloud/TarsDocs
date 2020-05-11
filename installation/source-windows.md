@@ -166,14 +166,14 @@ tars_property是服务属性监控数据存储的数据库；
 
 进入c:\tars\cpp\deploy, 执行:
 ```
-busybox.exe sh ./windows-install.sh MYSQL_HOST MYSQL_ROOT_PASSWORD HOSTIP REBUILD(false[default]/true) SLAVE(false[default]/true) MYSQL_USER MYSQL_PORT
+busybox.exe sh ./windows-install.sh MYSQL_HOST MYSQL_PASSWORD HOSTIP REBUILD(false[default]/true) SLAVE(false[default]/true) MYSQL_USER MYSQL_PORT
 ```
 
 **注意: busybox.exe是一个通用工具, 继承了大量linux工具**
 
 MYSQL_HOST: mysql数据库的ip地址
 
-MYSQL_ROOT_PASSWORD: mysql数据库的root密码(注意root不要有太特殊的字符, 例如!, 否则shell脚本识别有问题, 因为是特殊字符)
+MYSQL_PASSWORD: mysql数据库的MYSQL_USER的密码(注意密码不要有太特殊的字符, 例如!, 否则shell脚本识别有问题, 因为是特殊字符)
 
 HOSTIP:  本机IP, 注意不能是127.0.0.1
 
@@ -213,6 +213,7 @@ GRANT, SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, RELOAD, PROCESS, REFERENCES
 busybox.exe sh ./windows-install.sh 192.168.7.153 tars2015 192.168.7.151 false true admin 3306
 
 ```
+- 脚本会自动根据传入的MYSQL_USER和MYSQL_PASSWORD来登录数据库，创建TarsAdmin账号和授权Tars相关数据库供框架使用
 
 **实际框架安装过程中, 会再创建一个用户, 并用这个用户来连接db,可以参见tars-install.sh脚本**
 
