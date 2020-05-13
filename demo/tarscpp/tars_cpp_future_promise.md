@@ -7,7 +7,7 @@
 *   Future/Promise方法；
 *   协程coco方法；
 
-sync/async方法在文档里都有[使用的样例](https://github.com/Tencent/Tars/blob/master/docs/tars_cpp_quickstart.md)，对于不满足sync/async，然后想在Tars下使用Future/Promise的同学看看此文或许会有帮助。
+sync/async方法在文档里都有[使用的样例](./tars_cpp_quickstart.md)，对于不满足sync/async，然后想在Tars下使用Future/Promise的同学看看此文或许会有帮助。
 
 文章内容、样例都是基于Tars框架下提供的Future/Promise进行分析，与boost、C++11、以及其他语言提供的Future/Promise不完全相同。
 
