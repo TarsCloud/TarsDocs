@@ -43,7 +43,7 @@ docker network create -d bridge --subnet=172.25.0.0/16 --gateway=172.25.0.1 tars
 - 注意 MySQL 的 IP 和 root 密码，后续构建中需要使用
 
 ```
-docker run -d \
+docker run -d -p 3306:3306 \
     --net=tars \
     -e MYSQL_ROOT_PASSWORD="123456" \
     --ip="172.25.0.2" \
