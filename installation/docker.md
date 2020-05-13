@@ -123,7 +123,7 @@ docker run -d \
 
 3. 目录说明
 
-创建时, 会将 docker 的目录/data/tars 映射到宿主机目录/data/tars, 启动 docker 后, 请检查宿主机目录: /data/tars, 正常情况下会有创建以下几个目录:
+创建时, 会将 docker 的目录/data/tars 映射到宿主机目录/data/framework, 启动 docker 后, 请检查宿主机目录: /data/tars, 正常情况下会有创建以下几个目录:
 
 - app_log: tars 服务的日志目录
 - tarsnode-data: tarsnode/data 目录(存放发布到 docker 的业务服务), 保证 docker 重启, 数据不丢失
