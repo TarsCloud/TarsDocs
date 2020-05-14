@@ -81,7 +81,7 @@
   * [HTTP服务开发与上线](dev/tarsjava/tars-http-server.md)
   * [生成接口调用文件](dev/tarsjava/tars-reference.md)
 * [性能测试]
-  * [tars java 压测代码 ](https://github.com/TarsCloud/TarsJava/tree/master/examples/stress-server)
+  * [tars java 压测代码 ](dev/tarsjava/stress-testing.md)
 
 ## TarsGo <a id="TarsGo"></a>
 * [pb2tarsgo](dev/tarsgo/pb2tarsgo.md)
