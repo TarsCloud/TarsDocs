@@ -2,7 +2,7 @@
 
 Tars协议是一种基于 IDL 实现的协议，与 Protocol Buffer 类似，它与语言无关，是一种类 C++ 标识符的语言，用于生成具体的服务接口文件。同时，作为一种二进制协议，相较于常见的 JSON 等文本协议，它的编解码效率更高、网络包占用空间更小。
 
-Tars文件使用.tars作为扩展名，对于.tars文件中的每个服务，生成代码时都会对应产生一个Java接口，若为服务端接口代码生成时会加上Servant后缀，若为客户端接口则会加上Prx后缀。Tars语言的语法规则请参考[Tars协议](/base/tars-protocol.md)
+Tars文件使用.tars作为扩展名，对于.tars文件中的每个服务，生成代码时都会对应产生一个Java接口，若为服务端接口代码生成时会加上Servant后缀，若为客户端接口则会加上Prx后缀。Tars语言的语法规则请参考[Tars协议](../../base/tars-protocol.md)
 
 
 
