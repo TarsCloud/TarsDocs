@@ -434,6 +434,8 @@ public interface HelloPrx {
 }
 ```
 
+异步的promise调用方式是Tars v1.7.0新增的功能，具体使用可以参考[Tars接口文件](./tars-reference.md)。
+
 ##### Tars客户端接口文件定义
 
 然后对客户端服务进行接口文件的定义。在resources目录下新建client.tars文件，内容如下：
