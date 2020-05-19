@@ -100,7 +100,7 @@ tars 进行配置文件解析的模块
 
 7. 线程数对应 SWOOLE 的进程数
 8. 最大连接数和队列最大长度、队列超时时间,对 php 服务不生效
-9. 点击添加和提交即可,接下来请进入开发 guidline
+9. 点击添加和提交即可,接下来请进入开发 guideline
 
 ![服务部署](https://tars-thirdpart-1300910346.cos.ap-guangzhou.myqcloud.com/assets/PHP/deploy_php_http_servant.png)
 
@@ -474,7 +474,7 @@ module SayHelloTafServiceServant
 ```
 
 - 关于 tars 文件的编写方式请前往[相关文档](../../kai-fa/tars_protocol.md)查看
-- 执行`cd scripts && ./php2tars.sh` 生成 tars 相关代码
+- 执行`cd scripts && ./tars2php.sh` 生成 tars 相关代码
 
 8. 实现 tars 接口，创建`src/impl/SayHello.php`
 
@@ -517,7 +517,7 @@ class SayHello implements SayHelloTafServiceServant
 
 return array(
     'appName' => 'HelloWorld',
-    'serverName' => 'PHPHttp',
+    'serverName' => 'PHPTars',
     'objName' => 'Hello',
     'withServant' => false, //决定是服务端,还是客户端的自动生成
     'tarsFiles' => array(
@@ -529,7 +529,7 @@ return array(
 
 ```
 
-- 执行`scripts/php2tars.php`生成客户端调用代码
+- 执行`cd scripts && ./tars2php.sh`生成客户端调用代码
 
 3. 编辑`src/controller/IndexController.php`添加如下代码
 
@@ -554,7 +554,7 @@ return array(
 
 4. 打包发布
 
-- 发布完成之后可以访问`http://{machine_ip}/index/TestGreeting`观察效果
+- 发布完成之后可以访问`http://{machine_ip}:{port}/index/TestGreeting`观察效果
 
 ## 5. <a id="chapter-5"></a>论坛邀请
 
