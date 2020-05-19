@@ -13,20 +13,15 @@
 本节主要介绍采用 docker 来完成框架的部署:
 
 - framework: Tars 框架 Docker 制作脚本, 制作的 docker 包含了框架核心服务和 web 管理平台
-- tars: Tars 框架 Docker 制作脚本, 和 framework 比, 增加了 java, nodejs 等运行时支持, 即可以把 java, nodejs 服务发布到 docker 里面(docker 里面安装了 jdk, node, php 环境)
-- 在本地开发环境中也可以使用`tarscloud/tars`镜像来替代 framework+node， tarscloud/tars 镜像是一个 framework+node 的集合环境镜像
+- tars-node: tarsnode节点的镜像，包含各语言的运行时环境，可以将服务发布到tars-node容器中
 
-Docker 开发环境部署可以很方便的在本地拉起服务开始服务的部署、开发和测试。开发环境部署采用单机多容器的部署方式模拟生产环境的服务部署结构。Docker 生产环境部署为生产主机部署 tars 服务提供参考，相关参数需要根据具体环境变更调整。
+Docker 开发环境部署可以很方便的在本地拉起服务开始服务的部署、开发和测试。开发环境部署采用单机多容器的部署方式模拟生产环境的服务部署结构。Docker 生产环境部署为生产主机部署 Tars 服务提供参考，相关参数需要根据具体环境变更调整。
 
 开始操作之前，请确保你的服务上已经安装了 docker 环境, 如果没有, 可以参考[docker install](docker-install.md)
 
 ## 2 <a id="chapter-2"></a>Docker 部署服务开发环境
 
 **如果你想源码自己编译 docker, 请参见 [Install](source.md)**
-
-使用 docker 安装 Tars 框架, 有两个镜像可供选择: framework / tars
-
-**注意: 区别在于是否希望把业务服务部署在镜像内(不推荐, 不方便 Tars 框架升级)**
 
 #### 2.1 创建 docker 虚拟网络
 

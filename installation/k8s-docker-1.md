@@ -6,7 +6,7 @@
 # 1 <a id="chapter-1"></a>介绍
 
 本文介绍一种将Tars部署在k8上的方案, 主要逻辑如下:
-- 将框架服务容器化, 使用docker: tarscloud/framework 或 tarscloud/tars
+- 将框架服务容器化, 使用docker: tarscloud/framework
 - 将tarsnode节点也容器化, 使用docker: tarscloud/tars-node
 - tars框架和tarsnode节点都作为pod部署在k8s上, pod运行的容器当成一台虚拟机
 - 通过tars web发布服务到这些容器中运行
