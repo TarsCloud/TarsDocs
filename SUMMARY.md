@@ -28,17 +28,16 @@
 
 ## 框架部署 <a id="deploy"></a>
 
-- [Tars 框架部署]
-  - [部署总体介绍](installation/README.md)
-  - [Docker 环境安装](installation/docker-install.md)
-  - [Mysql 安装](installation/mysql.md)
-  - [Linux/Mac 源码部署](installation/source.md)
-  - [Windows 源码部署](installation/source-windows.md)
-  - [TarsDocker 部署](installation/docker.md)
-  - [K8s Docker 部署](installation/k8s-docker-1.md)
-  - [TarsNode 部署](installation/node.md)
-  - [Tars 框架更新及扩容](installation/expand.md)
-  - [TarsWeb 说明](installation/web.md)
+- [部署总体介绍](installation/README.md)
+- [Docker 环境安装](installation/docker-install.md)
+- [Mysql 安装](installation/mysql.md)
+- [Linux/Mac 源码部署](installation/source.md)
+- [Windows 源码部署](installation/source-windows.md)
+- [TarsDocker 部署](installation/docker.md)
+- [K8s Docker 部署](installation/k8s-docker-1.md)
+- [TarsNode 部署](installation/node.md)
+- [Tars 框架更新及扩容](installation/expand.md)
+- [TarsWeb 说明](installation/web.md)
 
 ## 开发入门 <a id="enter"></a>
 
