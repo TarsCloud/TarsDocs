@@ -113,7 +113,7 @@ public String hello(int no, String name) {
 
 #### 服务暴露配置
 
-在WEB-INF下创建一个servants.xml的配置文件，服务编写后需要进程启动时加载配置暴露服务，配置如下:​
+在WEB-INF下创建一个servants.xml的配置文件，服务编写后需要进程启动时加载配置暴露服务，配置如下:
 
 ```text
 <?xml version="1.0" encoding="UTF-8"?>
@@ -664,6 +664,38 @@ DyeingSwitch.closeActiveDyeing();    //主动关闭染色开关接口
 
 > * 开启染色日志时传递的参数推荐填写服务名，如果填写为null则默认名称为default;
 > * 染色日志的日志级别和日志类型与原本日志相同，如果原本日志只打本地，那么染色日志也只打本地，原本日志要打远程染色日志才会打远程;
+
+在新版的TarsJava中使用了Logback作为日志系统，因此可以使用MDC来实现对日志的染色。MDC是Logback提供的在多线程中记录日志的一种技术，它的内部持有一个ThreadLocal对象，其中存储了一个Map，因此用户可以根据需要向其中添加键值对。通过实现Filter，配合MDC可以实现对日志的染色：
+
+```java
+public class MyFilter implements Filter {
+    private static final String TRACE_ID = "traceId"; 
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        ...
+        boolean success = putMDC(...);
+        ...
+        try {
+            chain.doFilter(request, response);
+        } finally {
+            if(success) {
+                MDC.remove(TRACE_ID);
+            }
+        }
+    }
+
+    private boolean putMDC(...) {
+        if (...){
+            String traceId = ...
+            MDC.put(TRACE_ID, traceId);
+        	return true;
+        }
+        return false;
+    }
+```
+
+
+
 
 * 被动染色：
 
