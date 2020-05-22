@@ -6,7 +6,8 @@
 > * [模块调用](#chapter-4)
 > * [检查问题](#chapter-5)
 > * [Token管理](#chapter-6)
-> * [web开发](#chapter-7)
+> * [密码遗忘处理](#chapter-7)
+> * [web开发](#chapter-8)
 
 # 1 <a id="chapter-1"></a>介绍
 
@@ -129,7 +130,17 @@ pm2 start tars-user-system
 
 Web的用户模块, 提供了token管理功能, 即可以创建token, 并通过web api来调用和获取相关数据, [请参见](../dev/tars-web-api.md)
 
-## 7 <a id="chapter-7"></a>web开发
+## 7 <a id="chapter-7"></a>密码遗忘处理
+
+如果admin的密码遗忘, 目前只能重置数据库中相关表的字段来解决:
+- 登录mysql
+- 查看db: db_user_system
+- 修改表: t_user_info
+- 重置admin用户记录, 将password重置为空
+
+登录web时, 将会提示设置admin密码.
+
+## 8 <a id="chapter-8"></a>web开发
 
 如果你是nodejs开发者, 你也可以参与到web的开发中, web开发方式如下:
 
