@@ -174,7 +174,7 @@ public abstract class TarsAbstractCallback implements com.qq.tars.net.client.Cal
 
 异步的promise调用方式是Tars v1.7.0新增的功能，该方法返回了一个CompletableFuture对象。CompletableFuture是jdk1.8中新加入的类，它实现了Future\<T>， CompletionStage\<T>两个接口，提供了十分强大的异步编程功能。在jdk1.8之前主要采用Future或注册CallBack函数来完成异步编程，这两种方式均存在一定的缺陷。Future在调用get方法获取结果时，若操作尚未完成会一直进行等待，此时可能造成CPU时间的浪费。并且Future无法组合完成链式调用，不能为上一个Future获得的结果执行更进一步的操作。而CallBack方式随着回调函数的不断嵌套，则会造成回调金字塔的现象。因此，在Tars v1.7.0版本中引入了CompletableFuture，可以通过注册触发器以回调的方式执行一系列的后续操作。
 
-CompletableFuture的API一般会有带Async后缀和不带Async后缀两种形式，不带Async后缀的方法会由当前的调用线程来执行任务，而带后Async后缀的方法则分为两种情况，若在参数中传入了Executor，则会从传入的线程池获取一个线程去执行任务，否则从全局的 ForkJoinPool.commonPool()中获取一个线程中执行这些任务。
+CompletableFuture的API一般会有带Async后缀和不带Async后缀两种形式，不带Async后缀的方法会由当前的调用线程来执行任务，而带Async后缀的方法则分为两种情况，若在参数中传入了Executor，则会从传入的线程池获取一个线程去执行任务，否则从全局的 ForkJoinPool.commonPool()中获取一个线程中执行这些任务。
 
 CompletableFuture提供了对计算结果完成时的处理操作，并都会返回一个CompletableFuture对象，因此可以执行链式调用，常见的操作有：
 

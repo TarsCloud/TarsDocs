@@ -15,6 +15,8 @@ Tars详细介绍参见 [目录](SUMMARY.md)。
 目前运行的操作系统平台如下：
 
 * Linux
+* Windows
+* Mac
 
 ### 支持语言
 
