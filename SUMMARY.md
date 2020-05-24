@@ -108,7 +108,6 @@
 
 - [环境搭建]
   - [搭建 php 环境](dev/tarsphp/Environment/php.md)
-  - [使用 docker](dev/tarsphp/Environment/docker.md)
 - [快速起步]
   - [搭建 HttpServer](dev/tarsphp/QuickStart/tars-http-server.md)
   - [搭建 TimerServer](dev/tarsphp/QuickStart/tars-timer-server.md)
