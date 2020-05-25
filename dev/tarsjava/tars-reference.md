@@ -176,26 +176,6 @@ public abstract class TarsAbstractCallback implements com.qq.tars.net.client.Cal
 
 CompletableFuture的API一般会有带Async后缀和不带Async后缀两种形式，不带Async后缀的方法会由当前的调用线程来执行任务，而带Async后缀的方法则分为两种情况，若在参数中传入了Executor，则会从传入的线程池获取一个线程去执行任务，否则从全局的 ForkJoinPool.commonPool()中获取一个线程中执行这些任务。
 
-CompletableFuture提供了对计算结果完成时的处理操作，并都会返回一个CompletableFuture对象，因此可以执行链式调用，常见的操作有：
-
-- thenApply：参数为上一个CompletableFuture的结果，返回持有新结果的CompletableFuture对象
-- thenRun：无参数，返回无结果的CompletableFuture对象
-- thenAccept：参数为上一个CompletableFuture的结果，返回无结果的CompletableFuture对象
-- handle：参数为上一个CompletableFuture的结果（异常完成时为空）和异常（正常完成时为空），返回持有新结果的CompletableFuture对象
-- whenComplete：参数为上一个CompletableFuture的结果（异常完成时为空）和异常（正常完成时为空），返回和上一个CompletableFuture相同的结果
-
-一个简单的结果转换示例如下：
-
-```Java
-public static void main(String[] args) throws Exception {
-        CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
-            return 10;
-        });
-        CompletableFuture<String> result = future.thenApply(i -> i + 10).thenApply(i-> String.valueOf(i));
-        System.out.println(result.get()); // 20
-    }
-```
-
 
 
 ## Java代码生成
