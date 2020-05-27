@@ -64,9 +64,9 @@ docker pull tarscloud/framework:latest
 docker pull tarscloud/framework:v{x.y.z}
 ```
 
-2. 启动镜像(目前只考虑了 linux 上, 时间和本机同步)
+**推荐使用指定版本，如：`v2.4.0`，便于开发和生产环境的部署，后期需要升级时可选择更新的版本tag，升级之前请先查看GitHub的changelog，避免升级到不兼容的版本造成损失。**
 
-最新版本:
+2. 启动镜像(目前只考虑了 linux 上, 时间和本机同步)
 
 ```sh
 # 挂载的/etc/localtime是用来设置容器时区的，若没有可以去掉
@@ -87,7 +87,7 @@ docker run -d \
     -v /etc/localtime:/etc/localtime \
     -p 3000:3000 \
     -p 3001:3001 \
-    tarscloud/framework:latest
+    tarscloud/framework:v2.4.0
 ```
 
 安装完毕后, 访问 `http://${your_machine_ip}:3000` 打开 web 管理平台
@@ -124,8 +124,6 @@ MYSQL_PORT: mysql 端口
 
 **如果希望多节点部署, 则在不同机器上执行 docker run ...即可, 注意参数设置!**
 
-最新版本:
-
 ```sh
 docker run -d \
     --name=tars-framework-slave \
@@ -140,7 +138,7 @@ docker run -d \
     --ip="172.25.0.4" \
     -v /data/framework-slave:/data/tars \
     -v /etc/localtime:/etc/localtime \
-    docker.tarsyun.com/tarscloud/framework:latest
+    docker.tarsyun.com/tarscloud/framework:v2.4.0
 ```
 
 **注意:SLAVE 参数不同**
@@ -197,7 +195,7 @@ docker run -d \
     -e INET=eth0 \
     -v /etc/localtime:/etc/localtime \
     -v /tmp/test/data:/data/tars \
-    tarscloud/framework:latest
+    tarscloud/framework:v2.4.0
 ```
 
 ### 3.2 Docker 部署 Tars 应用节点
@@ -223,8 +221,6 @@ docker run -d \
 - 关闭 docker, 注意需要用 docker stop .... 来关闭(docker 的使用请自行搜索)
 - 启动镜像, 注意不要 -d 参数
 
-最新版本:
-
 ```sh
 docker --name=tars-framework \
     --net=tars \
@@ -240,7 +236,7 @@ docker --name=tars-framework \
     -v /etc/localtime:/etc/localtime \
     -p 3000:3000 \
     -p 3001:3001 \
-    tarscloud/framework:latest
+    tarscloud/framework:v2.4.0
 ```
 
 - 查看 docker 输出是否有明显问题
@@ -283,7 +279,7 @@ services:
       internal:
         ipv4_address: 172.25.1.2
   framework:
-    image: tarscloud/framework:latest
+    image: tarscloud/framework:v2.4.0
     container_name: tars-framework
     ports:
       - "3000:3000"
