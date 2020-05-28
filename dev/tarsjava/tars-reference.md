@@ -64,7 +64,7 @@ module TestApp
 
 其中TestApp为名称空间，所有的struct，interface必须在名字空间中。
 
-服务端代码生成时需要设置pom.xml文件中的tars-maven-plugin依赖的servant项为true，即可获得Servant为后缀的接口文件，HelloServant.java：
+服务端代码生成时需要设置pom.xml文件中的tars-maven-plugin依赖的servant项为true，之后在工程的根目录下执行`mvn tars:tars2java`命令即可获得Servant为后缀的接口文件，HelloServant.java：
 
 ```java
 @Servant
@@ -80,7 +80,7 @@ public interface HelloServant {
 
 ## 客户端Tars文件
 
-在客户端进行服务调用时，首先需要获取服务端的tars文件，之后在客户端代码生成时需要设置pom.xml文件中的tars-maven-plugin依赖的servant项为false，即可获得Prx为后缀的接口文件，HelloPrx.java：
+在客户端进行服务调用时，首先需要获取服务端的tars文件，之后在客户端代码生成时需要设置pom.xml文件中的tars-maven-plugin依赖的servant项为false，之后在工程的根目录下执行`mvn tars:tars2java`命令即可获得Prx为后缀的接口文件，HelloPrx.java：
 
 ```java
 @Servant
@@ -175,9 +175,3 @@ public abstract class TarsAbstractCallback implements com.qq.tars.net.client.Cal
 异步的promise调用方式是Tars v1.7.0新增的功能，该方法返回了一个CompletableFuture对象。CompletableFuture是jdk1.8中新加入的类，它实现了Future\<T>， CompletionStage\<T>两个接口，提供了十分强大的异步编程功能。在jdk1.8之前主要采用Future或注册CallBack函数来完成异步编程，这两种方式均存在一定的缺陷。Future在调用get方法获取结果时，若操作尚未完成会一直进行等待，此时可能造成CPU时间的浪费。并且Future无法组合完成链式调用，不能为上一个Future获得的结果执行更进一步的操作。而CallBack方式随着回调函数的不断嵌套，则会造成回调金字塔的现象。因此，在Tars v1.7.0版本中引入了CompletableFuture，可以通过注册触发器以回调的方式执行一系列的后续操作。
 
 CompletableFuture的API一般会有带Async后缀和不带Async后缀两种形式，不带Async后缀的方法会由当前的调用线程来执行任务，而带Async后缀的方法则分为两种情况，若在参数中传入了Executor，则会从传入的线程池获取一个线程去执行任务，否则从全局的 ForkJoinPool.commonPool()中获取一个线程中执行这些任务。
-
-
-
-## Java代码生成
-
-在工程的根目录下执行`mvn tars:tars2java`命令，即可生成对应的代码。
