@@ -573,11 +573,11 @@ private final static Logger FLOW_LOGGER = Logger.getLogger("flow", LogType.LOCAL
 
 #### Logback日志系统
 
-TarsJava 1.7版本之后使用了Logback作为日志系统，Logback提供了十分灵活的配置项，可以为用户提供更加强大的日志功能。 
+TarsJava 1.7版本之后使用了Logback作为Tars日志系统，Logback提供了十分灵活的配置项，可以为用户提供更加强大的日志功能。 
 
 ##### 日志系统结构
 
-Logback日志系统由三部分组成，分别是Logger, Appenders, Layouts：
+Logback日志系统由三部分组成，分别是Logger, Appender, Layout：
 
 - Logger：日志记录器，每个Logger会附加到一个LoggerContext中，后者用于生成Logger，并将它们排列成树状层次结构。Logger是命名实体。它们的名称区分大小写，并且遵循分层命名规则：
 
@@ -596,9 +596,9 @@ Logback日志系统由三部分组成，分别是Logger, Appenders, Layouts：
   | X.Y         | none           | INFO            |
   | X.Y.Z       | none           | INFO            |
 
-- Appenders：用于编写日志事件的组件，可以指定日志输出到控制台、文件、远程服务器以及数据库等。
+- Appender：用于编写日志事件的组件，可以指定日志输出到控制台、文件、远程服务器以及数据库等。
 
-- Layouts：将日志信息进行格式化输出
+- Layout：将日志信息进行格式化输出
 
 ##### 配置文件
 
