@@ -51,7 +51,7 @@ Tars.js 根据不同的业务类型提供差异化运营方案：
 ### 可用模块列表
 
 由于篇幅有限未能展示所有能力，如果您有更多需求（如 RPC 调用等）可使用 Tars.js 所提供的模块（如下）实现：
-
+* [@tars/nodetools-cli](nodetools-cli) : 脚手架及自动打包发布工具，用于初始化Tars.js服务，并自动打包发布至Tars平台。
 * [@tars/stream ](tars-stream.md): Tars\(Tup\) 协议编解码模块，可结合 [tars2node](https://github.com/tars-node/tars2node) 使用。
 * [@tars/rpc](tars-rpc.md) : Tars RPC 调用模块。
 * [@tars/logs](tars-logs.md)：日志组件，包含（按大小、时间）滚动与远程日志。

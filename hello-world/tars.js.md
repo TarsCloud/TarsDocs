@@ -1,19 +1,27 @@
 
 
 # 目录
-> * [Tars rpc server开发](#chapter-1)
-> * [Tars http server开发](#chapter-2)
-> * [Tars client rpc调用](#chapter-3)
-> * [其它](#chapter-4)
+> * [脚手架和自动发布工具](#chapter-1)
+> * [Tars rpc server开发](#chapter-2)
+> * [Tars http server开发](#chapter-3)
+> * [Tars client rpc调用](#chapter-4)
+> * [其它](#chapter-5)
 
 ## Tars.js 快速入门
 本文档提供Tars nodejs几个开发场景的step by step快速入门，更多细节与特性可参考[Tars nodejs开发文档](https://tarscloud.github.io/TarsDocs/kai-fa/tars.js/)，以及其中各个子模块的readme文档。
 
-## 1. <a id="chapter-1"></a> Tars rpc server开发  
+## 1.  <a id="chapter-1"></a> 脚手架及自动发布工具
+Tars.js提供了 [脚手架和自动发布工具](https://github.com/tars-node/nodetools-cli)  
+
+安装：`npm install -g @tars/nodetools-cli`  
+初始化项目：`nodetools init`  
+打包发布：`nodetools upload`
+
+## 2. <a id="chapter-2"></a> Tars rpc server开发  
 和其它nodejs项目一样初始化项目  
 - 初始化 npm init
 - 安装依赖 npm install @tars/rpc
-### 1.1 编写tars协议文件  
+### 编写tars协议文件  
 首先参照[tars协议语言文档]()编写协议文件，规定主被调双方通信的数据结构和调用接口。本例实现一个简单的 Hello.tars：  
 ```
 module Hello
@@ -24,7 +32,7 @@ module Hello
 	};
 }; 
 ```
-### 1.2 协议文件转换
+### 协议文件转换
 协议编写完成后，通过[tars2node工具](https://github.com/tars-node/tars2node)将协议转换为rpc服务端代码。  
 `tars2node --server Hello.tars`  
 转换成功后代码目录如下：  
@@ -40,7 +48,7 @@ module Hello
 其中`Hello.js`和`HelloImp.js`就是自动生成的服务端代码。  
 若要使用typescript开发，可以用命令`tars2node --server --ts Hello.tars`来转换。  
 目前tars2node工具仅支持linux系统，无其它依赖项。若无linux开发环境，可以用docker启动一个centos或者ubuntu容器，下载工具并转换。
-### 1.3 rpc服务端代码实现  
+### rpc服务端代码实现  
 协议转换完成后，只需要在`HelloImp.js`文件中补全接口逻辑代码，并编写一个服务入口函数，即可完成rpc服务端代码编写。  
 HelloImp.js接口逻辑：  
 ```javascript
@@ -83,7 +91,7 @@ Tars.server.getServant(process.env.TARS_CONFIG || `./${APP_NAME}.${SERVER_NAME}.
 - process.env.TARS_CONFIG是tars启动器提供的nodejs启动器设置的环境变量，指向tars框架为服务生成的服务模板文件，模板文件中指定了服务监听端口、名字服务地址等设置。  
 - 入口文件的名字可以是app.js、index.js，或者自定义等，在[tars nodejs启动器文档](https://github.com/tars-node/node-agent)的入口点描述章节中查看详细说明。
 
-### 1.4 打包、部署、发布 
+### 打包、部署、发布 
 **代码打包**   
 tars nodejs打发布包使用的是tars-deploy模块，这个模块通过命令行运行，需要全局安装：`npm install @tars/deploy -g`  
 安装完后在服务根目录下运行 `tars-deploy 服务名`，即可在服务根目录下生成 `服务名.tgz`发布包，注意这里的服务名和入口点文件中的服务名，以及平台上部署时所用的服务名，要保持一致。  
@@ -106,9 +114,12 @@ tars nodejs打发布包使用的是tars-deploy模块，这个模块通过命令�
 访问 服务管理 -&gt; 服务管理 -&gt; 左侧菜单中选中刚刚部署的服务 -&gt; 发布管理 -&gt; 勾选节点 -&gt; 发布选中节点 -&gt; 上传发布包 -&gt; 发布  
 发布成功后，可以在服务管理页面看到节点状态是active。至此，打包部署发布的流程完毕，一个tars nodejs的rpc server可以提供服务了。  
 
-## 2. <a id="chapter-2"></a> Tars http server开发  
+**使用自动发布工具**
+使用自动发布工具可以省掉代码打包和节点发布的操作，直接在项目目录运行 `nodetools upload`即可。
+
+## 3. <a id="chapter-3"></a> Tars http server开发  
 第1节中介绍了如何开发一个tars协议的服务，并部署到Tars平台上运行。而tars平台对应用的通信协议是没有任何限制的，我们也可以将一个提供http协议的nodejs服务放到tars平台上运行。 除了数据编解码、组包协议与tars协议不同外，进程管理、监控上报、日志收集等特性都可以享受到。
-### 2.1 http服务代码实现
+### http服务代码实现
 根据业务需求以及您的喜好选择框架（！Tars 不限制您使用的框架！），编写业务代码：
 
 [Node.js 官网](https://nodejs.org/en/about/) 的HTTP Server例子
@@ -143,9 +154,9 @@ app.listen(hostname, port);
 ```
 
 上面的示例程序，在 Tars 平台上运行均只需要修改 IP 和端口即可，IP和端口可以从环境变量中获取。
-### 2.2 打包与部署
+### 打包与部署
 **代码打包**  
-同1.4节，rpc server打包流程。  
+同rpc server打包流程。  
 
 **服务部署**  
 登录Tars管理平台，访问 运维管理 -&gt; 服务部署。  
@@ -166,12 +177,12 @@ app.listen(hostname, port);
 - 协议一定要选非TARS，选错了则无法从环境变量获取ip和port  
 
 **节点发布**   
-同1.4节，节点发布流程。  
+同rpc server节点发布流程。  
 
-## 3. <a id="chapter-3"></a> Tars client rpc调用  
+## 4. <a id="chapter-4"></a> Tars client rpc调用  
 本节介绍如何通过Tars rpc client来调用tars rpc
  server。被调的rpc server不限语言，这里就以第1节中发布的HelloServer为例。
-### 3.1 协议文件转换  
+### 协议文件转换  
 `tars2node --client Hello.tars`  
 得到协议的客户端代理文件  
 ```
@@ -179,7 +190,7 @@ app.listen(hostname, port);
 `-- HelloProxy.js
 ```
 
-### 3.2 rpc client调用代码实现
+### rpc client调用代码实现
 ```javascript
 const Tars  = require("@tars/rpc").client;
 const Hello = require("./HelloProxy.js").Hello;
@@ -198,7 +209,7 @@ proxy.add(6, 7).then((data)=>{
 ```  
 这里实际开发时要注意proxy对象应该做成单例，不要每次调用都生成一个proxy对象。  
 
-### 3.3 复杂数据结构的操作  
+### 复杂数据结构的操作  
 第1节中示例协议只包含了很简单的int类型数据结构，实际应用中数据结构会相当复杂多变，Tars nodejs使用 [@tars/stream 模块](https://github.com/tars-node/stream) 来处理数据的编解码。  
 
 要记住一点，Tars rpc中接口调用过程中，除了基本类型数据可以直接使用js原生类型外，struct/map/list类型的数据都必须通过编解码模块封装的类型来操作，例如add接口的入参、出参变成这样：  
@@ -245,22 +256,22 @@ proxy.add(stReq).then((data)=>{
 
 不光struct数据类型，vector、map也有这一对 原生 —— tars对象转换的函数。 除了这两个函数，@tars/stream模块还提供了更多细节的编解码函数，如果有必要请参阅其readme文档。
 
-## 4. <a id="chapter-4"></a>其它
-### 4.1 tars服务模板配置 
+## 5. <a id="chapter-5"></a>其它
+### tars服务模板配置 
 tars服务启动时需要指定一个模板配置文件，我们在平台上部署服务时所设置的所有属性，以及一些系统默认的配置项，都会被写到此配置文件，可以在[tars模板配置文档](https://tarscloud.github.io/TarsDocs/kai-fa/mo-ban-pei-zhi.html) 中看到各种父模板的内容。  
 
 我们可以在 服务管理 -&gt; 服务列表 -&gt; 编辑 中按照模板配置格式添加自己的私有模板，服务发布时私有模板也会被合并到模板配置文件中。  
 
 服务中可以通过 [utils模块 —— 模板解析器](https://github.com/tars-node/utils) 来解析模板配置的内容，当服务在tars平台上运行时，可以通过`process.env.TARS_CONFIG`来获取模板配置的文件路径。  
 
-### 4.2 tars服务业务配置  
+### tars服务业务配置  
 除了tars平台为每个服务生成的模板配置文件外，每个服务可能还有自己的配置文件，存放例如业务db配置、某开放平台key配置等。  
 
 Tars平台提供业务配置文件管理的功能，配置文件添加方式为 服务管理 -&gt; 服务配置 -&gt; 添加配置  
 
 配置文件可以是任意格式，Tars nodejs通过 [tars-config模块](https://github.com/tars-node/config)来读取在平台中添加的业务配置文件，这里不细讲，在模块readme中可看到详细用法。
 
-### 4.3 一个服务启动多个Obj  
+### 一个服务启动多个Obj  
 当我们在一个服务中想启动多个Obj，有的实现tars协议提供rpc调用服务，有的实现http协议，可以这样操作：  
 
 在平台上，服务管理 -&gt; 服务列表 -&gt; 管理Servant -&gt; 添加Servant，填写要添加的Servant信息，例如在第1节的服务中添加一个非Tars协议的Servant。  
