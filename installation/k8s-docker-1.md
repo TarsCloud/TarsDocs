@@ -42,9 +42,14 @@ kubectl create namespace tars-test
 
 #部署tars(主控两台, 节点机5台)
 helm install tars-stable/tars --name tars-test --namespace tars-test \
-    --set tars.namespace=tars-test,tars.replicas=2,tarsnode.replicas=5,tars.host=domain.com,tars.port=6080
+    --set tars.namespace=tars-test,tars.replicas=2,tarsnode.replicas=5,tars.host=domain.com,tars.port=6080,tars.data=/data/shared/tars-data,mysql.data=/data/shared/mysql-data,mysql.rebuild=false
 
 
 ```
 
 部署了, 2台主控, 5台节点的tars环境, web访问的域名是: http://$namespace.$host.$port, 这里是: http://tars-test.domain.com:6080
+
+注意:
+- tars.data & mysql.data 需要在共享盘上(比如NFS), 否则pod漂移数据就丢失了
+- mysql.rebuild 为false, 否则mysql的pod漂移会导致数据被清空
+- mysql, tars, tars-node的pod都以StatefullSet形式存在
