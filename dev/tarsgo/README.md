@@ -18,17 +18,55 @@
 
 ## 安装
 
-* 对于安装OSS和其他基本服务, 请[安装文档](../../rumen/an-zhuang/README.md)
 * 要求Go 1.9.x 或以上版本,请查看[https://golang.org/doc/install](https://golang.org/doc/install)
-* go get -u github.com/TarsCloud/TarsGo/tars
+
+# <a id="main-chapter-2"></a>下载tarsgo代码
+
+安装go (比如安装目录: /usr/local/go), 设置好GOROOT, GOPATH, 比如, linux下:
+```
+export GOROOT=/usr/local/go  #设置为go安装的路径
+export GOPATH=/root/gocode   #GOPATH
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+```
+
+如果在国内, 可以设置go代理:  
+```
+go env -w GOPROXY=https://goproxy.cn   
+```
+
+另外请设置go模式为:
+```
+go env -w GO111MODULE=auto
+```
+
+进入 GOPATH目录
+```
+go get -u github.com/TarsCloud/TarsGo/tars
+```
+
+此时tarsgo下载到
+```
+$GOPATH/src/github.com/TarsCloud/TarsGo/
+```
+
+如果此目录不存在tarsgo源码, 请检查以上步骤.
+
+tarsgo源码下载完毕后, 请安装tars2go工具:
+```
+go install $GOPATH/src/github.com/TarsCloud/TarsGo/tars/tools/tars2go
+```
+
+## cmake管理代码规范
+
+linux下开发, 建议可以使用cmake来管理代码, [请参考](spec.md)
 
 ## 快速开始
 
-* 快速开始，请查看[快速入门](../../rumen/hello-world-1/hello-world.md)。
+* 快速开始，请查看[快速入门](../../hello-world/tarsgo.md)。
 
 ## 性能数据
 
-* 查看[性能数据](xing-neng-ce-shi.md)
+* 查看[性能数据](performance.md)
 
 ## 使用
 
@@ -59,7 +97,7 @@
 
 #### **构建 tars2go**
 
-编译并安装tars2go工具
+编译并安装tars2go工具(如果已经执行, 则忽略)
 
 ```text
 go install $GOPATH/src/github.com/TarsCloud/TarsGo/tars/tools/tars2go

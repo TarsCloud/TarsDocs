@@ -95,6 +95,7 @@
 
 ## TarsGo <a id="TarsGo"></a>
 
+- [cmake管理代码](dev/tarsgo/spec.md)
 - [pb2tarsgo](dev/tarsgo/pb2tarsgo.md)
 - [性能数据](dev/tarsgo/performance.md)
 - [案例]
