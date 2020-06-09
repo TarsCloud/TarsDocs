@@ -1,8 +1,8 @@
 ## Tars协议用例压测指南
 
-下面通过一个完整的例子介绍如何使用tb工具来实现压测tars service。
+tb工具支持两种协议方式(分别是json协议和自定义协议)来压测目标tars service，一般推荐使用json协议。
 
-以下步骤示例描述了如何使用tb客户端，之后持续发送test接口请求到服务端，服务端正确返回结果给tb客户端，tb周期性统计回包情况。
+以下步骤通过2个示例描述了如何使用tb客户端，之后持续发送test接口请求到服务端，服务端正确返回结果给tb客户端，tb周期性统计回包情况。
 
 
 ### 1.1. 接口定义实例
@@ -16,6 +16,7 @@ module tars
     {
         0 require  string aa;
         1 optional int    bb;
+        2 optional vector<byte>  cc;
     };
 
     struct DemoRsp
@@ -31,8 +32,46 @@ module tars
     };
 };
 ```
+### 1.2. Json协议使用说明
 
-### <a id="tb-chapter-1"></a>1.2. 用例文件生成
+##### 1.2.1. 用例文件生成
+
+使用tars2case工具自动生成tb工具所需的输入文件，工具根据各interface的rpc函数生成各自的case结尾用例文件和desc结尾的描述文件，其中描述文件内容不许变动。
+```text
+/usr/local/tars/cpp/tools/tars2case --json Demo.tars --dir=benchmark
+
+cd benchmark && ls
+echo.case  echo.desc  test.case  test.desc
+```
+
+##### 1.2.2. 用例文件修改
+
+用例文件根据tars2json规则自动生成之后，用户可以根据场景需要修改用例文件Json内容，其中vector和map结构数据支持向上下增长，对于vector<byte>格式内容支持string和array两种方式输入，采用string需要将原串进行bin2hex转换。
+此外，为了规避压测过程中的热key都落到同一台单机上，tb对简单结构支持随机生成内容，支持如下两种随机方式，随机内容必须以string形式存在。
+<strong>范围随机值</strong>用[1-100]表示，表示在1-100内随机出现, 必须是数字。
+<strong>限定随机值</strong>用[369,aaa,bbb]表示，表示在369,aaa,bbb中随机出现。
+- **例如echo用例内容**:
+```json
+{
+   "req":"string val",
+   "bb": "[100-10000]",
+   "cc": "123456A5B6"
+}
+```
+
+##### 1.2.3. 压测启动
+```text
+./tb -c 600 -s 6000 -D 192.168.31.1 -P 10505 -p json -S tars.DemoServer.DemoObj -M test -C test
+```
+tars协议参数说明
+```text
+  -S                   tars服务servant名称
+  -M                   tars服务接口方法
+  -C
+```
+
+### 1.3. 自定义协议使用说明
+##### <a id="tb-chapter-1"></a>1.3.1. 用例文件生成
 
 使用tars2case工具自动生成tb工具所需的用例，工具根据各interface的rpc函数生成各自的case，用户可以根据业务需要修改参数的值
 
@@ -43,7 +82,7 @@ cd benchmark && ls
 echo.case  test.case
 ```
 
-### <a id="tb-chapter-2"></a> 1.3. 用例编写说明
+##### <a id="tb-chapter-2"></a> 1.3.2. 用例编写说明
 
 文件分为上下部分，用"#"开头行分割，上半部分为RPC参数，下半部分为RPC调用参数的值，跟参数一一对应
 
@@ -64,7 +103,7 @@ echo.case  test.case
  5. map的表示方法:[key1=val1,key2=val2,key3=val3...]
  6. 3、4、5可以嵌套使用
 
-- **例如**：
+- **例如**:
 ```text
 vector<string>|struct<string, int>|map<string, string>
 #######
@@ -73,7 +112,7 @@ vector<string>|struct<string, int>|map<string, string>
 [abc=def, dfd=bbb]
 ```
 
-### 1.4. 压测启动例子
+##### 1.3.3. 压测启动例子
 ```text
 ./tb -c 600 -s 6000 -D 192.168.31.1 -P 10505 -p tars -S tars.DemoServer.DemoObj -M test -C test.txt
 ```
@@ -82,13 +121,13 @@ tars协议参数说明
 ```text
   -S                   tars服务servant名称
   -M                   tars服务接口方法
-  -C                   压测用例文件，详见[用例文件生成](#main-chapter-1)和[用例编写说明](#main-chapter-2)
+  -C                   压测用例文件，详见[用例文件生成](#tb-chapter-1)和[用例编写说明](#tb-chapter-2)
 ```
 
-### 1.5. 压测停止
+### 1.4. 压测停止
 主动停止： ctrl+C or killall tb，等待数秒之后输出最终统计结果。<br/>
 被动停止： 压测持续时间默认为1小时，1小时之后停止压测并输出统计结果，可以通过-I参数调节压测时间。
 
 
-### 1.6. 压测结果显示
+### 1.5. 压测结果显示
 ![压测结果](../assets/tb_tars_result.png)
