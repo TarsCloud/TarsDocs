@@ -58,16 +58,16 @@ cmake ..
 
 # 4 <a id="chapter-4"></a>服务构建和一键发布
 
-采用最新版本的[TarsWeb](https://github.com/TarsCloud/TarsWeb), 就可以实现在线压测Tars服务，比较推荐采用这种方式，构建步骤参考如下:
+采用最新版本的[TarsWeb](https://github.com/TarsCloud/TarsWeb), 就可以实现在线压测Tars服务，构建步骤参考如下:
 ```shell
-   ./install.sh webhost tarstoken adminsip nodeip
+./install.sh webhost webtoken adminsip nodeip
 ```
 
 参数说明
 ```text
-  webhost                  TarsWeb管理端的host或ip:port
-  tarstoken                TarsWeb管理端的token，可以通过管理端获取http://webhost:3001/auth.html#/token
-  adminsip                 压测管理服务AdminServer部署的IP地址，AdminServer必须单点部署，建议和tarsregistry部署在一起。
-  nodeip                   压测节点服务NodeServer部署的IP地址，尽量和AdminServer分开, 部署成功之后建议在管理端扩容，部署的机器越多，支持并行压测能力就越强。
+webhost                  TarsWeb管理端的host或ip:port
+webtoken                 TarsWeb管理端的token，可以通过管理端获取http://webhost:3001/auth.html#/token
+adminsip                 压测管理服务AdminServer部署的IP地址，AdminServer必须单点部署，建议和tarsregistry部署在一起。
+nodeip                   压测节点服务NodeServer部署的IP地址，尽量和AdminServer分开, 部署成功之后建议在管理端扩容，部署的机器越多，支持并行压测能力就越强。
 ```
 
