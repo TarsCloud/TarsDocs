@@ -1,7 +1,7 @@
 # 目录
 > * [介绍](#chapter-1)
 > * [依赖环境](#chapter-2)
-> * [工具构建](#chapter-3)
+> * [构建步骤](#chapter-3)
 > * [一键发布](#chapter-4)
 
 # 1 <a id="chapter-1"></a>介绍
@@ -47,26 +47,28 @@ make install
 至此, Tars Cpp的编译环境已经完成, 下一步可以实现tb工具了.
 
 
-# 3 <a id="chapter-3"></a>工具构建
+# 3 <a id="chapter-3"></a>工具和服务构建
 
-主要编译步骤如下，编译成功后文件生成在build/bin/tb目录下。
+主要编译步骤如下，编译成功后tb工具生成在build/bin目录下，它是一个可执行程序，可以直接压测[TARS协议](tars-guide.md)/[HTTP协议](http-guide.md)的服务。
 ```
 git clone https://github.com/TarsCloud/TarsBenchmark.git
 cd TarsBenchmark && mkdir build && cd build
-cmake ..
+cmake .. && make all
 ```
 
-# 4 <a id="chapter-4"></a>服务构建和一键发布
+此外，还会生成两个压测服务可执行文件(NodeServer和AdminServer)，可以通过如下步骤发布到Web平台，就可以实现线上压测，节省开发体力。
 
-采用最新版本的[TarsWeb](https://github.com/TarsCloud/TarsWeb), 就可以实现在线压测Tars服务，构建步骤参考如下:
+# 4 <a id="chapter-4"></a>一键发布
+
+采用最新版本的[TarsWeb](https://github.com/TarsCloud/TarsWeb), 就可以实现在线压测Tars服务，一键发布步骤如下:
 ```shell
-./install.sh webhost webtoken adminsip nodeip
+./install.sh webhost token adminsip nodeip
 ```
 
 参数说明
 ```text
 webhost                  TarsWeb管理端的host或ip:port
-webtoken                 TarsWeb管理端的token，可以通过管理端获取http://webhost:3001/auth.html#/token
+token                    TarsWeb管理端的token，可以通过管理端获取http://webhost:3001/auth.html#/token
 adminsip                 压测管理服务AdminServer部署的IP地址，AdminServer必须单点部署，建议和tarsregistry部署在一起。
 nodeip                   压测节点服务NodeServer部署的IP地址，尽量和AdminServer分开, 部署成功之后建议在管理端扩容，部署的机器越多，支持并行压测能力就越强。
 ```

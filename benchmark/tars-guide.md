@@ -51,7 +51,7 @@ echo.case  echo.desc  test.case  test.desc
 
 ##### 1.2.2. 用例文件修改
 
-  用例文件根据tars2json规则自动生成之后，用户可以根据场景需要修改用例文件Json内容，其中vector和map结构数据支持向上下增长，对于vector<byte>格式内容支持string和array两种方式输入，采用string需要将原串进行bin2hex转换。此外，为了规避压测过程中的热key都落到同一台单机上，tb对简单结构支持随机生成内容，支持如下两种随机方式，随机内容必须以string形式存在。<br>
+  用例文件根据tars2json规则自动生成之后，用户可以根据场景需要修改用例文件Json内容，其中vector和map结构数据支持向上下增长，对于vector<byte>格式内容支持string和array两种方式输入，采用string需要将原串进行bin2hex转换。 此外，为了规避压测过程中的热key效应，避免后端请求落到同一台单机上，tb对tars结构中Number和string支持生成随机内容，通过如下两种随机方式(Value必须以string)。<br>
   <范围随机值>用[1-100]表示，表示在1-100内随机出现, 必须是数字。<br>
   <限定随机值>用[369,aaa,bbb]表示，表示在369,aaa,bbb中随机出现。
 
