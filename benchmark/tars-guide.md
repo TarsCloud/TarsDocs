@@ -51,9 +51,9 @@ echo.case  echo.desc  test.case  test.desc
 
 ##### 1.2.2. 用例文件修改
 
-  用例文件根据tars2json规则自动生成之后，用户可以根据场景需要修改用例文件Json内容，其中vector和map结构数据支持向上下增长，对于vector<byte>格式内容支持string和array两种方式输入，采用string需要将原串进行bin2hex转换。 此外，为了规避压测过程中的热key效应，避免后端请求落到同一台单机上，tb对tars结构中Number和string支持生成随机内容，通过如下两种随机方式(Value必须以string)。<br>
-  <范围随机值>用[1-100]表示，表示在1-100内随机出现, 必须是数字。<br>
-  <限定随机值>用[369,aaa,bbb]表示，表示在369,aaa,bbb中随机出现。
+  用例文件根据tars2json规则自动生成之后，用户可以根据场景需要修改用例文件Json内容，其中vector和map结构数据支持向上下增长，对于vector<byte>格式内容支持string和array两种方式输入，采用string需要将原串进行bin2hex转换。 此外，为了规避压测过程中的热key效应，避免后端请求落到同一台单机上，tb对tars结构中Number和string支持生成随机内容，通过如下两种随机方式(Value必须以string)。
+ 1. <范围随机值>用[1-100]表示，表示在1-100内随机出现, 必须是数字。
+ 2. <限定随机值>用[369,aaa,bbb]表示，表示在369,aaa,bbb中随机出现。
 
  **用例内容**: 例如echo接口
 ```json
@@ -76,7 +76,7 @@ tars协议参数说明
 ```
 
 ### 1.3. <a id="chapter-3"></a>自定义协议使用说明
-##### <a id="tb-chapter-1"></a>1.3.1. 用例文件生成
+##### </a>1.3.1. 用例文件生成
 
 使用tars2case工具自动生成tb工具所需的用例，工具根据各interface的rpc函数生成各自的case，用户可以根据业务需要修改参数的值
 
@@ -87,7 +87,7 @@ cd benchmark && ls
 echo.case  test.case
 ```
 
-##### <a id="tb-chapter-2"></a> 1.3.2. 用例编写说明
+##### </a> 1.3.2. 用例编写说明
 
 文件分为上下部分，用"#"开头行分割，上半部分为RPC参数，下半部分为RPC调用参数的值，跟参数一一对应
 
