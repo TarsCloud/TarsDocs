@@ -50,7 +50,7 @@
   - [Tars.js](env/tars.js.md)
 - [HelloWorld]
   - [服务开发介绍](hello-world/README.md)
-  - [TarsGo 快速入门](hello-world/hello-world.md)
+  - [TarsGo 快速入门](hello-world/tarsgo.md)
   - [TarsJava 快速入门](hello-world/tarsjava.md)
   - [TarsCPP 快速入门](hello-world/tarscpp.md)
   - [TarsPHP 快速入门](hello-world/tarsphp.md)
