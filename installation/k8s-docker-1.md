@@ -15,7 +15,7 @@
 
 ## 2 <a id="chapter-2"></a>k8s部署
 
-先安装helm, heml的使用自己学习, 简单的说helm是一种部署服务到k8s的工具.
+先安装helm, helm的使用自己学习, 简单的说helm是一种部署服务到k8s的工具.
 
 下面给出helm安装的一种方式, 其他请参见helm官网
 ```
