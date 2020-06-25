@@ -1,6 +1,16 @@
 [Click to View English](https://tarscloud.github.io/TarsDocs_en/)
 
-## Tars
+# Tars
+
+- Twitter: [@TarsCloud](https://twitter.com/TarsCloud)
+- [官网](http://tarscloud.org/)
+- [新闻](https://tarscloud.org/feed/newsroom)
+- qq技术交流群群：579079160、669339903
+- 微信公众号: TarsCloud
+
+[更多联系方式请点击](https://tarscloud.org/about/contacts)
+
+## 简介
 
 Tars这个名字取自于电影"星际穿越"中的机器人，它是基于名字服务使用Tars协议的高性能RPC开发框架，配套一体化的运营管理平台，并通过伸缩调度，实现运维半托管服务。
 
@@ -47,11 +57,4 @@ docker            |构建tars docker脚本
 
 Tars的开源协议为BSD-3-Clause，详情参见 [LICENSE](license.md)。
 
-### 联系方式
-
-qq技术交流群群：579079160、669339903。
-
-微信公众号：TARS星球
-
-推特地址：[@TarsCLoud](https://twitter.com/TarsCloud)
 
