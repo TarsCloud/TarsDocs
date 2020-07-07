@@ -67,7 +67,7 @@
 ## Tars网关 <a id="gateway"></a>
 
 - [网关介绍](gateway/README.md)
-- [编译安装](gateway/insall.md)
+- [编译安装](gateway/install.md)
 - [服务配置说明](gateway/config.md)
 - [系统配置手册](gateway/operate.md)
 
