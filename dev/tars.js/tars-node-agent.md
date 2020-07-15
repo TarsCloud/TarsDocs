@@ -441,7 +441,7 @@ TARS 配置文件：
 
 ### 架构
 
-[![PM2](https://github.com/tars-node/node-agent/raw/master/doc/architecture.png?raw=true)](https://github.com/tars-node/node-agent/blob/master/doc/architecture.png?raw=true)
+![](../../assets/tarsnode_nodeagent_master_doc_architecture.png)
 
 `node-agent` 在启动（也就是执行 `cluster.fork`）服务脚本时，并不会直接载入对应脚本，而是载入 `node-agent/ProcessContainer.js` 来对服务脚本进行包装，之后再调用系统的 `require` 载入执行脚本
 
