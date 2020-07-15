@@ -20,7 +20,7 @@ cmake .. -DTARS_SSL=ON
 
 在tars服务平台，选中相应的服务，编辑servant，修改endpoint协议，将原先的tcp或udp改为ssl.
 
-![](../assets/tars_ssl_endpoint.png)
+![](../../assets/tars_ssl_endpoint.png)
 
 ### 修改被调用方的配置文件添加证书配置
 
