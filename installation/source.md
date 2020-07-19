@@ -368,12 +368,14 @@ add to contab:
 
 Tars Framework部署好以后, 在主机节点上会安装tars-web(从机节点不会安装), tars-web采用nodejs实现, 由两个服务组成.
 
-查看tars-web的模块:
+### tars-web 模块说明
+
 ```
 pm2 list
 ```
 
-输出如下:
+web(<v2.4.7) 输出如下:
+
 ```
 [root@8a17fab70409 data]# pm2 list
 ┌────┬─────────────────────────┬─────────┬─────────┬──────────┬────────┬──────┬──────────┬──────────┬──────────┬──────────┬──────────┐
@@ -384,6 +386,17 @@ pm2 list
 └────┴─────────────────────────┴─────────┴─────────┴──────────┴────────┴──────┴──────────┴──────────┴──────────┴──────────┴──────────┘
 ```
 
+web(>=v2.4.7) 输出如下:
+```
+[root@8a17fab70409 data]# pm2 list
+┌────┬─────────────────────────┬─────────┬─────────┬──────────┬────────┬──────┬──────────┬──────────┬──────────┬──────────┬──────────┐
+│ id │ name                    │ version │ mode    │ pid      │ uptime │ ↺    │ status   │ cpu      │ mem      │ user     │ watching │
+├────┼─────────────────────────┼─────────┼─────────┼──────────┼────────┼──────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+│ 0  │ tars-node-web           │ 2.4.7   │ fork    │ 1602     │ 2m     │ 0    │ online   │ 0.1%     │ 65.1mb   │ root     │ disabled │
+└────┴─────────────────────────┴─────────┴─────────┴──────────┴────────┴──────┴──────────┴──────────┴──────────┴──────────┴──────────┘
+```
+
+
 **如果找不到pm2, 一般是环境变量没生效, 请先执行: source /etc/profile, 安装过程中会写这个文件**
 
 ubuntu下由于权限问题, 如果执行pm2出错(环境变量没生效): 
@@ -393,6 +406,8 @@ sudo -s source /etc/profile
 sudo chown ubuntu:ubuntu /home/ubuntu/.pm2/rpc.sock /home/ubuntu/.pm2/pub.sock
 pm2 list
 ```
+
+### tars-web < v2.4.7
 
 **tars-web由两个模块组成**
 - tars-node-web: tars-web主页面服务, 默认绑定3000端口, 源码对应web目录
@@ -416,6 +431,29 @@ cd /usr/local/app/web; npm run start
 npm run start 启动服务, 可以观察控制台的输出, 如果有问题, 会有提示.
 
 **正式运行建议: pm2 start tars-node-web; pm2 start tars-user-system**
+
+### tars-web >= v2.4.7
+
+**tars-web由一个模块组成**
+- tars-node-web: tars-web主页面服务, 默认绑定3000端口, 源码对应web目录
+
+**web采用nodejs+vue来实现, 最终的安装运行目录如下:**
+
+```
+/usr/local/app/web
+```
+
+如果pm2 list中查看模块启动不了, 可以进入改目录定位问题:
+
+```
+cd /usr/local/app/web; npm run start
+```
+
+npm run start 启动服务, 可以观察控制台的输出, 如果有问题, 会有提示.
+
+**正式运行建议: pm2 start tars-node-web; pm2 start tars-user-system**
+
+### 自动启动Tars
 
 注意重启机器后, pm2模块会丢失, 请将以下语句加入到开机启动中(比如: /etc/rc.local):
 ```
