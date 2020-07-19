@@ -168,7 +168,7 @@
 - [业务配置](dev/tars-config.md)
 - [服务监控](dev/tars-monitor.md)
 - [模板配置](dev/tars-template.md)
-- [Tars 用户体系模块使用指引](dev/tars-web-user.md)
+- [用户体系模块使用指引](dev/tars-web-user.md)
 - [管理平台 API](dev/tars-web-api.md)
 - [调用链](dev/tars-call-chain.md)
 - [IDC 分组](dev/tars-idc-set.md)
