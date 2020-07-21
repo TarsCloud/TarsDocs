@@ -2,7 +2,7 @@
 
 我们测试机器的配置如下图所示，我们共有三台配置相同的机器，其中两台作为客户端，一台作为服务端：
 
-![](../assets/tars_performance.png)
+![](../../assets/tars_performance.png)
 
 机器配置如下
 
