@@ -216,7 +216,7 @@ tars_property是服务属性监控数据存储的数据库；
 进入/usr/local/tars/cpp/deploy, 执行:
 ```
 chmod a+x linux-install.sh
-./linux-install.sh MYSQL_HOST MYSQL_PASSWORD INET REBUILD(false[default]/true) SLAVE(false[default]/true) MYSQL_USER MYSQL_PORT
+./linux-install.sh MYSQL_HOST MYSQL_PASSWORD INET REBUILD(false[default]/true) SLAVE(false[default]/true) MYSQL_USER MYSQL_PORT
 ```
 
 MYSQL_HOST: mysql数据库的ip地址
