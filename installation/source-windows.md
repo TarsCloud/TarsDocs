@@ -166,7 +166,7 @@ tars_property是服务属性监控数据存储的数据库；
 
 进入c:\tars\cpp\deploy, 执行:
 ```
-busybox.exe sh ./windows-install.sh MYSQL_HOST MYSQL_PASSWORD HOSTIP REBUILD(false[default]/true) SLAVE(false[default]/true) MYSQL_USER MYSQL_PORT
+busybox.exe sh ./windows-install.sh MYSQL_HOST MYSQL_PASSWORD HOSTIP REBUILD(false[default]/true) SLAVE(false[default]/true) MYSQL_USER MYSQL_PORT
 ```
 
 **注意: busybox.exe是一个通用工具, 继承了大量linux工具**
