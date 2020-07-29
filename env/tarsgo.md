@@ -12,7 +12,7 @@ Golang环境准备，tarsgo要求golang版本在1.9.x及以上。
 ```text
 cd $GOPATH/src/github.com/TarsCloud/TarsGo/tars/tools/tars2go && go build . 
 
-cp tars2go $GOPATH/bin
+cp tars2go $GOPATH/bin/
 ```
 
 检查下GOPATH路径下tars是否安装成功。
