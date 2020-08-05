@@ -131,11 +131,11 @@ git clone https://github.com/TarsCloud/TarsWeb.git web
 框架可以部署在单机或者多机上, 多机是一主多从模式, 通常一主一从足够了:
 
 - 主节点只能有一台, 从节点可以多台
-- 主节点默认会安装:tarsAdminRegistry, tarspatch, tarsweb, tarslog, 这几个服务在从节点上不会安装
-- tarsAdminRegistry只能是单点(带有发布状态)
-- tarslog也只能是单点, 否则日志会分散在多机上
+- 主节点默认会安装:tarsAdminRegistry, tarspatch, tarsweb, tarslog, tarsstat, tarsproperty, 这几个服务在从节点上不会安装
+- tarslog用于收集所有服务的远程日志, 建议单节点, 否则日志会分散在多机上
 - 原则上tarspatch, tarsweb可以是多点, 如果部署成多点, 需要把c:\tars-install\patchs目录做成多机间共享, 否则无法正常发布服务
-- 可以后续把tarslog部署到大硬盘服务器上
+- 虽然tarsAdminRegistry上记录了正在发布服务的状态, 但是原则上也可以可以多节点, tarsweb调用tarsAdminRegistry是hash调用
+- 后续强烈建议把tarslog部署到大硬盘服务器上
 - 实际使用中, 即使主从节点都挂了, 也不会影响框架上服务的正常运行, 只会影响发布
 - 一键部署会自动安装好web, 同时开启web权限
 
