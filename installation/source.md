@@ -15,10 +15,10 @@
 软件 |软件要求
 ------|--------
 linux内核版本:      |	2.6.18及以上版本（操作系统依赖）
-gcc版本:          	|   4.8.2及以上版本、glibc-devel（c++语言框架依赖）
+gcc版本:           |   4.8.2及以上版本、glibc-devel（c++语言框架依赖）
 bison工具版本:      |	2.5及以上版本（c++语言框架依赖）
 flex工具版本:       |	2.5及以上版本（c++语言框架依赖）
-cmake版本：       	|   3.2及以上版本（c++语言框架依赖）
+cmake版本：         |   3.2及以上版本（c++语言框架依赖）
 mysql版本:          |   4.1.17及以上版本（框架运行依赖）
 nvm版本：           |   0.35.1及以上版本（web管理系统依赖, 脚本安装过程中自动安装）
 node版本：          |   12.13.0及以上版本（web管理系统依赖, 脚本安装过程中自动安装）
@@ -180,11 +180,11 @@ drwxr-xr-x 12 root root    4096 Apr  3 21:07 web
 框架可以部署在单机或者多机上, 多机是一主多从模式, 通常一主一从足够了:
 
 - 主节点只能有一台, 从节点可以多台
-- 主节点默认会安装:tarsAdminRegistry, tarspatch, tarsweb, tarslog, 这几个服务在从节点上不会安装
-- tarsAdminRegistry只能是单点(带有发布状态)
-- tarslog也只能是单点, 否则日志会分散在多机上
+- 主节点默认会安装:tarsAdminRegistry, tarspatch, tarsweb, tarslog, tarsstat, tarsproperty, 这几个服务在从节点上不会安装
+- tarslog用于收集所有服务的远程日志, 建议单节点, 否则日志会分散在多机上
 - 原则上tarspatch, tarsweb可以是多点, 如果部署成多点, 需要把/usr/local/app/patchs目录做成多机间共享(可以通过NFS), 否则无法正常发布服务
-- 可以后续把tarslog部署到大硬盘服务器上
+- 虽然tarsAdminRegistry上记录了正在发布服务的状态, 但是原则上也可以可以多节点, tarsweb调用tarsAdminRegistry是hash调用
+- 后续强烈建议把tarslog部署到大硬盘服务器上
 - 实际使用中, 即使主从节点都挂了, 也不会影响框架上服务的正常运行, 只会影响发布
 - 一键部署会自动安装好web(自动下载nodejs, npm, pm2等相关依赖), 同时开启web权限
 
