@@ -52,12 +52,20 @@ docker pull   mysql:5.6
 ##创建虚拟网络
 docker network create -d bridge --subnet=172.25.0.0/16 --gateway=172.25.0.1 tars
 ## 数据库
-docker run -d    --net=tars     -e MYSQL_ROOT_PASSWORD="root@appinside"    --ip="172.25.0.2"      --name=tars-mysql    mysql:5.6
+docker run -d \
+--net=tars \
+-e MYSQL_ROOT_PASSWORD="root@appinside" \
+--ip="172.25.0.2" \
+--name=tars-mysql \
+mysql:5.6
 #等30秒数据库启动成功
 sleep 30s
 #启动系统框架
 #注意，本地的电脑不能占用3001、3000，可以使用你的电脑Ip
-docker run -d --net=tars -e MYSQL_HOST=172.25.0.2 -e MYSQL_ROOT_PASSWORD='root@appinside' \
+docker run -d \
+--net=tars \
+-e MYSQL_HOST=172.25.0.2 \
+-e MYSQL_ROOT_PASSWORD='root@appinside' \
 -eREBUILD=false  -eSLAVE=false \
 -e INET=eth0 \
 --ip="172.25.0.4" \
