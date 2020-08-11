@@ -31,7 +31,7 @@ Tars支持使用Spring配置servant，使用此功能需要依赖tars-spring.jar
 <dependency>
       <groupId>com.tencent.tars</groupId>
       <artifactId>tars-spring</artifactId>
-      <version>1.7.0</version>
+      <version>1.7.2</version>
 </dependency>
 ```
 
@@ -172,7 +172,7 @@ Tars支持使用通过spring boot的方式编写Tars服务，使用此功能需�
         <dependency>
             <groupId>com.tencent.tars</groupId>
             <artifactId>tars-spring-boot-starter</artifactId>
-            <version>1.7.0</version>
+            <version>1.7.2</version>
         </dependency>
     </dependencies>
 ```
@@ -184,7 +184,7 @@ Tars支持使用通过spring boot的方式编写Tars服务，使用此功能需�
 <plugin>
 	<groupId>com.tencent.tars</groupId>
 	<artifactId>tars-maven-plugin</artifactId>
-	<version>1.7.0</version>
+	<version>1.7.2</version>
 	<configuration>
 		<tars2JavaConfig>
 			<!-- tars文件位置 -->
@@ -349,7 +349,7 @@ public class QuickStartApplication {
         <dependency>
             <groupId>com.tencent.tars</groupId>
             <artifactId>tars-spring-boot-starter</artifactId>
-            <version>1.7.0</version>
+            <version>1.7.2</version>
         </dependency>
     </dependencies>
 ```
@@ -361,7 +361,7 @@ public class QuickStartApplication {
 <plugin>
 	<groupId>com.tencent.tars</groupId>
 	<artifactId>tars-maven-plugin</artifactId>
-	<version>1.7.0</version>
+	<version>1.7.2</version>
 	<configuration>
 		<tars2JavaConfig>
 			<!-- tars文件位置 -->
@@ -434,7 +434,7 @@ public interface HelloPrx {
 }
 ```
 
-异步的promise调用方式是Tars v1.7.0新增的功能，具体使用可以参考[Tars接口文件](./tars-reference.md)。
+异步的promise调用方式是Tars v1.7.2新增的功能，具体使用可以参考[Tars接口文件](./tars-reference.md)。
 
 ##### Tars客户端接口文件定义
 
@@ -459,7 +459,7 @@ module TestApp
 <plugin>
 	<groupId>com.tencent.tars</groupId>
 	<artifactId>tars-maven-plugin</artifactId>
-	<version>1.7.0</version>
+	<version>1.7.2</version>
 	<configuration>
 		<tars2JavaConfig>
 			<!-- tars文件位置 -->
