@@ -6,7 +6,7 @@
 
 接口文件定义是通过Tars接口描述语言来定义，在src/main/resources目录下建立hello.tars文件，内容如下
 
-```text
+```java
 module TestApp 
 {
 	interface Hello
@@ -20,7 +20,7 @@ module TestApp
 
 提供插件编译生成java代码，在tars-maven-plugin添加生成java文件配置
 
-```text
+```xml
 <plugin>
 	<groupId>com.tencent.tars</groupId>
 	<artifactId>tars-maven-plugin</artifactId>
@@ -48,7 +48,7 @@ module TestApp
 
 在工程根目录下执行mvn tars:tars2java
 
-```text
+```java
 @Servant
 public interface HelloServant {
 
@@ -60,7 +60,7 @@ public interface HelloServant {
 
 新创建一个HelloServantImpl.java文件，实现HelloServant.java接口
 
-```text
+```java
 public class HelloServantImpl implements HelloServant {
 
     @Override
@@ -74,7 +74,7 @@ public class HelloServantImpl implements HelloServant {
 
 在resources下创建一个servants.xml的配置文件，服务编写后需要进程启动时加载配置暴露服务，配置如下
 
-```text
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <servants>
 	<servant name="HelloObj">
@@ -95,18 +95,18 @@ public class HelloServantImpl implements HelloServant {
 * 构建客户端工程项目
 * 添加依赖
 
-```text
+```xml
 <dependency>
 	<groupId>com.tencent.tars</groupId>
    	<artifactId>tars-client</artifactId>
-   	<version>1.6.1</version>
+   	<version>1.7.2</version>
    	<type>jar</type>
 </dependency>    
 ```
 
 * 添加插件
 
-  ```text
+```xml
   <plugin>
    	<groupId>com.tencent.tars</groupId>
    	<artifactId>tars-maven-plugin</artifactId>
@@ -130,11 +130,15 @@ public class HelloServantImpl implements HelloServant {
    		</tars2JavaConfig>
    	</configuration>
   </plugin>
-  ```
 
-```text
+```
+
+
 - 根据服务tars接口文件生成代码
-​```java
+
+
+```java
+
 @Servant
 public interface HelloPrx {
       
@@ -148,11 +152,14 @@ public interface HelloPrx {
 }
 ```
 
+
 * 同步调用
 
-```text
+```java
+
 public static void main(String[] args) {
-	CommunicatorConfig cfg = new CommunicatorConfig();
+		CommunicatorConfig cfg = new CommunicatorConfig();
+	    cfg.setLocator("tars.tarsregistry.QueryObj@tcp -h 172.25.0.1 -t 60000 -p 17890");
         //构建通信器
         Communicator communicator = CommunicatorFactory.getInstance().getCommunicator(cfg);
         //通过通信器，生成代理对象
@@ -160,13 +167,15 @@ public static void main(String[] args) {
         String ret = proxy.hello(1000, "HelloWorld");
         System.out.println(ret);
 }
+
 ```
 
 * 异步调用
 
-```text
+```java
 public static void main(String[] args) {
-	CommunicatorConfig cfg = new CommunicatorConfig();
+		CommunicatorConfig cfg = new CommunicatorConfig();
+	    cfg.setLocator("tars.tarsregistry.QueryObj@tcp -h 172.25.0.1 -t 60000 -p 17890");
         //构建通信器
         Communicator communicator = CommunicatorFactory.getInstance().getCommunicator(cfg);
         //通过通信器，生成代理对象
