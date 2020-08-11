@@ -623,7 +623,7 @@ public class App {
 <dependency>
     <groupId>com.tencent.tars</groupId>
     <artifactId>tars-spring-cloud-starter</artifactId>
-    <version>1.6.1</version>
+    <version>1.7.2</version>
 </dependency>
 ```
 
@@ -713,7 +713,7 @@ TESTAPP.HELLOJAVASERVER就是我们刚才注册的服务，其中TESTAPP对应�
   <dependency>
       <groupId>com.tencent.tars</groupId>
       <artifactId>tars-spring-cloud-starter</artifactId>
-      <version>1.6.1</version>
+      <version>1.7.2</version>
   </dependency>
   ```
 
