@@ -42,7 +42,6 @@ docker run hello-world
 ** 使用Docker部署**
 
 ```bash
-##启动容器：
 ##拉取最新的镜像
 docker pull tarscloud/framework:latest
 #拉取节点镜像
