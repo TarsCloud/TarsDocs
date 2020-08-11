@@ -72,53 +72,36 @@ docker run hello-world
 
 ### 部署Tars
 
-**1. 创建Docker虚拟网络**
+** 使用Docker部署**
 
-```text
-# 创建一个名为tars的桥接(bridge)虚拟网络，网关172.25.0.1，网段为172.25.0.0
+```bash
+##启动容器：
+##拉取最新的镜像
+docker pull tarscloud/framework:latest
+#拉取节点镜像
+docker pull tarscloud/tars-node:latest
+#拉取数据库镜像
+docker pull   mysql:5.6
+##创建虚拟网络
 docker network create -d bridge --subnet=172.25.0.0/16 --gateway=172.25.0.1 tars
+## 数据库
+docker run -d    --net=tars     -e MYSQL_ROOT_PASSWORD="root@appinside"    --ip="172.25.0.2"      --name=tars-mysql    mysql:5.6
+#等30秒数据库启动成功
+sleep 30s
+#启动系统框架
+#注意，本地的电脑不能占用3001、3000，可以使用你的电脑Ip
+docker run -d --net=tars -e MYSQL_HOST=172.25.0.2 -e MYSQL_ROOT_PASSWORD='root@appinside' \
+-eREBUILD=false  -eSLAVE=false \
+-e INET=eth0 \
+--ip="172.25.0.3" \
+-p 3000-3001:3000-3001 \
+tarscloud/framework
+#等框架都实例化完成
+sleep 60s
+#启动web请求
+docker run -d --net=tars  -eWEB_HOST=http://172.25.0.3:3000        tarscloud/tars-node
+
 ```
-
-**2. Docker中启动MySQL**
-
-```text
-docker run -d \
-    --net=tars \
-    -e MYSQL_ROOT_PASSWORD="123456" \
-    --ip="172.25.0.2" \
-    -v /data/framework-mysql:/var/lib/mysql \
-    -v /etc/localtime:/etc/localtime \
-    --name=tars-mysql \
-    mysql:5.6
-```
-
-**3. 使用tarscloud/tars:java部署**
-
-拉取容器镜像：
-
-```text
-docker pull tarscloud/tars:java
-```
-
-启动容器：
-
-```text
-docker run -d -it --name tars_java \
-    --net=tars \
-    --env DBIP=172.25.0.2 \
-    --env DBPort=3306 \
-    --env DBUser=root \
-    --env DBPassword=123456 \
-    -e INET=eth0 \
-    --ip="172.25.0.3" \
-    -p 3000:3000 \
-    -p 18600-18700:18600-18700 \
-    -v /data/tars_data:/data \
-    tarscloud/tars:java
-```
-
-**注意：-p 18600-18700:18600-18700参数开放了 18600-18700 端口供应用使用，不够可自行添加。**
-
 
 
 容器启动后， 访问 `http://${你的机器IP}:3000` 即可打开 web管理平台，界面如下：
