@@ -60,13 +60,13 @@ sleep 30s
 docker run -d --net=tars -e MYSQL_HOST=172.25.0.2 -e MYSQL_ROOT_PASSWORD='root@appinside' \
 -eREBUILD=false  -eSLAVE=false \
 -e INET=eth0 \
---ip="172.25.0.3" \
+--ip="172.25.0.4" \
 -p 3000-3001:3000-3001 \
 tarscloud/framework
 #等框架都实例化完成
 sleep 60s
 #启动web请求
-docker run -d --net=tars  -eWEB_HOST=http://172.25.0.3:3000        tarscloud/tars-node
+docker run -d --net=tars --ip="172.25.0.3"  -eWEB_HOST=http://172.25.0.4:3000        tarscloud/tars-node
 
 ```
 
