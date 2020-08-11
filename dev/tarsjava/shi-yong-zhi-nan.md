@@ -16,7 +16,7 @@
 <dependency>
     <groupId>com.tencent.tars</groupId>
     <artifactId>tars-server</artifactId>
-    <version>1.6.1</version>
+    <version>1.7.2</version>
     <type>jar</type>
 </dependency>
 ```
@@ -65,7 +65,7 @@ module TestApp
 <plugin>
 	<groupId>com.tencent.tars</groupId>
 	<artifactId>tars-maven-plugin</artifactId>
-	<version>1.6.1</version>
+	<version>1.7.2</version>
 	<configuration>
 		<tars2JavaConfig>
 			<!-- tars文件位置 -->
