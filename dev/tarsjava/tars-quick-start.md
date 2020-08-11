@@ -12,58 +12,25 @@ ubuntu上安装docker流程如下：
 
 **1. 更新包索引**
 
-```text
+```bash
 sudo apt-get update
-```
-
-**2. 允许通过https安装**
-
-```
+#**2. 允许通过https安装**
 sudo apt-get install  apt-transport-https  ca-certificates curl  software-properties-common
-```
-
-**3. 添加Docker官方的GPG密钥：**
-
-```
-curl -fsSL  https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add
-```
-
-国内用户可使用腾讯云源：
-
-```text
+#**3. 添加Docker官方的GPG密钥：**
+#curl -fsSL  https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add
+#国内用户可使用腾讯云源：
 curl -fsSL https://mirrors.cloud.tencent.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add -
-```
-
-**4. 设置版本库类型**
-
-```
+#**4. 设置版本库类型**
 sudo add-apt-repository "deb [arch=amd64]  https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" 
-```
-
-国内用户可使用腾讯云源：
-
-```text
+#国内用户可使用腾讯云源：
 sudo add-apt-repository "deb [arch=amd64] https://mirrors.cloud.tencent.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable" 
-```
-
-**5. 再次更新包索引**
-
-```text
+#**5. 再次更新包索引**
 sudo apt-get update
-```
-
-**6. 安装docker-ce** 
-
-```
+#**6. 安装docker-ce** 
 sudo apt-get install docker-ce
-```
-
-**7. 测试是否安装成功** 
-
-```
+#**7. 测试是否安装成功** 
 docker run hello-world
 ```
-
 ![docker-hello-world](images/docker-hello-world.png)
 
 出现如上界面表示docker安装成功。
