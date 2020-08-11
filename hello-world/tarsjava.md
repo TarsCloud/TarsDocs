@@ -159,10 +159,11 @@ public interface HelloPrx {
 
 public static void main(String[] args) {
 		CommunicatorConfig cfg = new CommunicatorConfig();
+		//这里的主控要换成实际的主控地址才可以你
 	    cfg.setLocator("tars.tarsregistry.QueryObj@tcp -h 172.25.0.1 -t 60000 -p 17890");
         //构建通信器
         Communicator communicator = CommunicatorFactory.getInstance().getCommunicator(cfg);
-        //通过通信器，生成代理对象
+        //通过通信器，生成代理对象，线程安全，不需要多次实例化
         HelloPrx proxy = communicator.stringToProxy(HelloPrx.class, "TestApp.HelloServer.HelloObj");
         String ret = proxy.hello(1000, "HelloWorld");
         System.out.println(ret);
@@ -175,10 +176,10 @@ public static void main(String[] args) {
 ```java
 public static void main(String[] args) {
 		CommunicatorConfig cfg = new CommunicatorConfig();
-	    cfg.setLocator("tars.tarsregistry.QueryObj@tcp -h 172.25.0.1 -t 60000 -p 17890");
+		cfg.setLocator("tars.tarsregistry.QueryObj@tcp -h 172.25.0.1 -t 60000 -p 17890");
         //构建通信器
         Communicator communicator = CommunicatorFactory.getInstance().getCommunicator(cfg);
-        //通过通信器，生成代理对象
+        //通过通信器，生成代理对象，线程安全，不需要多次实例化
         HelloPrx proxy = communicator.stringToProxy(HelloPrx.class, "TestApp.HelloServer.HelloObj");
         proxy.async_hello(new HelloPrxCallback() {
         		
