@@ -46,7 +46,7 @@ module TestApp
 </plugin>
 ```
 
-在工程根目录下执行mvn tars:tars2java
+在工程根目录下执行mvn tars:tars2java后，会自动创建 HelloServant.java 文件，该文件内包含一下代码
 
 ```java
 @Servant
