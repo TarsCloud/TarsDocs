@@ -1,12 +1,12 @@
 [Click to View English](https://tarscloud.github.io/TarsDocs_en/)
 
-# Tars
+# TARS
 
 - Twitter: [@TarsCloud](https://twitter.com/TarsCloud)
 - [Mailing List](https://groups.google.com/g/tars-foundation-information)
 - [官网](http://tarscloud.org/)
 - [新闻](https://tarscloud.org/feed/newsroom)
-- qq技术交流群群：579079160、669339903
+- QQ技术交流群群：579079160、669339903
 - 微信公众号: TarsCloud
 - [更多联系方式请点击](https://tarscloud.org/about/contacts)
 
