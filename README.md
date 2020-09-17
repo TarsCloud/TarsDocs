@@ -1,4 +1,4 @@
-[Click to View English](https://tarscloud.github.io/TarsDocs_en/)
+[Click to View English Documents](https://tarscloud.github.io/TarsDocs_en/)
 
 # TARS
 
@@ -8,7 +8,8 @@
 - [新闻](https://tarscloud.org/feed/newsroom)
 - QQ技术交流群群：579079160、669339903
 - 微信公众号: TarsCloud
-- [更多联系方式请点击](https://tarscloud.org/about/contacts)
+- 微信ID: 01
+- [联系我们](https://tarscloud.org/about/contacts)
 
 ## 简介
 
