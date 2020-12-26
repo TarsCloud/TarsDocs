@@ -35,6 +35,7 @@
 - [Windows 源码部署](installation/source-windows.md)
 - [TarsDocker 部署](installation/docker.md)
 - [K8s Docker 部署](installation/k8s-docker-1.md)
+- [K8s 部署方案2](installation/k8s-docker-2.md)
 - [TarsNode 部署](installation/node.md)
 - [Tars 框架更新及扩容](installation/expand.md)
 - [TarsWeb 说明](installation/web.md)
