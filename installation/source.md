@@ -451,7 +451,7 @@ cd /usr/local/app/web; npm run start
 
 npm run start 启动服务, 可以观察控制台的输出, 如果有问题, 会有提示.
 
-**正式运行建议: pm2 start tars-node-web; pm2 start tars-user-system**
+**正式运行建议: pm2 start tars-node-web
 
 ### 自动启动Tars
 
