@@ -227,6 +227,8 @@ docker run -d \
 
 ### 3.2 Docker 部署 Tars 应用节点
 
+在每台节点机器上运行一下docker:
+
 ```bash
 # 挂载的/etc/localtime是用来设置容器时区的，若没有可以去掉
 # --net=host 代表docker使用宿主机网络
@@ -242,6 +244,11 @@ docker run -d \
 ```
 
 **注意目录映射, 保证了docker重启, 数据不会丢失**
+
+说明:
+- 需要注意网络的联通性, 运行tarsnode的机器网络必须和framework网络连通
+- tarsnode和framework不能部署在同一台机器上, 端口会冲突
+- 除了cpp/go服务, 其他语言服务无法部署在framework里面, 因为framework的docker不带有nodejs/java/php的运行环境
 ## 4 <a id="chapter-4"></a>问题检查
 
 如果 docker 运行后, 仍然无法打开管理平台, 可以如下检查:
@@ -263,7 +270,6 @@ docker --name=tars-framework \
     -v /data/framework:/data/tars \
     -v /etc/localtime:/etc/localtime \
     -p 3000:3000 \
-    -p 3001:3001 \
     tarscloud/framework:v2.4.14
 ```
 
@@ -312,7 +318,6 @@ services:
     container_name: tars-framework
     ports:
       - "3000:3000"
-      - "3001:3001"
     restart: always
     networks:
       internal:
