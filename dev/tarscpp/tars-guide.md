@@ -1190,17 +1190,17 @@ TarsTimeLogger::getInstance()->setLogInfo(c, logObj , "Test", "TestServer", "./"
 
 //如果是Tars服务，不需要上面部分的代码，框架已经自动完成初始化，不用业务自己初始化
 
-//缺省的按天日志不用上传到服务器
-TarsTimeLogger::getInstance()->enableRemote("", false);
-
 //缺省的按天日志按分钟滚动
 TarsTimeLogger::getInstance()->initFormat("", "%Y%m%d%H%M");
 
-//abc2文件不用上传到服务器
-TarsTimeLogger::getInstance()->enableRemote("abc2", false);
+//缺省的按天日志不用上传到服务器
+TarsTimeLogger::getInstance()->enableRemote("", false);
 
 //abc2文件按小时滚动
 TarsTimeLogger::getInstance()->initFormat("abc2", "%Y%m%d%H");
+
+//abc2文件不用上传到服务器
+TarsTimeLogger::getInstance()->enableRemote("abc2", false);
 
 //abc3文件不记本地
 TarsTimeLogger::getInstance()->enableLocal("abc3", false);
