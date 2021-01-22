@@ -15,6 +15,6 @@
 - [TARS 的服务鉴权功能｜避免数据泄露](https://blog.csdn.net/TARSFoundation/article/details/110819040)
 - [TARS 服务信息上报｜全方位服务监控](https://blog.csdn.net/TARSFoundation/article/details/111616680)
 - [TARS RPC 通信框架｜提供多种远程调用方式](https://blog.csdn.net/TARSFoundation/article/details/111621486)
-- [TarsBenchmark | 服务性能压测利器](https://blog.csdn.net/TARSFoundation/article/details/112872751)
+- [TarsBenchmark｜服务性能压测利器](https://blog.csdn.net/TARSFoundation/article/details/112872751)
 - [TARS 染色日志｜收集记录特定日志](https://blog.csdn.net/TARSFoundation/article/details/112956106)
 - []() ...
