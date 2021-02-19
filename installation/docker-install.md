@@ -31,5 +31,7 @@ systemctl enable docker
 
 安装完毕以后, 查看Docker版本:
 
-```sh docker version``
+```sh
+docker version
+```
 
