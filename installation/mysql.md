@@ -2,10 +2,10 @@
 
 ## 目录
 
-> * [简介](mysql.md#chapter-1)
-> * [源码安装Mysql](mysql.md#chapter-2)
-> * [yum安装mysql](mysql.md#chapter-3)
-> * [docker安装mysql](mysql.md#chapter-4)
+> * [简介](#chapter-1)
+> * [源码安装Mysql](#chapter-2)
+> * [yum安装mysql](#chapter-3)
+> * [docker安装mysql](#chapter-4)
 
 ## 1 简介 <a id="chapter-1"></a>
 
