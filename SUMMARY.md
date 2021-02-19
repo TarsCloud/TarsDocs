@@ -2,7 +2,7 @@
 
 - [Readme.md](README.md)
 - [CLA](cla.md)
-- [LICENSE](license.md)
+- [LICENSE](LICENSE.md)
 
 # Directory
 
