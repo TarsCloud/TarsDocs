@@ -68,8 +68,9 @@ Hello.HelloProxyImp.prototype.add = function (current, a, b, c) {
     c = a + b;
     current.sendResponse(0, c);
 };
+
 ```  
-接口实现的代码中，需要开发者自己实现的只有add函数体中的两行代码。  
+ - 接口实现的代码中，需要开发者自己实现的只有add函数体中的两行代码。  
 
 然后实现一个服务入口文件 app.js:  
 ```javascript
