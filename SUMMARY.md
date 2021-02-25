@@ -154,6 +154,7 @@
 ## Tars.js <a id="Tars.js"></a>
 
 - [基本介绍](dev/tars.js/README.md)
+- [脚手架](dev/tars.js/nodetools-cli.md)
 - [@tars/stream](dev/tars.js/tars-stream.md)
 - [@tars/rpc](dev/tars.js/tars-rpc.md)
 - [@tars/logs](dev/tars.js/tars-logs.md)
