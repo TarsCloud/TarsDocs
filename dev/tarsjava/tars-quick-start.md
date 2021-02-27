@@ -31,7 +31,7 @@ sudo apt-get install docker-ce
 #**7. 测试是否安装成功** 
 docker run hello-world
 ```
-![docker-hello-world](images/docker-hello-world.png)
+![docker-hello-world](../../assets/docker-hello-world.png)
 
 出现如上界面表示docker安装成功。
 
@@ -80,7 +80,7 @@ docker run -d --net=tars --ip="172.25.0.3"  -eWEB_HOST=http://172.25.0.4:3000   
 
 容器启动后， 访问 `http://${你的机器IP}:3000` 即可打开 web管理平台，界面如下：
 
-![tars-chinese](images/tars-chinese.png)
+![tars-chinese](../../assets/tars-chinese.png)
 
 ## 服务发布
 
@@ -122,11 +122,11 @@ mvn package
 
 **服务端：**
 
-![tars-deployment](images/tars-deployment.png)
+![tars-deployment](../../assets/tars-deployment.png)
 
 **客户端：**
 
-![tars-deployment-client](images/tars-deployment-client.png)
+![tars-deployment-client](../../assets/tars-deployment-client.png)
 
 
 
@@ -134,7 +134,7 @@ mvn package
 
 服务部署成功后，刷新主页面后可以看到新增的两个服务，分别为服务端的HelloServer服务和客户端的HelloClient服务。
 
-![tars-testclient](images/tars-testclient.png)
+![tars-testclient](../../assets/tars-testclient.png)
 
 
 
@@ -142,7 +142,7 @@ mvn package
 
 分别选择服务端和客户端服务，进入发布管理，选中需要发布的节点，点击发布选中节点。
 
-![tars-publication](images/tars-publication.png)
+![tars-publication](../../assets/tars-publication.png)
 
 
 
@@ -150,11 +150,11 @@ mvn package
 
 **服务端：**
 
-![tars-uploadjar](images/tars-uploadjar.png)
+![tars-uploadjar](../../assets/tars-uploadjar.png)
 
 **客户端：**
 
-![tars-uploadjarclient](images/tars-uploadjarclient.png)
+![tars-uploadjarclient](../../assets/tars-uploadjarclient.png)
 
 
 
@@ -162,11 +162,11 @@ mvn package
 
 **服务端：**
 
-![tars-pubjar](images/tars-pubjar.png)
+![tars-pubjar](../../assets/tars-pubjar.png)
 
 **客户端：**
 
-![tars-pubjar-client](images/tars-pubjar-client.png)
+![tars-pubjar-client](../../assets/tars-pubjar-client.png)
 
 
 
@@ -174,11 +174,11 @@ mvn package
 
 **服务端：**
 
-![tars-state](images/tars-state.png)
+![tars-state](../../assets/tars-state.png)
 
 **客户端：**
 
-![tars-state-client](images/tars-state-client.png)
+![tars-state-client](../../assets/tars-state-client.png)
 
 
 
@@ -188,11 +188,11 @@ mvn package
 
 **服务端：**
 
-![tars-uploadtar](images/tars-uploadtars.png)
+![tars-uploadtar](../../assets/tars-uploadtars.png)
 
 **客户端：**
 
-![tars-uploadtars-client](images/tars-uploadtars-client.png)
+![tars-uploadtars-client](../../assets/tars-uploadtars-client.png)
 
 
 
@@ -200,11 +200,11 @@ mvn package
 
 **服务端：**
 
-![tars-tarstest](images/tars-tarstest.png)
+![tars-tarstest](../../assets/tars-tarstest.png)
 
 **客户端：**
 
-![tars-tarstest-client](images/tars-tarstest-client.png)
+![tars-tarstest-client](../../assets/tars-tarstest-client.png)
 
 
 
@@ -212,11 +212,11 @@ mvn package
 
 **服务端：**
 
-![tars-test](images/tars-test.png)
+![tars-test](../../assets/tars-test.png)
 
 **客户端：**
 
-![tars-test-client](images/tars-test-client.png)
+![tars-test-client](../../assets/tars-test-client.png)
 
 至此，服务端和客户端部署完毕。
 
