@@ -43,7 +43,7 @@ java -jar tars-java-start-1.0.0.jar --springboot.version=2.0.3 --maven.group=com
 
 命令执行后，会显示相关信息，出现Generating Complete则表示生成成功。
 
-![tarsjavastart-info](images/tarsjavastart-info.png)
+![tarsjavastart-info](../../assets/tarsjavastart-info.png)
 
 
 
