@@ -190,7 +190,7 @@ public class App {
 
 HTTP服务发布的的流程和[Tars服务发布](dev/tarsjava/tars-quick-start.md)的流程类似，区别在于服务部署的时候，协议选择非TARS协议，具体设置如下图所示：
 
-![tars-deployment-http](images/tars-deployment-http.png)
+![tars-deployment-http](../../assets/tars-deployment-http.png)
 
 
 
@@ -198,4 +198,4 @@ HTTP服务发布的的流程和[Tars服务发布](dev/tarsjava/tars-quick-start.
 
 服务发布成功之后，即可通过http调用的方式来调用该服务，**注意IP地址为公网IP，非设置的内网的IP**：
 
-![tars-http-call](images/tars-http-call.png)
+![tars-http-call](../../assets/tars-http-call.png)
