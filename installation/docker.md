@@ -370,8 +370,4 @@ networks:
 
 以上执行方式, 从tarscloud/framework:v2.4.0以后才执行
 
-<!-- ## 8 <a id="chapter-8"></a>论坛邀请
 
-欢迎大家加入 TarsDoc 论坛一起探讨在 Tars 使用过程中遇到的问题和新的体会
-
-[论坛传送门](https://bbs.tarsdoc.com/forum.php) -->
