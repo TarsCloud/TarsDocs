@@ -2,7 +2,7 @@
 > * [介绍](#main-chapter-1)
 > * [cmake规范](#main-chapter-2)
 
-# <a id="main-chapter-1"></a>介绍
+# <span id="main-chapter-1"></span>介绍
 
 阅读本文之前, 请必须阅读[基础概念](../../base/tars-concept.md)
 
@@ -10,7 +10,7 @@
 
 另外go版本请使用>=1.13以上版本, 并完成tarsgo的下载
 
-## 2. <a id="main-chapter-2"></a> cmake规范
+## 2. <span id="main-chapter-2"></span> cmake规范
 
 ### 2.1. cmake使用
 

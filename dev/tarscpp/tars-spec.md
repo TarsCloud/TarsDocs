@@ -11,7 +11,7 @@ C++的开发服务的管理方式有两种: Makefile 和 cmake管理
 
 tarscpp >=2.1.0版本建议以cmake管理方式为主, 不再默认支持Makefile模式了
 
-## 1. <a id="main-chapter-1"></a> cmake规范
+## 1. <span id="main-chapter-1"></span> cmake规范
 
 ### 1.1. cmake使用
 
@@ -148,7 +148,7 @@ tars编译时, 根据设置会自动编译mysql openssl nghttp2 gtest gpref等�
 
 如果你需要引用这些库, 只需要在CMakeLists.txt中引用即可, 非常方便!
 
-## 2. <a id="main-chapter-2"></a> Makefile规范
+## 2. <span id="main-chapter-2"></span> Makefile规范
 
 使用Tars实现的服务，tarscpp 1.x版本提供了Makefile的管理规范, >=2.1.0不再维护, 建议新版本用户升级到cmake管理方式.
 

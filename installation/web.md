@@ -9,7 +9,7 @@
 > * [密码遗忘处理](#chapter-7)
 > * [web开发](#chapter-8)
 
-# 1 <a id="chapter-1"></a>介绍
+# 1 <span id="chapter-1"></span>介绍
 
 tars web主要用于开发或运维人员管理Tars整体平台, 主要功能如下:
 - 服务的部署, 发布, 扩容和配置
@@ -20,7 +20,7 @@ tars web主要用于开发或运维人员管理Tars整体平台, 主要功能如
 
 tars web安装通常是跟随一键安装脚本, 或者docker容器中自动安装好的, 源码安装可参见[Tars源码安装](source.md)
 
-## 2 <a id="chapter-2"></a>模块说明
+## 2 <span id="chapter-2"></span>模块说明
 
 ###  tars web < v2.4.7
 
@@ -88,7 +88,7 @@ source /etc/profile
 
 node的环境变量是在安装Tars时自动安装的, 注意用户是root.
 
-## 3 <a id="chapter-3"></a>权限说明
+## 3 <span id="chapter-3"></span>权限说明
 
 用户权限分为三种:
 - admin: 管理员
@@ -109,7 +109,7 @@ node的环境变量是在安装Tars时自动安装的, 注意用户是root.
 
 **注意: 在v2.4.7之前的版本, 由tars-user-system负责维护tars web的权限, v2.4.7及之后的版本和逻辑服务合并到一起了**
 
-## 4 <a id="chapter-4"></a>模块调用
+## 4 <span id="chapter-4"></span>模块调用
 
 ###  tars web < v2.4.7
 
@@ -136,7 +136,7 @@ tars-node-web绑定了0.0.0.0 (即也绑定了127.0.0.1), 并且内部鉴权会�
 
 由于鉴权模块和web逻辑模块合并, 通过nginx反向代理来访问更加简单, 只需要反向道理到3000端口即可.
 
-## 5 <a id="chapter-5"></a>检查问题
+## 5 <span id="chapter-5"></span>检查问题
 
 ###  tars web < v2.4.7
 
@@ -191,11 +191,11 @@ pm2 start tars-node-web
 重要的web日志:
 - tars-node-web模块运行过程中的日志, 会输出在 /usr/local/app/web/log/ 目录下, 便于定位问题
 
-## 6 <a id="chapter-6"></a>Token管理
+## 6 <span id="chapter-6"></span>Token管理
 
 Web的用户模块, 提供了token管理功能, 即可以创建token, 并通过web api来调用和获取相关数据, [请参见](../dev/tars-web-api.md)
 
-## 7 <a id="chapter-7"></a>密码遗忘处理
+## 7 <span id="chapter-7"></span>密码遗忘处理
 
 如果admin的密码遗忘, 目前只能重置数据库中相关表的字段来解决:
 - 登录mysql
@@ -205,7 +205,7 @@ Web的用户模块, 提供了token管理功能, 即可以创建token, 并通过w
 
 登录web时, 将会提示设置admin密码.
 
-## 8 <a id="chapter-8"></a>web开发
+## 8 <span id="chapter-8"></span>web开发
 
 如果你是nodejs开发者, 你也可以参与到web的开发中, 目前采用: nodejs + koa实现, web开发方式如下:
 

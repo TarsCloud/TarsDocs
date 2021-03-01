@@ -4,10 +4,10 @@
 > - [使用说明](#chapter-2)
 > - [其他说明](#chapter-3)
 
-## 1 <a id="chapter-1"></a>介绍
+## 1 <span id="chapter-1"></span>介绍
 
 TARS提供了一个云部署环境(TARSCLOUD), 云环境主要是帮助用户维护了TARS的框架, 这样用户只需要购买CVM节点, 安装tarsnode连接过来即可.
-## 2 <a id="chapter-2"></a>使用说明
+## 2 <span id="chapter-2"></span>使用说明
 
 主要步骤如下:
 - 使用者可以通过 http://www.tarsyun.com, 申请完成TARS环境的部署, 完成申请后你可以打开web管理管平台;
@@ -19,7 +19,7 @@ TARS提供了一个云部署环境(TARSCLOUD), 云环境主要是帮助用户维
 
 以上步骤细节, 在http://www.tarsyun.com 中创建TARS环境后, 点击"申请网络连通"后可以查看详细步骤
 
-## 3 <a id="chapter-2"></a>其他说明
+## 3 <span id="chapter-2"></span>其他说明
 
 - 考虑到资源利用率, 如果你的环境超过7天没有活跃的tarsnode连接, 这该套环境会被自动删除!
 - tarsweb还提供内网地址, 完成网连通以后, 你还可以通过内网来访问tars web

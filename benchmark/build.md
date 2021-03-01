@@ -4,13 +4,13 @@
 > * [构建步骤](#chapter-3)
 > * [一键发布](#chapter-4)
 
-# 1 <a id="chapter-1"></a>介绍
+# 1 <span id="chapter-1"></span>介绍
 
 本节主要介绍tb工具编译时需要的开发环境, 以centos7来介绍.
 
 **注意: 如果本机上之前已经安装TarsCpp环境, 那么需要升级到最新的TarsCpp版本(>=v2.4.0)**
 
-# 2 <a id="chapter-2"></a>依赖环境
+# 2 <span id="chapter-2"></span>依赖环境
 
 | 软件 | 软件要求 |
 | :--- | :--- |
@@ -47,7 +47,7 @@ make install
 至此, Tars Cpp的编译环境已经完成, 下一步可以实现tb工具了.
 
 
-# 3 <a id="chapter-3"></a>工具和服务构建
+# 3 <span id="chapter-3"></span>工具和服务构建
 
 主要编译步骤如下，编译成功后tb工具生成在build/bin目录下，它是一个可执行程序，可以直接压测[TARS协议](tars-guide.md)/[HTTP协议](http-guide.md)的服务。
 ```
@@ -58,7 +58,7 @@ cmake .. && make all
 
 此外，还会生成两个压测服务可执行文件(NodeServer和AdminServer)，可以通过如下步骤发布到Web平台，就可以实现线上压测，节省开发体力。
 
-# 4 <a id="chapter-4"></a>一键发布
+# 4 <span id="chapter-4"></span>一键发布
 
 采用最新版本的[TarsWeb](https://github.com/TarsCloud/TarsWeb), 就可以实现在线压测Tars服务，一键发布步骤如下:
 ```shell

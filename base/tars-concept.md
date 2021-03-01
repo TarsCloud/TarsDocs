@@ -14,7 +14,7 @@
 
 本文主要介绍 TARS 平台中一些常见的基础概念, 弄清楚这些基础概念有助于对平台的使用, 这篇文档可以反复阅读, 如果第一次看不懂没有关系, 写完 helloworld, 再回来阅读文档会有不同的感受.
 
-## 1. <a id="main-chapter-1"></a> APP
+## 1. <span id="main-chapter-1"></span> APP
 
 APP 即应用名，标识一组服务的一个小集合, 开发者可以根据需要自己定义, 通常表示实现某个业务系统名称.
 
@@ -22,7 +22,7 @@ APP 即应用名，标识一组服务的一个小集合, 开发者可以根据�
 - 通常应用名对应代码中的某个名字空间
 - `tars` 这个应用名是框架使用的, 业务服务请不要使用
 
-## 2. <a id="main-chapter-2"></a> Server
+## 2. <span id="main-chapter-2"></span> Server
 
 Server 即服务名，提供服务的进程名称
 
@@ -31,7 +31,7 @@ Server 即服务名，提供服务的进程名称
 - 一般命名为：XXServer，例如 LogServer，TimerServer 等
 - 一个 Server 代表一个独立的程序, 绑定至少一个 ip, 实现一组相关的接口
 
-## 3. <a id="main-chapter-3"></a> Servant
+## 3. <span id="main-chapter-3"></span> Servant
 
 Servant 即服务提供者, 提供了一个多个具体的接口(interface), 提供给客户端调用
 
@@ -42,11 +42,11 @@ Servant 即服务提供者, 提供了一个多个具体的接口(interface), 提
 
 **Tars 采取这种三层结构, 尽可能的避免不同业务开发者开发的服务名称和 Servant 名称冲突**
 
-## 4. <a id="main-chapter-4"></a> module
+## 4. <span id="main-chapter-4"></span> module
 
 module 是 tars 协议文件中的关键字, 定义了协议的空间, 也对应了各语言名字空间(c++)或者包名(java, go)或模块(nodejs,php)
 
-## 5. <a id="main-chapter-5"></a> Tars 文件目录规范
+## 5. <span id="main-chapter-5"></span> Tars 文件目录规范
 
 Tars 文件是 TARS 服务的协议通信接口，尤其某 Tars Server 的客户端调用 Server 时都需要依赖该 Server 的 tars protocol 文件, 因此非常重要，在管理上我们推荐按照如下方式管理(当然你可以不采取该模式, 构建你自己合适的开发方式):
 
@@ -58,7 +58,7 @@ Tars 文件是 TARS 服务的协议通信接口，尤其某 Tars Server 的客�
 - tars 的接口原则上只能增加，不能减少或修改；
 - 各语言提供的 Tars 服务框架, 都提供了快速 release tars 文件到/home/tarsproto/\[namespace\]/\[server\]下的工具
 
-## 6. <a id="main-chapter-6"></a> 服务端开发方式
+## 6. <span id="main-chapter-6"></span> 服务端开发方式
 
 任何 Tars 服务端和客户端的开发方式都基本一样:
 
@@ -102,7 +102,7 @@ ps -efww | grep ${your server name}
 
 其他语言方式类似!
 
-## 7. <a id="main-chapter-7"></a> 客户端开发方式
+## 7. <span id="main-chapter-7"></span> 客户端开发方式
 
 完成服务端编写和启动后, 即可编写客户端, 通过引用 tars 文件生成的客户端代码, 并构建通信器, 使用通信器并根据 Servant 名称获取到对应的服务的代理对象, 使用代理对象完成通信.
 
@@ -137,7 +137,7 @@ communicator->setProperty("property", "tars.tarspropery.PropertyObj");
 
 当然你可以直接用配置文件来初始化通信器, 参考 web 平台模板配置中的 client 部分. 另外上报服务这里类同, 如果没有 locator 指定框架的主控地址, 你就需要自己指定上报的 ip port.
 
-## 8 <a id="main-chapter-8"></a> 模板配置
+## 8 <span id="main-chapter-8"></span> 模板配置
 
 web 平台上, 运维管理中有模板配置, 模板配置对于框架非常重要, 需要去理解模板配置的作用.
 
@@ -149,7 +149,7 @@ tarsnode 会去平台拉取服务对应的模板(服务部署时配置好的), �
 
 **强烈建议你不需要修改框架自带的模板, 因为后续框架升级可能会修改这些模板内容, 如果你需要修改, 你可以继承该模板, 让你的服务使用继承的模板**
 
-## 9 <a id="main-chapter-9"></a> 业务配置
+## 9 <span id="main-chapter-9"></span> 业务配置
 
 上一节讲到模板配置, 模板配置实际是 rpc server 用到的公用配置, 它是 tarsnode 生成的. 但是对于业务服务而言, 一般都有自己的配置信息, 这种配置我们称之为业务配置.
 
@@ -161,7 +161,7 @@ tarsnode 会去平台拉取服务对应的模板(服务部署时配置好的), �
 
 业务配置具体使用可以参见[业务配置](../dev/tars-config.md)
 
-## 10 <a id="main-chapter-10"></a> 日志系统
+## 10 <span id="main-chapter-10"></span> 日志系统
 
 业务服务中通常也需要打印日志, 框架也提供了集中的日志中心.
 
@@ -176,7 +176,7 @@ tarsnode 会去平台拉取服务对应的模板(服务部署时配置好的), �
 
 另外在 web 平台上, 点击服务详情界面, 点击服务名称, 也可以快速查看到服务的本机日志.
 
-## 11 <a id="main-chapter-11"></a> 开发调试发布
+## 11 <span id="main-chapter-11"></span> 开发调试发布
 
 如果开发过程中, 每次都需要手工发布到 web 平台调试, 调试效率是非常低, 因此 Tars 平台提供了一个方式, 能够一键发布服务到 Tars 框架上.
 

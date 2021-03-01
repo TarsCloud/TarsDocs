@@ -10,7 +10,7 @@
 
 如要用于线上环境，部署安装的原理是一样，不过需要更多考虑分布式系统下服务的部署需要有容错、容灾等的能力。
 
-# 1. <a id="chapter-1"></a>依赖环境
+# 1. <span id="chapter-1"></span>依赖环境
 
 软件 |软件要求
 ------|--------
@@ -71,7 +71,7 @@ yum install -y mysql
 
 ```
 
-# 2. <a id="chapter-2"></a>Tars C++开发环境(源码安装框架必备)
+# 2. <span id="chapter-2"></span>Tars C++开发环境(源码安装框架必备)
 
 **源码安装框架才需要做这一步, 如果只是用c++写服务, 只需要下载tarscpp代码即可**
 
@@ -128,7 +128,7 @@ install以后, 依赖的库(mysql静态库)和头文件也会安装到该目录�
 **需要修改tarscpp/servant/script/*.sh文件中的DEMO_PATH的路径**
 ```
 
-# 3 <a id="chapter-3"></a>Tars框架安装
+# 3 <span id="chapter-3"></span>Tars框架安装
 
 ## 3.1. 框架安装模式
 
@@ -362,7 +362,7 @@ add to contab:
 
 - web的自启需要自己添加
 
-# 4. <a id="chapter-4"></a>Tars-web说明
+# 4. <span id="chapter-4"></span>Tars-web说明
 
 ## 4.1 模块说明
 
@@ -462,7 +462,7 @@ npm run start 启动服务, 可以观察控制台的输出, 如果有问题, 会
 
 如果安装完成后web页面打不开, 请参考[web](web.md), 检查问题章节, 定位问题
 
-# 5. <a id="chapter-5"></a>脚本说明
+# 5. <span id="chapter-5"></span>脚本说明
 
 框架自带了脚本, 可以控制服务的起停, 比如:
 
@@ -479,7 +479,7 @@ Note:
 - tarsnode的监控可以在crontab中定时执行: ```/usr/local/app/tars/check.sh```
 - 只部署了tarsnode的节点机器, 只需要监控tarsnode即可
 
-# 6. <a id="chapter-6"></a>建议部署方案
+# 6. <span id="chapter-6"></span>建议部署方案
 
 虽然本章节是介绍的源码部署tars框架的方案, 但是实际使用上, 不建议源码部署, 会导致升级维护比较麻烦, 下面介绍实际使用过程重点部署方案:
 

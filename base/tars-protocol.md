@@ -1,8 +1,8 @@
 # 目录
-> * [Tars语言](#main-chapter-1)
-> * [Tars协议](#main-chapter-2)
+> * [Tars语言](#chapter-1)
+> * [Tars协议](#chapter-2)
 
-# 1. Tars语言 <a id="main-chapter-1"></a>
+# 1. Tars语言 <span id="chapter-1"></span>
 
 ## 1.1. 接口文件
 
@@ -243,7 +243,7 @@ module MemCache
 > * 名字空间不能嵌套;
 > * 可以引用其他名字空间,例如:Demo1::Key
 
-# 2. Tars协议 <a id="main-chapter-2"></a>
+# 2. <span id="chapter-2"></span>Tars协议 
 
 ## 2.1. 数据编码
 

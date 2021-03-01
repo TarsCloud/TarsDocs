@@ -3,13 +3,13 @@
 > * [依赖环境](#chapter-2)
 > * [环境构建](#chapter-3)
 
-# 1 <a id="chapter-1"></a>介绍
+# 1 <span id="chapter-1"></span>介绍
 
 本节主要介绍Tars Cpp服务开发和编译时需要的开发环境, 以centos7来介绍.
 
 **注意: 如果本机上之前源码编译部署过Tars, 那么Tars Cpp的开发环境就自动可以工作了**
 
-# 2 <a id="chapter-1"></a>依赖环境
+# 2 <span id="chapter-1"></span>依赖环境
 
 | 软件 | 软件要求 |
 | :--- | :--- |

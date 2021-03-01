@@ -8,7 +8,7 @@
 > - [docker-compose 部署开发环境](#chapter-6)
 > - [docker版本说明](#chapter-7)
 
-## 1 <a id="chapter-1"></a>介绍
+## 1 <span id="chapter-1"></span>介绍
 
 本节主要介绍采用 docker 来完成框架的部署:
 
@@ -20,7 +20,7 @@ Docker 开发环境部署可以很方便的在本地拉起服务开始服务的�
 
 开始操作之前，请确保你的服务上已经安装了 docker 环境, 如果没有, 可以参考[docker install](docker-install.md)
 
-## 2 <a id="chapter-2"></a>Docker 部署服务开发环境
+## 2 <span id="chapter-2"></span>Docker 部署服务开发环境
 
 **如果你想源码自己编译 docker, 请参见 [Install](source.md)**
 
@@ -186,7 +186,7 @@ docker run -d \
 
 **注意, 如果在同一台机器上采用--net=host, 同时启动framework和tars-node镜像, 是不行的, 因为framework中也包含了一个tars-node, 会导致端口冲突, 启动不了**
 
-## 3 <a id="chapter-3"></a>Docker 部署服务生产环境
+## 3 <span id="chapter-3"></span>Docker 部署服务生产环境
 
 概要说明:
 - tarscloud/framework:v{x.y.y} 部署一主, 多从
@@ -249,7 +249,7 @@ docker run -d \
 - 需要注意网络的联通性, 运行tarsnode的机器网络必须和framework网络连通
 - tarsnode和framework不能部署在同一台机器上, 端口会冲突
 - 除了cpp/go服务, 其他语言服务无法部署在framework里面, 因为framework的docker不带有nodejs/java/php的运行环境
-## 4 <a id="chapter-4"></a>问题检查
+## 4 <span id="chapter-4"></span>问题检查
 
 如果 docker 运行后, 仍然无法打开管理平台, 可以如下检查:
 
@@ -279,7 +279,7 @@ docker --name=tars-framework \
 
 如果 web 平台打开, 但是显示错误, 就需要检查 web 的问题, 可以进入 docker, 请参考[检查 web 的问题](web.md)中的检查 web 问题
 
-## 5 <a id="chapter-5"></a>镜像加速
+## 5 <span id="chapter-5"></span>镜像加速
 
 - 目前已搭建了 `docker.tarsyun.com/tarscloud/framework` 和 `docker.tarsyun.com/tarscloud/tars-node` 的镜像加速
 
@@ -290,7 +290,7 @@ curl -sSL https://doc.tarsdoc.com/docker_set_mirror.sh | sh -s https://w1mnep2c.
 systemctl restart docker
 ```
 
-## 6 <a id="chapter-6"></a>开发环境 docker-compose
+## 6 <span id="chapter-6"></span>开发环境 docker-compose
 
 - 下面是使用 docker-compose 直接拉起开发环境的示例，仅供学习参考
 - ./source/Shanghai 是 linux 时区设置文件，需要自行获取
@@ -360,7 +360,7 @@ networks:
         - subnet: 172.25.1.0/16
 ```
 
-## 7 <a id="chapter-7"></a>docker版本说明
+## 7 <span id="chapter-7"></span>docker版本说明
 
 说明:
 - docker内部主要包含了: https://github.com/TarsCloud/TarsFramework 和 https://github.com/TarsCloud/TarsWeb 的服务.

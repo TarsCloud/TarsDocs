@@ -4,7 +4,7 @@
 > * [Set分组逻辑介绍](#main-chapter-3)
 > * [IDC分组与Set分组的调用规则](#main-chapter-4)
 
-# 1. 分组介绍 <a id="main-chapter-1"></a>
+# 1. 分组介绍 <span id="main-chapter-1"></span>
 
 当你的集群上了规模之后, 服务器可能部署在不同机房或网段, 为了能够减少跨网调用, 保证同一个分组的服务调用时优先, Tars设计了分组机制.
 
@@ -12,7 +12,7 @@
 - IDC分组简单的说, 通过IP网段自动将服务器分组.
 - SET分组可以根据你的设置, 将服务器设置分组.
 
-# 2. IDC分组逻辑介绍 <a id="main-chapter-2"></a>
+# 2. IDC分组逻辑介绍 <span id="main-chapter-2"></span>
 
 ## 2.1. IDC组的含义
 
@@ -56,7 +56,7 @@
 > * 被调的出身可修改，将影响主调调用的活动列表。
 > * 是否启用IDC分组，完全取决于服务端！！！
 
-# 3. Set分组逻辑介绍 <a id="main-chapter-3"></a>
+# 3. Set分组逻辑介绍 <span id="main-chapter-3"></span>
 
 ## 3.1. Set分组的含义
 
@@ -106,7 +106,7 @@ APP |SH |2 |A,B,C
 > * 3.通配组服务可调用SET内和通配组的任何服务*D->*C+1C+2C
 > * 4.如果不满足1，则按照IDC分组逻辑调用。
 
-# 4. IDC分组与Set分组的调用规则 <a id="main-chapter-4"></a>
+# 4. IDC分组与Set分组的调用规则 <span id="main-chapter-4"></span>
 
 编号 |客户端 |服务端 |规则
 ------|-----|------|----

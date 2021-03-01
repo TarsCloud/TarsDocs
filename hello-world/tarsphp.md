@@ -6,7 +6,7 @@
 > - [4. 示例：Tars HelloWorld 服务的客户端程序](#chapter-4)
 > - [5. 论坛邀请](#chapter-5)
 
-## 1. <a id="chapter-1"></a>框架简介
+## 1. <span id="chapter-1"></span>框架简介
 
 ### tars-client
 
@@ -62,7 +62,7 @@ tars 进行配置文件解析的模块
 
 代码自动生成的工具,可以自动生成 server 和 client 端的代码。
 
-## 2. <a id="chapter-2"></a>示例：搭建 Http 服务的 HelloWorld
+## 2. <span id="chapter-2"></span>示例：搭建 Http 服务的 HelloWorld
 
 ### 目录结构说明
 
@@ -319,7 +319,7 @@ class IndexController extends Controller
 
 11. 浏览器打开 `http://{machine_ip}:9000/index/index` 页面将显示 Hello Tars!
 
-## 3. <a id="chapter-3"></a>示例：搭建 Tars 服务的 HelloWorld
+## 3. <span id="chapter-3"></span>示例：搭建 Tars 服务的 HelloWorld
 
 ### 目录结构说明
 
@@ -505,7 +505,7 @@ class SayHello implements SayHelloTafServiceServant
 - 代码发布完成之后可以在 服务管理=&gt;HelloWorld=&gt;PHPTars=&gt;接口调试 中上传刚才编写的`SayHello.tars`文件 进行接口调试
 - 若服务启动失败，可以在 node 机器或 docker 的`/data/app/tars/app_log/HelloWorld/PHPTars`的日志中排查原因
 
-## 4. <a id="chapter-4"></a>示例：Tars HelloWorld 服务的客户端程序
+## 4. <span id="chapter-4"></span>示例：Tars HelloWorld 服务的客户端程序
 
 - 接下来我们尝试在 PHPHttp 服务中调用 PHPTars 中刚完成的 Tars 接口
 
@@ -556,7 +556,7 @@ return array(
 
 - 发布完成之后可以访问`http://{machine_ip}:{port}/index/TestGreeting`观察效果
 
-## 5. <a id="chapter-5"></a>论坛邀请
+## 5. <span id="chapter-5"></span>论坛邀请
 
 欢迎大家加入 TarsDoc 论坛一起探讨在 Tars 使用过程中遇到的问题和新的体会，共建和谐社区
 

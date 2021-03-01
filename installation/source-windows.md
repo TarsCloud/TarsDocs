@@ -8,7 +8,7 @@
 
 如要用于线上环境，部署安装的原理是一样，不过需要更多考虑分布式系统下服务的部署需要有容错、容灾等的能力。
 
-# 1. <a id="chapter-1"></a>依赖环境
+# 1. <span id="chapter-1"></span>依赖环境
 
 软件 |软件要求
 ------|--------
@@ -43,7 +43,7 @@ linux上安装mysql请参考[mysql安装](mysql.md)
 
 windows上安装mysql请自行搜索教程
 
-# 2. <a id="chapter-2"></a>Tars C++开发环境(源码安装框架必备)
+# 2. <span id="chapter-2"></span>Tars C++开发环境(源码安装框架必备)
 
 **源码安装框架才需要做这一步, 如果只是用c++写服务, 只需要下载tarscpp代码即可**
 
@@ -86,7 +86,7 @@ install以后, 依赖的库(mysql静态库)和头文件也会安装到该目录�
 **需要修改tarscpp/servant/script/*.bat文件中的DEMO_PATH的路径**
 ```
 
-# 3 <a id="chapter-3"></a>Tars框架安装
+# 3 <span id="chapter-3"></span>Tars框架安装
 
 ## 3.1. 框架安装模式
 
@@ -241,7 +241,7 @@ C:\tars\cpp\deploy>busybox.exe ps | busybox.exe grep tars
 - tars-web是nodejs实现的服务, 由两个服务组成, 具体参见后面章节
 - 为了保证核心服务是启动的, 可以通过c:\tars-install\tars\tarsnode\util\monitor.bat来控制, 在windows计划任务中配置(3秒执行一次)
 
-# 4. <a id="chapter-4"></a>Tars-web说明
+# 4. <span id="chapter-4"></span>Tars-web说明
 
 ## 4.1 模块说明
 

@@ -6,13 +6,13 @@
 > * [5.服务开发](#main-chapter-5)
 > * [6.服务发布](#main-chapter-6)
 
-# 1. 环境搭建  <a id="main-chapter-1"></a>
+# 1. 环境搭建  <span id="main-chapter-1"></span>
 
 Tars C++环境搭建参考tars_install.md
 
 请务必先阅读 [concept](../../base/tars-concept.md) and [spec](../../dev/tarscpp/tars-spec.md)
 
-# 2. 服务命名  <a id="main-chapter-2"></a>
+# 2. 服务命名  <span id="main-chapter-2"></span>
 
 使用Tars框架的服务，其的服务名称有三个部分：
 
@@ -30,7 +30,7 @@ Servant：服务者，提供具体服务的接口或实例。例如:HelloImp；
 
 例如：TestApp.HelloServer.HelloObj。
 
-# 3. Tars管理系统  <a id="main-chapter-3"></a>
+# 3. Tars管理系统  <span id="main-chapter-3"></span>
 
 用户登录成功后，会进入Tars管理系统，如下图
 
@@ -42,7 +42,7 @@ TARS管理系统的菜单树下，有以下功能：
 
 - 运维管理：包括服务部署、扩容、模版管理等；
 
-# 4. 服务部署   <a id="main-chapter-4"></a>
+# 4. 服务部署   <span id="main-chapter-4"></span>
 
 服务部署，其实也可以在服务开发后进行，不过建议先做。
 
@@ -72,7 +72,7 @@ TARS管理系统的菜单树下，有以下功能：
 
 在管理系统上的部署暂时先到这里，到此为止，只是使你的服务在管理系统上占了个位置，真实程序尚未发布。
 
-# 5. 服务开发  <a id="main-chapter-5"></a>
+# 5. 服务开发  <span id="main-chapter-5"></span>
 
 ## 5.1. 创建服务
 
@@ -473,7 +473,7 @@ make出目标文件，上传到能访问服务器的环境中进行运行测试�
 **这里你也可以通过cmake来管理, 也强烈建议你通过cmake管理!**
 
 
-# 6. 服务发布  <a id="main-chapter-6"></a>
+# 6. 服务发布  <span id="main-chapter-6"></span>
 在管理系统的菜单树下，找到你部署的服务，点击进入服务页面。 
 
 选择“发布管理”，选中要发布的节点，点击“发布选中节点”，点击“上传发布包”，选择已经编译好的发布包，如下图：

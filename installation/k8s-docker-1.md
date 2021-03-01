@@ -3,7 +3,7 @@
 > * [介绍](#chapter-1)
 > * [k8s部署](#chapter-2)
 
-# 1 <a id="chapter-1"></a>介绍
+# 1 <span id="chapter-1"></span>介绍
 
 本文介绍一种将Tars部署在k8上的方案, 主要逻辑如下:
 - 将框架服务容器化, 使用docker: tarscloud/framework
@@ -13,7 +13,7 @@
 
 这种方式发布和容灾仍然依赖Tars的能力, k8s只是作为容器的管理平台.
 
-## 2 <a id="chapter-2"></a>k8s部署
+## 2 <span id="chapter-2"></span>k8s部署
 
 先安装helm, helm的使用自己学习, 简单的说helm是一种部署服务到k8s的工具.
 

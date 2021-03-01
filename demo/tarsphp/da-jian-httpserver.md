@@ -4,7 +4,7 @@ description: 'https://github.com/TarsPHP/TarsPHP/tree/master/examples/tars-http-
 
 # 搭建HttpServer
 
-## 目录结构说明 <a id="mu-lu-jie-gou-shuo-ming"></a>
+## 目录结构说明 <span id="mu-lu-jie-gou-shuo-ming"></span>
 
 1. scripts 存储业务所需要的脚本,如tars2php.sh 负责的就是根据tars文件,生成客户端所需要的代码
 2. src 业务逻辑所在的目录,主要包含以下结构:
@@ -17,7 +17,7 @@ description: 'https://github.com/TarsPHP/TarsPHP/tree/master/examples/tars-http-
 9. services.php: 声明整个项目的基础namespaceName
 10. tars 这个tcp服务所依赖的就是这个文件夹下面的example.tars文件 而tars.client.proto.php文件,则是生成servant下代码所必须的,这个会在下面的guideline中具体说明。
 
-## 服务部署guideline <a id="fu-wu-bu-shu-guideline"></a>
+## 服务部署guideline <span id="fu-wu-bu-shu-guideline"></span>
 
 1. 进入运维管理=&gt; 模板管理
 
@@ -62,7 +62,7 @@ description: 'https://github.com/TarsPHP/TarsPHP/tree/master/examples/tars-http-
 7. 最大连接数和队列最大长度、队列超时时间,对php服务不生效
 8. 点击添加和提交即可,接下来请进入开发guidline
 
-## 开发guideline <a id="kai-fa-guideline"></a>
+## 开发guideline <span id="kai-fa-guideline"></span>
 
 1. 新建对应的目录结构,固定为scripts、src和tars
 2. 在src下新建目录,拷贝example中的component和controller两个文件夹

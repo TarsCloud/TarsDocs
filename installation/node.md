@@ -5,7 +5,7 @@
 > * [节点机脚本部署](#chapter-3)
 > * [docker化部署](#chapter-4)
 
-# 1 <a id="chapter-1"></a>TarsNode部署
+# 1 <span id="chapter-1"></span>TarsNode部署
 
 当完成Tars框架部署之后, 如果希望业务服务发布到节点服务器, 就需要将节点服务器连接到框架上, 这步操作即在节点服务器上安装tarsnode.
 
@@ -36,7 +36,7 @@ su tars
 * * * * * /usr/local/app/tars/tarsnode/util/monitor.sh
 ```
 
-# 2 <a id="chapter-2"></a>web在线安装
+# 2 <span id="chapter-2"></span>web在线安装
 
 web(>=1.4.1)提供了在线安装tarsnode的功能, 安装时需要输入节点机的ip, 密码等信息, 完成自动tarsnode的安装(需要自己增加crontab监控tarsnode)
 
@@ -57,7 +57,7 @@ cp tarsnode.tgz yourweb/files
 
 **注意:节点机需要支持wget命令, 否则无法从web拉取tarsnode到本机**
 
-# 3 <a id="chapter-3"></a>节点机脚本安装
+# 3 <span id="chapter-3"></span>节点机脚本安装
 
 节点机上也可以自动去安装tarsnode, 前提是节点机能正常访问web, 且web支持online安装
 
@@ -79,7 +79,7 @@ chmod a+x get_tarsnode
 * * * * * /usr/local/app/tars/tarsnode/util/monitor.sh
 ```
 
-# 4 <a id="chapter-4"></a>docker化安装
+# 4 <span id="chapter-4"></span>docker化安装
 
 - 
 如果希望业务服务运行在一个docker里面, 可以采用该方式:

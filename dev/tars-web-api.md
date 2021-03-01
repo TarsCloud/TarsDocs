@@ -59,7 +59,7 @@
 >- * [发送自定义命令](#send-command)
 >- * [自动获取未被占用的端口](#get-port)
 
-## <a id="auth"></a>权限说明
+## <span id="auth"></span>权限说明
 
 请使用web >= 2.0.0 版本
 
@@ -73,7 +73,7 @@ http://xx.xx.xx.xx/api/[command]?ticket=[token]
 
 ticket: web平台中生成的token
 
-## <a id="tree"></a>业务树
+## <span id="tree"></span>业务树
 
 /api/tree
 
@@ -96,9 +96,9 @@ ticket: web平台中生成的token
 }
 ```
 
-## <a id="server"></a>服务管理
+## <span id="server"></span>服务管理
 
-### <a id="deploy-server"></a>部署服务
+### <span id="deploy-server"></span>部署服务
 
 /api/deploy\_server
 
@@ -173,7 +173,7 @@ ticket: web平台中生成的token
 
 只支持POST方式，Header中指定Content-Type:application/json
 
-### <a id="modify-server"></a>修改服务
+### <span id="modify-server"></span>修改服务
 
 /api/update\_server
 
@@ -234,7 +234,7 @@ ticket: web平台中生成的token
 
 只支持POST方式，Header中指定Content-Type:application/json
 
-### <a id="get-server"></a>取服务
+### <span id="get-server"></span>取服务
 
 /api/server
 
@@ -275,7 +275,7 @@ id // 服务ID
 }
 ```
 
-### <a id="get-server-list"></a>取服务列表
+### <span id="get-server-list"></span>取服务列表
 
 /api/server\_list
 
@@ -316,7 +316,7 @@ tree_node_id // 树节点ID
 }]
 ```
 
-### <a id="get-inactive"></a>取设置状态为inactive的服务列表
+### <span id="get-inactive"></span>取设置状态为inactive的服务列表
 
 /api/inactive\_server\_list
 
@@ -359,7 +359,7 @@ node_name   // 节点
 }]
 ```
 
-### <a id="get-notify-server"></a>取服务notify日志列表
+### <span id="get-notify-server"></span>取服务notify日志列表
 
 /api/server\_notify\_list
 
@@ -389,7 +389,7 @@ tree_node_id // 树节点ID
 是
 
 
-### <a id="get-server-status"></a>取服务实时状态
+### <span id="get-server-status"></span>取服务实时状态
 
 /api/get\_realtime\_state
 
@@ -407,7 +407,7 @@ id // 服务ID
 }
 ```
 
-### <a id="load-server"></a>加载服务
+### <span id="load-server"></span>加载服务
 
 /api/load\_server
 
@@ -425,7 +425,7 @@ node_name    // 节点
 "" // 执行结果
 ```
 
-### <a id="pre-expand"></a>预扩容
+### <span id="pre-expand"></span>预扩容
 
 /api/expand\_server\_preview
 
@@ -466,7 +466,7 @@ node_name    // 节点
 
 只支持POST方式，Header中指定Content-Type:application/json
 
-### <a id="expand"></a>扩容
+### <span id="expand"></span>扩容
 
 /api/expand\_server
 
@@ -535,7 +535,7 @@ node_name    // 节点
 
 只支持POST方式，Header中指定Content-Type:application/json
 
-### <a id="add-adapter"></a>新增Adapter
+### <span id="add-adapter"></span>新增Adapter
 
 /api/add\_adapter\_conf
 
@@ -584,7 +584,7 @@ node_name    // 节点
 
 只支持POST方式，Header中指定Content-Type:application/json
 
-### <a id="delete-adapter"></a>删除Adapter
+### <span id="delete-adapter"></span>删除Adapter
 
 /api/delete\_adapter\_conf
 
@@ -600,7 +600,7 @@ id // Adapter ID
 [0] // 删除的Adapter ID
 ```
 
-### <a id="modify-adapter"></a>修改Adapter
+### <span id="modify-adapter"></span>修改Adapter
 
 /api/update\_adapter\_conf
 
@@ -647,7 +647,7 @@ id // Adapter ID
 
 只支持POST方式，Header中指定Content-Type:application/json
 
-### <a id="get-adapter"></a>取Adapter
+### <span id="get-adapter"></span>取Adapter
 
 /api/adapter\_conf
 
@@ -680,7 +680,7 @@ id // Adapter ID
 ```
 
 
-### <a id="get-adapter-list"></a>取Adapter列表
+### <span id="get-adapter-list"></span>取Adapter列表
 
 /api/adapter\_conf\_list
 
@@ -712,9 +712,9 @@ id // 服务ID
 }]
 ```
 
-## <a id="config"></a>服务配置
+## <span id="config"></span>服务配置
 
-### <a id="add-config"></a>新增配置文件
+### <span id="add-config"></span>新增配置文件
 
 /api/add\_config\_file
 
@@ -751,7 +751,7 @@ id // 服务ID
 }
 ```
 
-### <a id="del-config"></a>删除配置文件
+### <span id="del-config"></span>删除配置文件
 
 /api/delete\_config\_file
 
@@ -767,7 +767,7 @@ id // 配置文件ID
 [0] // 删除的配置文件ID
 ```
 
-### <a id="modify-config"></a>修改配置文件
+### <span id="modify-config"></span>修改配置文件
 
 /api/update\_config\_file
 
@@ -802,7 +802,7 @@ id // 配置文件ID
 
 只支持POST方式，Header中指定Content-Type:application/json
 
-### <a id="get-config"></a>取配置文件
+### <span id="get-config"></span>取配置文件
 
 /api/config\_file
 
@@ -829,7 +829,7 @@ id // 配置文件ID
 }
 ```
 
-### <a id="get-config-list"></a>取配置文件列表
+### <span id="get-config-list"></span>取配置文件列表
 
 /api/config\_file\_list
 
@@ -861,7 +861,7 @@ set_group   // Set组
 }]
 ```
 
-### <a id="get-node-config-list"></a>取节点配置文件列表
+### <span id="get-node-config-list"></span>取节点配置文件列表
 
 /api/node\_config\_file\_list
 
@@ -897,7 +897,7 @@ config_id   // 配置文件ID
 
 只支持POST方式，Header中指定Content-Type:application/json
 
-### <a id="get-config-modify-history"></a>取配置文件修改记录
+### <span id="get-config-modify-history"></span>取配置文件修改记录
 
 server/api/config\_file\_history
 
@@ -919,7 +919,7 @@ id  // 变更记录ID
 }
 ```
 
-### <a id="get-config-modify-list"></a>取配置文件修改记录列表
+### <span id="get-config-modify-list"></span>取配置文件修改记录列表
 
 server/api/config\_file\_history\_list
 
@@ -948,7 +948,7 @@ config_id // 配置文件ID
 
 是
 
-### <a id="add-ref"></a>新增引用
+### <span id="add-ref"></span>新增引用
 
 server/api/add\_config\_ref
 
@@ -969,7 +969,7 @@ reference_id // 引用配置文件ID
 }
 ```
 
-### <a id="del-ref"></a>删除引用
+### <span id="del-ref"></span>删除引用
 
 /api/delete\_config\_ref
 
@@ -985,7 +985,7 @@ id // 引用ID
 [0] // 删除的引用ID
 ```
 
-### <a id="ref-list"></a>引用列表
+### <span id="ref-list"></span>引用列表
 
 /api/config\_ref\_list
 
@@ -1016,7 +1016,7 @@ config_id // 配置文件ID
 }]
 ```
 
-### <a id="merge-node-config"></a>合并后节点配置
+### <span id="merge-node-config"></span>合并后节点配置
 
 /api/merged\_node\_config
 
@@ -1032,7 +1032,7 @@ id // 配置文件ID
 "" // 配置文件内容
 ```
 
-### <a id="push-config"></a>下发节点配置
+### <span id="push-config"></span>下发节点配置
 
 /api/push\_config\_file
 
@@ -1054,11 +1054,11 @@ ids // 配置文件ID，用;分隔
 }]
 ```
 
-## <a id="task"></a>任务管理
+## <span id="task"></span>任务管理
 
 > 涵盖启动、停止、发布、下线
 
-### <a id="add-task"></a>新增任务
+### <span id="add-task"></span>新增任务
 
 /api/add\_task
 
@@ -1095,7 +1095,7 @@ ids // 配置文件ID，用;分隔
 
 只支持POST方式，Header中指定Content-Type:application/json
 
-### <a id="get-task"></a>取任务及子任务详细信息
+### <span id="get-task"></span>取任务及子任务详细信息
 
 /api/task
 
@@ -1132,7 +1132,7 @@ task_no // 任务ID
 
 #### 
 
-### <a id="get-task-list"></a>取任务列表
+### <span id="get-task-list"></span>取任务列表
 
 /api/task\_list
 
@@ -1170,9 +1170,9 @@ to          // 结束日期
 }]
 ```
 
-## <a id="publish"></a>发布包
+## <span id="publish"></span>发布包
 
-### <a id="upload-publish"></a>上传发布包
+### <span id="upload-publish"></span>上传发布包
 
 /api/upload\_patch\_package
 
@@ -1199,7 +1199,7 @@ md5         // 发布包的md5值（不填则不校验）
 }
 ```
 
-### <a id="upload-and-publish"></a>上传并发布
+### <span id="upload-and-publish"></span>上传并发布
 
 /api/upload\_and\_publish
 
@@ -1224,7 +1224,7 @@ msg
 curl http://${TARS_WEB_HOST}/api/upload_and_publish?ticket=${TARS_TOKEN} -Fsuse=@${TARGET}.tgz -Fapplication=${APP} -Fmodule_name=${ServerName} -Fcomment=developer-auto-upload
 ```
 
-### <a id="get-publish-list"></a>取发布版本列表
+### <span id="get-publish-list"></span>取发布版本列表
 
 /api/server\_patch\_list
 
@@ -1254,9 +1254,9 @@ module_name // 模块名
 
 是
 
-## <a id="template"></a>模板
+## <span id="template"></span>模板
 
-### <a id="get-template"></a>新增模板
+### <span id="get-template"></span>新增模板
 
 server/api/add\_profile\_template
 
@@ -1282,7 +1282,7 @@ server/api/add\_profile\_template
 }
 ```
 
-### <a id="del-template"></a>删除模板
+### <span id="del-template"></span>删除模板
 
 /api/delete\_profile\_template
 
@@ -1298,7 +1298,7 @@ id  // 模板ID
 [0] // 删除的模板ID
 ```
 
-### <a id="modify-template"></a>修改模板
+### <span id="modify-template"></span>修改模板
 
 server/api/update\_profile\_template
 
@@ -1325,7 +1325,7 @@ server/api/update\_profile\_template
 }
 ```
 
-### <a id="get-template"></a>取模板
+### <span id="get-template"></span>取模板
 
 /api/profile\_template
 
@@ -1347,7 +1347,7 @@ template_name // 模板名称
 }
 ```
 
-### <a id="query-template"></a>查询模板
+### <span id="query-template"></span>查询模板
 
 /api/query\_profile\_template
 
@@ -1370,9 +1370,9 @@ parents_name   // 父模板名称
 }]
 ```
 
-## <a id="monitor"></a>监控
+## <span id="monitor"></span>监控
 
-### <a id="get-tarsstat"></a>取tarsstat监控数据
+### <span id="get-tarsstat"></span>取tarsstat监控数据
 
 /api/tarsstat\_monitor\_data
 
@@ -1414,7 +1414,7 @@ group_by        // 分组
 }]
 ```
 
-### <a id="get-tarsproperty"></a>取tarsproperty监控数据
+### <span id="get-tarsproperty"></span>取tarsproperty监控数据
 
 /api/tarsproperty\_monitor\_data
 
@@ -1446,9 +1446,9 @@ policy          // 策略
 }]
 ```
 
-## <a id="dick"></a>字典
+## <span id="dick"></span>字典
 
-### <a id="get-server-type"></a>取服务类型列表
+### <span id="get-server-type"></span>取服务类型列表
 
 /api/server\_type\_list
 
@@ -1462,7 +1462,7 @@ policy          // 策略
 ["tars_cpp"]
 ```
 
-### <a id="get-template-list"></a>取模板列表
+### <span id="get-template-list"></span>取模板列表
 
 /api/template\_name\_list
 
@@ -1476,7 +1476,7 @@ policy          // 策略
 ["tars.default"]
 ```
 
-### <a id="choose-server"></a>级联选择服务
+### <span id="choose-server"></span>级联选择服务
 
 /api/cascade\_select\_server
 
@@ -1495,9 +1495,9 @@ set          // Set，level>3时必填，格式：Set名.Set区.Set组
 [""] 对应层级数据
 ```
 
-## <a id="resource"></a>资源
+## <span id="resource"></span>资源
 
-### <a id="install-tarsnode"></a>安装Tars Node
+### <span id="install-tarsnode"></span>安装Tars Node
 
 /server/api/install\_tars\_node
 
@@ -1519,7 +1519,7 @@ ips	//需要安装tarsnode的机器IP
 ]
 ```
 
-### <a id="uninstall-tarsnode"></a>卸载Tars Node
+### <span id="uninstall-tarsnode"></span>卸载Tars Node
 
 /api/uninstall\_tars\_node
 
@@ -1541,9 +1541,9 @@ ips	//需要卸载tarsnode的机器IP
 ]
 ```
 
-## <a id="other"></a>其他
+## <span id="other"></span>其他
 
-### <a id="send-command"></a>发送自定义命令
+### <span id="send-command"></span>发送自定义命令
  
 /api/send\_command
 
@@ -1566,7 +1566,7 @@ command    // 命令
 }]
 ```
 
-### <a id="get-port"></a>自动获取未被占用的端口
+### <span id="get-port"></span>自动获取未被占用的端口
 
 /api/auto\_port
 

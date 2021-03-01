@@ -20,7 +20,7 @@
 
 * 要求Go 1.9.x 或以上版本,请查看[https://golang.org/doc/install](https://golang.org/doc/install)
 
-# <a id="main-chapter-2"></a>下载tarsgo代码
+# <span id="main-chapter-2"></span>下载tarsgo代码
 
 安装go (比如安装目录: /usr/local/go), 设置好GOROOT, GOPATH, 比如, linux下:
 ```

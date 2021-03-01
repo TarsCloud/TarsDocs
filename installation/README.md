@@ -7,7 +7,7 @@
 
 在了解部署之前, 请务必整体了解Tars的[设计](https://github.com/TarsCloud/TarsDocs/blob/master/base/tars-intro.md)
 
-# 1 <a id="chapter-1"></a>部署简介
+# 1 <span id="chapter-1"></span>部署简介
 
 需要了解Tars部署基础知识:
 
@@ -39,7 +39,7 @@ Tars部署方式有以下几种:
 
 **建议部署都在linux上完成, 即使是docker安装, 推荐使用centos7**
 
-# 2 <a id="chapter-2"></a>源码编译方式部署
+# 2 <span id="chapter-2"></span>源码编译方式部署
 
 源码部署方式是了解Tars非常好的途径, 主要步骤如下:
 
@@ -55,7 +55,7 @@ Tars部署方式有以下几种:
 
 **注意:该方式建议对Tars比较熟悉的团队使用**
 
-# 3 <a id="chapter-3"></a>框架Docker化部署
+# 3 <span id="chapter-3"></span>框架Docker化部署
 
 源码部署虽然可以独立更新, 但是也带来了不便, 毕竟每个模块更新还是比较麻烦的, 同时模块版本可能还有依赖, 更新维护就更麻烦了.
 
@@ -76,7 +76,7 @@ Tars框架的Docker制作分三种模式:
 >- 一键运行命令, 既可以完成镜像的制作
 >- 采用的系统默认的源, 可能连接海外源, 较慢(但是在github上action制作的时候比较快)
 
-# 4 <a id="chapter-4"></a>K8s Docker部署
+# 4 <span id="chapter-4"></span>K8s Docker部署
 
 框架Docker部署, 虽然极大方便了框架的部署, 但是对于使用k8s来管理容器的团队而言, 仍然有很多工作要做.
 
@@ -98,7 +98,7 @@ Tars框架的Docker制作分三种模式:
 
 Tars团队已经制作了一个[一键部署k8s的方案](k8s-docker-1.md)
 
-# 5 <a id="chapter-5"></a>K8s融合部署
+# 5 <span id="chapter-5"></span>K8s融合部署
 
 上面K8s的Docker部署, 虽然把Tars部署在k8s上运行起来, 但是实际发布, 扩容并没有使用K8s, 只是把k8s当成了一个容器管理平台了.
 

@@ -5,7 +5,7 @@
 > * [Tars-web更新](#chapter-4)
 > * [框架基础服务独立更新](#chapter-5)
 
-## 1 <a id="chapter-1"></a> 介绍
+## 1 <span id="chapter-1"></span> 介绍
 
 当我们谈到框架的扩容和更新时, 主要讨论的内容包括:
 - 框架核心服务如何扩容到多台机器上
@@ -13,7 +13,7 @@
 - tarsweb如何更新
 - 框架各个核心服务如何更新到最新版本
 
-## 2 <a id="chapter-2"></a>框架服务扩容
+## 2 <span id="chapter-2"></span>框架服务扩容
 
 框架服务的扩容会随着部署方式的不同而不同:
 
@@ -31,7 +31,7 @@
 
 推荐在正式环境中使用docker的部署方式, 未来框架的版本升级更加简单便捷!
 
-## 3 <a id="chapter-3"></a> tarsnode安装和更新
+## 3 <span id="chapter-3"></span> tarsnode安装和更新
 
 - Linux
 
@@ -71,7 +71,7 @@ locator=tars.tarsregistry.QueryObj@tcp -h xxx2 -p 17890:tcp -h xxx2 -p 17890
 
 **注意:之前安装的框架的服务器, 如果用check.sh做了监控, 则无需再配置tarsnode的监控了**
 
-## 4 <a id="chapter-4"></a> Tars-web独立更新
+## 4 <span id="chapter-4"></span> Tars-web独立更新
 
 注意不建议单独更新tars-web, tarsweb可能依赖其他组件的版本!!!
 
@@ -95,7 +95,7 @@ mysql -hxxx -pxxx db_user_system < web/demo/sql/db_user_system.sql
 
 ```
 
-## <a id="chapter-5"></a> 框架基础服务独立更新
+## <span id="chapter-5"></span> 框架基础服务独立更新
 
 注意不建议单独独立更新各个组件, 因为各组件间有相互依赖的版本关系, 已经相关的配置都需要对应模板配置都需要更新!!!
 
