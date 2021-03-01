@@ -38,4 +38,6 @@
 
 [DCache 分布式存储系统｜Key-Value 缓存模块的创建与使用](https://blog.csdn.net/TARSFoundation/article/details/113591738)
 
+[DCache 分布式存储系统｜K-K-Row 缓存模块的创建与使用](https://blog.csdn.net/TARSFoundation/article/details/114065750)
+
 []() ...
