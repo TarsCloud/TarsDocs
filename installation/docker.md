@@ -314,7 +314,7 @@ services:
       internal:
         ipv4_address: 172.25.1.2
   framework:
-    image: tarscloud/framework:v2.4.0
+    image: tarscloud/framework:latest
     container_name: tars-framework
     ports:
       - "3000:3000"
