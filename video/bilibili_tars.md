@@ -14,7 +14,7 @@
 | ---------------- | --------- | ----------------- |
 | 2021-03-06 20:00 | [TARS部署](https://www.bilibili.com/video/BV1Wz4y1178G)  | Jarod（阮曙东）   |
 | 2021-03-13 20:00 | [TarsJava入门实战](https://www.bilibili.com/video/BV145411K7eb)  | timmy（俞慧涛）   |
-| 2021-03-20 20:00 | Tars.js   |                   |
+| 2021-03-20 20:00 | Tars.js   | czzou（邹成卓）                  |
 | 2021-03-27 20:00 | TarsPHP   | 朝云（丁盼盼）    |
 | 2021-04-03 20:00 | TarsCPP   | Jarod（阮曙东）   |
 | 2021-04-10 20:00 | TarsGo    | 待定              |
