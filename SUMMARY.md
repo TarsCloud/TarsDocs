@@ -17,6 +17,7 @@
 > - [其他重要特性](#important)
 > - [常见问题](#question)
 > - [开源合作](#cooperation)
+> - [直播视频](#video)
 > - [相关文章](#articles)
 > - [其它资源分享](#resourcesSharing)
 
@@ -188,6 +189,10 @@
 ## 开源合作 <span id="cooperation">
 
 - [TarsFramework 项目 Git 合作规范](cooperation/tars_framework_git_flows.md)
+
+## 直播视频 <span id="video">
+
+- [B站TARS培训系列课程](video/bilibili_tars.md)
 
 ## 相关文章 <span id="articles">
 
