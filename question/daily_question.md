@@ -4338,9 +4338,49 @@ https://github.com/TarsCloud/Tars/issues/658
 
 https://github.com/TarsCloud/Tars/issues/712
 
+20210325
 
+1、（图）如果我把IP地址和端口号改为自己的地址和端口号，直接编译运行这段代码就可以吗？
 
+https://github.com/TarsCloud/Tars/issues/562
 
+2、想用单项调用提高效率，是用tcp还是udp？
+
+https://github.com/TarsCloud/Tars/issues/565
+
+3、java里的stringToProxy，会触发ConCurrentHashMap computeIfAbsent的死循环bug。(见备注例子，jdk版本为1.8)
+
+https://github.com/TarsCloud/Tars/issues/566
+
+4、P90，P99和P999的汇总思路是什么？
+
+https://github.com/TarsCloud/Tars/issues/582
+
+5、微服务通过linux控制台直接关闭和启动，那么框架里面的web管理后台的控制会失效吗？
+
+https://github.com/TarsCloud/Tars/issues/591
+
+20210326
+
+1、web过来的请求直接到node的话，都有哪些功能操作？
+
+https://github.com/TarsCloud/Tars/issues/622
+
+2、日志打到TarsLog里后，在web页面上可以流式查看检索吗？
+
+https://github.com/TarsCloud/Tars/issues/623
+
+3、(图)这两个类是自动生成的？需要执行怎样的命令？或者文档在哪里？
+
+https://github.com/TarsCloud/Tars/issues/718
+
+4、(图)这里的负载是什么意思呢？为什么有的显示0，有的显示1， 安装的时候没有做出相关的选择。
+
+https://github.com/TarsCloud/Tars/issues/780
+
+5、docker镜像没有java环境吗？跑java微服需要自己进docker环境中配置java吗？
+
+https://github.com/TarsCloud/Tars/issues/624
 
 
 
