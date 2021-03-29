@@ -157,7 +157,7 @@ cp -rf web /usr/local/tars/cpp/deploy/
 例如, 这是/usr/local/tars/cpp/deploy下的文件:
 ```
 ubuntu@VM-0-14-ubuntu:/usr/local/tars/cpp/deploy$ ls -l
-total 10304
+total 1030h
 -rw-r--r--  1 root root  443392 Apr  3 17:22 busybox.exe
 -rw-r--r--  1 root root    1922 Apr  3 17:22 centos7_base.repo
 -rw-r--r--  1 root root    1395 Apr  3 17:22 Dockerfile
@@ -259,11 +259,12 @@ chmod a+x linux-install.sh
 
 目标: 将框架制作成一个docker, 部署时启动docker即可.
 
-进入该目录, 执行生成docker:
+首先将TarsWeb clone到TarsFramework源码根目录, 然后直接在TarsFramework源码目录下, 执行:
 ```
-chmod a+x docker.sh
-./docker.sh v1
+git clone https://github.com/TarsCloud/TarsWeb.git web
+deploy/docker.sh v1 deploy/x64.build.Dockerfile
 ```
+
 docker制作完毕: tarscloud/framework:v1
 ```
 docker ps
