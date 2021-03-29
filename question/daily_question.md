@@ -4382,9 +4382,47 @@ https://github.com/TarsCloud/Tars/issues/780
 
 https://github.com/TarsCloud/Tars/issues/624
 
+20210327
 
+1、使用docker创建虚拟网络，TarsFramework中使用宿主的ip，但发布时会报错 。
 
+https://github.com/TarsCloud/Tars/issues/627
 
+2、MDC支持跨服务链路追踪吗？
 
+https://github.com/TarsCloud/Tars/issues/590
 
+3、1.7.1的tars-Java是不是不支持染色日志？
+
+https://github.com/TarsCloud/Tars/issues/629
+
+4、请问TARS有分布式事务解决方案吗？
+
+https://github.com/TarsCloud/Tars/issues/631
+
+5、TARS框架部署时，每个组件需要的硬件要求是怎么样的？
+
+https://github.com/TarsCloud/Tars/issues/594
+
+20210329
+
+1、这两个TARS服务间调用时报的错误。
+
+https://github.com/TarsCloud/Tars/issues/710
+
+2、（图）文档上说的cmake_tars_server.sh是自动生成cmakelists.txt的工具。TarsCpp库已经正常编译安装，并生成tar协议了，但我运行后没生成cmakelist.txt。
+
+https://github.com/TarsCloud/Tars/issues/691
+
+3、（图）在调用服务接口的时候，出现错误，客户端日志说是链接被关闭了，但是服务端是收到了这个请求的，请问是怎么回事呢？
+
+https://github.com/TarsCloud/Tars/issues/711
+
+4、（图）如备注图所示这种报错的原因是什么？
+
+https://github.com/TarsCloud/Tars/issues/692
+
+5、全局开启了go mod，执行备注图1的划线处提示bash: cd: C:\Users\Admin\go/ src/github.com/TarsCloud/TarsGo/tars/tools/tars2go: No such file or directory，全局开启go mod是什么原因呢？
+
+https://github.com/TarsCloud/Tars/issues/694
 
