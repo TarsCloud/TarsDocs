@@ -8,7 +8,7 @@
 - [新闻](https://tarscloud.org/feed/newsroom)
 - QQ技术交流群群：579079160、669339903
 - 微信公众号: TarsCloud
-- 微信ID: 01
+- 微信ID: TARS01
 - [联系我们](https://tarscloud.org/about/contacts)
 
 ## 简介
