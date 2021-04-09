@@ -262,7 +262,10 @@ chmod a+x linux-install.sh
 首先将TarsWeb clone到TarsFramework源码根目录, 然后直接在TarsFramework源码目录下, 执行:
 ```
 git clone https://github.com/TarsCloud/TarsWeb.git web
-deploy/docker.sh v1 deploy/x64.build.Dockerfile
+#x64
+sudo ./deploy/docker.sh v1 amd64
+#arm64
+sudo ./deploy/docker.sh v1 arm64
 ```
 
 docker制作完毕: tarscloud/framework:v1
