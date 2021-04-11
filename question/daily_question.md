@@ -4580,9 +4580,49 @@ https://github.com/TarsCloud/Tars/issues/702
 
 https://github.com/TarsCloud/Tars/issues/703
 
+20210408
 
+1、将配置文件push到服务节点之后。解析的时候，提示找不到文件是什么原因？
 
+https://github.com/TarsCloud/Tars/issues/657
 
+2、TARS用gson替代fastjson而不是用jackson替代主要是出于哪些考虑呢？
+
+https://github.com/TarsCloud/Tars/issues/659
+
+3、在往TARS上部署应用的时候，通过jenkins进行一键部署，我看有上传并发布的接口，但是不会用。
+
+https://github.com/TarsCloud/Tars/issues/662
+
+4、1.7版本后，日志直接用@Slf4j注解，看不到日志了，需要在哪儿配置吗？
+
+https://github.com/TarsCloud/Tars/issues/665
+
+5、如何看待RPC框架中的单连接和多连接(或连接池)设计?
+
+https://github.com/TarsCloud/Tars/issues/666
+
+20210409
+
+1、proto3协议，java客户端调c服务端，返回结果null，无报错，怀疑解析有问题，是否有开关能在解析异常时打印信息？
+
+https://github.com/TarsCloud/Tars/issues/667
+
+2、滚动日志超过配置文件中的个数后会被自动删除吗？
+
+https://github.com/TarsCloud/Tars/issues/673
+
+3、利用docker.sh制作镜像，出现该问题怎么解决？
+
+https://github.com/TarsCloud/Tars/issues/675
+
+4、在部署TARS时 Mysql IP Address 和 INET 怎么找？
+
+https://github.com/TarsCloud/Tars/issues/674
+
+5、如何看系统里面现在使用的TARS框架版本呢？
+
+https://github.com/TarsCloud/Tars/issues/783
 
 
 
