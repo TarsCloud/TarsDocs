@@ -18,6 +18,6 @@
 | 2021-03-27 20:00 | [TarsPHP入门实战](https://www.bilibili.com/video/BV1yb4y1Q7Su)   | 朝云（丁盼盼）    |[课件](https://github.com/TarsCloud/TarsDocs/blob/master/video/TarsPHP%E5%85%A5%E9%97%A8%E5%AE%9E%E6%88%98.pptx) |
 | 2021-04-10 20:00 | [TarsCPP入门实战](https://www.bilibili.com/video/BV1ZK4y1m7UE)   | Jarod（阮曙东）   |[课件](https://github.com/TarsCloud/TarsDocs/blob/master/video/TARSCPP%E5%85%A5%E9%97%A8%E5%AE%9E%E6%88%98.pptx) |
 | 2021-04-17 20:00 | [TarsGo入门实战](https://www.bilibili.com/video/BV13X4y137mt)    | defool（利开园）   |[课件](https://github.com/TarsCloud/TarsDocs/blob/master/video/TarsGo%E5%85%A5%E9%97%A8%E5%AE%9E%E6%88%98.pptx) |
-| 2021-04-24 20:00 | [Tars网关入门实战](https://www.bilibili.com/video/BV1AK411c73R)  | kivenchen（陈平） |[课件]() |
+| 2021-04-24 20:00 | [Tars网关入门实战](https://www.bilibili.com/video/BV1AK411c73R)  | kivenchen（陈平） |[课件](https://github.com/TarsCloud/TarsDocs/blob/master/video/Tars%E7%BD%91%E5%85%B3%E5%85%A5%E9%97%A8%E5%AE%9E%E6%88%98.pptx) |
 | 2021-05-01 20:00 | Tars压测  | 待定              |
 | 2021-05-08 20:00 | K8s中部署 | defool（利开园）  |
