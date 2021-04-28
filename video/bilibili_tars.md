@@ -18,6 +18,6 @@
 | 2021-03-27 20:00 | [TarsPHP入门实战](https://www.bilibili.com/video/BV1yb4y1Q7Su)   | 朝云（丁盼盼）    |
 | 2021-04-10 20:00 | [TarsCPP入门实战](https://www.bilibili.com/video/BV1ZK4y1m7UE)   | Jarod（阮曙东）   |
 | 2021-04-17 20:00 | [TarsGo入门实战](https://www.bilibili.com/video/BV13X4y137mt)    | defool（利开园）   |
-| 2021-04-24 20:00 | Tars网关  | kivenchen（陈平） |
+| 2021-04-24 20:00 | [Tars网关](https://www.bilibili.com/video/BV1AK411c73R)  | kivenchen（陈平） |
 | 2021-05-01 20:00 | Tars压测  | 待定              |
 | 2021-05-08 20:00 | K8s中部署 | defool（利开园）  |
