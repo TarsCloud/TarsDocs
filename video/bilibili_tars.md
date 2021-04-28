@@ -10,7 +10,7 @@
 
 ## 2021年【TARS直播培训系列课程】
 
-| 开播时间         | 课程      | 讲师              |课件              |
+| 开播时间         | 课程      | 讲师              |课件(右键另存为)              |
 | ---------------- | --------- | ----------------- |----------------- |
 | 2021-03-06 20:00 | [TARS部署](https://www.bilibili.com/video/BV1Wz4y1178G)  | Jarod（阮曙东）   |[课件](https://github.com/TarsCloud/TarsDocs/blob/master/video/TARS%E9%83%A8%E7%BD%B2.pptx) |
 | 2021-03-13 20:00 | [TarsJava入门实战](https://www.bilibili.com/video/BV145411K7eb)  | timmy（俞慧涛）   |[课件](https://github.com/TarsCloud/TarsDocs/blob/master/video/TarsJava%E5%85%A5%E9%97%A8%E5%AE%9E%E6%88%98.pdf) |
