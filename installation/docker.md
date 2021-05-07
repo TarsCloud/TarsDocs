@@ -175,7 +175,7 @@ docker run -d \
     -e INET=eth0 \
     -e WEB_HOST="http://172.25.0.3:3000" \
     --ip="172.25.0.5" \
-    -v /data/node:/data/app \
+    -v /data/tars:/data/tars \
     -v /etc/localtime:/etc/localtime \
     -p 9000-9010:9000-9010 \
     tarscloud/tars-node:latest
