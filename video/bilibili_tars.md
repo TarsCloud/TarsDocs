@@ -20,4 +20,4 @@
 | 2021-04-17 20:00 | [TarsGo入门实战](https://www.bilibili.com/video/BV13X4y137mt)    | defool（利开园）   |[课件](https://github.com/TarsCloud/TarsDocs/blob/master/video/TarsGo%E5%85%A5%E9%97%A8%E5%AE%9E%E6%88%98.pptx) |
 | 2021-04-24 20:00 | [Tars网关入门实战](https://www.bilibili.com/video/BV1AK411c73R)  | kivenchen（陈平） |[课件](https://github.com/TarsCloud/TarsDocs/blob/master/video/Tars%E7%BD%91%E5%85%B3%E5%85%A5%E9%97%A8%E5%AE%9E%E6%88%98.pptx) |
 | 2021-05-08 20:00 | [TarsK8S入门实战](https://www.bilibili.com/video/BV1rN411f7TX) | defool（利开园）  |[课件](https://github.com/TarsCloud/TarsDocs/blob/master/video/Tars%20K8S%E9%83%A8%E7%BD%B2.pptx)  |
-| 2021-05-15 20:00 | Tars压测入门实战  | 待定              |   |
+| 2021-06-06 20:00 | [Tars压测入门实战](https://www.bilibili.com/video/BV1V64y1R7aJ)  | timmy（俞慧涛）              |[课件](https://github.com/TarsCloud/TarsDocs/blob/master/video/Tars%E5%8E%8B%E6%B5%8B%E5%85%A5%E9%97%A8%E5%AE%9E%E6%88%98.pptx)   |
