@@ -5460,37 +5460,181 @@ https://github.com/TarsCloud/Tars/issues/787
   
 https://github.com/TarsCloud/Tars/issues/788
 
+20210529
 
+1、为什么TarsGateway会依赖到tars_user_system？
+  
+https://github.com/TarsCloud/Tars/issues/738
+  
+2、低版本1.5.0 客户端里框架会有一个tars_client.log 日志，这个日志文件是一定打出来么？
+  
+https://github.com/TarsCloud/Tars/issues/739
+  
+3、gateway在内部是什么场景？
+  
+https://github.com/TarsCloud/Tars/issues/740
+  
+4、一个疑问：我有个服务A，线上环境，我有多个地区部署，配置不一样，这块是怎么搞呢？
+  
+https://github.com/TarsCloud/Tars/issues/741
+  
+5、(图)安装TarsGateway时这个token获取不到怎么办？
+  
+https://github.com/TarsCloud/Tars/issues/742
 
+20210530
 
+1、打包发布后想要修改代码，是在本地修改然后再压缩上传吗？
+  
+https://github.com/TarsCloud/Tars/issues/676
+  
+2、在make docker 的时候，输入.\ docker.sh v1 ，提示commond not found是什么原因？
+  
+https://github.com/TarsCloud/Tars/issues/677
+  
+3、想开发一个TARS 的UDP服务，该怎么写？
+  
+https://github.com/TarsCloud/Tars/issues/683
+  
+4、（图）无法连接mysql问题怎么解决？mysql都重装了，命令行可以连上。
+  
+https://github.com/TarsCloud/Tars/issues/685
+  
+5、（图）这是少配置了什么导致错误？
+  
+https://github.com/TarsCloud/Tars/issues/686
 
+20210531
 
+1、发现服务每隔10分钟会重启，这是什么原因？
+  
+https://github.com/TarsCloud/Tars/issues/688
+  
+2、调用服务的频率快一些服务就会重启，有什么解决办法？
+  
+https://github.com/TarsCloud/Tars/issues/689
+  
+3、TARS的每个组件都哪些对数据库有依赖呀，每个组件有自己的独立数据库表吗？
+  
+https://github.com/TarsCloud/Tars/issues/690
+  
+4、（图）TarsCpp库已经正常编译安装，并生成TARS协议了，但我运行后没生成cmakelist.txt。
+  
+https://github.com/TarsCloud/Tars/issues/691
+  
+5、报错 ’STATUS_GRID_KEY‘ is not a member of 'tars::Servantproxy'的原因是什么？
+  
+https://github.com/TarsCloud/Tars/issues/692
 
+20210601
 
+1、低版本1.5.0 客户端里框架会有一个tars_client.log 日志，这个日志文件是一定打出来么？
+  
+https://github.com/TarsCloud/Tars/issues/739
+  
+2、外网机器迁移了，目标obj的ip和端口修改了，这时候tars stringToProxy 会即刻拿到新的地址吗？
+  
+https://github.com/TarsCloud/Tars/issues/778
+  
+3、TARS在k8s已创建好，怎么做才能让外网访问里面的服务？
+  
+https://github.com/TarsCloud/Tars/issues/779
+  
+4、tars-install里的replace是脚本中的replace函数还是mysql-tool替换文本？
+  
+https://github.com/TarsCloud/Tars/issues/545
+  
+5、docker容器的宿主机vmware的centos可以联通 windows的mysql，容器里面启动却连不上mysql，怎么解决？ 
+  
+https://github.com/TarsCloud/Tars/issues/548
 
+20210602
 
+1、(图)这里的客服端报错是什么原因呢？
+  
+https://github.com/TarsCloud/Tars/issues/701
+  
+2、TARS使用k8s部署遇到的一个问题。
+  
+https://github.com/TarsCloud/Tars/issues/596
+  
+3、make_pair(TC_Mysql::DB_INT, 100);  100会变成d，这个如何编译？
+  
+https://github.com/TarsCloud/Tars/issues/642
+  
+4、如果要部署到生产环境，framework 和 tars-node建议用什么方式部署呢？
+  
+https://github.com/TarsCloud/Tars/issues/643
+  
+5、（图）时间不准，怎样同步成为最新的时间？mysql是通过docker安装的。
+  
+https://github.com/TarsCloud/Tars/issues/706
 
+20210603
 
+1、TARS 部署在本地，如何规避IP是 DHCP来的会经常变化的问题？
+  
+https://github.com/TarsCloud/Tars/issues/589
+  
+2、（图）一个关于servant的小问题。直连node节点的时候，服务名字不重要吗？
+  
+https://github.com/TarsCloud/Tars/issues/707
+  
+3、在对TARS支持负载均衡进行测试时遇到问题。
+  
+https://github.com/TarsCloud/Tars/issues/587
+  
+4、erp系统，在删除基础部门信息时，要检查是否被其他表引用，有什么比较好的解决方案？
+  
+https://github.com/TarsCloud/Tars/issues/647
+  
+5、java 已经安装配置了，服务提示启动成功， 但是状态还是off，服务的端口未被占用，是因为什么呢？
+  
+https://github.com/TarsCloud/Tars/issues/648
 
+20210605
 
+1、脱离TARS环境调用微服务，setLocator怎么传参？
+  
+https://github.com/TarsCloud/Tars/issues/649
+  
+2、阿里云VPS，有内网IP，自动安装节点成功，节点管理里找不到怎么办？
+  
+https://github.com/TarsCloud/Tars/issues/650
+  
+3、A服务器上部署了Tars环境，如果将一些服务部署在B服务器上，是否需要在B服务器上也部署一套Tars环境？
+  
+https://github.com/TarsCloud/Tars/issues/655
+  
+4、新增部署节点时，可以填写我的节点地址吗？我想添加一个有公网ip的服务器地址，要如何操作？
+  
+https://github.com/TarsCloud/Tars/issues/656
+  
+5、从web控制端 配置了配置文件，go代码里我该怎么获取？
+  
+https://github.com/TarsCloud/Tars/issues/653
 
+20210606
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+1、将配置文件push到服务节点之后。解析的时候，提示找不到文件是什么原因？
+  
+https://github.com/TarsCloud/Tars/issues/657
+  
+2、TARS用gson替代fastjson而不是用jackson替代主要是出于哪些考虑呢？
+  
+https://github.com/TarsCloud/Tars/issues/659
+  
+3、在往TARS上部署应用的时候，通过jenkins进行一键部署，我看有上传并发布的接口，但是不会用。
+  
+https://github.com/TarsCloud/Tars/issues/662
+  
+4、1.7版本后，日志直接用@Slf4j注解，看不到日志了，需要在哪儿配置吗？
+  
+https://github.com/TarsCloud/Tars/issues/665
+  
+5、如何看待RPC框架中的单连接和多连接(或连接池)设计?
+  
+https://github.com/TarsCloud/Tars/issues/666
 
 
 
