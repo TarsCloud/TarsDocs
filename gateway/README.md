@@ -91,8 +91,10 @@ TARS-JSON协议代理，支持两种类型的接口。
 ```
 
 * **相关参数都在http body中指定：**
-  
+
 必须为post请求类型，路径为/json，body内容为json结构。其中必须有reqid, obj, func, data 四个字段，分别表示请求id、服务servant、服务接口、接口参数，对应BasePacket中的reqid:iRequestId, obj:sServantName, func:sFuncName。data内容为接口中的参数，key为参数名，value为参数内容。除了以上必选四个字段之外，context为可选字段。回包内容包括 reqid 和 data， data为接口出参内容，其中 "" 的key对应内容为函数返回值。 这里除了这里包格式不一样，其他后面的逻辑都和TARS-tup类型一样。请求参数举例如下：
+
+
 ```
     请求包：
     {
@@ -110,11 +112,13 @@ TARS-JSON协议代理，支持两种类型的接口。
 
  
 ## 4. 普通HTTP协议代理
+
 普通HTTP协议代理，类似nginx的反向代理功能，主要功能包括根据domain和url进行请求转发，后端负载均衡，容错容灾，黑名单屏蔽，流量控制等功能。
 
 * **路由策略**
 
 先匹配server_name,再匹配path,然后根据 proxy_pass 路径进行转发,具体规则如下：
+
 ```
 server_name 匹配逻辑：
 {
@@ -143,6 +147,7 @@ proxy_pass:
 	3、当 location 中为正则时， proxy_pass 不能带路径
 }
 ```
+
 * **负载均衡**
 
 支持普通轮训和带权重轮训策略，默认权重（weight）为1，数据越大，权重越高。权重表示在一次轮训周期内轮训的次数。
@@ -154,7 +159,7 @@ proxy_pass:
 **失效屏蔽**：如果出现连接出错，那么就会直接临时屏蔽该节点，对应inactive配置，其中的值为RequestCallback::FAILED_CODE类型。加入到失效的节点，如果该站点配置了monitor_url，那么会定时轮训该url，如果出现http 200，那么恢复该节点，轮训检测间隔递增，最大为2分钟。如果没有配置 monitor_url, 那么直接connect该节点的ip:port，能够正常连接，那么恢复该节点。
 
 **超时切换**：当超时次数在指定时间窗口达到一定阈值时，或者超过一定比例时，那么临时屏蔽一段时间，一定时间后会尝试超时恢复。
-    
+
 ```
         配置如下：
         <http_retcode>
@@ -179,6 +184,7 @@ IP黑名单和流控策略， 同时支持TarsGateway的三种协议，所以后
 
 
 ## 5. 流量控制
+
 可以支持访问TarsGateway 访问后端进行流量控制，支持单机控制，也支持多机协同控制，也可以关闭流控。
 
 **开关控制:**  配置flow_control_onoff可以对流控进行开关控制。另外如果服务servant没有配置FlowControlObj，那么就不会开启流控策略。
@@ -190,6 +196,7 @@ IP黑名单和流控策略， 同时支持TarsGateway的三种协议，所以后
 **配置说明:**  如果是TARS-tup或者TARS-JSON协议，那么流控的站点ID为服务Obj，如果是http协议，那么站点ID为配置中的stationId.
 
 ## 6. 黑名单策略
+
 黑名单为IP黑名单，支持全局黑名单和站点黑名单两个级别。
 
 **黑名单格式:** 客户端IP地址，支持通配符。如 192.168.2.130, 192.168.10.*
@@ -202,6 +209,7 @@ IP黑名单和流控策略， 同时支持TarsGateway的三种协议，所以后
 
 
 ## 7. 配置热更新
+
 支持常用配置热更新，包括：
 1. loadProxy: 通过该tars命令可以实现TARS-tup&TARS-JSON协议的servant代理配置更新；
 2. loadHttp:  通过该配置可以进行普通HTTP协议的路由策略, 后端节点配置，监控url配置等；
