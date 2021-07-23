@@ -1,6 +1,7 @@
 [Click to View English Documents](https://tarscloud.github.io/TarsDocs_en/)
 
 # TARS
+---
 
 - Twitter: [@TarsCloud](https://twitter.com/TarsCloud)
 - [Mailing List](https://groups.google.com/g/tars-foundation-information)
