@@ -59,6 +59,7 @@ TARS-JSON协议代理，支持两种类型的接口。
 * **servantName和funcName在http url路径中指定**
   
 路径为/json/servantName/funcName，其中/json是固定的，后面分别是servantName 和 funcName。
+
 ```
     tars 协议文件如下：
     module Test
