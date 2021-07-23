@@ -67,6 +67,6 @@ docker            |构建tars docker脚本
 
 ## License <span id="chapter-5"></span>
 
-Tars的开源协议为BSD-3-Clause，详情参见 [LICENSE](https://github.com/TarsCloud/TarsDocs/blob/master/LICENSE.md)。
+Tars的开源协议为BSD-3-Clause，详情参见 [LICENSE](LICENSE.md)。
 
 
