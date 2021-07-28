@@ -21,7 +21,10 @@
     ./install.sh 172.16.8.220:3000 036105e1ebfc13843b4db0edcd000b3d9f47b13928423f0443df54d20ca65855 172.16.8.220 172.16.8.221 3306 tars tars2015
 ```
 ### 验证安装结果：
-在浏览器打开 http://${server_ip}:8200/monitor/monitor.jsp , 如果能正常显示 hello TupMonitorxxx 就表示安装成功。
+在浏览器打开 http://${server_ip}:8200/monitor/monitor.html , 如果能正常显示 hello TupMonitorxxx 就表示安装成功。
+
+### 修改默认安装端口
+将server.json中的8200端口值修改为你需要的端口，然后重新执行./install.sh步骤，最后在TarsWeb中将GatewayServer重启即可。
 
 ## 手动部署安装（需要先具备tarscpp编译环境）
 1. 准备tarscpp 编译环境；
