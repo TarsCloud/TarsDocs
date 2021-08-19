@@ -1,4 +1,4 @@
-# 管理平台 API
+r# 管理平台 API
 > * [Auth](#auth)
 > * [业务树](#tree)
 > * [服务管理](#server)
@@ -187,7 +187,7 @@ ticket: web平台中生成的token
 	"server_type": "",        // 服务类型
 	"enable_set": "",         // 是否启用Set
 	"set_name": "",           // Set名
-	"ser_area": "",           // Set区
+	"set_area": "",           // Set区
 	"set_group": "",          // Set组
 	"async_thread_num": 0,    // 异步线程数
 	"base_path": "",          // 缺省路径
