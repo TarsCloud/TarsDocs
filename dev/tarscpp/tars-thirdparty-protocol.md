@@ -138,11 +138,12 @@ static TC_NetWorkBuffer::PACKET_TYPE pushResponse(TC_NetWorkBuffer &in, vector<c
 
 正常情况下, Tars客户端和Tars服务端都通过Tars协议来完成通信, 但是在某些场合, 你的服务可能需要调用其他一个服务, 这时通常的做法是你需要自己实现协议解析和网络通信, 而Tars的Communicator可以做到设置协议解析器, 从而完成Tars客户端和其他服务的通信.
 
-**目前的要求是这个协议设计上支持:请求响应包通过int类型的requestId&responseId对应**
+**使用tars第三方协议通信时，前提条件为必须为每个请求包&回包做一个对应标识，目前的要求是这个协议设计上支持:请求响应包通过int类型的requestId&responseId对应**
 
 还是以CustomServer为例说明, 客户端创建了一个CustomServer的代理:
 
 ```
+//这里的TestApp.CustomServer.TestPushServantObj并不需要在tars Web注册的真实存服务实体，只是做一个索引记录作用
 string sObjName = "TestApp.CustomServer.TestPushServantObj@tcp -h 127.0.0.1 -t 60000 -p 9300";
 
 _prx = _comm.stringToProxy<ServantPrx>(sObjName);
@@ -153,15 +154,19 @@ _prx = _comm.stringToProxy<ServantPrx>(sObjName);
 
 ```
 	ProxyProtocol prot;
-    prot.requestFunc = pushRequest;
-    prot.responseFunc = pushResponse;
+    //pushRequest为自定义的发包前的打包处理函数
+    prot.requestFunc = pushRequest;	
+    //pushResponse为自定义的收包解包处理函数
+    prot.responseFunc = pushResponse;	
 
+    //tars_set_protocol的声明为： void ServantProxy::tars_set_protocol(const ProxyProtocol& protocol, int connectionSerial = 0)，connectionSerial = 0表示并行发送接收，非0为串行发送接收，建议这里设置为0，除非是一问一答请求场景。
     _prx->tars_set_protocol(prot);
 ```
 
-发送请求时使用```rpc_call_async```:
+发送同步调用请求时使用```rpc_call```:
 ```
 ResponseRequest rsp;
+//"doCustomFunc"是任意的接口名
 _prx->rpc_call(_prx->tars_gen_requestid(), "doCustomFunc", buf.c_str(), buf.length(), rsp);
 ```
 
@@ -169,7 +174,7 @@ _prx->rpc_call(_prx->tars_gen_requestid(), "doCustomFunc", buf.c_str(), buf.leng
 - 同步(rpc_call)和异步(rpc_call_async)都支持, 上面是同步调用的方式, 异步调用后文会介绍
 - buf是具体的请求包内容
 - pushRequest & pushResponse 用于组装协议
-- tars_gen_requestid这个函数生成一个id, 这里是请求包的id, 需要和响应包里面的id对应起来, 才能完成请求包和响应包的匹配
+- tars_gen_requestid这个函数生成一个id, 这里是请求包的id, 需要和响应包里面的id对应起来, 才能完成请求包和响应包的匹配。如果用户需要自己维护ID，可以自定义
 
 pushRequest的函数定义如下:
 
@@ -192,10 +197,10 @@ typedef std::function<vector<char> (const RequestPacket &, Transceiver *)> reque
 例如:
 
 ```
-//整体包结构是: 4个字节长度+4个字节的RequestId+数据buffer
+//自定义协议包结构是: 4个字节长度+4个字节的RequestId+数据buffer
 static vector<char> pushRequest(const RequestPacket& request, Transceiver*)
 {
-    //数据包总长度
+    //数据包总长度，主机序->网络序
     unsigned int net_bufflength = htonl(request.sBuffer.size()+8);
     unsigned char * bufflengthptr = (unsigned char*)(&net_bufflength);
 
@@ -204,7 +209,7 @@ static vector<char> pushRequest(const RequestPacket& request, Transceiver*)
 
 	memcpy(buffer.data(), bufflengthptr, sizeof(unsigned int));
 
-    //requestId
+    //requestId，主机序->网络序
     unsigned int netrequestId = htonl(request.iRequestId);
     unsigned char * netrequestIdptr = (unsigned char*)(&netrequestId);
 
@@ -227,7 +232,7 @@ typedef std::function<PACKET_TYPE(TC_NetWorkBuffer &, ResponsePacket &)> respons
 以CustomClient中customResponse为例:
 ```
 
-//The response packet decoding function decodes the data received from the server according to the specific format and resolves it to theResponsePacket
+//customResponse处理服务的返回包，按自定义的协议格式解析出对应的数据填充到ResponsePacket结构里，customResponse == pushResponse
 static TC_NetWorkBuffer::PACKET_TYPE customResponse(TC_NetWorkBuffer &in, ResponsePacket& rsp)
 {
 	size_t len = sizeof(tars::Int32);
@@ -245,7 +250,7 @@ static TC_NetWorkBuffer::PACKET_TYPE customResponse(TC_NetWorkBuffer &in, Respon
 	tars::Int32 iHeaderLen = 0;
 
 	::memcpy(&iHeaderLen, header.c_str(), sizeof(tars::Int32));
-
+        //网络序->主机序
 	iHeaderLen = ntohl(iHeaderLen);
 
 	if (iHeaderLen > 100000 || iHeaderLen < (int)sizeof(unsigned int))
@@ -265,7 +270,7 @@ static TC_NetWorkBuffer::PACKET_TYPE customResponse(TC_NetWorkBuffer &in, Respon
 	string sRequestId;
 	in.getHeader(sizeof(iRequestId), sRequestId);
 	in.moveHeader(sizeof(iRequestId));
-
+        //网络序->主机序
 	rsp.iRequestId = ntohl(*((unsigned int *)(sRequestId.c_str())));
 	len =  iHeaderLen - sizeof(iHeaderLen) - sizeof(iRequestId);
     
