@@ -26,7 +26,7 @@
         在php.ini里面加入extension=phptars.so
 
 ## TarsPHP开发相关
-### [快速运行tars-http-server](../QuickStart/tars-http-server.md)
+### [快速运行tars-http-server](../../../dev/tarsphp/QuickStart/tars-http-server.md)
 
 ### 开发和打包
     不同语言在开发上存在差异，但基本思路一致：
