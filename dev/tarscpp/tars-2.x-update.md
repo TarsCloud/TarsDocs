@@ -1,4 +1,4 @@
-# TarsCpp 2.0变化 
+# TarsCpp 2.x变化 
 
 ## 1. 概述
 
@@ -8,7 +8,7 @@ TarsCpp2.0针对1.x版本做了重大的更新, 主要包括以下几个方面:
 - 完善协议解析器
 - 各种扩展功能的bug修改
 
-2.0的主要的修改如下:
+2.x的主要的修改如下:
 - 多平台支撑, TarsCpp2.0完成linux, mac, windows(>=WIN7)三个OS系统的的支撑
 - 依赖包自动拉取: 如果开启mysql, ssl, http2的支持, cmake会自动拉取依赖包并编译(linux, mac), windows目前还有待完善
 - 去掉promise功能, 建议使用协程, 协程已经完成多平台, 多cpu的适配(如果有碰到问题, 请提交issues)
