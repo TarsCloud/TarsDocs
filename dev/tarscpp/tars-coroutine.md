@@ -191,7 +191,9 @@ co.join();
 
 说明:
 - 这三种模型, 实际处理业务都在协程中执行, 即协程调度器已经都创建了
-- 服务端业务处理线程处于协程状态, 这一点非常重要, 可以和rpc的通信器配合, 后续会介绍到
+- NET_THREAD_QUEUE_HANDLES_CO & NET_THREAD_MERGE_HANDLES_CO 两种模式下, 服务端业务处理线程处于协程状态, 这一点非常重要, 可以和rpc的通信器配合, 后续会介绍到
+- NET_THREAD_MERGE_HANDLES_THREAD这种模式, 虽然服务器已经处于协程中了, 但是业务线程不是默认感知到, 没有设置ServantProxyThreadData::getData()->_sched
+
 
 对于底层的epollserver, 可以通过api控制服务的模型和协程参数:
 ```c++
@@ -259,6 +261,9 @@ ServantProxyThreadData::getData()->_sched = TC_CoroutineScheduler::scheduler();
 只有这样设置以后, 通信器才会感知到业务处于协程模式, 且启用协程网络通信器.
 
 **注意老版本协程模式相当于 opencoroutine=1 **
+
+
+NET_THREAD_QUEUE_HANDLES_CO & NET_THREAD_MERGE_HANDLES_CO 两种模式下, 服务端的业务处理线程, 默认就已经设置了, 这样在服务器业务线程中发起rpc时, 本质上是协程模式, 网络收发都在业务线程中处理的!
 
 ### 协程模式下有哪些影响
 
