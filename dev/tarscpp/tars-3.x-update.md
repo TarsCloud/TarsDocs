@@ -7,7 +7,7 @@
 - tc_epoller完善接口, 网络和协程调度都通过tc_epoller统一调度
 - 服务模型变更为4四种模型
 - tc_http_async支持了ssl
-
+- 支持了无损发布
 ## 网络层说明
 
 - TC_Transceiver: 3.x版本在网络层做了完整的统一, 客户端和服务端的网络收发都通过统一的类处理了: TC_Transceiver, 具体可以参考TC_Transceiver的头文件说明
