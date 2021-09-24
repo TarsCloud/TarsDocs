@@ -50,15 +50,16 @@ Future与Promise其实是二个完全不同的东西：
 ```cpp
 //省略了对应头文件
 //回调函数
-void handleAll(const promise::Future<promise::Tuple<promise::Future<TestServantPrxCallbackPromise::PromisetestPtr>, 
-                    promise::Future<TestServantPrxCallbackPromise::PromisetestPtr> > > &result)
+void handleAll(const tars::Future<std::tuple<tars::Future<TestServantPrxCallbackPromise::PromisetestPtr>, 
+                    tars::Future<TestServantPrxCallbackPromise::PromisetestPtr> > > &result)
 {
-    promise::Tuple<promise::Future<TestServantPrxCallbackPromise::PromisetestPtr>, promise::Future<TestServantPrxCallbackPromise::PromisetestPtr> > out = result.get();
+    const std::tuple<tars::Future<TestServantPrxCallbackPromise::PromisetestPtr>,
+        tars::Future<TestServantPrxCallbackPromise::PromisetestPtr> >& out = result.get();
  
-    promise::Future<TestServantPrxCallbackPromise::PromisetestPtr> out1 = out.get<0>();
+    tars::Future<TestServantPrxCallbackPromise::PromisetestPtr> out1 = std::get<0>(out);
     const tars::TC_AutoPtr<TestServantPrxCallbackPromise::Promisetest> print1 = out1.get();
  
-    promise::Future<TestServantPrxCallbackPromise::PromisetestPtr> out2 = out.get<1>();
+    tars::Future<TestServantPrxCallbackPromise::PromisetestPtr> out2 = std::get<1>(out);
     const tars::TC_AutoPtr<TestServantPrxCallbackPromise::Promisetest> print2 = out2.get();
  
     DEBUGLOG("handleAll:" << print1->_ret << "|" << print1->outStr << "|out2:" << print2->_ret << "|" << print2->outStr);
@@ -66,15 +67,15 @@ void handleAll(const promise::Future<promise::Tuple<promise::Future<TestServantP
  
 int main()
 {
-    map<string, string> ctx;
+    std::map<string, string> ctx;
     TestServantPrx testPrx = Application::getCommunicator()->stringToProxy<TestServantPrx>("Test.TestServer.TestServant");
  
-    promise::Future<TestServantPrxCallbackPromise::PromisetestPtr > result1 = testPrx->promise_async_EchoTest("manmanlu1", ctx);
-    promise::Future<TestServantPrxCallbackPromise::PromisetestPtr > result2 = testPrx->promise_async_EchoTest("manmanlu2", ctx);
+    tars::Future<TestServantPrxCallbackPromise::PromisetestPtr > result1 = testPrx->promise_async_EchoTest("manmanlu1", ctx);
+    tars::Future<TestServantPrxCallbackPromise::PromisetestPtr > result2 = testPrx->promise_async_EchoTest("manmanlu2", ctx);
  
-    promise::Future<promise::Tuple<promise::Future<TestServantPrxCallbackPromise::PromisetestPtr>, promise::Future<TestServantPrxCallbackPromise::PromisetestPtr> > > r =
-        promise::whenAll(result1, result2);
-    r.then(tars::TC_Bind(&handleAll));
+    tars::Future<std::tuple<tars::Future<TestServantPrxCallbackPromise::PromisetestPtr>, 
+        tars::Future<TestServantPrxCallbackPromise::PromisetestPtr> > > r = tars::WhenAll(result1, result2);
+    r.then(tars::Bind(&handleAll));
  
     DEBUGLOG("Test Future-Promise done");
 }
