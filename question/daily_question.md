@@ -5923,7 +5923,928 @@ https://github.com/TarsCloud/Tars/issues/631
   
 https://github.com/TarsCloud/Tars/issues/594
 
+20210622
 
+1、TarsGateway使用安装脚本install.sh安装过程显示成功，最后的测试结果显示失败是怎么回事？
+https://github.com/TarsCloud/Tars/issues/789
+2、重启后 pm2 list 下面没有 web 和 system 请问是什么原因呢？
+https://github.com/TarsCloud/Tars/issues/792
+3、运行linux_install.sh安装TARS框架出错，日志输出mysql访问失败？是否是bug？
+https://github.com/TarsCloud/Tars/issues/793
+4、TARS可以定期清理上传的包吗？
+https://github.com/TarsCloud/Tars/issues/814
+5、（图）标题在哪里可以修改？
+https://github.com/TarsCloud/Tars/issues/815
 
+20210623
 
+1、TARS有分布式事务解决方案吗？
+https://github.com/TarsCloud/Tars/issues/631
+2、TarsNode和framework docker都安装在一台宿主机上，会有什么冲突吗？
+https://github.com/TarsCloud/Tars/issues/632
+3、本地开发服务端总报错但是客户端可正常调用是什么原因？
+https://github.com/TarsCloud/Tars/issues/633
+4、（图）cache在哪里会更新？
+https://github.com/TarsCloud/Tars/issues/634
+5、代码管理与代码编译是怎样在TARS中使用的？
+https://github.com/TarsCloud/Tars/issues/635  
+  
+20210624  
+  
+1、为什么TarsGateway会依赖到tars_user_system？
+https://github.com/TarsCloud/Tars/issues/738
+2、低版本1.5.0 客户端里框架会有一个tars_client.log 日志，这个日志文件是一定打出来么？
+https://github.com/TarsCloud/Tars/issues/739
+3、gateway在内部是什么场景？
+https://github.com/TarsCloud/Tars/issues/740
+4、一个疑问：我有个服务A，线上环境，我有多个地区部署，配置不一样，这块是怎么搞呢？
+https://github.com/TarsCloud/Tars/issues/741
+5、(图)安装TarsGateway时这个token获取不到怎么办？
+https://github.com/TarsCloud/Tars/issues/742  
+  
+20210625  
+  
+1、ResponsePacket 和 RequestPacket 里都有context 和 status ，这两个值有什么区别？
+https://github.com/TarsCloud/Tars/issues/729
+2、如果都是TARS协议，可以在A中调用A::async_response_函数，但在http协议中如何做呢？
+https://github.com/TarsCloud/Tars/issues/732
+3、(图)虚拟机发生了断电，机器重启后TARS的应用服务都启动不了了，运行 /usr/local/app/tars/  check.sh，显示这样的内容，这是什么情况？
+https://github.com/TarsCloud/Tars/issues/733
+4、关于tars http server的三个疑问。
+https://github.com/TarsCloud/Tars/issues/736
+5、TARS有没有对连接做保活？
+https://github.com/TarsCloud/Tars/issues/737  
+  
+20210626  
+  
+1、(图)发布DCacheOptServer失败。
+https://github.com/TarsCloud/Tars/issues/767
+2、GatewayServer 要使用某个服务，必须先配置<proxy>吗？
+https://github.com/TarsCloud/Tars/issues/770
+3、（图）在服务器上通过docker安装框架成功之后，3001端口可以访问并重置了密码，安装网关生成token时发现3001无法访问了，3000可以正常访问，请问下有可能是什么原因导致的？
+https://github.com/TarsCloud/Tars/issues/771
+4、（图）运行一段时间后，两个服务自动off，socket连接不上，提示“Communicator monitor route failed servantName:tars.tarsproperty.PropertyObj”      “ Communicator monitor route failed servantName:tars.tarsstat.StatObj”，可能是什么原因呢？
+https://github.com/TarsCloud/Tars/issues/603
+5、（图）一般是什么程序去更新present_state这个字段呢？
+https://github.com/TarsCloud/Tars/issues/772  
+  
+20210629 
+  
+1、proto3协议，java客户端调c服务端，返回结果null，无报错，怀疑解析有问题，是否有开关能在解析异常时打印信息？
+https://github.com/TarsCloud/Tars/issues/667
+2、滚动日志超过配置文件中的个数后会被自动删除吗？
+https://github.com/TarsCloud/Tars/issues/673
+3、利用docker.sh制作镜像，出现该问题怎么解决？
+https://github.com/TarsCloud/Tars/issues/675
+4、在部署TARS时 Mysql IP Address 和 INET 怎么找？
+https://github.com/TarsCloud/Tars/issues/674
+5、如何看系统里面现在使用的TARS框架版本呢？
+https://github.com/TarsCloud/Tars/issues/783  
+  
+20210630  
+  
+1、（图）这是framwork的3001吗？什么是管理端口？
+https://github.com/TarsCloud/Tars/issues/715
+2、例如3000这个端口已经改成我自定义的8000端口，但是访问web控制台的时候，第一步index.html中会自动跳转到:3001的端口， 这个3001端口又在哪里改呢？
+https://github.com/TarsCloud/Tars/issues/609
+3、（图）这个镜像在哪里可以看到对应的TarsFramework代码的版本号？
+https://github.com/TarsCloud/Tars/issues/716
+4、（图）请问图中-cp后面的目录是怎么加进来的？程序中没有这部分地址要怎么处理呢？
+https://github.com/TarsCloud/Tars/issues/717
+5、（图）请问HelloPrx和HelloPrxCallback这两个类是自动生成的吗？
+https://github.com/TarsCloud/Tars/issues/718  
+  
+20210701  
+  
+1、web过来的请求直接到node的话，都有哪些功能操作？
+https://github.com/TarsCloud/Tars/issues/622
+2、日志打到TarsLog里后，在web页面上可以流式查看检索吗？
+https://github.com/TarsCloud/Tars/issues/623
+3、(图)这两个类是自动生成的？需要执行怎样的命令？或者文档在哪里？
+https://github.com/TarsCloud/Tars/issues/718
+4、(图)这里的负载是什么意思呢？为什么有的显示0，有的显示1， 安装的时候没有做出相关的选择。
+https://github.com/TarsCloud/Tars/issues/780
+5、docker镜像没有java环境吗？跑java微服需要自己进docker环境中配置java吗？
+https://github.com/TarsCloud/Tars/issues/624  
+  
+20210702  
+  
+1、TARS_CLIENT_LOGGER 可以在哪里配置关闭吗？
+https://github.com/TarsCloud/Tars/issues/795
+2、如图所示，框架部署的时候已经启动了TarNode,还需要TarNode部署这一步单独安装TarNode吗？
+https://github.com/TarsCloud/Tars/issues/751
+3、节点正常启动，和framework的docker在同一台机器上，但是后台看不到新加入的节点？这可能是什么原因呢？
+https://github.com/TarsCloud/Tars/issues/750
+4、同一个TARS集群下，TarLog、TasPatch是不是和tarsAdminRegisrty一样，只能有一个实例？
+https://github.com/TarsCloud/Tars/issues/747
+5、一个疑问：我有个服务A，线上环境，我有多个地区部署，配置不一样，这块是怎么搞呢？
+https://github.com/TarsCloud/Tars/issues/741  
+  
+20210703  
+  
+1、imp.go里面的接口实现，是以协程的方式被调用的吗？
+https://github.com/TarsCloud/Tars/issues/806
+2、pp监控功能上报的数据需要自己去写ui展示吗？
+https://github.com/TarsCloud/Tars/issues/807
+3、TarsGo如何实现HTTPS？
+https://github.com/TarsCloud/Tars/issues/786
+4、tars2php是不是对枚举类型不支持，和cpp交互是怎么处理枚举类型呢？
+https://github.com/TarsCloud/Tars/issues/787
+5、Tars cpp2.x在节点侧，手工停止服务的脚本命令是什么？
+https://github.com/TarsCloud/Tars/issues/788
+  
+20210704  
+  
+1、Tarsframework的master分支编译完后，如果我需要升级tarsnode，只替换tarsnode的执行文件还是所有的tarsnode都替换一遍? 
+https://github.com/TarsCloud/Tars/issues/556
+2、遇到下面的配置问题如何解决？备注图为tarsnode的启动日志（见备注图）
+https://github.com/TarsCloud/Tars/issues/557
+3、如备注图所示，按照文档写HelloServer,未发现这个配置文件，这个服务的配置文件是手动生成的还是有工具自动生成的？
+https://github.com/TarsCloud/Tars/issues/558
+4、如图所示，每次编译需要自己将servant目录和util目录复制到工程目录下面吗？
+https://github.com/TarsCloud/Tars/issues/559
+5、AdminF.tars: 17: error: identifier can't start with 'tars'怎么解决？
+https://github.com/TarsCloud/Tars/issues/560  
+  
+20210706
+  
+1、（图）发生这个错误是怎么回事？TarsWeb是新版的，TarsFramwork是旧版本的，不是docker部署。下载源码之后，执行sql文件夹的sql语句，修改config里面的配置，主要改数据库地址跟registry地址，把enable全部设置成false，最后执行npm run prd。
+https://github.com/TarsCloud/Tars/issues/744
+2、同一个TARS集群下，TarLog、TasPatch是不是和tarsAdminRegisrty一样，只能有一个实例？
+https://github.com/TarsCloud/Tars/issues/747
+3、远程登录，不方便用web停止。Tars cpp2.x在节点侧，手工停止服务的脚本命令是什么？
+https://github.com/TarsCloud/Tars/issues/748
+4、节点正常启动，和framework的docker在同一台机器上，但是后台看不到新加入的节点？这可能是什么原因呢？
+https://github.com/TarsCloud/Tars/issues/750
+5、(图)框架部署的时候已经启动了TarNode，还需要TarNode部署这一步单独安装TarNode吗？
+https://github.com/TarsCloud/Tars/issues/751  
+  
+20210707  
+  
+1、这两个TARS服务间调用时报的错误。
+https://github.com/TarsCloud/Tars/issues/710
+2、（图）文档上说的cmake_tars_server.sh是自动生成cmakelists.txt的工具。TarsCpp库已经正常编译安装，并生成tar协议了，但我运行后没生成cmakelist.txt。
+https://github.com/TarsCloud/Tars/issues/691
+3、（图）在调用服务接口的时候，出现错误，客户端日志说是链接被关闭了，但是服务端是收到了这个请求的，请问是怎么回事呢？
+https://github.com/TarsCloud/Tars/issues/711
+4、（图）如备注图所示这种报错的原因是什么？
+https://github.com/TarsCloud/Tars/issues/692
+5、全局开启了go mod，执行备注图1的划线处提示bash: cd: C:\Users\Admin\go/ src/github.com/TarsCloud/TarsGo/tars/tools/tars2go: No such file or directory，全局开启go mod是什么原因呢？
+https://github.com/TarsCloud/Tars/issues/694  
+  
+20210708  
+  
+1、(图)这个镜像在哪里可以看到对应的TarsFramework代码的版本号？还有这个stable呢？
+https://github.com/TarsCloud/Tars/issues/716
+2、(图)这里-cp后面的目录是怎么加进来的？程序中没有这部分地址要怎么处理呢？
+https://github.com/TarsCloud/Tars/issues/717
+3、TARS框架现在访问是http，可以改成https吗？
+https://github.com/TarsCloud/Tars/issues/628
+4、（图）之前部署的业务可以跑起来，今天想在另一台重新部署出现这个问题。登录后出现这样的提示是什么原因？刷新或者退出后重新登进也不行，依然提示未登录。https://github.com/TarsCloud/Tars/issues/784
+5、（图）HelloGo 入门，这里的执行文件在前面代码里没有指定 ip和端口，有什么用？
+https://github.com/TarsCloud/Tars/issues/782
+  
+20210709  
+  
+1、Tarsframework的master分支编译完后，如果我需要升级tarsnode，只替换tarsnode的执行文件还是所有的tarsnode都替换一遍? 
+https://github.com/TarsCloud/Tars/issues/556
+2、遇到下面的配置问题如何解决？备注图为tarsnode的启动日志（见备注图）
+https://github.com/TarsCloud/Tars/issues/557
+3、如备注图所示，按照文档写HelloServer,未发现这个配置文件，这个服务的配置文件是手动生成的还是有工具自动生成的？
+https://github.com/TarsCloud/Tars/issues/558
+4、如图所示，每次编译需要自己将servant目录和util目录复制到工程目录下面吗？
+https://github.com/TarsCloud/Tars/issues/559
+5、AdminF.tars: 17: error: identifier can't start with 'tars'怎么解决？
+https://github.com/TarsCloud/Tars/issues/560  
+  
+20210711  
+  
+1、1.7版本后，日志直接用@Slf4j注解，看不到日志了，需要在哪儿配置吗？
+https://github.com/TarsCloud/Tars/issues/665
+2、如何看待RPC框架中的单连接和多连接(或连接池)设计?
+https://github.com/TarsCloud/Tars/issues/666
+3、proto3协议，java客户端调c服务端，返回结果null，无报错，怀疑解析有问题，是否有开关能在解析异常时打印信息？
+https://github.com/TarsCloud/Tars/issues/667
+4、在外网安装好了TARS，要搬到内网去，改变了IP，有什么办法让TARS能工作起来？
+https://github.com/TarsCloud/Tars/issues/668
+5、服务是活的的，obj的端口却没有监听该怎么办？
+https://github.com/TarsCloud/Tars/issues/669  
+  
+20210712  
+  
+1、提示下载的Tarsweb没有demo那个目录是怎么回事？
+https://github.com/TarsCloud/Tars/issues/800
+2、（图）在TARS管理管理后台修改替换模板，是不是之前添加的微服要手动去修改模板文件才会生效？
+https://github.com/TarsCloud/Tars/issues/801
+3、(图)swoole扩展已经安装过了，模板里的php执行路径也改过了，出现如图所示的提示是怎么回事？
+https://github.com/TarsCloud/Tars/issues/802
+4、(图)这个问题有可能是什么导致的？
+https://github.com/TarsCloud/Tars/issues/803
+5、(图&日志)这里出现报错是什么原因？
+https://github.com/TarsCloud/Tars/issues/804  
+  
+20210713  
+  
+1、imp.go里面的接口实现，是以协程的方式被调用的吗？
+https://github.com/TarsCloud/Tars/issues/806
+2、pp监控功能上报的数据需要自己去写ui展示吗？
+https://github.com/TarsCloud/Tars/issues/807
+3、TarsGo如何实现HTTPS？
+https://github.com/TarsCloud/Tars/issues/786
+4、tars2php是不是对枚举类型不支持，和cpp交互是怎么处理枚举类型呢？
+https://github.com/TarsCloud/Tars/issues/787
+5、Tars cpp2.x在节点侧，手工停止服务的脚本命令是什么？
+https://github.com/TarsCloud/Tars/issues/788  
+  
+20210714  
+  
+1、为什么TarsGateway会依赖到tars_user_system？
+https://github.com/TarsCloud/Tars/issues/738
+2、低版本1.5.0 客户端里框架会有一个tars_client.log 日志，这个日志文件是一定打出来么？
+https://github.com/TarsCloud/Tars/issues/739
+3、gateway在内部是什么场景？
+https://github.com/TarsCloud/Tars/issues/740
+4、一个疑问：我有个服务A，线上环境，我有多个地区部署，配置不一样，这块是怎么搞呢？
+https://github.com/TarsCloud/Tars/issues/741
+5、(图)安装TarsGateway时这个token获取不到怎么办？
+https://github.com/TarsCloud/Tars/issues/742  
+  
+20210715  
+  
+1、打包发布后想要修改代码，是在本地修改然后再压缩上传吗？
+https://github.com/TarsCloud/Tars/issues/676
+2、在make docker 的时候，输入.\ docker.sh v1 ，提示commond not found是什么原因？
+https://github.com/TarsCloud/Tars/issues/677
+3、想开发一个TARS 的UDP服务，该怎么写？
+https://github.com/TarsCloud/Tars/issues/683
+4、（图）无法连接mysql问题怎么解决？mysql都重装了，命令行可以连上。
+https://github.com/TarsCloud/Tars/issues/685
+5、（图）这是少配置了什么导致错误？
+https://github.com/TarsCloud/Tars/issues/686  
+  
+20210716  
+  
+1、提示 “bash: cd: C:\Users\Admin\go/ src/github.com/TarsCloud/TarsGo/tars/tools/tars2go: No such file or directory” 是什么原因呢？
+https://github.com/TarsCloud/Tars/issues/694
+2、（图）主控和节点目前在一台机器，部署的服务启动不了，我看了下启动脚本，执行路径里多一个空格有可能是什么原因？
+https://github.com/TarsCloud/Tars/issues/695
+3、（图）标注处所示windows挂载不上去，因为没有这个目录，这是什么原因呢？
+https://github.com/TarsCloud/Tars/issues/696
+4、（图）图中的错误是跟什么插件版本有关？
+https://github.com/TarsCloud/Tars/issues/697
+5、（图）第一次登录，在修改密码时提示“系统内部错误”，检查日志提示表只读，可能是什么原因呢？
+https://github.com/TarsCloud/Tars/issues/698  
+  
+20210717  
+  
+ 1、（图）这是framwork的3001吗？什么是管理端口？
+https://github.com/TarsCloud/Tars/issues/715
+2、例如3000这个端口已经改成我自定义的8000端口，但是访问web控制台的时候，第一步index.html中会自动跳转到:3001的端口， 这个3001端口又在哪里改呢？
+https://github.com/TarsCloud/Tars/issues/609
+3、（图）这个镜像在哪里可以看到对应的TarsFramework代码的版本号？
+https://github.com/TarsCloud/Tars/issues/716
+4、（图）请问图中-cp后面的目录是怎么加进来的？程序中没有这部分地址要怎么处理呢？
+https://github.com/TarsCloud/Tars/issues/717
+5、（图）请问HelloPrx和HelloPrxCallback这两个类是自动生成的吗？
+https://github.com/TarsCloud/Tars/issues/718 
+  
+20210719  
+  
+1、测试环境如何保证日志的级别是debug级别的呢？
+https://github.com/TarsCloud/Tars/issues/723
+2、（图）提示这个错误，是什么原因导致的？
+https://github.com/TarsCloud/Tars/issues/724
+3、TARS的服务，要使用自己的自定义的配置文档怎么操作？
+https://github.com/TarsCloud/Tars/issues/725
+4、（图）我添加新节点之后为什么节点列表里没有显示新节点呢？
+https://github.com/TarsCloud/Tars/issues/726
+5、ResponsePacket 和 RequestPacket 里都有context 和 status ，这两个值有什么区别？
+https://github.com/TarsCloud/Tars/issues/729  
+  
+20210720  
+  
+1、（图）使用1核2GB的腾讯云在编译TARS源码的时候报错，请问如何解决？
+https://github.com/TarsCloud/Tars/issues/705
+2、（图）时间不准，怎样同步成为最新的时间？mysql是通过docker安装的。
+https://github.com/TarsCloud/Tars/issues/706
+3、（图）一个关于servant的小问题。直连node节点的时候，服务名字不重要吗？
+https://github.com/TarsCloud/Tars/issues/707
+4、（图）文件解析有问题，是目前pom.xml的依赖不全吗？我还需要导入别的依赖吗？
+https://github.com/TarsCloud/Tars/issues/708
+5、在服务部署时，线程数、最大连接数、队列最大长度等修改后会立即生效吗？
+https://github.com/TarsCloud/Tars/issues/709  
+  
+20210721  
+  
+1、打包发布后想要修改代码，是在本地修改然后再压缩上传吗？
+https://github.com/TarsCloud/Tars/issues/676
+2、在make docker 的时候，输入.\ docker.sh v1 ，提示commond not found是什么原因？
+https://github.com/TarsCloud/Tars/issues/677
+3、想开发一个TARS 的UDP服务，该怎么写？
+https://github.com/TarsCloud/Tars/issues/683
+4、（图）无法连接mysql问题怎么解决？mysql都重装了，命令行可以连上。
+https://github.com/TarsCloud/Tars/issues/685
+5、（图）这是少配置了什么导致错误？
+https://github.com/TarsCloud/Tars/issues/686  
+  
+20210722  
+  
+1、tars app_log目录占分区空间较大，怎么安全迁移到/data分区呢？
+https://github.com/TarsCloud/Tars/issues/687
+2、调用服务的频率快一些服务就会重启，有什么解决办法？
+https://github.com/TarsCloud/Tars/issues/689
+3、TARS的服务，要使用自己的自定义的配置文档怎么操作？
+https://github.com/TarsCloud/Tars/issues/725
+4、（图）我添加新节点之后为什么节点列表里没有显示新节点呢？
+https://github.com/TarsCloud/Tars/issues/726
+5、使用go语言，TARS如何实现https？
+https://github.com/TarsCloud/Tars/issues/727  
+  
+20210724  
+  
+1、tars app_log目录占分区空间较大，怎么安全迁移到/data分区呢？
+https://github.com/TarsCloud/Tars/issues/687
+2、调用服务的频率快一些服务就会重启，有什么解决办法？
+https://github.com/TarsCloud/Tars/issues/689
+3、TARS的服务，要使用自己的自定义的配置文档怎么操作？
+https://github.com/TarsCloud/Tars/issues/725
+4、（图）我添加新节点之后为什么节点列表里没有显示新节点呢？
+https://github.com/TarsCloud/Tars/issues/726
+5、使用go语言，TARS如何实现https？
+https://github.com/TarsCloud/Tars/issues/727  
+  
+20210725  
+  
+1、（图）发生这个错误是怎么回事？TarsWeb是新版的，TarsFramwork是旧版本的，不是docker部署。下载源码之后，执行sql文件夹的sql语句，修改config里面的配置，主要改数据库地址跟registry地址，把enable全部设置成false，最后执行npm run prd。
+https://github.com/TarsCloud/Tars/issues/744
+2、同一个TARS集群下，TarLog、TasPatch是不是和tarsAdminRegisrty一样，只能有一个实例？
+https://github.com/TarsCloud/Tars/issues/747
+3、远程登录，不方便用web停止。Tars cpp2.x在节点侧，手工停止服务的脚本命令是什么？
+https://github.com/TarsCloud/Tars/issues/748
+4、节点正常启动，和framework的docker在同一台机器上，但是后台看不到新加入的节点？这可能是什么原因呢？
+https://github.com/TarsCloud/Tars/issues/750
+5、(图)框架部署的时候已经启动了TarNode，还需要TarNode部署这一步单独安装TarNode吗？
+https://github.com/TarsCloud/Tars/issues/751  
+  
+20210727  
+  
+1、打包发布后想要修改代码，是在本地修改然后再压缩上传吗？
+https://github.com/TarsCloud/Tars/issues/676
+2、在make docker 的时候，输入.\ docker.sh v1 ，提示commond not found是什么原因？
+https://github.com/TarsCloud/Tars/issues/677
+3、想开发一个TARS 的UDP服务，该怎么写？
+https://github.com/TarsCloud/Tars/issues/683
+4、（图）无法连接mysql问题怎么解决？mysql都重装了，命令行可以连上。
+https://github.com/TarsCloud/Tars/issues/685
+5、（图）这是少配置了什么导致错误？
+https://github.com/TarsCloud/Tars/issues/686  
+  
+20210728  
+  
+1、发现服务每隔10分钟会重启，这是什么原因？
+https://github.com/TarsCloud/Tars/issues/688
+2、调用服务的频率快一些服务就会重启，有什么解决办法？
+https://github.com/TarsCloud/Tars/issues/689
+3、TARS的每个组件都哪些对数据库有依赖呀，每个组件有自己的独立数据库表吗？
+https://github.com/TarsCloud/Tars/issues/690
+4、（图）TarsCpp库已经正常编译安装，并生成TARS协议了，但我运行后没生成cmakelist.txt。
+https://github.com/TarsCloud/Tars/issues/691
+5、报错 ’STATUS_GRID_KEY‘ is not a member of 'tars::Servantproxy'的原因是什么？
+https://github.com/TarsCloud/Tars/issues/692  
+  
+20210730  
+  
+1、低版本1.5.0 客户端里框架会有一个tars_client.log 日志，这个日志文件是一定打出来么？
+https://github.com/TarsCloud/Tars/issues/739
+2、外网机器迁移了，目标obj的ip和端口修改了，这时候tars stringToProxy 会即刻拿到新的地址吗？
+https://github.com/TarsCloud/Tars/issues/778
+3、TARS在k8s已创建好，怎么做才能让外网访问里面的服务？
+https://github.com/TarsCloud/Tars/issues/779
+4、tars-install里的replace是脚本中的replace函数还是mysql-tool替换文本？
+https://github.com/TarsCloud/Tars/issues/545
+5、docker容器的宿主机vmware的centos可以联通 windows的mysql，容器里面启动却连不上mysql，怎么解决？ 
+https://github.com/TarsCloud/Tars/issues/548  
+  
+20210801  
+  
+1、(图)这里的客服端报错是什么原因呢？
+https://github.com/TarsCloud/Tars/issues/701
+2、TARS使用k8s部署遇到的一个问题。
+https://github.com/TarsCloud/Tars/issues/596
+3、make_pair(TC_Mysql::DB_INT, 100);  100会变成d，这个如何编译？
+https://github.com/TarsCloud/Tars/issues/642
+4、如果要部署到生产环境，framework 和 tars-node建议用什么方式部署呢？
+https://github.com/TarsCloud/Tars/issues/643
+5、（图）时间不准，怎样同步成为最新的时间？mysql是通过docker安装的。
+https://github.com/TarsCloud/Tars/issues/706  
+  
+20210802  
+  
+1、TARS 部署在本地，如何规避IP是 DHCP来的会经常变化的问题？
+https://github.com/TarsCloud/Tars/issues/589
+2、（图）一个关于servant的小问题。直连node节点的时候，服务名字不重要吗？
+https://github.com/TarsCloud/Tars/issues/707
+3、在对TARS支持负载均衡进行测试时遇到问题。
+https://github.com/TarsCloud/Tars/issues/587
+4、erp系统，在删除基础部门信息时，要检查是否被其他表引用，有什么比较好的解决方案？
+https://github.com/TarsCloud/Tars/issues/647
+5、java 已经安装配置了，服务提示启动成功， 但是状态还是off，服务的端口未被占用，是因为什么呢？
+https://github.com/TarsCloud/Tars/issues/648  
+  
+20210803  
+  
+1、将配置文件push到服务节点之后。解析的时候，提示找不到文件是什么原因？
+https://github.com/TarsCloud/Tars/issues/657
+2、TARS用gson替代fastjson而不是用jackson替代主要是出于哪些考虑呢？
+https://github.com/TarsCloud/Tars/issues/659
+3、在往TARS上部署应用的时候，通过jenkins进行一键部署，我看有上传并发布的接口，但是不会用。
+https://github.com/TarsCloud/Tars/issues/662
+4、1.7版本后，日志直接用@Slf4j注解，看不到日志了，需要在哪儿配置吗？
+https://github.com/TarsCloud/Tars/issues/665
+5、如何看待RPC框架中的单连接和多连接(或连接池)设计?
+https://github.com/TarsCloud/Tars/issues/666  
+  
+20210804  
+  
+1、Tarsframework的master分支编译完后，如果我需要升级tarsnode，只替换tarsnode的执行文件还是所有的tarsnode都替换一遍? 
+https://github.com/TarsCloud/Tars/issues/556
+2、遇到下面的配置问题如何解决？备注图为tarsnode的启动日志（见备注图）
+https://github.com/TarsCloud/Tars/issues/557
+3、如备注图所示，按照文档写HelloServer,未发现这个配置文件，这个服务的配置文件是手动生成的还是有工具自动生成的？
+https://github.com/TarsCloud/Tars/issues/558
+4、如图所示，每次编译需要自己将servant目录和util目录复制到工程目录下面吗？
+https://github.com/TarsCloud/Tars/issues/559
+5、AdminF.tars: 17: error: identifier can't start with 'tars'怎么解决？
+https://github.com/TarsCloud/Tars/issues/560  
+  
+20210805  
+  
+1、proto3协议，java客户端调c服务端，返回结果null，无报错，怀疑解析有问题，是否有开关能在解析异常时打印信息？
+https://github.com/TarsCloud/Tars/issues/667
+2、滚动日志超过配置文件中的个数后会被自动删除吗？
+https://github.com/TarsCloud/Tars/issues/673
+3、利用docker.sh制作镜像，出现该问题怎么解决？
+https://github.com/TarsCloud/Tars/issues/675
+4、在部署TARS时 Mysql IP Address 和 INET 怎么找？
+https://github.com/TarsCloud/Tars/issues/674
+5、如何看系统里面现在使用的TARS框架版本呢？
+https://github.com/TarsCloud/Tars/issues/783  
+  
+20210806
+  
+1、（图）这是framwork的3001吗？什么是管理端口？
+https://github.com/TarsCloud/Tars/issues/715
+2、例如3000这个端口已经改成我自定义的8000端口，但是访问web控制台的时候，第一步index.html中会自动跳转到:3001的端口， 这个3001端口又在哪里改呢？
+https://github.com/TarsCloud/Tars/issues/609
+3、（图）这个镜像在哪里可以看到对应的TarsFramework代码的版本号？
+https://github.com/TarsCloud/Tars/issues/716
+4、（图）请问图中-cp后面的目录是怎么加进来的？程序中没有这部分地址要怎么处理呢？
+https://github.com/TarsCloud/Tars/issues/717
+5、（图）请问HelloPrx和HelloPrxCallback这两个类是自动生成的吗？
+https://github.com/TarsCloud/Tars/issues/718  
+  
+20210810  
+  
+1、Tarsframework的master分支编译完后，如果我需要升级tarsnode，只替换tarsnode的执行文件还是所有的tarsnode都替换一遍? 
+https://github.com/TarsCloud/Tars/issues/556
+2、遇到下面的配置问题如何解决？备注图为tarsnode的启动日志（见备注图）
+https://github.com/TarsCloud/Tars/issues/557
+3、如备注图所示，按照文档写HelloServer,未发现这个配置文件，这个服务的配置文件是手动生成的还是有工具自动生成的？
+https://github.com/TarsCloud/Tars/issues/558
+4、如图所示，每次编译需要自己将servant目录和util目录复制到工程目录下面吗？
+https://github.com/TarsCloud/Tars/issues/559
+5、AdminF.tars: 17: error: identifier can't start with 'tars'怎么解决？
+https://github.com/TarsCloud/Tars/issues/560  
+  
+20210811  
+  
+1、低版本1.5.0 客户端里框架会有一个tars_client.log 日志，这个日志文件是一定打出来么？
+https://github.com/TarsCloud/Tars/issues/739
+2、外网机器迁移了，目标obj的ip和端口修改了，这时候tars stringToProxy 会即刻拿到新的地址吗？
+https://github.com/TarsCloud/Tars/issues/778
+3、TARS在k8s已创建好，怎么做才能让外网访问里面的服务？
+https://github.com/TarsCloud/Tars/issues/779
+4、tars-install里的replace是脚本中的replace函数还是mysql-tool替换文本？
+https://github.com/TarsCloud/Tars/issues/545
+5、docker容器的宿主机vmware的centos可以联通 windows的mysql，容器里面启动却连不上mysql，怎么解决？ 
+https://github.com/TarsCloud/Tars/issues/548  
+  
+20210812  
+  
+1、(图)这里的客服端报错是什么原因呢？
+https://github.com/TarsCloud/Tars/issues/701
+2、TARS使用k8s部署遇到的一个问题。
+https://github.com/TarsCloud/Tars/issues/596
+3、make_pair(TC_Mysql::DB_INT, 100);  100会变成d，这个如何编译？
+https://github.com/TarsCloud/Tars/issues/642
+4、如果要部署到生产环境，framework 和 tars-node建议用什么方式部署呢？
+https://github.com/TarsCloud/Tars/issues/643
+5、（图）时间不准，怎样同步成为最新的时间？mysql是通过docker安装的。
+https://github.com/TarsCloud/Tars/issues/706  
+  
+20210813  
+  
+1、TARS 部署在本地，如何规避IP是 DHCP来的会经常变化的问题？
+https://github.com/TarsCloud/Tars/issues/589
+2、（图）一个关于servant的小问题。直连node节点的时候，服务名字不重要吗？
+https://github.com/TarsCloud/Tars/issues/707
+3、在对TARS支持负载均衡进行测试时遇到问题。
+https://github.com/TarsCloud/Tars/issues/587
+4、erp系统，在删除基础部门信息时，要检查是否被其他表引用，有什么比较好的解决方案？
+https://github.com/TarsCloud/Tars/issues/647
+5、java 已经安装配置了，服务提示启动成功， 但是状态还是off，服务的端口未被占用，是因为什么呢？
+https://github.com/TarsCloud/Tars/issues/648  
+  
+20210815  
+  
+1、为什么TarsGateway会依赖到tars_user_system？
+https://github.com/TarsCloud/Tars/issues/738
+2、低版本1.5.0 客户端里框架会有一个tars_client.log 日志，这个日志文件是一定打出来么？
+https://github.com/TarsCloud/Tars/issues/739
+3、gateway在内部是什么场景？
+https://github.com/TarsCloud/Tars/issues/740
+4、一个疑问：我有个服务A，线上环境，我有多个地区部署，配置不一样，这块是怎么搞呢？
+https://github.com/TarsCloud/Tars/issues/741
+5、(图)安装TarsGateway时这个token获取不到怎么办？
+https://github.com/TarsCloud/Tars/issues/742  
+  
+20210816  
+  
+1、（图）发生这个错误是怎么回事？TarsWeb是新版的，TarsFramwork是旧版本的，不是docker部署。下载源码之后，执行sql文件夹的sql语句，修改config里面的配置，主要改数据库地址跟registry地址，把enable全部设置成false，最后执行npm run prd。
+https://github.com/TarsCloud/Tars/issues/744
+2、同一个TARS集群下，TarLog、TasPatch是不是和tarsAdminRegisrty一样，只能有一个实例？
+https://github.com/TarsCloud/Tars/issues/747
+3、远程登录，不方便用web停止。Tars cpp2.x在节点侧，手工停止服务的脚本命令是什么？
+https://github.com/TarsCloud/Tars/issues/748
+4、节点正常启动，和framework的docker在同一台机器上，但是后台看不到新加入的节点？这可能是什么原因呢？
+https://github.com/TarsCloud/Tars/issues/750
+5、(图)框架部署的时候已经启动了TarNode，还需要TarNode部署这一步单独安装TarNode吗？
+https://github.com/TarsCloud/Tars/issues/751  
+  
+20210818  
+  
+1、请问部署集群的时候，是否可以通过 keepalived + 多台 Tars网关服务器呢？
+https://github.com/TarsCloud/Tars/issues/760
+2、请问部署集群的时候，是否可以通过 keepalived + 多台 Tars网关服务器呢？
+https://github.com/TarsCloud/Tars/issues/761
+3、jump_fcontext make_fcontext 的实现代码在哪儿？这两个接口说明在哪儿？
+https://github.com/TarsCloud/Tars/issues/762
+4、(图)重启后，pm2 list 下面没有 web 和 system，这是什么原因？
+https://github.com/TarsCloud/Tars/issues/768
+5、（图）这里生产环境部署，服务节点和应用节点可以放在一台服务器上吗？
+https://github.com/TarsCloud/Tars/issues/769  
+  
+20210819  
+  
+1、如果节点分布在各个实体机器上，一个节点上部署了多个服务，可能有java、php、go，一旦其中一个服务出现异常，有可能其它服务会受牵连，有什么办法可以避免这种情况吗？
+https://github.com/TarsCloud/Tars/issues/761
+2、GatewayServer 要使用哪个服务，必须先配置<proxy>吗？
+https://github.com/TarsCloud/Tars/issues/770
+3、一般是什么程序去更新present_state这个字段呢？
+https://github.com/TarsCloud/Tars/issues/772
+4、在tars-java模板里面配置了tracing的配置，并且启动了一个zipkin的server，发现数据并没有上报到zipkin。可能会是什么原因呢? 
+https://github.com/TarsCloud/Tars/issues/774
+5、(图)在Application.cpp中 ，为什么要设置一个AdminObj？
+https://github.com/TarsCloud/Tars/issues/775  
+  
+20210820  
+  
+1、请问部署集群的时候，是否可以通过 keepalived + 多台 Tars网关服务器呢？
+https://github.com/TarsCloud/Tars/issues/760
+2、如果节点分布在各个实体机器上，在实际的使用过程中可能遇到一些问题，例如，一个节点上部署了多个服务，可能有java、php、go一旦其中一个服务出现异常，比如把cpu占用完了，那么其它服务也会受牵连，有什么办法可以避免这种情况吗？
+https://github.com/TarsCloud/Tars/issues/761
+3、重启后，pm2 list 下面没有 web 和 system，这是什么原因？
+https://github.com/TarsCloud/Tars/issues/768
+4、外网机器迁移了，目标obj的ip和端口修改了，这时候Tars stringToProxy 会即刻拿到新的地址吗？这块是怎么同步的？
+https://github.com/TarsCloud/Tars/issues/778
+5、TARS在k8s已创建好，怎么做才能让外网访问里面的服务？
+https://github.com/TarsCloud/Tars/issues/779  
+  
+20210822  
+  
+1、运行linux_install.sh安装TARS框架出错，日志输出mysql访问失败？是否是bug？使用的是MariaDB10.4.13
+https://github.com/TarsCloud/Tars/issues/793
+2、restart server, stop error:EM_TARS_UNKNOWN_ERR 这种错误怎么排查问题？
+https://github.com/TarsCloud/Tars/issues/798
+3、chmod a+x linux-install.sh./ linux-install.sh MYSQL_HOST MYSQL_PASSWORD INET REBUILD(false[default]/true) SLAVE(false[default]/true) MYSQL_USER MYSQL_PORT，mysql 必须设置密码吗？
+https://github.com/TarsCloud/Tars/issues/799
+4、如图这个问题有可能是什么导致的？
+https://github.com/TarsCloud/Tars/issues/803
+5、（图）swoole扩展已经安装过了,，模板里的php执行路径也改过了，出现如图2所示的提示是怎么回事？
+https://github.com/TarsCloud/Tars/issues/802  
+  
+20210823  
+  
+1、TARS_CLIENT_LOGGER 可以在哪里配置关闭吗？
+https://github.com/TarsCloud/Tars/issues/795
+2、如图所示，框架部署的时候已经启动了TarNode,还需要TarNode部署这一步单独安装TarNode吗？
+https://github.com/TarsCloud/Tars/issues/751
+3、节点正常启动，和framework的docker在同一台机器上，但是后台看不到新加入的节点？这可能是什么原因呢？
+https://github.com/TarsCloud/Tars/issues/750
+4、同一个TARS集群下，TarLog、TasPatch是不是和tarsAdminRegisrty一样，只能有一个实例？
+https://github.com/TarsCloud/Tars/issues/747
+5、一个疑问：我有个服务A，线上环境，我有多个地区部署，配置不一样，这块是怎么搞呢？
+https://github.com/TarsCloud/Tars/issues/741  
+  
+20210824  
+  
+1、TARS 部署在本地，如何规避IP是 DHCP来的会经常变化的问题？
+https://github.com/TarsCloud/Tars/issues/589
+2、（图）一个关于servant的小问题。直连node节点的时候，服务名字不重要吗？
+https://github.com/TarsCloud/Tars/issues/707
+3、在对TARS支持负载均衡进行测试时遇到问题。
+https://github.com/TarsCloud/Tars/issues/587
+4、erp系统，在删除基础部门信息时，要检查是否被其他表引用，有什么比较好的解决方案？
+https://github.com/TarsCloud/Tars/issues/647
+5、java 已经安装配置了，服务提示启动成功， 但是状态还是off，服务的端口未被占用，是因为什么呢？
+https://github.com/TarsCloud/Tars/issues/648  
+  
+20210825  
+  
+1、proto3协议，java客户端调c服务端，返回结果null，无报错，怀疑解析有问题，是否有开关能在解析异常时打印信息？
+https://github.com/TarsCloud/Tars/issues/667
+2、滚动日志超过配置文件中的个数后会被自动删除吗？
+https://github.com/TarsCloud/Tars/issues/673
+3、利用docker.sh制作镜像，出现该问题怎么解决？
+https://github.com/TarsCloud/Tars/issues/675
+4、在部署TARS时 Mysql IP Address 和 INET 怎么找？
+https://github.com/TarsCloud/Tars/issues/674
+5、如何看系统里面现在使用的TARS框架版本呢？
+https://github.com/TarsCloud/Tars/issues/783  
+  
+20210826  
+  
+1、一个节点只能发布一个服务吗？我的服务是tar.gz，用TARS发布完后我的安装包会解压到哪里？
+https://github.com/TarsCloud/Tars/issues/615
+2、（图）HelloGo 入门，这里的执行文件在前面代码里没有指定 ip和端口，有什么用？
+https://github.com/TarsCloud/Tars/issues/782
+3、如备注图所示的两个锁会被锁住吗？
+https://github.com/TarsCloud/Tars/issues/542
+4、（图）防火墙已关闭，配置文件也配置好了，出现如图所示的问题如何解决？
+https://github.com/TarsCloud/Tars/issues/600
+5、通过docker方式本地安装了 framework 和 node 各一台，现在通过web控制台启动一个spring boot 项目，无法顺利启动。但是我登入容器后，启动这个jar，可以正常工作，这个问题该怎么处理？
+https://github.com/TarsCloud/Tars/issues/601  
+  
+20210827  
+  
+1、脱离TARS环境调用微服务，setLocator怎么传参？
+https://github.com/TarsCloud/Tars/issues/649
+2、阿里云VPS，有内网IP，自动安装节点成功，节点管理里找不到怎么办？
+https://github.com/TarsCloud/Tars/issues/650
+3、A服务器上部署了Tars环境，如果将一些服务部署在B服务器上，是否需要在B服务器上也部署一套Tars环境？
+https://github.com/TarsCloud/Tars/issues/655
+4、新增部署节点时，可以填写我的节点地址吗？我想添加一个有公网ip的服务器地址，要如何操作？
+https://github.com/TarsCloud/Tars/issues/656
+5、从web控制端 配置了配置文件，go代码里我该怎么获取？
+https://github.com/TarsCloud/Tars/issues/653  
+  
+20210829  
+  
+1、运行linux_install.sh安装TARS框架出错，日志输出mysql访问失败？是否是bug？使用的是MariaDB10.4.13
+https://github.com/TarsCloud/Tars/issues/793
+2、restart server, stop error:EM_TARS_UNKNOWN_ERR 这种错误怎么排查问题？
+https://github.com/TarsCloud/Tars/issues/798
+3、chmod a+x linux-install.sh.nux-install.sh MYSQL_HOST MYSQL_PASSWORD INET REBUILD(false[default]/true) SLAVE(false[default]/true) MYSQL_USER MYSQL_PORT，mysql 必须设置密码吗？
+https://github.com/TarsCloud/Tars/issues/799
+4、如图这个问题有可能是什么导致的？
+https://github.com/TarsCloud/Tars/issues/803
+5、（图）swoole扩展已经安装过了,，模板里的php执行路径也改过了，出现如图2所示的提示是怎么回事？
+https://github.com/TarsCloud/Tars/issues/802  
+  
+20210830  
+  
+1、提示下载的Tarsweb没有demo那个目录是怎么回事？
+https://github.com/TarsCloud/Tars/issues/800
+2、（图）在TARS管理管理后台修改替换模板，是不是之前添加的微服要手动去修改模板文件才会生效？
+https://github.com/TarsCloud/Tars/issues/801
+3、(图)swoole扩展已经安装过了，模板里的php执行路径也改过了，出现如图所示的提示是怎么回事？
+https://github.com/TarsCloud/Tars/issues/802
+4、(图)这个问题有可能是什么导致的？
+https://github.com/TarsCloud/Tars/issues/803
+5、(图&日志)这里出现报错是什么原因？
+https://github.com/TarsCloud/Tars/issues/804  
+  
+20210831
+ 
+1、imp.go里面的接口实现，是以协程的方式被调用的吗？
+https://github.com/TarsCloud/Tars/issues/806
+2、pp监控功能上报的数据需要自己去写ui展示吗？
+https://github.com/TarsCloud/Tars/issues/807
+3、TarsGo如何实现HTTPS？
+https://github.com/TarsCloud/Tars/issues/786
+4、tars2php是不是对枚举类型不支持，和cpp交互是怎么处理枚举类型呢？
+https://github.com/TarsCloud/Tars/issues/787
+5、Tars cpp2.x在节点侧，手工停止服务的脚本命令是什么？
+https://github.com/TarsCloud/Tars/issues/788
+  
+20210902  
+  
+1、低版本1.5.0 客户端里框架会有一个tars_client.log 日志，这个日志文件是一定打出来么？
+https://github.com/TarsCloud/Tars/issues/739
+2、外网机器迁移了，目标obj的ip和端口修改了，这时候tars stringToProxy 会即刻拿到新的地址吗？
+https://github.com/TarsCloud/Tars/issues/778
+3、TARS在k8s已创建好，怎么做才能让外网访问里面的服务？
+https://github.com/TarsCloud/Tars/issues/779
+4、tars-install里的replace是脚本中的replace函数还是mysql-tool替换文本？
+https://github.com/TarsCloud/Tars/issues/545
+5、docker容器的宿主机vmware的centos可以联通 windows的mysql，容器里面启动却连不上mysql，怎么解决？ 
+https://github.com/TarsCloud/Tars/issues/548
+  
+20210905  
+  
+1、(图)这里的客服端报错是什么原因呢？
+https://github.com/TarsCloud/Tars/issues/701
+2、TARS使用k8s部署遇到的一个问题。
+https://github.com/TarsCloud/Tars/issues/596
+3、make_pair(TC_Mysql::DB_INT, 100);  100会变成d，这个如何编译？
+https://github.com/TarsCloud/Tars/issues/642
+4、如果要部署到生产环境，framework 和 tars-node建议用什么方式部署呢？
+https://github.com/TarsCloud/Tars/issues/643
+5、（图）时间不准，怎样同步成为最新的时间？mysql是通过docker安装的。
+https://github.com/TarsCloud/Tars/issues/706  
+  
+20210906  
+  
+1、TARS 部署在本地，如何规避IP是 DHCP来的会经常变化的问题？
+https://github.com/TarsCloud/Tars/issues/589
+2、（图）一个关于servant的小问题。直连node节点的时候，服务名字不重要吗？
+https://github.com/TarsCloud/Tars/issues/707
+3、在对TARS支持负载均衡进行测试时遇到问题。
+https://github.com/TarsCloud/Tars/issues/587
+4、erp系统，在删除基础部门信息时，要检查是否被其他表引用，有什么比较好的解决方案？
+https://github.com/TarsCloud/Tars/issues/647
+5、java 已经安装配置了，服务提示启动成功， 但是状态还是off，服务的端口未被占用，是因为什么呢？
+https://github.com/TarsCloud/Tars/issues/648
+  
+20210908  
+  
+1、将配置文件push到服务节点之后。解析的时候，提示找不到文件是什么原因？
+https://github.com/TarsCloud/Tars/issues/657
+2、TARS用gson替代fastjson而不是用jackson替代主要是出于哪些考虑呢？
+https://github.com/TarsCloud/Tars/issues/659
+3、在往TARS上部署应用的时候，通过jenkins进行一键部署，我看有上传并发布的接口，但是不会用。
+https://github.com/TarsCloud/Tars/issues/662
+4、1.7版本后，日志直接用@Slf4j注解，看不到日志了，需要在哪儿配置吗？
+https://github.com/TarsCloud/Tars/issues/665
+5、如何看待RPC框架中的单连接和多连接(或连接池)设计?
+https://github.com/TarsCloud/Tars/issues/666  
+  
+20210909  
+  
+1、proto3协议，java客户端调c服务端，返回结果null，无报错，怀疑解析有问题，是否有开关能在解析异常时打印信息？
+https://github.com/TarsCloud/Tars/issues/667
+2、滚动日志超过配置文件中的个数后会被自动删除吗？
+https://github.com/TarsCloud/Tars/issues/673
+3、利用docker.sh制作镜像，出现该问题怎么解决？
+https://github.com/TarsCloud/Tars/issues/675
+4、在部署TARS时 Mysql IP Address 和 INET 怎么找？
+https://github.com/TarsCloud/Tars/issues/674
+5、如何看系统里面现在使用的TARS框架版本呢？
+https://github.com/TarsCloud/Tars/issues/783
+  
+20210910
+  
+1、（图）这是framwork的3001吗？什么是管理端口？
+https://github.com/TarsCloud/Tars/issues/715
+2、例如3000这个端口已经改成我自定义的8000端口，但是访问web控制台的时候，第一步index.html中会自动跳转到:3001的端口， 这个3001端口又在哪里改呢？
+https://github.com/TarsCloud/Tars/issues/609
+3、（图）这个镜像在哪里可以看到对应的TarsFramework代码的版本号？
+https://github.com/TarsCloud/Tars/issues/716
+4、（图）请问图中-cp后面的目录是怎么加进来的？程序中没有这部分地址要怎么处理呢？
+https://github.com/TarsCloud/Tars/issues/717
+5、（图）请问HelloPrx和HelloPrxCallback这两个类是自动生成的吗？
+https://github.com/TarsCloud/Tars/issues/718
+  
+20210913
+  
+1、Tarsframework的master分支编译完后，如果我需要升级tarsnode，只替换tarsnode的执行文件还是所有的tarsnode都替换一遍? 
+https://github.com/TarsCloud/Tars/issues/556
+2、遇到下面的配置问题如何解决？备注图为tarsnode的启动日志（见备注图）
+https://github.com/TarsCloud/Tars/issues/557
+3、如备注图所示，按照文档写HelloServer,未发现这个配置文件，这个服务的配置文件是手动生成的还是有工具自动生成的？
+https://github.com/TarsCloud/Tars/issues/558
+4、如图所示，每次编译需要自己将servant目录和util目录复制到工程目录下面吗？
+https://github.com/TarsCloud/Tars/issues/559
+5、AdminF.tars: 17: error: identifier can't start with 'tars'怎么解决？
+https://github.com/TarsCloud/Tars/issues/560
+  
+20210914
+  
+1、为什么在使用TARS时，logback.xml文件获取不到？
+https://github.com/TarsCloud/Tars/issues/621
+2、请问web过来的请求直接到node的话，都有哪些功能操作？
+https://github.com/TarsCloud/Tars/issues/622
+3、日志打到TarsLog里后，在web页面上可以流式查看检索吗？
+https://github.com/TarsCloud/Tars/issues/623
+4、docker镜像没有java环境吗？跑java微服需要自己进docker环境中配置java吗？
+https://github.com/TarsCloud/Tars/issues/624
+5、如何在TarsCPP中创建自己定义tcp连接外部服务器(非TAF)？
+https://github.com/TarsCloud/Tars/issues/626
+  
+20210915
 
+1、使用docker创建虚拟网络，TarsFramework中使用宿主的ip，但发布时会报错 。
+https://github.com/TarsCloud/Tars/issues/627
+2、MDC支持跨服务链路追踪吗？
+https://github.com/TarsCloud/Tars/issues/590
+3、1.7.1的tars-Java是不是不支持染色日志？
+https://github.com/TarsCloud/Tars/issues/629
+4、请问TARS有分布式事务解决方案吗？
+https://github.com/TarsCloud/Tars/issues/631
+5、TARS框架部署时，每个组件需要的硬件要求是怎么样的？
+https://github.com/TarsCloud/Tars/issues/594
+  
+20210916
+  
+1、这两个TARS服务间调用时报的错误。
+https://github.com/TarsCloud/Tars/issues/710
+2、（图）文档上说的cmake_tars_server.sh是自动生成cmakelists.txt的工具。TarsCpp库已经正常编译安装，并生成tar协议了，但我运行后没生成cmakelist.txt。
+https://github.com/TarsCloud/Tars/issues/691
+3、（图）在调用服务接口的时候，出现错误，客户端日志说是链接被关闭了，但是服务端是收到了这个请求的，请问是怎么回事呢？
+https://github.com/TarsCloud/Tars/issues/711
+4、（图）如备注图所示这种报错的原因是什么？
+https://github.com/TarsCloud/Tars/issues/692
+5、全局开启了go mod，执行备注图1的划线处提示bash: cd: C:\Users\Admin\go/ src/github.com/TarsCloud/TarsGo/tars/tools/tars2go: No such file or directory，全局开启go mod是什么原因呢？
+https://github.com/TarsCloud/Tars/issues/694  
+  
+20210917  
+  
+1、请问部署集群的时候，是否可以通过 keepalived + 多台 Tars网关服务器呢？
+https://github.com/TarsCloud/Tars/issues/760
+2、如果节点分布在各个实体机器上，在实际的使用过程中可能遇到一些问题，例如，一个节点上部署了多个服务，可能有java、php、go一旦其中一个服务出现异常，比如把cpu占用完了，那么其它服务也会受牵连，有什么办法可以避免这种情况吗？
+https://github.com/TarsCloud/Tars/issues/761
+3、重启后，pm2 list 下面没有 web 和 system，这是什么原因？
+https://github.com/TarsCloud/Tars/issues/768
+4、外网机器迁移了，目标obj的ip和端口修改了，这时候Tars stringToProxy 会即刻拿到新的地址吗？这块是怎么同步的？
+https://github.com/TarsCloud/Tars/issues/778
+5、TARS在k8s已创建好，怎么做才能让外网访问里面的服务？
+https://github.com/TarsCloud/Tars/issues/779
+  
+20210920  
+  
+1、业务初始化接口里是不是不能进行耗时操作？
+https://github.com/TarsCloud/Tars/issues/637
+2、tc_mysql的库是线程安全的吗？
+https://github.com/TarsCloud/Tars/issues/575
+3、如图所示的数据库问题，为什么显示没有数据？
+https://github.com/TarsCloud/Tars/issues/580
+4、如备注如图所示，提示tars not find adapter 是什么原因？
+https://github.com/TarsCloud/Tars/issues/658
+5、（图）请问这个是添加在模板配置文件里吗？
+https://github.com/TarsCloud/Tars/issues/712
+  
+20210921  
+  
+1、tars app_log目录占分区空间较大，怎么安全迁移到/data分区呢？
+https://github.com/TarsCloud/Tars/issues/687
+2、调用服务的频率快一些服务就会重启，有什么解决办法？
+https://github.com/TarsCloud/Tars/issues/689
+3、TARS的服务，要使用自己的自定义的配置文档怎么操作？
+https://github.com/TarsCloud/Tars/issues/725
+4、（图）我添加新节点之后为什么节点列表里没有显示新节点呢？
+https://github.com/TarsCloud/Tars/issues/726
+5、使用go语言，TARS如何实现https？
+https://github.com/TarsCloud/Tars/issues/727
+  
+20210922
+  
+1、使用docker创建虚拟网络，TarsFramework中使用宿主的ip，但发布时会报错 。
+https://github.com/TarsCloud/Tars/issues/627
+2、MDC支持跨服务链路追踪吗？
+https://github.com/TarsCloud/Tars/issues/590
+3、1.7.1的tars-Java是不是不支持染色日志？
+https://github.com/TarsCloud/Tars/issues/629
+4、请问TARS有分布式事务解决方案吗？
+https://github.com/TarsCloud/Tars/issues/631
+5、TARS框架部署时，每个组件需要的硬件要求是怎么样的？
+https://github.com/TarsCloud/Tars/issues/594  
+  
+20210923  
+  
+1、TarsGateway使用安装脚本install.sh安装过程显示成功，最后的测试结果显示失败是怎么回事？
+https://github.com/TarsCloud/Tars/issues/789
+2、重启后 pm2 list 下面没有 web 和 system 请问是什么原因呢？
+https://github.com/TarsCloud/Tars/issues/792
+3、运行linux_install.sh安装TARS框架出错，日志输出mysql访问失败？是否是bug？
+https://github.com/TarsCloud/Tars/issues/793
+4、TARS可以定期清理上传的包吗？
+https://github.com/TarsCloud/Tars/issues/814
+5、（图）标题在哪里可以修改？
+https://github.com/TarsCloud/Tars/issues/815
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
