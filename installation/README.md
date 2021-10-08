@@ -102,4 +102,6 @@ Tars团队已经制作了一个[一键部署k8s的方案](k8s-docker-1.md)
 
 上面K8s的Docker部署, 虽然把Tars部署在k8s上运行起来, 但是实际发布, 扩容并没有使用K8s, 只是把k8s当成了一个容器管理平台了.
 
-Tars和K8s的深度融合仍然在规划和开发中...
+https://github.com/TarsCloud/K8SFramework 提供了一种Tars和K8S深度融合的方案, 使用k8s部署的情况强烈推荐这种模式!
+
+[具体请参看](../k8s/README.md)

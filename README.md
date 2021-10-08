@@ -32,6 +32,7 @@ TARS是腾讯从2008年到今天一直在使用的后台逻辑层的统一应用
 
 Tars详细介绍参见 [目录](SUMMARY.md)。
 
+如果是国内用户, 可以使用 [http://doc.tarsyun.com](http://doc.tarsyun.com) 来访问文档
 ## 支持平台 <span id="chapter-2"></span>
 
 目前运行的操作系统平台如下：

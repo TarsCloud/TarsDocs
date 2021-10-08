@@ -180,6 +180,29 @@
 - [IDC 分组](dev/tars-idc-set.md)
 - [鉴权功能](dev/tars-auth.md)
 
+## TarsK8S说明 <span id="k8s"></span>
+- [安装和使用说明]
+  - [介绍](k8s/tars-k8s.md)
+  - [组件说明](k8s/component.md)
+  - [快速安装指南](k8s/quick-install.md)
+  - [源码安装指南](k8s/source-install.md)
+  - [tarsweb](k8s/tarsweb.md)
+  - [框架亲和性设置](k8s/framework-affinity.md)
+  - [关键特性](k8s/key-points.md)
+  - [LocalPV](k8s/local-pv.md)
+  - [节点亲和性](k8s/affinity.md)
+  - [运维](k8s/operator.md)
+  - [证书](k8s/ca.md)
+- [开发环境构建]
+  - [Dockerfile说明](k8s/dockerfile.md)
+  - [服务发布流程说明](k8s/helm.md)
+  >- [制作基础编译镜像](k8s/base-compiler.md)
+  >- [制作业务服务镜像](k8s/exec-build.md)
+  >- [制作Helm包](k8s/exec-helm.md)
+  >- [发布业务镜像到K8S集群](k8s/exec-deploy.md)
+  - [服务发布示例](k8s/example.md)
+  - [如何调试业务服务](k8s/debug.md)
+
 ## 常见问题 <span id="question"></span>
 
 - [安装常见问题](question/Install_faq.md)
