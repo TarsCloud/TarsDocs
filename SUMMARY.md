@@ -15,6 +15,7 @@
 > - [Tarsjs](#Tars.js)
 > - [TarsPHP](#TarsPHP)
 > - [其他重要特性](#important)
+> - [K8SFramework](#k8s)
 > - [常见问题](#question)
 > - [开源合作](#cooperation)
 > - [直播视频](#video)
@@ -39,6 +40,7 @@
 - [TarsDocker 部署](installation/docker.md)
 - [K8s Docker 部署](installation/k8s-docker-1.md)
 - [K8s 部署方案2](installation/k8s-docker-2.md)
+- [K8s深度融合方案](installation/k8s-docker-3.md)
 - [TarsNode 部署](installation/node.md)
 - [Tars 框架更新及扩容](installation/expand.md)
 - [TarsWeb 说明](installation/web.md)
@@ -180,7 +182,7 @@
 - [IDC 分组](dev/tars-idc-set.md)
 - [鉴权功能](dev/tars-auth.md)
 
-## TarsK8S说明 <span id="k8s"></span>
+## K8SFramework <span id="k8s"></span>
 - [安装和使用说明]
   - [介绍](k8s/tars-k8s.md)
   - [组件说明](k8s/component.md)
