@@ -25,6 +25,7 @@ kubectl create secret docker-registry tars-image-secret -n tars-dev --docker-ser
 ```
 
 - 创建TARS环境
+
 ```
 kubectl create ns tars-dev
 
@@ -50,6 +51,7 @@ helm upgrade tarsframework -n tars-dev --set 'dockerRegistry=tarscloud,web=${web
 
 
 但是注意: 如果是升级, 最好手动执行crd!!!当然CRD通常不会不随便升级, 但是如果大版本升级, CRD通常会升级.
+
 ```
 cd install/tarscontroller/crds
 kubectl apply -f ....yaml
