@@ -27,19 +27,24 @@ kubectl create secret docker-registry od-image-secret -n tars-dev --docker-serve
 类似之前的tarsweb, 也提供了上传tgz包的api.
 
 - 对于cpp版本, tars-tools.cmake里面, 也提供了相关的实现, 只需要:
+
 ```
 cmake .. -D 指定以下三个参数:
 TARS_K8S_WEB_HOST:         
 TARS_K8S_BASE_IMAGE:       tarscloud/tars.cppbase
 TARS_K8S_TOKEN:            
 ```
+
 就可以通过:
+
 ```
 make xxxx-k8s-upload
 ```
+
 完成服务的发布
 
 - 对于nodejs版本, 你可以实现一段脚本即可完成发布, 示例如下:
+
 ```sh
 #!/bin/bash
 
@@ -102,6 +107,7 @@ cd ..
 - Pod使用K8SFramework的LocalPv来实现
 
 具体的yaml文件如下:
+
 ```yaml
 apiVersion: k8s.tars.io/v1beta1
 kind: TServer
@@ -156,6 +162,7 @@ kubectl apply -f debug.yaml
 
 
 你可以进入容器开发服务了
+
 ```
 kubectl exec -it tars-compiler-0 -n tars-dev -- bash
 ```
