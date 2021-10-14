@@ -7,6 +7,7 @@
 
 安装步骤说明:
 - 编译代码
+
 ```sh
 ./buildBinary.sh
 ```
@@ -30,6 +31,7 @@
 >- 生成的依赖docker前缀是: $DOCKER_REGISTRY/DOCKER_REPOSITORY
 
 - 安装控制器
+
 ```
 helm install tarscontroller --set 'helm.dockerhub.registry=${DOCKER_REGISTRY}/${DOCKER_REPOSITORY},helm.build.id=v1.0.0' tarscontroller-v1.0.0.tgz
 ```
@@ -45,6 +47,7 @@ kubectl create secret docker-registry tars-image-secret -n tars-dev --docker-ser
 ```
 
 - 创建TARS环境
+
 ```
 kubectl create ns tars-dev
 
@@ -73,11 +76,13 @@ helm upgrade tarsframework -n tars-dev --set 'helm.dockerhub.registry=${DOCKER_R
 ```
 
 手动执行crd!!!
+
 ```
 cd install/tarscontroller/crds
 kubectl apply -f ....yaml
 
 ```
+
 ## 调度
 
 完成以上步骤以后, 实际框架并没有在K8S上调度起来, 请参考[框架调度](./framework-affinity.md)
