@@ -8,11 +8,12 @@
 
 - 如果希望部署的TARS框架以及后续发布的tars服务能被调度到某些节点, 则这些节点需要打上如下标签:
 
-````tars.io/node.$namespace ```, 比如: ```tars.io/node.tars-dev```
+```tars.io/node.$namespace ```, 比如: ```tars.io/node.tars-dev```
 
 **这里$namespace 是K8S的名字空间, 即上面helm安装TARS时指定的名字空间**
 
 使用命令行打标签如下:
+
 ```
 kubectl label nodes $node-name tars.io/node.tars-dev=
 ```
@@ -40,6 +41,7 @@ es和tarslog由于需要存储空间, 因此需要特别处理.
 这里Ees和tarslog由于没有合适的PV一直处于pending中, 只需给可以申请LocalPV的节点打上标签```tars.io/SupportLocalVolume ```
 
 使用命令行打标签如下:
+
 ```
 kubectl label nodes $node-name tars.io/SupportLocalVolume=
 ```
