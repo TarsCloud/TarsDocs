@@ -25,4 +25,4 @@ docker push tarscloud/base-compiler:master
 
 **编译镜像内部其实涵盖了部署镜像, 但是有时候编译和部署在两个镜像中完成, 这样单独制作了部署镜像, 方便部署**
 
-[exec-deploy.sh的说明请参考](./exec-build.sh)
+[exec-deploy.sh的说明请参考](./exec-deploy.md)
