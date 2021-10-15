@@ -26,7 +26,7 @@ TarsK8S使用CRD+Operator来完成Tars在K8S上的部署, 因此所有Tars服务
 
 ## 部署方式
 
-- 编译源码(K8SFramework), 并推送镜像到自己的仓库, [请参考](../source-install.md)
+- 编译源码(K8SFramework), 并推送镜像到自己的仓库, [请参考](../k8s/source-install.md)
 - 或者直接使用官方镜像(即无需要自己编译K8SFramework源码)
 - 然后通过helm完成tarscontroller的部署
 - 再通过helm完成tars框架的部署, 一个K8S集群上可以部署多套TARS环境(每套还有自己独立的名字空间即可)
