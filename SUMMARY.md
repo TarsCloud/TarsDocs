@@ -178,6 +178,8 @@
 - [模板配置](dev/tars-template.md)
 - [用户体系模块使用指引](dev/tars-web-user.md)
 - [管理平台 API](dev/tars-web-api.md)
+- [无损发布 重启](dev/tars-lossless-patch.md)
+- [TARS调用链](dev/tars-trace.md)
 - [调用链](dev/tars-call-chain.md)
 - [IDC 分组](dev/tars-idc-set.md)
 - [鉴权功能](dev/tars-auth.md)
