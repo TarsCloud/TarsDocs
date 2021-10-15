@@ -166,7 +166,7 @@ mounts:
 以上示例中, 给出三种mounts的方式:
 - 使用HostPath去mount宿主机的目录, 这种情况下如果漂移了就比较麻烦
 - 通过pvc申请空间(这种情况下, 需要提前配置好pv)
-- 使用LocalPV来mount宿主机目录, 这种情况下pod不再会漂移到其他节点[请参考LocalPV的说明文档](./LocalPV.md)
+- 使用LocalPV来mount宿主机目录, 这种情况下pod不再会漂移到其他节点[请参考LocalPV的说明文档](../k8s/local-pv.md)
 - 使用LocalPV时, 如果pod内部权限不是root的, 你可以指定git/mode/uid来控制权限
 
 # 如何配置节点绑定
