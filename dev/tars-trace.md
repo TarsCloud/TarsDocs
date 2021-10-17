@@ -110,7 +110,26 @@ TarsCpp: v3.0.1
 TarsGateway: v1.1.0
 采用以上版本后，系统默认支持了调用链追踪能力，业务服务如果不想要追踪信息，可以再tars2cpp 的选项加上--without-trace. 
 
-### 4.2 网关配置
+### 4.2 框架升级部署
+TarsFramework可以整体升级到v3.0.1，也可以手动升级tarslog服务，并新增部署tarstrace服务。
+tarstrace服务部署：
+* obj: tars.tarstrace.TopologyObj
+* 服务类型：tars_cpp
+* 服务模板：tars.cpp.default
+服务添加私有模板，内容如下：
+```
+<tars> 
+ <trace>
+    <es_nodes>
+	   # es地址
+       172.25.0.123:9200
+    </es_nodes>
+    log_dir=/usr/local/app/tars/remote_app_log/_tars_/_trace_
+ </trace>
+</tars>
+```
+
+### 4.3 网关配置
 TarsGateway v>=v1.1.0版本开始支持了调用链追踪，可以通过配置参数进行开启，配置如下。
 ```
 <main>
@@ -127,14 +146,14 @@ TarsGateway v>=v1.1.0版本开始支持了调用链追踪，可以通过配置�
 </main>
 ```
 
-### 4.3 服务主动启用调用链
+### 4.4 服务主动启用调用链
 服务启用调用链，主要包括以下步骤：
 * 生成traceKey（包括 参数控制信息、traceID、spanID），traceID、spanID 可以采用tc_uuid_genarator生成;
 * 设置MessageType：SET_MSG_TYPE(tup.iMessageType, tars::TARSMESSAGETYPETRACE);
 * 传递traceKey: tup.status[ServantProxy::STATUS_TRACE_KEY] = traceKey;
 * 输出trace日志：TARS_TRACE(...).
 
-### 4.4 服务配置
+### 4.5 服务配置
 默认服务不用进行任何配置，只要上游服务已经启用调用链，那么后续调用将会自动支持（目前只支持同步调用、异步调用）。在接口调用参数输出控制这里，除了可以在入口进行控制，每个服务还可以在自己的服务模板中进行控制。
 当这里的配置和入口配置不一致的情况下，按其中更大的取值生效。模板配置如下：
 ```
