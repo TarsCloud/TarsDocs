@@ -112,7 +112,7 @@ TarsGateway: v1.1.0
 
 ### 4.2 框架升级部署
 TarsFramework可以整体升级到v3.0.1，也可以手动升级tarslog服务，并新增部署tarstrace服务。
-tarstrace服务部署：
+tarstrace服务部署，需要和tarslog部署在同一节点（单节点），具体参数如下：
 * obj: tars.tarstrace.TopologyObj
 * 服务类型：tars_cpp
 * 服务模板：tars.cpp.default
