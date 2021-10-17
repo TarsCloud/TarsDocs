@@ -121,13 +121,14 @@ tarstrace服务部署，需要和tarslog部署在同一节点（单节点），�
 <tars> 
  <trace>
     <es_nodes>
-	   # es地址
-       172.25.0.123:9200
+	   # es地址，这里部署时替换为自己的es地址
+       # 172.25.0.123:9200
     </es_nodes>
     log_dir=/usr/local/app/tars/remote_app_log/_tars_/_trace_
  </trace>
 </tars>
 ```
+调用链数据 部署时，将以上模板中es地址替换为自己部署的es连接地址，确保es地址能够正常连接，否则tarstrace无法正常工作。
 
 ### 4.3 网关配置
 TarsGateway v>=v1.1.0版本开始支持了调用链追踪，可以通过配置参数进行开启，配置如下。
