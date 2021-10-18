@@ -122,7 +122,7 @@ tarstrace服务部署，需要和tarslog部署在同一节点（单节点），�
  <trace>
     <es_nodes>
 	   # es地址，这里部署时替换为自己的es地址
-       # 172.25.0.123:9200
+       # http://172.25.0.123:9200/
     </es_nodes>
     log_dir=/usr/local/app/tars/remote_app_log/_tars_/_trace_
  </trace>
