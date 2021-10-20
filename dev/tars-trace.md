@@ -12,7 +12,7 @@
 ## 2. TARS调用链设计
 TARS调用链是基于TARS框架，将各个微服务之间调用链路信息进行自动收集并分析，重建出一个业务调用全部子调用及其调用关系，并将结果在tarsweb上面可视化展示（包括各个子调用接口请求和响应参数）。TARS调用链整体架构如下图所示：
 
-![TARS调用链框架图-加载失败](../assets/tars-trace.png)
+![TARS调用链框架图-加载失败](../assets/tars-trace-new.png)
 
 调用链追踪开启需要在调用入口开启调用追踪标识，目前TarsGateway >= v1.1.0 版本已经支持自动采样。下面以网关服务入口为例，描述业务服务调用链追踪信息具体收集流程：
 
@@ -91,7 +91,7 @@ f.1-d7e7e5b1215b2c01905517bb0cc00c7e|030019ac000061406166af9400000006|*|ss||Test
 ```
 
 ### 3.4 追踪信息可视化
-tarslog收集追踪信息后，tarstrace对追踪数据准实时加载，并计算分析，还原出每个trace，然后对相同调用链路进行合并归集（server维度和function维度），展示出调用链路图及各个节点间调用的平均耗时，并以调用关系图和甘特图进行可视化展示。
+tarslog收集追踪信息后，对追踪数据准实时加载，并计算分析，还原出每个trace，然后对相同调用链路进行合并归集（server维度和function维度），展示出调用链路图及各个节点间调用的平均耗时，并以调用关系图和甘特图进行可视化展示。
 
 ![TARS调用链调用关系图-加载失败](../assets/tars-trace-graph.png)
 
@@ -111,24 +111,23 @@ TarsGateway: v1.1.0
 采用以上版本后，系统默认支持了调用链追踪能力，业务服务如果不想要追踪信息，可以再tars2cpp 的选项加上--without-trace. 
 
 ### 4.2 框架升级部署
-TarsFramework可以整体升级到v3.0.1，也可以手动升级tarslog服务，并新增部署tarstrace服务。
-tarstrace服务部署，需要和tarslog部署在同一节点（单节点），具体参数如下：
-* obj: tars.tarstrace.TopologyObj
-* 服务类型：tars_cpp
-* 服务模板：tars.cpp.default
+TarsFramework可以整体升级到v3.0.1，也可以手动升级tarslog服务。
+tarslog服务部署，需要新增一个obj:`TopologyObj`，协议为`tars协议`，提供接口给tarsweb展示。
+tarslog默认不开启调用链分析，如果需要开启，那么需要在tarslog的服务模板中配置es信息，用来存储调用链数据。
 服务添加私有模板，内容如下：
 ```
 <tars> 
- <trace>
-    <es_nodes>
-	   # es地址，这里部署时替换为自己的es地址
-       # http://172.25.0.123:9200/
-    </es_nodes>
+ <elk>
+    # 连接es的协议，不配置默认http
+    protocol=http
+    <nodes>
+	   # es node 地址，如果不配置，那么调用链分析功能将不会工作。
+       # 172.16.8.137:9200
+    </nodes>
     log_dir=/usr/local/app/tars/remote_app_log/_tars_/_trace_
- </trace>
+ </elk>
 </tars>
 ```
-调用链数据 部署时，将以上模板中es地址替换为自己部署的es连接地址，确保es地址能够正常连接，否则tarstrace无法正常工作。
 
 ### 4.3 网关配置
 TarsGateway v>=v1.1.0版本开始支持了调用链追踪，可以通过配置参数进行开启，配置如下。
