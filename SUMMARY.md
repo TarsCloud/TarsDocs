@@ -39,11 +39,12 @@
 - [Tars云部署](installation/cloud.md)
 - [TarsDocker 部署](installation/docker.md)
 - [K8s Docker 部署](installation/k8s-docker-1.md)
-- [K8s 部署方案2](installation/k8s-docker-2.md)
-- [K8s深度融合方案](installation/k8s-docker-3.md)
+- [K8s部署方案 1](installation/k8s-docker-2.md)
+- [K8s深度融合方案 2](installation/k8s-docker-3.md)
 - [TarsNode 部署](installation/node.md)
 - [Tars 框架更新及扩容](installation/expand.md)
 - [TarsWeb 说明](installation/web.md)
+- [调用链升级注意事项](installation/train.md)
 
 ## 开发入门 <span id="enter"></span>
 
@@ -199,10 +200,10 @@
 - [开发环境构建]
   - [Dockerfile说明](k8s/dockerfile.md)
   - [服务发布流程说明](k8s/helm.md)
-  >- [制作基础编译镜像](k8s/base-compiler.md)
-  >- [制作业务服务镜像](k8s/exec-build.md)
-  >- [制作Helm包](k8s/exec-helm.md)
-  >- [发布业务镜像到K8S集群](k8s/exec-deploy.md)
+  - [制作基础编译镜像](k8s/base-compiler.md)
+  - [制作业务服务镜像](k8s/exec-build.md)
+  - [制作Helm包](k8s/exec-helm.md)
+  - [发布业务镜像到K8S集群](k8s/exec-deploy.md)
   - [服务发布示例](k8s/example.md)
   - [如何调试业务服务](k8s/debug.md)
 
