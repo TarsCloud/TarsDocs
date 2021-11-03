@@ -135,6 +135,12 @@ spec:
         readOnly: false
         source:
           tLocalVolume: {}
+      - name: docker-sock
+        source:
+          hostPath:
+            path: /var/run/docker.sock
+            type: Socket
+        mountPath: /var/run/docker.sock
     replicas: 1
   release:
     source: tars-compiler
