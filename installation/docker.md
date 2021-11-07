@@ -56,6 +56,55 @@ docker run -d -p 3306:3306 \
     --name=tars-mysql \
     mysql:5.6
 ```
+- 如果使用 MySQL 8，启动时需要关闭 ssl
+
+```
+docker run -d -p 3306:3306 \
+    --net=tars \
+    -e MYSQL_ROOT_PASSWORD="123456" \
+    --ip="172.25.0.2" \
+    -v /data/framework-mysql:/var/lib/mysql \
+    -v /etc/localtime:/etc/localtime \
+    --name=tars-mysql \
+    mysql:8.0.27 \
+    --tls-version=invalid
+```
+如果你使用的不是 8.0.27 版本，可以通过 `docker logs tars-mysql` 查看启动日志，确认是否有警告或者错误，或者可以尝试以下参数
+```
+docker run -d -p 3306:3306 \
+    --net=tars \
+    -e MYSQL_ROOT_PASSWORD="123456" \
+    --ip="172.25.0.2" \
+    -v /data/framework-mysql:/var/lib/mysql \
+    -v /etc/localtime:/etc/localtime \
+    --name=tars-mysql \
+    mysql:8.0.27 \
+    --ssl=0
+```
+
+由于 MySQL 8 开始，默认的 authentication plugin 从 mysql_native_password 修改为 caching_sha2_password，更详细的信息，可以查看 MySQL 官网
+
+[upgrading-from-previous-series](https://dev.mysql.com/doc/refman/8.0/en/upgrading-from-previous-series.html)
+
+鉴于以上原因，需要手动修改 root 用户的 plugin，以此来兼容旧的 mysqlclient 能正常连接 MySQL 8，登录 MySQL 执行以下语句
+```
+ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '123456';
+FLUSH PRIVILEGES;
+```
+为了验证 MySQL 是否正常启动且能正常连接，可通过 host 中的 mysql 客户端进行登录验证
+```
+mysql -h 172.25.0.2 -u root -p
+```
+也可以使用后面已经下载启动的 tars-framework docker 节点进行验证，可以等下再回来操作；
+
+执行 tars-framework 中的 mysql-tool
+```
+docker exec -it tars-framework /bin/bash
+
+cd /usr/local/tars/cpp/deploy/
+
+./mysql-tool --host=172.25.0.2 --user="root" --pass="123456" --port=3306 --check
+```
 
 #### 2.3 使用 tarscloud/framework 部署框架
 
