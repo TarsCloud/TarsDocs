@@ -1,26 +1,8 @@
-# Table of contents
+# 协议介绍
 
 - [Readme.md](README.md)
 - [CLA](cla.md)
 - [LICENSE](LICENSE.md)
-
-# Directory
-
-- [基本介绍](#intro)
-- [框架部署](#deploy)
-- [开发入门](#enter)
-- [TarsCPP](#TarsCPP)
-- [TarsJava](#TarsJava)
-- [TarsGo](#TarsGo)
-- [Tarsjs](#Tars.js)
-- [TarsPHP](#TarsPHP)
-- [其他重要特性](#important)
-- [K8SFramework](#k8s)
-- [常见问题](#question)
-- [开源合作](#cooperation)
-- [直播视频](#video)
-- [相关文章](#articles)
-- [其它资源分享](#resourcesSharing)
 
 ## 基础介绍 <span id="intro"></span>
 
