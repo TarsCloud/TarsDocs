@@ -6,21 +6,21 @@
 
 # Directory
 
-> - [基本介绍](#intro)
-> - [框架部署](#deploy)
-> - [开发入门](#enter)
-> - [TarsCPP](#TarsCPP)
-> - [TarsJava](#TarsJava)
-> - [TarsGo](#TarsGo)
-> - [Tarsjs](#Tars.js)
-> - [TarsPHP](#TarsPHP)
-> - [其他重要特性](#important)
-> - [K8SFramework](#k8s)
-> - [常见问题](#question)
-> - [开源合作](#cooperation)
-> - [直播视频](#video)
-> - [相关文章](#articles)
-> - [其它资源分享](#resourcesSharing)
+- [基本介绍](#intro)
+- [框架部署](#deploy)
+- [开发入门](#enter)
+- [TarsCPP](#TarsCPP)
+- [TarsJava](#TarsJava)
+- [TarsGo](#TarsGo)
+- [Tarsjs](#Tars.js)
+- [TarsPHP](#TarsPHP)
+- [其他重要特性](#important)
+- [K8SFramework](#k8s)
+- [常见问题](#question)
+- [开源合作](#cooperation)
+- [直播视频](#video)
+- [相关文章](#articles)
+- [其它资源分享](#resourcesSharing)
 
 ## 基础介绍 <span id="intro"></span>
 
@@ -36,11 +36,11 @@
 - [Mysql 安装](installation/mysql.md)
 - [Linux/Mac 源码部署](installation/source.md)
 - [Windows 源码部署](installation/source-windows.md)
-- [Tars云部署](installation/cloud.md)
+- [Tars 云部署](installation/cloud.md)
 - [TarsDocker 部署](installation/docker.md)
 - [K8s Docker 部署](installation/k8s-docker-1.md)
-- [K8s部署方案 1](installation/k8s-docker-2.md)
-- [K8s深度融合方案 2](installation/k8s-docker-3.md)
+- [K8s 部署方案 1](installation/k8s-docker-2.md)
+- [K8s 深度融合方案 2](installation/k8s-docker-3.md)
 - [TarsNode 部署](installation/node.md)
 - [Tars 框架更新及扩容](installation/expand.md)
 - [TarsWeb 说明](installation/web.md)
@@ -71,7 +71,7 @@
 - [Http 协议压测说明](benchmark/http-guide.md)
 - [Tars 协议压测说明](benchmark/tars-guide.md)
 
-## Tars网关 <span id="gateway"></span>
+## Tars 网关 <span id="gateway"></span>
 
 - [网关介绍](gateway/README.md)
 - [编译安装](gateway/install.md)
@@ -110,7 +110,7 @@
 
 ## TarsGo <span id="TarsGo"></span>
 
-- [cmake管理代码](dev/tarsgo/spec.md)
+- [cmake 管理代码](dev/tarsgo/spec.md)
 - [pb2tarsgo](dev/tarsgo/pb2tarsgo.md)
 - [性能数据](dev/tarsgo/performance.md)
 - [案例]
@@ -180,11 +180,12 @@
 - [用户体系模块使用指引](dev/tars-web-user.md)
 - [管理平台 API](dev/tars-web-api.md)
 - [无损发布 重启](dev/tars-lossless-patch.md)
-- [TARS调用链](dev/tars-trace.md)
+- [TARS 调用链](dev/tars-trace.md)
 - [IDC 分组](dev/tars-idc-set.md)
 - [鉴权功能](dev/tars-auth.md)
 
 ## K8SFramework <span id="k8s"></span>
+
 - [安装和使用说明]
   - [介绍](k8s/tars-k8s.md)
   - [组件说明](k8s/component.md)
@@ -198,12 +199,12 @@
   - [运维](k8s/operator.md)
   - [证书](k8s/ca.md)
 - [开发环境构建]
-  - [Dockerfile说明](k8s/dockerfile.md)
+  - [Dockerfile 说明](k8s/dockerfile.md)
   - [服务发布流程说明](k8s/helm.md)
   - [制作基础编译镜像](k8s/base-compiler.md)
   - [制作业务服务镜像](k8s/exec-build.md)
-  - [制作Helm包](k8s/exec-helm.md)
-  - [发布业务镜像到K8S集群](k8s/exec-deploy.md)
+  - [制作 Helm 包](k8s/exec-helm.md)
+  - [发布业务镜像到 K8S 集群](k8s/exec-deploy.md)
   - [服务发布示例](k8s/example.md)
   - [如何调试业务服务](k8s/debug.md)
 
@@ -213,7 +214,7 @@
 - [TarsCPP 常见问题](question/tarscpp-question.md)
 - [TarsJava 常见问题](question/tarsjava-question.md)
 - [TarsPHP 常见问题](question/tarsphp-question.md)
-- [TARS每日问答](question/daily_question.md)
+- [TARS 每日问答](question/daily_question.md)
 
 ## 开源合作 <span id="cooperation">
 
@@ -221,7 +222,7 @@
 
 ## 直播视频 <span id="video">
 
-- [B站TARS培训系列课程](video/bilibili_tars.md)
+- [B 站 TARS 培训系列课程](video/bilibili_tars.md)
 
 ## 相关文章 <span id="articles">
 
