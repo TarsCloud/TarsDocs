@@ -1,0 +1,13 @@
+name: update-git-book
+
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: trigger
+        run: |
+          curl -X POST https://api.github.com/repos/TarsCloud/GitBook/dispatches -H "Accept: application/vnd.github.everest-preview+json" -H "Authorization: token ${{ secrets.MY_REPO_TOKEN }}" --data '{"event_type": "docs_auto"}'
