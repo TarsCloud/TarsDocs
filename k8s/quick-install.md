@@ -29,13 +29,16 @@ kubectl create secret docker-registry tars-image-secret -n tars-dev --docker-ser
 ```
 kubectl create ns tars-dev
 
-helm install tarsframework -n tars-dev --set 'dockerRegistry=tarscloud,web=${web_host}' tars-k8s/tarsframework
+helm install tarsframework -n tars-dev --set 'helm.dockerhub.registry=tarscloud,dockerRegistry=${docker_registry},web=${web_host}' tars-k8s/tarsframework
 
 ```
 
 参数说明:
 
 - tars-dev: 这个是 K8S 上的名字空间 , 表示 Tars 部署在这个名字空间内
+- tarscloud: 官方 tars 镜像的仓库名称(如果你源码编译, 使用的你自己的仓库名称, 这里就需要修改)
+- docker_registry: 你自己的仓库地址, 这个用于存放你自己的业务服务的镜像仓库
+- tars-image-secret: 这个名字不要修改, 如果修改, 则需要指定 helm 安装时增加指定参数: `dockerSecret={your-tars-image-secret}`
 - web_host: 访问 tars web 的地址, 注意集群中必须已经按了 ingress, 且 web_host 指向了 ingress 的入口!
 
 ## 升级说明
@@ -44,7 +47,7 @@ helm install tarsframework -n tars-dev --set 'dockerRegistry=tarscloud,web=${web
 
 ```
 helm upgrade tarscontroller --set 'helm.build.id=v1.0.0-nightly' tars-k8s/tarscontroller
-helm upgrade tarsframework -n tars-dev --set 'dockerRegistry=tarscloud,web=${web_host},helm.build.id=v1.0.0-nightly' tars-k8s/tarsframework
+helm upgrade tarsframework -n tars-dev --set 'helm.dockerhub.registry=tarscloud,dockerRegistry=${docker_registry},web=${web_host},helm.build.id=v1.0.0-nightly' tars-k8s/tarsframework
 
 ```
 
