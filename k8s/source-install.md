@@ -40,7 +40,10 @@ TarsK8S 以 helm 包的形式对外发布.每个 Helm 包包含了 完成的框�
 helm install tarscontroller --set 'helm.dockerhub.registry=${DOCKER_REGISTRY}/${DOCKER_REPOSITORY},helm.build.id=v1.0.0' tarscontroller-v1.0.0.tgz
 ```
 
-**注意这个 v1.0.0 和 buildHelm 中生成的 tarscontroller 版本相关, 具体需要看当前实际的版本号!**
+说明:
+
+> - helm.build.id=v1.0.0, 这个版本号表示生成的镜像版本 Tag, 是你 buildHelm.sh 时指定的
+> - tarscontroller-v1.0.0.tgz, 这是 buildHelm.sh 生成的, 是一个 helm 包, 这里的 v1.0.0 版本号是 helm 包的版本, 具体是多少要看当前的源码版本
 
 - 在 k8s 中创建访问仓库的 secret
 
@@ -66,7 +69,7 @@ helm install tarsframework -n tars-dev --set 'dockerRegistry=${DOCKER_REGISTRY},
 - dockerSecret: 业务服务仓库的 secret
 - helm.dockerhub.registry: 编译出来的 tars 框架的镜像地址
 - web_host: 访问 tars web 的地址, 注意集群中必须已经安装了 ingress, 且 web_host 指向了 ingress 的入口!
-- v1.0.0 和 buildHelm 中生成的 tarsframework 版本相关, 具体需要看当前实际的版本号!
+- tarsframework-v1.0.0.tgz, 这是 buildHelm.sh 生成的, 是一个 helm 包, 这里的 v1.0.0 版本号是 helm 包的版本, 具体是多少要看当前的源码版本
 
 ## 升级说明
 
