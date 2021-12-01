@@ -57,14 +57,16 @@ helm repo update
 - 升级框架
 
 ```
-helm upgrade tarscontroller --set 'helm.build.id=v1.0.0-nightly' tars-k8s/tarscontroller
+helm upgrade tarscontroller --set 'helm.dockerhub.registry=tarscloud,helm.build.id=v1.0.0-nightly' tars-k8s/tarscontroller
 helm upgrade tarsframework -n tars-dev --set 'helm.dockerhub.registry=tarscloud,dockerRegistry=${docker_registry},web=${web_host},helm.build.id=v1.0.0-nightly' tars-k8s/tarsframework
 
 ```
 
-注意最好只升级版本, 不要降级版本, 同时注意升级版本需要自己执行 CRD(crd 如果不变可以不管)
+注意:
 
-但是注意: 如果是升级, 最好手动执行 crd!!!如果大版本升级, CRD 通常会升级.
+- 最好只升级版本, 不要降级版本, 同时注意升级版本需要自己执行 CRD(crd 如果不变可以不管)
+- helm.build.id=v1.0.0-nightly 代表的镜像版本, 也匹配 K8SFramework 的 tag
+- 升级最好手动执行 crd!!!如果大版本升级, CRD 通常会升级.
 
 ```
 cd install/tarscontroller/crds
