@@ -21,12 +21,13 @@
 - [Tars 云部署](installation/cloud.md)
 - [TarsDocker 部署](installation/docker.md)
 - [K8s Docker 部署](installation/k8s-docker-1.md)
-- [K8s 部署方案 1](installation/k8s-docker-2.md)
-- [K8s 深度融合方案 2](installation/k8s-docker-3.md)
+- [K8s 部署方案](installation/k8s-docker-2.md)
+- [K8s 深度融合方案(强烈推荐)](installation/k8s-docker-3.md)
 - [TarsNode 部署](installation/node.md)
 - [Tars 框架更新及扩容](installation/expand.md)
 - [TarsWeb 说明](installation/web.md)
 - [调用链升级注意事项](installation/train.md)
+- [框架版本说明](installation/version.md)
 
 ## 开发入门 <span id="enter"></span>
 
@@ -162,7 +163,7 @@
 - [用户体系模块使用指引](dev/tars-web-user.md)
 - [管理平台 API](dev/tars-web-api.md)
 - [无损发布 重启](dev/tars-lossless-patch.md)
-- [TARS 调用链](dev/tars-trace.md)
+- [调用链](dev/tars-trace.md)
 - [IDC 分组](dev/tars-idc-set.md)
 - [鉴权功能](dev/tars-auth.md)
 
