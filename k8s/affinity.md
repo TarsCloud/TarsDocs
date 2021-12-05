@@ -37,5 +37,5 @@ k8s:
 
 ```sh
 kubectl label nodes vm-0-47-centos tars.io/node.tars-dev=
-kubectl label nodes vm-0-47-centos tars.io/ability.tars-dev.debug-compiler=
+kubectl label nodes vm-0-47-centos tars.io/ability.tars-dev.debug-compiler
 ```
