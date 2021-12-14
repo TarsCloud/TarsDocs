@@ -148,6 +148,7 @@ TarsGateway v>=v1.1.0版本开始支持了调用链追踪，可以通过配置�
 
 ### 4.4 服务主动启用调用链
 服务启用调用链，主要包括以下步骤：
+
 A. 自己组tars协议包的情况:
 * 生成traceKey（包括 参数控制信息、traceID、spanID），traceID、spanID 可以采用tc_uuid_genarator生成;
 * 设置MessageType：SET_MSG_TYPE(tup.iMessageType, tars::TARSMESSAGETYPETRACE);
