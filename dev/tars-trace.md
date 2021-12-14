@@ -156,9 +156,8 @@ A. 自己组tars协议包的情况:
 * 输出trace日志：TARS_TRACE(...).
 
 B. 主动发起tars接口调用的情况：
-* 不需要输出接口调用参数，采用： OPEN_TARS_TRACE_NO_PARAMS
-* 需要输出接口调用每个环节参数，采用：OPEN_TARS_TRACE_ALL_PARAMS (注意会影响性能)
-* 自定义控制接口调用参数，采用：OPEN_TARS_TRACE(traceFlag)
+* ServantProxy 调用 tars_open_trace(bool traceParam=false) 来设置, traceParam表示是否输出接口调用参数，如果设置为true时 接口调用参数会转为json输出会影响性能。
+  
 例如：
 ```
 	ParamReq req;
@@ -166,8 +165,8 @@ B. 主动发起tars接口调用的情况：
 	req.num = num++;
 	req.data = "beeno";
 	ParamRsp rsp;
-	OPEN_TARS_TRACE_NO_PARAMS;
-	prx->test(req, rsp);
+	//prx->test(req, rsp);
+	prx->tars_open_trace()->test(req, rsp);
 ```  
 
 ### 4.5 服务配置
