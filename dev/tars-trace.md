@@ -148,10 +148,26 @@ TarsGateway v>=v1.1.0版本开始支持了调用链追踪，可以通过配置�
 
 ### 4.4 服务主动启用调用链
 服务启用调用链，主要包括以下步骤：
+A. 自己组tars协议包的情况:
 * 生成traceKey（包括 参数控制信息、traceID、spanID），traceID、spanID 可以采用tc_uuid_genarator生成;
 * 设置MessageType：SET_MSG_TYPE(tup.iMessageType, tars::TARSMESSAGETYPETRACE);
 * 传递traceKey: tup.status[ServantProxy::STATUS_TRACE_KEY] = traceKey;
 * 输出trace日志：TARS_TRACE(...).
+
+B. 主动发起tars接口调用的情况：
+* 不需要输出接口调用参数，采用： OPEN_TARS_TRACE_NO_PARAMS
+* 需要输出接口调用每个环节参数，采用：OPEN_TARS_TRACE_ALL_PARAMS (注意会影响性能)
+* 自定义控制接口调用参数，采用：OPEN_TARS_TRACE(traceFlag)
+例如：
+```
+	ParamReq req;
+	req.uid = "autouid";
+	req.num = num++;
+	req.data = "beeno";
+	ParamRsp rsp;
+	OPEN_TARS_TRACE_NO_PARAMS;
+	prx->test(req, rsp);
+```  
 
 ### 4.5 服务配置
 默认服务不用进行任何配置，只要上游服务已经启用调用链，那么后续调用将会自动支持（目前只支持同步调用、异步调用）。在接口调用参数输出控制这里，除了可以在入口进行控制，每个服务还可以在自己的服务模板中进行控制。
