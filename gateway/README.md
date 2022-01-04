@@ -186,7 +186,109 @@ proxy_pass:
 IP黑名单和流控策略， 同时支持TarsGateway的三种协议，所以后面统一介绍。
 
 
-## 5. 流量控制
+## 5. 身份鉴权
+支持调用后端服务时，在网关层先进行统一身份鉴权，如果鉴权失败，那么给客户端直接返回401，客户端业务可以根据此情况跳转登陆等操作等。鉴权流程如下：
+![网关身份鉴权](../assets/pic_verify_01.png)
+
+### 网关鉴权配置
+要使用网关统一身份鉴权，需要在网关配置文件中进行配置，配置格式如下：
+```xml
+<main>
+    <auth>
+        # 按照不同的身份类型，配置不同的 login域，比如 phone_login， wx_login
+        # 如果多个域中配置的有冲突， 那么后面的配置覆盖前面的配置
+        <phone_login>
+            verify=Base.VerifyDemoServer.VerifyObj
+            # 认证时候， 是否需要带上 body 内容给认证服务接口
+            verify_body=true 
+            # 透传http头
+            verify_headers=X-GUID|X-RemoteIP|X-XUA
+            # 认证票据http头
+            auth_http_header=X-Token
+            # 默认不鉴权，匹配上了才鉴权，在匹配上了之后，如果在exclude部分有配置，则不鉴权    
+            <auth_list>
+                # 支持应用级别、服务级别、接口级别
+                # 应用级别
+                Test1.*
+                # 服务obj级别
+                Test2.Test1Server.TestObj
+                # 接口级别
+                Test3.TestServer.TestObj:func1|func2|funcn
+                Test3.HelloServer.HelloObj:test1
+                TestApp.HelloServer.HelloObj
+                <exclude> 
+                    # 以下情况不需要鉴权
+                    # 支持服务级别、接口级别                  
+                    # 服务级别
+                    Test1.Test1Server.TestObj
+                    # 接口级别
+                    Test2.Test1Server.TestObj:func1|func2|funcn
+                    TestApp.HelloServer.HelloObj:testHello
+                </exclude>
+            </auth_list>
+        </phone_login>
+
+        <wx_login>
+            verify=WX.WXUserServer.UserObj
+            auth_http_header=X-SessionID
+            <auth_list>
+                # 应用级别
+                WXNews.*
+            </auth_list>
+        </wx_login>
+    </auth>
+</main>
+```
+需要进行鉴权那么就需要在配置文件中auth_list进行配置，鉴权配置支持应用级别，服务Obj级别，接口级别，不在配置中的则不进行鉴权。
+在auth_list 中的应用或者服务，如果需要排除特定服务或者特定接口不需要鉴权，那么在exclude中进行配置，支持服务级别或者接口级别。
+比如Test1应用里面，除了Test1.Test1Server.TestObj不需要鉴权其他服务都需要鉴权，那么可以在auth_list中配置Test1.* 然后在exclude中配置Test1.Test1Server.TestObj;
+又比如TestApp.HelloServer.HelloObj除了testHello接口，其他接口都需要鉴权，那么可以在auth_list中配置TestApp.HelloServer.HelloObj 然后在exclude中配置TestApp.HelloServer.HelloObj:testHello。
+
+### 鉴权接口实现
+如果配置了网关统一鉴权，需要在配置/main/auth/xxx/中的verify指定的服务中，实现verify接口，接口定义如下：
+```c++
+//Verify.tars
+module Base
+{
+    enum E_VERIFY_CODE
+    {
+        EVC_TOKEN_EXPIRE    = -3,           // token过期
+        EVC_ERR_TOKEN = -2,                 // token格式错误等
+        EVC_SYS_ERR = -1,                   // 系统异常
+        EVC_SUCC = 0                        // 成功
+    };
+
+    struct VeifyReq
+    {
+        1 require   string                  token;          // token，在配置中指定的http头中获取，比如X-Token
+        2 optional  map<string, string>     verifyHeaders;  // 请求网关时的 http 头, 具体需要透传哪些http头在配置中指定verify_headers
+        3 optional  vector<byte>            body;           // 请求body，如果需要业务请求的body，那么配置中指定 verify_body=true 
+    };
+
+    struct VeifyRsp
+    {
+        1 require   int     ret;        // 返回码， 取值为 E_VERIFY_CODE
+        2 optional  string  uid;        // 认证成功后的 uid
+        3 optional  string  context;    // 认证服务认证成功后可能需要的附件数据透传给业务， 后面调用服务时通过 context["X-Verify-Data"] 透传
+    };
+
+    interface Verify
+    {
+        // 鉴权接口
+        int verify(VeifyReq req, out VeifyRsp rsp);
+    };
+};
+```
+只有该服务的verify接口返回0且ret=EVC_SUCC时，才算身份验证通过，会继续调业务接口，否则给客户端返回401，不会再继续调用业务接口。
+
+### 业务服务使用
+配置了网关身份鉴权之后，那么网关请求过来的业务接口，都会通过tars接口的context附带上身份鉴权信息，包括：
+1. X-Verify-UID： verify接口返回的uid；
+2. X-Verify-Data：verify接口返回的context，可以为空；
+3. X-Verify-Token：身份票据token信息，即请求verify接口中的token。
+
+
+## 6. 流量控制
 
 可以支持访问TarsGateway 访问后端进行流量控制，支持单机控制，也支持多机协同控制，也可以关闭流控。
 
@@ -198,7 +300,7 @@ IP黑名单和流控策略， 同时支持TarsGateway的三种协议，所以后
 
 **配置说明:**  如果是TARS-tup或者TARS-JSON协议，那么流控的站点ID为服务Obj，如果是http协议，那么站点ID为配置中的stationId.
 
-## 6. 黑名单策略
+## 7. 黑名单策略
 
 黑名单为IP黑名单，支持全局黑名单和站点黑名单两个级别。
 
@@ -211,7 +313,7 @@ IP黑名单和流控策略， 同时支持TarsGateway的三种协议，所以后
 **站点白名单:** 站点一旦配置了白名单，那么就只能是指定IP才能访问，主要用于内部系统控制指定ip访问，或者开放给指定合作伙伴调用。
 
 
-## 7. 配置热更新
+## 8. 配置热更新
 
 支持常用配置热更新，包括：
 1. loadProxy: 通过该tars命令可以实现TARS-tup&TARS-JSON协议的servant代理配置更新；
@@ -219,7 +321,7 @@ IP黑名单和流控策略， 同时支持TarsGateway的三种协议，所以后
 3. loadComm:  通过该命令可以进行一些公共的配置加载，主要包括黑白名单加载；
 4. 流控策略自动动态加载DB。
 
-## 8. 环境切换
+## 9. 环境切换
 在作为TARS-tup或TARS-JSON协议代理时，可以通过http头中值，指定到不通的proxy子配置域中。
 默认是直接使用proxy下面的配置，如果配置了env_httpheader，且当前请求中有该http头，并且http头的value为配置中的内容，那么则优先选择proxy 下面的 env 子域对应的转发规则。比如如下配置，表示http请求头中X-GUID=12345678123456781234567812345678 的用户，则优先选用test环境中配置，即：用户请求servant为hello时，那么真实服务obj选择TestApp.HelloServer.HelloObj@tcp -h 192.168.2.101 -p 10029 , 但是如果用户请求servant为world时，由于test环境中并没有配置 world 对应的转发规则，那么还是用 proxy 下面默认的规则，及真实obj为Test.HelloworldServer.HelloworldObj，配置如下：
 
@@ -242,9 +344,10 @@ IP黑名单和流控策略， 同时支持TarsGateway的三种协议，所以后
     </env_httpheader>
 ```
 
-## 9. 返回码说明
+## 10. 返回码说明
 * 200: OK 正常响应
 * 400: Bad Request  1.解客户端请求包错误。
+* 401: Unauthorized 1.统一鉴权失败。
 * 403: Forbidden  1.客户端ip命中黑名单。
 * 404: Not Found  1.tup或json协议找不到对应servant代理；2. Http找不到后端站点；
 * 429: Too Many Request  1.流控超过限制策略；
@@ -252,7 +355,7 @@ IP黑名单和流控策略， 同时支持TarsGateway的三种协议，所以后
 * 502: Bad Gateway  1.调用后端tars服务或者http服务异常；
 * 504：Gateway Timeout  1.调用后端tars服务或者http服务超时;
 
-## 10. 日志格式说明
+## 11. 日志格式说明
 TARS-tup & TARS-JSON 协议代理请求响应日志格式说明：
 
 **正常回包 response日志:**

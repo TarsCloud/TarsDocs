@@ -115,7 +115,7 @@ TarsFramework可以整体升级到v3.0.1，也可以手动升级tarslog服务。
 tarslog服务部署，需要新增一个obj:`TopologyObj`，协议为`tars协议`，提供接口给tarsweb展示。
 tarslog默认不开启调用链分析，如果需要开启，那么需要在tarslog的服务模板中配置es信息，用来存储调用链数据。
 服务添加私有模板，内容如下：
-```
+```xml
 <tars> 
  <elk>
     # 连接es的协议，不配置默认http
@@ -131,7 +131,7 @@ tarslog默认不开启调用链分析，如果需要开启，那么需要在tars
 
 ### 4.3 网关配置
 TarsGateway v>=v1.1.0版本开始支持了调用链追踪，可以通过配置参数进行开启，配置如下。
-```
+```xml
 <main>
  	<trace>
 	 # 调用链启用开关，如果为0则不进行调用链追踪
