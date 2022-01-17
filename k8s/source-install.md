@@ -2,7 +2,7 @@
 
 ## 在 K8S 上安装 TARS 框架
 
-TarsK8S 以 helm 包的形式对外发布.每个 Helm 包包含了 完成的框架服务.
+TarsK8S 以 helm 包的形式对外发布.每个 Helm 包包含了 对应的框架服务.
 
 在安装时,以 k8s 命名空间为分割,每个命名空间可以且只可以部署一套框架服务,每套框架服务都有完整的功能组件,与其他命名空间的框架互相独立.
 
@@ -30,7 +30,7 @@ TarsK8S 以 helm 包的形式对外发布.每个 Helm 包包含了 完成的框�
 - TAG: 当前编译的版本号, docker 的 tag, helm 的版本号
 - DOCKER_REGISTRY: 仓库 url 地址
 
-  > - 可以为空, 为空则为公共仓库
+  > - DOCKER_REGISTRY 可以为空, 为空则为公共仓库
   > - 如果是私有仓库, 则需要路径: xxx.xxx.com
   > - 生成的依赖 docker 前缀是: $DOCKER_REGISTRY/DOCKER_REPOSITORY
 
@@ -53,7 +53,7 @@ helm install tarscontroller --set 'helm.dockerhub.registry=${DOCKER_REGISTRY}/${
 kubectl create secret docker-registry tars-image-secret -n tars-dev --docker-server=${DOCKER_REGISTRY} --docker-username=${DOCKER_REGISTRY_USER} --docker-password=${DOCKER_REGISTRY_PASSWORD}
 ```
 
-- 创建 TARS 环境
+- 创建 TARS 框架
 
 ```
 kubectl create ns tars-dev

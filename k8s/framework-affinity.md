@@ -29,7 +29,7 @@ kubectl label nodes $node-name tars.io/node.tars-dev=
 注意:
 
 > - $namespace 是 K8S 的名字空间, 即上面 helm 安装 TARS 时指定的名字空间
-> - $app 是 TARS 下面的应用概念, 即 TARS 某个应用下的服务可以部署在这些节点(这一步可以在 web 上控制亲和性)
+> - $app 是 TARS 的应用概念, 即 TARS 某个应用下的服务可以部署在这些节点(这一步也可以在 web 上控制亲和性)
 
 **完成上述两步以后, 可以在 K8S 上看到, 除了 es 和 tarslog 之外, 其他服务已经启动了**
 
@@ -37,9 +37,9 @@ es 和 tarslog 由于需要存储空间, 因此需要特别处理.
 
 - 给 es 和 tarslog 分配 LocalPV
 
-目前的 K8STARS 支持 LocalPV, 服务需要 LocalPV 时, 可以申请, 后续文档会介绍.
+目前的 K8SFramework 支持 LocalPV, 服务需要 LocalPV 时, 可以申请, 后续文档会介绍.
 
-这里 Ees 和 tarslog 由于没有合适的 PV 一直处于 pending 中, 只需给可以申请 LocalPV 的节点打上标签`tars.io/SupportLocalVolume `
+这里 es 和 tarslog 由于没有合适的 PV 一直处于 pending 中, 只需给可以申请 LocalPV 的节点打上标签`tars.io/SupportLocalVolume `
 
 使用命令行打标签如下:
 

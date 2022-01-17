@@ -1,10 +1,12 @@
 # LocalPV
 
-我们的大部分使用场景是自建集群,没有使用网络盘的条件, 因此可以简单配置 LocalPV 非常重要
+我们的大部分使用场景是自建集群, 很难具备动态分配和挂接磁盘的条件, 因此可以简单配置 LocalPV 非常重要.
+
+LocalPV 在这里可以保证, 服务一旦使用了 LocalPv, 则不在漂移, 固定在同一台节点机上运行, 它可以用来支持 tarslog, es 等需要本地磁盘的服务.
 
 ## tserver 中的描述
 
-在自定义资源 server 中, 有描述字段专门描述 LocalPV, 即字段: `tsever.k8s.mounts.source.TLocalVolume`
+在自定义资源 tserver 中, 有描述字段专门描述 LocalPV, 即字段: `tsever.k8s.mounts.source.TLocalVolume`
 
 如下所示:
 
@@ -52,7 +54,7 @@ k8s:
 以上代码申请了 pv 操作, 说明:
 
 - 注意实际的 pv 申请是有 tars.tarsagent 来操作的(它是 TarsK8S 框架部署, daemonset 类型, 每个节点部署一个, 它会给需要申请的 pv 的服务创建 pv)
-- tars 服务部署以后, tserver 的 yaml 会被展开如下两段 yaml, 以下以 tarslog 为例:
+- tars 业务服务部署以后, tserver 的 yaml 会被展开如下两段 yaml, 以下以 tarslog 为例:
 - /usr/local/app/tars/remote_app_log 是 pod 内路径, 会映射到宿主机路径中, 请参考后续说明
 
 ### LocalPV 对应的 pvc
@@ -89,7 +91,7 @@ spec:
 
 ### LocalPV 对应 pv
 
-pv 是由 tars.tarsagent 来展开生成, 并创建的, 并且会每台节点机都会创建出来(default-remote-log-dir-tars-tarslog-36520b71 名字每台节点机都不同), 当完成 tars 服务根据 pvc 完成 pv 绑定后, 就动态绑定到具体某一个 pv 了, 从而不再漂移. tars.tarsagent 会定期删除一直没有绑定的 pv.
+pv 是由 tars.tarsagent 来展开生成并创建的, 并且会每台节点机都会创建出来(default-remote-log-dir-tars-tarslog-36520b71 名字每台节点机都不同), 当完成 tars 服务根据 pvc 完成 pv 绑定后, 就动态绑定到具体某一个 pv 了, 从而不再漂移. tars.tarsagent 会定期删除一直没有绑定的 pv.
 
 ```yaml
 apiVersion: v1
