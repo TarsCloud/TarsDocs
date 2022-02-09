@@ -46,6 +46,58 @@
             </dogfood>
         </proxy>
 
+        <proxy_interface_blacklist>
+            #proxy 接口黑名单
+            #配置格式： servant:func1|func2|....
+            hello:func1|func2
+            login:func1
+        </proxy_interface_blacklist>
+
+        <auth>
+            # 身份鉴权配置
+            # 按照不同的身份类型，配置不同的 login域，比如 phone_login， wx_login
+            # 如果多个域中配置的有冲突， 那么后面的配置覆盖前面的配置
+            <phone_login>
+                verify=Base.UserServer.UserObj
+                # 认证时候， 是否需要带上 body 内容给认证服务接口
+                verify_data=true 
+                # 透传http头
+                verify_headers=X-GUID|X-RemoteIP|X-XUA
+                # 认证票据http头
+                auth_http_header=X-Token
+                # 默认不鉴权，匹配上了才鉴权，在匹配上了之后，如果在exclude部分有配置，则不鉴权    
+                <auth_list>
+                    # 支持应用级别、服务级别、接口级别
+                    # 应用级别
+                    Test1.*
+                    # 服务obj级别
+                    Test2.Test1Server.TestObj
+                    Test2.Test2Server.TestObj
+                    # 接口级别
+                    Test3.TestServer.TestObj:func1|func2|funcn
+                    Test3.HelloServer.HelloObj:test1
+
+                    <exclude> 
+                        # 支持服务级别、接口级别                  
+                        # 服务级别
+                        Test1.Test1Server.TestObj
+                        # 接口级别
+                        Test2.Test1Server.TestObj:func1|func2|funcn
+                        Test2.Test2Server.TestObj:test1
+                    </exclude>
+                </auth_list>
+            </phone_login>
+
+            <wx_login>
+                verify=WX.WXUserServer.UserObj
+                auth_http_header=X-SessionID
+                <auth_list>
+                    # 应用级别
+                    WXNews.*
+                </auth_list>
+            </wx_login>
+        </auth>
+
         #http头:值, 转到proxy某个服务
         <httpheader>
             # b7392a2d60604eac81892f6f9c0232f7 转发到 test 环境

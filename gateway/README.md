@@ -87,8 +87,20 @@ TARS-tup 协议代理，必须为 post 请求类型，路径为/tup，body 内�
     </proxy>
 ```
 
-经过 TarsGateway 调用后端服务，客户端请求的 http 头，可以通过配置采用 tars 的 context 进行 http 头的透传，默认情况下，REMOTE_IP （客户端 ip）都会透传给后端。配置为 filterheaders，可以是多个，比如：
+proxy配置支持接口黑名单策略，即在proxy配置的情况下，可以通过接口黑名单排除servant下指定的接口列表，配置如下：
+```
+<main>
+    <proxy_interface_blacklist>
+        #proxy 接口黑名单
+        #servant:func1|func2|....
+        hello:func1|func2
+        login:func1
+    </proxy_interface_blacklist>   
+</main>     
+```
+当客户端调用没有配置的servant或者所调servant对应接口命中接口黑名单，那么网关将会给调用方返回404返回码。
 
+经过TarsGateway调用后端服务，客户端请求的http头，可以通过配置采用tars的context进行http头的透传，默认情况下，REMOTE_IP （客户端ip）都会透传给后端。配置为 filterheaders，可以是多个，比如：
 ```
     filterheaders = X-GUID|X-XUA
 ```
@@ -105,7 +117,7 @@ TARS-tup 协议代理，必须为 post 请求类型，路径为/tup，body 内�
         hello = TestApp.HelloServer.HelloObj | 3
         hello:sayhello = TestApp.Hello2Server.HelloObj
     </proxy>
-
+    
 ```
 
 ### 3. TARS-JSON 协议代理
@@ -382,20 +394,18 @@ module Base
     </env_httpheader>
 ```
 
-### 10. 返回码说明
+## 10. 返回码说明
+* 200: OK 正常响应
+* 400: Bad Request  1.解客户端请求包错误。
+* 401: Unauthorized 1.统一鉴权失败。
+* 403: Forbidden  1.客户端ip命中黑名单。
+* 404: Not Found  1.tup或json协议找不到对应servant代理或者接口命中黑名单；2. Http找不到后端站点；
+* 429: Too Many Request  1.流控超过限制策略；
+* 500: Server Interval Error 1.http后端没有配置目标地；
+* 502: Bad Gateway  1.调用后端tars服务或者http服务异常；
+* 504：Gateway Timeout  1.调用后端tars服务或者http服务超时;
 
-- 200: OK 正常响应
-- 400: Bad Request 1.解客户端请求包错误。
-- 401: Unauthorized 1.统一鉴权失败。
-- 403: Forbidden 1.客户端 ip 命中黑名单。
-- 404: Not Found 1.tup 或 json 协议找不到对应 servant 代理；2. Http 找不到后端站点；
-- 429: Too Many Request 1.流控超过限制策略；
-- 500: Server Interval Error 1.http 后端没有配置目标地；
-- 502: Bad Gateway 1.调用后端 tars 服务或者 http 服务异常；
-- 504：Gateway Timeout 1.调用后端 tars 服务或者 http 服务超时;
-
-### 11. 日志格式说明
-
+## 11. 日志格式说明
 TARS-tup & TARS-JSON 协议代理请求响应日志格式说明：
 
 **正常回包 response 日志:**
