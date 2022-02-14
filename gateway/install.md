@@ -29,7 +29,7 @@
 ## 手动部署安装（需要先具备tarscpp编译环境）
 1. 准备tarscpp 编译环境；
 2. 获取源码： git clone https://github.com/TarsCloud/TarsGateway.git
-3. 编译： cd TarsGateway; mkdir build; cd build; make GatewayServer && make GatewayServer-tar
+3. 编译： cd TarsGateway; mkdir build; cd build; cmake ..; make GatewayServer && make GatewayServer-tar
 4. 在tarsweb 管理平台上面，部署tars.GatewayServer，该服务有两个servant，即部署两个Obj，如下：
     * tars.GatewayServer.ProxyObj           非tars协议  5个线程  端口 xxxx (一键部署的端口默认为8200)
     * tars.GatewayServer.FlowControlObj	    tars协议    1个线程  端口 xxxx
