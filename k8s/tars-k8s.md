@@ -1,35 +1,100 @@
-# TarsK8S 介绍
+# TarsK8S
 
-## 设计思路
 
-TarsK8S 使用 CRD+Operator 来完成 Tars 在 K8S 上的部署, 因此所有 Tars 服务以及资源在 K8S 上都对应了一个 CRD, 开发者即可以通过 tarsweb 来完成服务的控制, 也可以通过 kubectl 即可完成资源的控制.
 
-这些 CRD 包括:
+## 项目介绍
 
-- TAccount: 账号以及权限管理, 对应了 web 上的账号权限
-- TConfig: 配置文件, 对应 tars 服务的配置文件(不是通过 ConfigMap 来实现的), 目的是尽可能兼容非 K8S 版本的 Tars 服务, 这样非 K8S 的 tars 服务能够平滑迁移到 K8S
-- TDeploy: 部署申请和流程
-- TServer: tars 服务, 每个 tars 服务对应一个 TServer 资源
-- TEndpoint: 服务的端口申明, 对应的 Adapter
-- TImage: tars 业务的发布镜像, 每个业务都对应了一个 TImage 资源, 里面记录了历史的发布镜像, 方便在 web 上回滚
-- TExitRecord: 服务退出历史, 如果服务的 pod 漂移过, 在 web 上可以查询服务之前在哪些节点运行, 可以看到历史的日志文件, 方便定位问题
-- TTemplate: 模板文件, 对于非 K8S 版本模板文件
-- TTree: 业务目录树
-- TGateway: 网关 obj 记录
-- TFrameworkConfig: 框架的基础配置(K8SFramework >= 1.2.0)
+TarsK8S 是为了将 Tars 部署在 K8S 平台上而做的适应性改造项目. 提供了包括部署、升级、扩缩容、备份恢复、配置变更的 Tars 服务全生命周期管理. 借助 TarsK8S, Tars 可以无缝运行在公有云或私有部署的 Kubernetes 集群上.
 
-这些 crd 文件在 install/tarscontroller/crds 目录下.
+TarsK8S 暂未支持一下特性:
 
-控制服务是 tarscontroller(src/ControllerServer), 它根据用户 apply 的的 yaml 文件(yaml 文件直接描述上述资源), 来转换成 k8s 自己的资源(statefullset 等), 最终 tars 服务在 K8S 上的部署.
+- Tars Set
+- Tars DCache
 
-所有在 web 上对服务的变更, 原则上都可以通过 kubectl 来完成!
 
-当年你需要自己使用这些资源时, 请参考这些 crd 文件!
 
-## 部署方式
+## 项目设计
 
-- 编译源码(K8SFramework), 并推送镜像到自己的仓库, [请参考](../k8s/source-install.md)
-- 或者直接使用官方镜像(即无需要自己编译 K8SFramework 源码)
-- 然后通过 helm 完成 tarscontroller 的部署
-- 再通过 helm 完成 tars 框架的部署, 一个 K8S 集群上可以部署多套 TARS 环境(每套有自己独立的名字空间即可)
-- K8SFramework 还支持亲和性配置, K8S 集群中的多大 Tars 环境可以使用不同的节点, 互相不冲突.
+TarsK8S 使用自定义控制器模式来完成 Tars 在 K8S 集群的部署, 由 CRD, Controller, Framework 组成.
+
+每个 K8S 集群可以部署一个 Controller , 并在不同的Namespace 中部署多套 Framework.  每套 Framework 互相独立.
+
+
+
+CRD 包括:
+
++ tdeploy:  tdeploy 定义了一项 tars 服务部署申请的属性, 没提交一个 tdeploy 对象意味着在 k8s 集群中提交了一项 tars 服务部署申请.
+
+- tserver:   tserver 定义了一项 tars 服务的属性,  每提交一个 tserver 对象意味则在 k8s 集群中部署可一项 tars 服务.
+
+- tconfig:   tconfig 定义了一项 tars 服务配置属性, 每提交一个 tconfig 对象意味则为 某个 tars 业务服务增加了一项业务配置.
+- ttemplate:  ttemplate 定义一项 tars 模板属性,  每提交一个 ttemplate 对象意味则在 k8s 集中部署了一个 tars 模板.
+- timage:  每个 tserver 对象通过 label 与一个或多个timage 对象关联, 并在 timage 对象中记录服务发布版本及镜像地址等信息. 
+- tendpoint:  crontroller 为每个 tserver 对象新建一个同名的 tendpoint 对象, 并在 tendpoint 中记录关联 tserver 的运行实时运行状态.
+- texitrecord: crontroller 为每个 tserver 对象新建一个同名的 texitrecord 对象,并在texitrecord 中记录关联 tserver 的 pods 生命周期信息.
+- tframeworkconfig:  每套 framework 中都有一个唯一的 tframeworkconfig 对象 记录 framework 级别的配置.
+- ttree:  每套 framework 中都有一个唯一的 ttree 对象, 用于记录 tars business  与 tars app 的关联关系.  
+
+  关于 crd 的更多细节请参考
+
+
+
+Controller:
+
+  controller 是自定义控制器模式的核心. 主要职责有:
+
++ 将 crd 对象映射调谐成 k8s 原生对象(statefulset , deployment, daemonset,service)
++ 校验 crd 对象字段合法性或者填充默认值
++ 校验各项 tars 运维操作的合法性
++ 多 crd 版本提供兼容转换
+
+  关于 controller 的更多细节请参考
+
+
+
+Framework:
+
+​	framework 是指 tars 框架中的基础服务, 相比原生版本, tarsk8s 对这些服务程序代码进行了重构,使其能使用在 k8s 集群中工作,具体如下:
+
++ tarsweb:  tars 微服务框架的运维管理平台  
+
++ tafnode:  tars 微服务框架的节点守护程序
+
++ tarsregistry:   tars 微服务框架中的注册中心
++ tarsconfig:  tars 微服务框架的配置中心
++ tarsnotify:  tars 微服务框架的消息通知中心
++ tarslog :  tars 微服务框架的日志中心
++ tarsproperty, tarsqueryproperty:  提供 tars 微服务框架的特性监控数据接收和查询服务
+
++ tarsstat, tarsquerystat:  提供 tars 微服务框务的服务监控数据接收和查询服务
++ tarsimage:  tarsk8s  新增的 framework 服务, 提供镜像构建服务
++ tarselasticsearch:   tarsk8s  新增的 framework 服务, 用于替代原生 tars 中的 mysql, 上文提及的消息, 特性监控, 服务监控数据落地到 tarselasticsearch 中
+
+
+
+  framework 程序重构原则如下:
+
+ + framrework 之间使用数据结构的接口, 允许重新设计
+
+ + 对业务程序暴露的数据结构和接口, 保证全面兼容
+ + 业务程序不需要区分运行环境是否为 k8s 集群内
+
+ 以上原则可以保证绝大多数历史 tars 服务能通过 tarsk8s 无缝部署到 k8s 集群
+
+
+
+关于 framework 的更多细节请参考
+
+
+
+## 项目部署
+
+ 源码部署
+
+ Helm部署
+
+
+
+## 项目阶段
+
+TarsK8S 目前仍然处于测试阶段, 但在充分了解各项特性并严格测试需求是否满足后, 可以用于生产环境.

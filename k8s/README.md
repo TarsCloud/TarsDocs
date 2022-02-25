@@ -1,22 +1,28 @@
 # TarsK8S 说明文档
 
-## 主要介绍
+## 项目介绍
 
-- TarsK8S 是为了将 Tars 部署在 K8S 平台上而做的适应性改造项目.
+TarsK8S 是为了将 Tars 部署在 K8S 平台上而做的适应性改造项目
 
-- TarsK8S 改造的原则:
+TarsK8S 改造的原则:
 
-1.  改造仅限于 framework 程序（tarsregistry ,tarsnode , tarsnotify , tarsconfig）
-2.  改造后的 framework 程序对业务服务暴露接口保持完全兼容
-3.  所有 Tars 主要功能在 K8S 这个版本中都保留了, 比如 hash 调用, 共享内存使用等
+   1. 改造仅限于 framework 程序（tarsregistry ,tarsnode , tarsnotify , tarsconfig）
 
-- 基于以上原则,现在的 tars 服务程序在无需大改的情况下就可以迁移到 TarsK8S 平台
+2. 改造后的 framework 程序对业务服务暴露接口保持完全兼容
+
+
+
+基于以上原则,现在的 Tars 服务程序在无需大改的情况下就可以迁移到 TarsK8S 平台
+
+
 
 目前以下特性还未被支持:
 
 - TarsK8S 暂时不支持 Set
 
 - TarsK8S 暂时不能部署 DCache 服务
+
+
 
 ## 技术说明
 
