@@ -18,7 +18,6 @@
 - [Mysql 安装](installation/mysql.md)
 - [Linux/Mac 源码部署](installation/source.md)
 - [Windows 源码部署](installation/source-windows.md)
-- [Tars 云部署](installation/cloud.md)
 - [TarsDocker 部署](installation/docker.md)
 - [K8s Docker 部署](installation/k8s-docker-1.md)
 - [K8s 部署方案](installation/k8s-docker-2.md)
