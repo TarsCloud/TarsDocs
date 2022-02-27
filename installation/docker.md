@@ -155,7 +155,7 @@ docker run -d \
     -v /etc/localtime:/etc/localtime \
     -p 3000:3000 \
     -p 3001:3001 \
-    tarscloud/framework
+    tarscloud/framework:v3.0.4
 ```
 
 安装完毕后, 访问 `http://${your_machine_ip}:3000` 打开 web 管理平台
@@ -206,7 +206,7 @@ docker run -d \
     --ip="172.25.0.4" \
     -v /data/framework-slave:/data/tars \
     -v /etc/localtime:/etc/localtime \
-    docker.tarsyun.com/tarscloud/framework
+    tarscloud/framework:v3.0.4
 ```
 
 **注意:SLAVE 参数不同**
@@ -280,7 +280,7 @@ docker run -d \
     -e INET=eth0 \
     -v /etc/localtime:/etc/localtime \
     -v /tmp/test/data:/data/tars \
-    tarscloud/framework:v2.4.14
+    tarscloud/framework:v3.0.4
 ```
 
 **注意目录映射, 保证了 docker 重启, 数据不会丢失**
@@ -332,7 +332,7 @@ docker --name=tars-framework \
     -v /data/framework:/data/tars \
     -v /etc/localtime:/etc/localtime \
     -p 3000:3000 \
-    tarscloud/framework:v2.4.14
+    tarscloud/framework:v3.0.4
 ```
 
 - 查看 docker 输出是否有明显问题
@@ -343,13 +343,6 @@ docker --name=tars-framework \
 ## 5 <span id="chapter-5"></span>镜像加速
 
 - 目前已搭建了 `docker.tarsyun.com/tarscloud/framework` 和 `docker.tarsyun.com/tarscloud/tars-node` 的镜像加速
-
-**此方法仅适用于 linux 环境**
-
-```sh
-curl -sSL https://doc.tarsdoc.com/docker_set_mirror.sh | sh -s https://w1mnep2c.mirror.aliyuncs.com
-systemctl restart docker
-```
 
 ## 6 <span id="chapter-6"></span>开发环境 docker-compose
 
@@ -375,7 +368,7 @@ services:
       internal:
         ipv4_address: 172.25.1.2
   framework:
-    image: tarscloud/framework:latest
+    image: tarscloud/framework:v3.0.4
     container_name: tars-framework
     ports:
       - "3000:3000"
