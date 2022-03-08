@@ -1,15 +1,15 @@
 
 # 总体思路
 * 在框架启动成功的时候，上报服务存活。
-* 使用框架的或者swoole的定时器，实现每隔30s上报一次存活，可以在worker里面上报，也可以在task里面上报（注意可能worker都挂了，task还在）。
-* 写一个入口文件（如index.php），根据Tars平台生成的PHP服务启停脚本，已经Tars平台下发的conf配置文件，完成PHP框架的配置转换（端口号、worker数量）和启停命令控制。
-* 对于HTTP的服务，实现上面3步就可以跑着Tars里面了。对于其他各种功能（查看框架简介），可以根据实际情况自行引入Tarsphp的composer扩展。
-* 对于tars或者pb等RPC协议的服务，需要解决网络协议与业务协议的打包解包（可以参照tarsphp tcpserver），如果能实现定制的代码自动生成，就更好了。
+* 使用框架或者swoole的定时器，实现每隔30s上报一次存活，可以在worker里面上报，也可以在task里面上报（注意：可能worker都挂了，task还在）。
+* 写一个入口文件（如index.php），根据Tars平台生成的PHP服务启停脚本，以及Tars平台下发的conf配置文件，完成PHP框架的配置转换（端口号、worker数量）和启停命令控制。
+* 对于HTTP的服务，实现上面3步就可以跑在Tars里面了。对于其他各种功能（查看框架简介），可以根据实际情况自行引入Tarsphp的composer扩展。
+* 对于tars或者pb等RPC协议的服务，需要解决网络协议与业务协议的打包及解包（可以参照tarsphp tcpserver），如果能定制实现代码自动生成，就更好了。
 
 # 以swoft为例
 
 
-* 修改composer.json,加入phptars的包，以及打包命令。
+* 修改composer.json，加入phptars的包，以及打包命令。
 
 ```
 {
@@ -31,7 +31,9 @@
 ```
 
 * 写一个用于调用Tars平台各种接口的class （src/app/Tars/Manage.php）
+
 ```php
+<?php
 namespace App\Tars;
 use \Tars\report\ServerFSync;
 use \Tars\report\ServerFAsync;
@@ -104,8 +106,10 @@ class Manage
 ```
 
 
-* 在框架启动成功的时候，上报服务存活，这使用的swoft的框架的事件监听。 （src/app/Listener/APPStart.php）
+* 在框架启动成功的时候，上报服务存活，这使用的swoft框架的事件监听Listener。 （src/app/Listener/APPStart.php）
+
 ```php
+<?php
 namespace App\Listener;
 use Swoft\Bean\Annotation\Listener;
 use Swoft\Event\EventHandlerInterface;
@@ -134,8 +138,10 @@ class APPStart implements EventHandlerInterface
 }
 ```
 
-* 每隔30s上报一次存活，这里使用swoft框架注解试的定时任务。 （src/app/Tasks/TarsKeepAliveTask.php）
+* 每隔30s上报一次存活，这里使用swoft框架的注解开启一个定时任务。 （src/app/Tasks/TarsKeepAliveTask.php）
+
 ```php
+<?php
 namespace App\Tasks;
 use App\Lib\DemoInterface;
 use App\Models\Entity\User;
@@ -168,8 +174,10 @@ class TarsKeepAliveTask
 ```
 
 * 写一个入口文件，来控制swoft框架的启停。 （src/index.php）
+
 ```php
-// tars 平台然后文件
+<?php
+// tars 平台入口文件
 // 读取tars conf配置
 // 处理合成 env文件
 $args = $_SERVER['argv'];
