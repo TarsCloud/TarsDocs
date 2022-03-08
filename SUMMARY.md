@@ -170,16 +170,11 @@
 ## K8SFramework <span id="k8s"></span>
 
 - [安装和使用说明]
-  - [介绍](k8s/tars-k8s.md)
-  - [组件说明](k8s/component.md)
-  - [快速安装指南](k8s/quick-install.md)
-  - [源码安装指南](k8s/source-install.md)
-  - [tarsweb](k8s/tarsweb.md)
-  - [框架亲和性设置](k8s/framework-affinity.md)
-  - [关键特性](k8s/key-points.md)
-  - [LocalPV](k8s/local-pv.md)
-  - [节点亲和性](k8s/affinity.md)
+  - [介绍](k8s/tarsk8s.md)
+  - [特性](k8s/property.md)
+  - [安装](k8s/deploy.md)
   - [运维](k8s/operator.md)
+  - [tarsweb](k8s/tarsweb.md)
   - [证书](k8s/ca.md)
 - [开发环境构建]
   - [Dockerfile 说明](k8s/dockerfile.md)
