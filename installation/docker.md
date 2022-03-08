@@ -6,15 +6,16 @@
 > - [问题检查](#chapter-4)
 > - [镜像加速](#chapter-5)
 > - [docker-compose 部署开发环境](#chapter-6)
-> - [docker版本说明](#chapter-7)
+> - [docker 版本说明](#chapter-7)
+> - [docker 高级方式](#chapter-8)
 
 ## 1 <span id="chapter-1"></span>介绍
 
 本节主要介绍采用 docker 来完成框架的部署:
 
 - framework: Tars 框架 Docker 制作脚本, 制作的 docker 包含了框架核心服务和 web 管理平台
-- tars-node: tarsnode节点的镜像，包含各语言的运行时环境，可以将服务发布到tars-node容器中, tarsnode每台机器都存在, 它连接到framework
-- 部署完成后, 打开framework主节点上web管理平台, 你可以通过web管理平台部署和发布服务, 将这些服务发布到tarsnode所在的机器上
+- tars-node: tarsnode 节点的镜像，包含各语言的运行时环境，可以将服务发布到 tars-node 容器中, tarsnode 每台机器都存在, 它连接到 framework
+- 部署完成后, 打开 framework 主节点上 web 管理平台, 你可以通过 web 管理平台部署和发布服务, 将这些服务发布到 tarsnode 所在的机器上
 
 Docker 开发环境部署可以很方便的在本地拉起服务开始服务的部署、开发和测试。开发环境部署采用单机多容器的部署方式模拟生产环境的服务部署结构。Docker 生产环境部署为生产主机部署 Tars 服务提供参考，相关参数需要根据具体环境变更调整。
 
@@ -27,14 +28,15 @@ Docker 开发环境部署可以很方便的在本地拉起服务开始服务的�
 当然你可以在多台机器上搭建一套环境, 将你的业务服务发布到这套环境上测试.
 
 如果你没有多台机器, 你又需要完整的搭建环境, 你可以通过以下方式来完成:
-- 使用docker将framework/tarsnode部署在同一台机器上;
-- tarsnode你可以启动多个docker, 每个ip都不同, 表示多台节点机器
-- 由于使用docker, 为了保证framework/tarsnode这些docker的网络互通, 你需要创建虚拟网络, 以连接这些docker(这里是docker的知识, 有需要自己百度)
-- 如果使用--net=host方式, 你无法在同一台机器上部署framework/tarsnode, 因为他们使用了相同的端口, 会带来端口冲突
+
+- 使用 docker 将 framework/tarsnode 部署在同一台机器上;
+- tarsnode 你可以启动多个 docker, 每个 ip 都不同, 表示多台节点机器
+- 由于使用 docker, 为了保证 framework/tarsnode 这些 docker 的网络互通, 你需要创建虚拟网络, 以连接这些 docker(这里是 docker 的知识, 有需要自己百度)
+- 如果使用--net=host 方式, 你无法在同一台机器上部署 framework/tarsnode, 因为他们使用了相同的端口, 会带来端口冲突
 
 #### 2.1 创建 docker 虚拟网络
 
-为了方便虚拟机、Mac、Linux 主机等各种环境下的 docker 部署，在本示例中先创建虚拟网络，模拟现实中的局域网内网环境(注意docker都还是在同一台机器, 只是docker的虚拟ip不同, 模拟多机)
+为了方便虚拟机、Mac、Linux 主机等各种环境下的 docker 部署，在本示例中先创建虚拟网络，模拟现实中的局域网内网环境(注意 docker 都还是在同一台机器, 只是 docker 的虚拟 ip 不同, 模拟多机)
 
 ```sh
 # 创建一个名为tars的桥接(bridge)虚拟网络，网关172.25.0.1，网段为172.25.0.0
@@ -56,6 +58,7 @@ docker run -d -p 3306:3306 \
     --name=tars-mysql \
     mysql:5.6
 ```
+
 - 如果使用 MySQL 8，启动时需要关闭 ssl
 
 ```
@@ -69,7 +72,9 @@ docker run -d -p 3306:3306 \
     mysql:8.0.27 \
     --tls-version=invalid
 ```
+
 如果你使用的不是 8.0.27 版本，可以通过 `docker logs tars-mysql` 查看启动日志，确认是否有警告或者错误，或者可以尝试以下参数
+
 ```
 docker run -d -p 3306:3306 \
     --net=tars \
@@ -87,17 +92,22 @@ docker run -d -p 3306:3306 \
 [upgrading-from-previous-series](https://dev.mysql.com/doc/refman/8.0/en/upgrading-from-previous-series.html)
 
 鉴于以上原因，需要手动修改 root 用户的 plugin，以此来兼容旧的 mysqlclient 能正常连接 MySQL 8，登录 MySQL 执行以下语句
+
 ```
 ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '123456';
 FLUSH PRIVILEGES;
 ```
+
 为了验证 MySQL 是否正常启动且能正常连接，可通过 host 中的 mysql 客户端进行登录验证
+
 ```
 mysql -h 172.25.0.2 -u root -p
 ```
+
 也可以使用后面已经下载启动的 tars-framework docker 节点进行验证，可以等下再回来操作；
 
 执行 tars-framework 中的 mysql-tool
+
 ```
 docker exec -it tars-framework /bin/bash
 
@@ -122,7 +132,7 @@ docker pull tarscloud/framework:latest
 docker pull tarscloud/framework:v{x.y.z}
 ```
 
-**使用指定版本，如：`v2.4.0`，便于开发和生产环境的部署，后期需要升级时可选择更新的版本tag，升级之前请先查看GitHub的changelog，避免升级到不兼容的版本造成损失。**
+**使用指定版本，如：`v2.4.17`，便于开发和生产环境的部署，后期需要升级时可选择更新的版本 tag，升级之前请先查看 GitHub 的 changelog，避免升级到不兼容的版本造成损失。**
 
 2. 启动镜像(目前只考虑了 linux 上, 时间和本机同步)
 
@@ -145,7 +155,7 @@ docker run -d \
     -v /etc/localtime:/etc/localtime \
     -p 3000:3000 \
     -p 3001:3001 \
-    tarscloud/framework:v2.4.0
+    tarscloud/framework:v3.0.4
 ```
 
 安装完毕后, 访问 `http://${your_machine_ip}:3000` 打开 web 管理平台
@@ -157,7 +167,7 @@ docker run -d \
 - app_log: tars 服务的日志目录
 - tarsnode-data: tarsnode/data 目录(存放发布到 docker 的业务服务), 保证 docker 重启, 数据不丢失
 - web_log: web 中 tars-node-web 模块的日志(主机才有)
-- demo_log: web 中 tars-user-system 模块的日志(主机才有), (docker>=v2.4.7这个目录下无内容了)
+- demo_log: web 中 tars-user-system 模块的日志(主机才有), (docker>=v2.4.7 这个目录下无内容了)
 - patchs: 上传的发布包(主机才有)
 
 如果这几个目录没有创建, 你可以手工创建, 再重启 docker.
@@ -196,7 +206,7 @@ docker run -d \
     --ip="172.25.0.4" \
     -v /data/framework-slave:/data/tars \
     -v /etc/localtime:/etc/localtime \
-    docker.tarsyun.com/tarscloud/framework:v2.4.0
+    tarscloud/framework:v3.0.4
 ```
 
 **注意:SLAVE 参数不同**
@@ -233,22 +243,23 @@ docker run -d \
 - 初始开放了 9000~9010 端口供应用使用，若不够可自行添加
 - Node 启动之后会自动向框架 172.25.0.3 进行注册，部署完成之后在框架的 运维管理-》节点管理 中可以看到 IP 为 `172.25.0.5` 的节点启动
 
-**注意, 如果在同一台机器上采用--net=host, 同时启动framework和tars-node镜像, 是不行的, 因为framework中也包含了一个tars-node, 会导致端口冲突, 启动不了**
+**注意, 如果在同一台机器上采用--net=host, 同时启动 framework 和 tars-node 镜像, 是不行的, 因为 framework 中也包含了一个 tars-node, 会导致端口冲突, 启动不了**
 
 ## 3 <span id="chapter-3"></span>Docker 部署服务生产环境
 
 概要说明:
-- tarscloud/framework:v{x.y.y} 部署一主, 多从
-- tarscloud/framework:v{x.y.y} 以--net=host的方式启动, 即和宿主机相同网络
-- 节点应用服务器使用 tarscloud/tars-node:latest, 也以--net=host方式启动
-- tarscloud/tars-node 有多个不同的标签如下:
->- tarscloud/tars-node:stable, tarscloud/tars-node:latest, tarscloud/tars-node:full, 全环境, 即jdk, php, nodejs的运行时环境都已经安装
->- tarscloud/tars-node:cpp, 跑cpp/go服务
->- tarscloud/tars-node:java, 安装了jdk
->- tarscloud/tars-node:nodejs, 安装了nodejs
->- tarscloud/tars-node:php, 安装了php
 
-如果想自己构建镜像, 请参考: 
+- tarscloud/framework:v{x.y.y} 部署一主, 多从
+- tarscloud/framework:v{x.y.y} 以--net=host 的方式启动, 即和宿主机相同网络
+- 节点应用服务器使用 tarscloud/tars-node:latest, 也以--net=host 方式启动
+- tarscloud/tars-node 有多个不同的标签如下:
+  > - tarscloud/tars-node:stable, tarscloud/tars-node:latest, tarscloud/tars-node:full, 全环境, 即 jdk, php, nodejs 的运行时环境都已经安装
+  > - tarscloud/tars-node:cpp, 跑 cpp/go 服务
+  > - tarscloud/tars-node:java, 安装了 jdk
+  > - tarscloud/tars-node:nodejs, 安装了 nodejs
+  > - tarscloud/tars-node:php, 安装了 php
+
+如果想自己构建镜像, 请参考:
 https://github.com/TarsCloud/TarsDocker
 
 ### 3.1 Docker 部署 Tars 框架服务
@@ -269,14 +280,14 @@ docker run -d \
     -e INET=eth0 \
     -v /etc/localtime:/etc/localtime \
     -v /tmp/test/data:/data/tars \
-    tarscloud/framework:v2.4.14
+    tarscloud/framework:v3.0.4
 ```
 
-**注意目录映射, 保证了docker重启, 数据不会丢失**
+**注意目录映射, 保证了 docker 重启, 数据不会丢失**
 
 ### 3.2 Docker 部署 Tars 应用节点
 
-在每台节点机器上运行一下docker:
+在每台节点机器上运行一下 docker:
 
 ```bash
 # 挂载的/etc/localtime是用来设置容器时区的，若没有可以去掉
@@ -292,12 +303,14 @@ docker run -d \
     tarscloud/tars-node:latest
 ```
 
-**注意目录映射, 保证了docker重启, 数据不会丢失**
+**注意目录映射, 保证了 docker 重启, 数据不会丢失**
 
 说明:
-- 需要注意网络的联通性, 运行tarsnode的机器网络必须和framework网络连通
-- tarsnode和framework不能部署在同一台机器上, 端口会冲突
-- 除了cpp/go服务, 其他语言服务无法部署在framework里面, 因为framework的docker不带有nodejs/java/php的运行环境
+
+- 需要注意网络的联通性, 运行 tarsnode 的机器网络必须和 framework 网络连通
+- tarsnode 和 framework 不能部署在同一台机器上, 端口会冲突
+- 除了 cpp/go 服务, 其他语言服务无法部署在 framework 里面, 因为 framework 的 docker 不带有 nodejs/java/php 的运行环境
+
 ## 4 <span id="chapter-4"></span>问题检查
 
 如果 docker 运行后, 仍然无法打开管理平台, 可以如下检查:
@@ -319,9 +332,8 @@ docker --name=tars-framework \
     -v /data/framework:/data/tars \
     -v /etc/localtime:/etc/localtime \
     -p 3000:3000 \
-    tarscloud/framework:v2.4.14
+    tarscloud/framework:v3.0.4
 ```
-
 
 - 查看 docker 输出是否有明显问题
 - node 的问题检查与框架一致
@@ -331,13 +343,6 @@ docker --name=tars-framework \
 ## 5 <span id="chapter-5"></span>镜像加速
 
 - 目前已搭建了 `docker.tarsyun.com/tarscloud/framework` 和 `docker.tarsyun.com/tarscloud/tars-node` 的镜像加速
-
-**此方法仅适用于 linux 环境**
-
-```sh
-curl -sSL https://doc.tarsdoc.com/docker_set_mirror.sh | sh -s https://w1mnep2c.mirror.aliyuncs.com
-systemctl restart docker
-```
 
 ## 6 <span id="chapter-6"></span>开发环境 docker-compose
 
@@ -363,7 +368,7 @@ services:
       internal:
         ipv4_address: 172.25.1.2
   framework:
-    image: tarscloud/framework:latest
+    image: tarscloud/framework:v3.0.4
     container_name: tars-framework
     ports:
       - "3000:3000"
@@ -409,14 +414,25 @@ networks:
         - subnet: 172.25.1.0/16
 ```
 
-## 7 <span id="chapter-7"></span>docker版本说明
+## 7 <span id="chapter-7"></span>docker 版本说明
 
 说明:
-- docker内部主要包含了: https://github.com/TarsCloud/TarsFramework 和 https://github.com/TarsCloud/TarsWeb 的服务.
-- TarsFramework 和 TarsWeb都作为submodule挂在了 https://github.com/TarsCloud/Tars 下面.
-- 因此为了更好的管理docker版本, docker的版本标签对应: https://github.com/TarsCloud/Tars 的Tag
-- https://github.com/TarsCloud/Tars  打tag时会自动编译并推送docker到docker hub上
 
-以上执行方式, 从tarscloud/framework:v2.4.0以后才执行
+- docker 内部主要包含了: https://github.com/TarsCloud/TarsFramework 和 https://github.com/TarsCloud/TarsWeb 的服务.
+- TarsFramework 和 TarsWeb 都作为 submodule 挂在了 https://github.com/TarsCloud/Tars 下面.
+- 因此为了更好的管理 docker 版本, docker 的版本标签对应: https://github.com/TarsCloud/Tars 的 Tag
+- https://github.com/TarsCloud/Tars 打 tag 时会自动编译并推送 docker 到 docker hub 上
 
+以上执行方式, 从 tarscloud/framework:v2.4.0 以后才执行
 
+## 8 <span id="chapter-8"></span>docker 高级使用方式
+
+以 docker 方式启动, 业务服务实际上发布以后时运行在 tarsnode 的容器中的, 即 tarsnode 容器相当于一台虚拟机, 内部可能同时运行多个业务服务.
+
+但是新版(tarsframework>v3.0.4, tarsweb>v2.4.25, tarscloud/framework>v3.0.5)的版本, 业务可以以独立容器运行, 此时需要在 tarsweb 运维管理->镜像管理中配置仓库和基础镜像, 然后服务配置中设置为以容器方式运行即可, 这样每个服务都可以运行在独立的容器中.
+
+注意, 如果你的 tarsnode 是以容器方式运行的, 则启动时需要映射 docker 的 socket:
+
+```
+-v /var/run/docker.sock:/var/run/docker.sock
+```
