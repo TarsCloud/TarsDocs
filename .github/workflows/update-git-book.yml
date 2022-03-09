@@ -10,4 +10,4 @@ jobs:
     steps:
       - name: trigger
         run: |
-          curl -X POST https://api.github.com/repos/TarsCloudMarket/GitBook/dispatches -H "Accept: application/vnd.github.everest-preview+json" -H "Authorization: token ${{ secrets.MY_REPO_TOKEN }}" --data '{"event_type": "docs_auto"}'
+          curl -X POST https://api.github.com/repos/TarsCloudMarket/GitBookPage/dispatches -H "Accept: application/vnd.github.everest-preview+json" -H "Authorization: token ${{ secrets.MY_REPO_TOKEN }}" --data '{"event_type": "docs_auto"}'
