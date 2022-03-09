@@ -58,7 +58,7 @@ kubectl create secret docker-registry tars-image-secret -n tars-dev --docker-ser
 ```
 kubectl create ns tars-dev
 
-helm install tarsframework -n tars-dev --set 'dockerRegistry=${DOCKER_REGISTRY},dockerSecret=tars-image-secret,els.nodes=els.nodes=tars-elasticsearch:9200,helm.build.id=${TAG},helm.dockerhub.registry=${DOCKER_REGISTRY}/${DOCKER_REPOSITORY},web=${web_host}' tarsframework-v1.0.0.tgz
+helm install tarsframework -n tars-dev --set 'dockerRegistry=${DOCKER_REGISTRY},dockerSecret=tars-image-secret,elk.nodes={tars-elasticsearch:9200},helm.build.id=${TAG},helm.dockerhub.registry=${DOCKER_REGISTRY}/${DOCKER_REPOSITORY},web=${web_host}' tarsframework-v1.0.0.tgz
 
 ```
 
