@@ -2,113 +2,26 @@
 
 # TarsK8S 特性
 
-## CRD 定义
+对 tarsk8s 项目目标来讲, 其需要实现的核心工作主要有三个
 
-### tdeploy
+1. 通过 crd 来实现对 tars 框架中个各种概念的抽象, 使得 tars 框架中一些对象或动作, 转变为修改 crd 对象的字段值或域值的操作.
+2. 通过 controller 来校验操作和合法,合理性
+3. controller 根据 crd 对象的描述,生成实际的服务进程
 
-#### 描述
+基于此,我们主要从
 
-tdeploy 定义了一项 tars 服务部署申请的属性, 每提交一个 tdeploy 对象意味着在 k8s 集群中提交了一项 tars 服务部署申请 典型的 tdeploy 对象如下:
++ crd 的定义
++ controller的动作
 
-```yaml
-apiVersion: k8s.tars.io/v1beta2
-kind: TDeploy
-metadata:
-  name: test-demotest
-  namespace: tars-dev
-apply:
-  app: Test
-  server: DemoTest
-  subType: tars
-  tars:
-    profile: ""
-    asyncThread: 3
-    servants:
-      - capacity: 10000
-        connection: 10000
-        isTaf: true
-        isTcp: true
-        name: DemoTest1Obj
-        port: 13333
-        thread: 3
-        timeout: 60000
-    template: tars.nodejs
-  k8s:
-    abilityAffinity: AppOrServerPreferred
-    daemonSet: false
-    env:
-      - name: Namespace
-        valueFrom:
-          fieldRef:
-            fieldPath: metadata.namespace
-    hostIPC: false
-    hostNetwork: false
-    imagePullPolicy: Always
-    launcherType: background
-    mounts:
-      - name: host-log-dir
-        mountPath: /usr/local/app/tars/app_log
-        readOnly: false
-        source:
-          hostPath:
-            path: /usr/local/app/tars/app_log
-            type: DirectoryOrCreate
-        subPathExpr: $(Namespace)/$(PodName)
-    nodeSelector: [ ]
-    notStacked: false
-    podManagementPolicy: Parallel
-    replicas: 0
-    resources: { }
-    updateStrategy:
-      rollingUpdate:
-        partition: 0
-      type: RollingUpdate
-approve:
-  person: admin
-  reason: "test"
-  result: true
-  time: "2022-03-01T08:00:00Z"
-deployed: true
-```
+来描述 tarsk8s 的功能特性
 
-+ apply 域描述了待部署的服务的属性, 是一个 tserver 对象的展开
-+ approve 域描述了该申请是否已经被批准以及批准的结果
-+ deployed 字段描述一个已经批准的部署申请是否已经被 controller 转变为一个 tserver 对象
-
-#### 准入控制
-
-Mutating
-
-如果是 create :
-
-+ 删除 approve, deployed 域
-+ 添加 tars.io/Arrprove: Pending 标签
-
-如果是 update:
-
-+ 根据 tdeploy.approve.result 值情况添加 tars.io/Arrprove: [ Pending | Arrpoved | Reject ] 标签
-
-Validating
-
-如果是 create:
-
-+ 禁止填充了 approve, deployed 域的对象
-+ 校验 tdeploy.apply 描述的对象是否已存在
-
-如果是 update:
-
-+ 禁止重复修改 approve 域
-+ 禁止非授权用户修改 deployed 值
-
-#### 调谐流程
-
-controller 监测到 tdeploy.approve.result 值为 true 后, 设置 tdeploy.deployed 为 true, 然后根据 tdeploy.apply 新建 tserver 对象
+## TarsK8S CRD 定义
 
 ### tserver
 
 #### 描述
 
-tserver 定义了一项 tars 服务的属性, 每提交一个 tserver 对象意味则在 k8s 集群中部署可一项 tars 服务. 典型的 tserver 对象 如下:
+tserver 定义了一项 tars 服务的属性, 每提交一个 tserver 对象意味则在 k8s 集群中部署了一项 tars 服务. 典型的 tserver对象 如下:
 
 ```yaml
 apiVersion: k8s.tars.io/v1beta2
@@ -204,21 +117,25 @@ tserver 对象的组成:
   > 如果服务程序进程非由 tarsnode 守护则其 subType 为 normal
 
 + spec.tars 域
+
   > sepc.tars 域描述一个 tars 服务必须包含的属性, 比如模板,私有模板,Servants等
   > 只有 spec.subType 值为 tars 时, spec.tars 域才有合法值.
 
 + sepc.normal 域
+
   > spec.normal 域描述一个 normal 服务需要对外暴露的网络端口
   > 只有 spec.subTyep 值为 normal 时, spec.normal 域才有合法值
 
 + spec.k8s 域
+
   > spec.k8s 域的每个字段都会影响 tars 服务如何在 k8s 集群内以什么样的形式运行,
   > 比如服务在运行时需要定义哪些环境变量, 需要挂载磁盘或外部文件, 服务的运行副本数, 服务的节点筛选条件等.
   > 我们在 "TServer 与 Service ,Statefulset 的映射" ,"TServer 与 Daemonset 的映射" 中介绍该域每个字段的含义和影响
 
 + spec.release 域
+
   > 在 tars 的使用中, 成功部署一个服务, 还需要用户发布指定某个版本, 然后服务才会开始启动.
-  > tserver.spec.release 模拟了这一个过程, 只有用户填充该域后, 意味着发布了一个服务版本
+  > tserver.spec.release 模拟了这一个过程, 用户填充该域意味着发布了一个服务版本,然后才会有Pod 生成
 
 + statud 域
 
@@ -269,7 +186,9 @@ Validating
 
 #### 描述
 
-tconfig 定义了一项 tars 服务配置属性, 每提交一个 tconfig 对象意味则为 某个 tars 业务服务增加了一项业务配置. 典型的 tconfig 配置如下:
+tconfig 定义了一项 tars 服务配置属性, 每提交一个 tconfig 对象意味则为 某个 tars 业务服务增加了一项业务配置.
+
+典型的 tconfig 配置如下:
 
 ```yaml
 apiVersion: k8s.tars.io/v1beta2
@@ -309,9 +228,10 @@ version: 20220117113532-77fcbf18
 - validating 服务禁止用户修改一个已有 tconfig. 如果有需要更新 tconfig.configContent, 请遵循 "新建替代修改" 策略
 
   > "新建替代修改" 策略是指, 如果您有一项 tconfig.configContent 需要更新,那么您需要按以下步骤操作:
+  >
   > 1. 新建一个 tconfig.app, tconfig.server, tconfig.configName, tconfig.podSeq 与待更新 tconfig 相同的 tconfig
   > 2. 将新的 tconfig.configContent 设定为目标内容
-  > 3. 提交新的 tcofig 到 k8s 集群
+  > 3. 提交新的 tconfig 到 k8s 集群
   > 4. validating 服务和 controller 服务会自动激活新提交的 tconfig , 并且将其他具有相同 tconfig.app, tconfig.server, tconfig.configName, tconfig.podSeq 值的 tconfig 重设 tconfig.activate=false
 
   > "新建替代修改" 策略的目标是为了实现配置回滚功能
@@ -321,14 +241,16 @@ version: 20220117113532-77fcbf18
   > 具体操作步骤:
 
   > 1. 筛选某项配置的所有版本:
+  >
   > ```shell
-   > kubectl get tconfig -n ${namespace} -l 'tars.io/ServerApp=$(app),tars.io/ServerName=$(server),tars.io/configName=$(configName),tars.io/podSeq=$(podSeq)'
-   > ```
+  > kubectl get tconfig -n ${namespace} -l 'tars.io/ServerApp=$(app),tars.io/ServerName=$(server),tars.io/configName=$(configName),tars.io/podSeq=$(podSeq)'
+  > ```
+  >
   > 2. 修改目标项的 tconfig.activate=true
 
   >  ```shell
-   >  kubectl edit tconfig -n ${namespace} ${name}
-   >  ```
+  >  kubectl edit tconfig -n ${namespace} ${name}
+  >  ```
 
 #### 准入控制
 
@@ -423,21 +345,29 @@ spec:
     tokens: []
   authorization: []
 ```
+
 spec.username 表示账号名字.
-spec.authentication.bcryptPassword 表示了账号的的认证密码, 其生成方式为 原始密码->shal->bcrypt
+spec.authentication.bcryptPassword 表示了账号的的认证密码, 其生成方式为 原始密码->sha1->bcrypt
 spec.authentication.tokens 由 tarsweb 填充和管理.表示 用户登陆后的 一些 token信息
 spec.authorization 表示用户的权限信息,有 tarsweb 填充和管理
 在 spec.authorization 域中实际还有一个隐藏字段,  spec.authorization.password ,表示原始密码.
 
-如果您需要重设账号密码,可以通过此字段重新设置, 设置后,spec.authorization.bcryptPassword, spec.authorization.tokens 会被重置
+如果您需要重设账号密码,可以通过此字段重新设置, 若如此, spec.authorization.bcryptPassword, spec.authorization.tokens 会被重置
 
 #### 准入控制
+
 Mutating
+
 + 如果 spec.authorization.password !="", 重置 spec.authorization.bcryptPassword, spec.authorization.tokens
 + 如果 spec.authorization.bcryptPassword 发生改变, 重置spec.authorization.bcryptPassword, spec.authorization.tokens
+
 Validating
 
  无
+
+#### 调谐流程
+
+无
 
 ### timage
 
@@ -504,7 +434,7 @@ Validating
 
 ### tendpoint
 
-### 描述
+#### 描述
 
 tendpont 的是 controller 为了记录服务状态而创建出来的对象, 用户不需要关注和使用此对象. tarsk8s不保证 tendpoint 的版本兼容性
 
@@ -696,7 +626,7 @@ tframeworkconfig.upChain 定义了与外部集群的联通信息
 
 tframeworkconfig.expand 用于扩展域, 用户可以在这里配置任意 kv 对
 
-> 示例 配置中 的 nativeDBConfig ,nativeFrameworkConfig 是 tarsweb 用来 控制是否展示 原生 tars 集群信息, 具体请参考
+> 示例 配置中 的 nativeDBConfig ,nativeFrameworkConfig 是 tarsweb 用来 控制是否展示 原生 tars 集群信息, 具体请参考 [<<TarsWeb 管理平台>>](tarsweb.md)
 > 您如果有需要, 可以在此使用自定义的 kv 值
 
 #### 准入控制
@@ -713,11 +643,11 @@ Validating
 
 无
 
-## TServer 与 Service ,Statefulset 的映射
+TServer 与 Service ,Statefulset 的映射
 
 当 tserver.k8s.daemonset==false 为时, controller 从一个 tserver 对象, 映射出同名 service, statefulset 对象.
 
-### TServer 到 Service 的映射
+## TServer 到 Service 的映射
 
 典型的 service 对象 如下:
 
@@ -754,9 +684,9 @@ selector 被映射为 tars.io/ServerApp: $(tserver.app)  , tars.io/ServerName: $
 如果 tserver.subType==tars, 那么 ports 会被 映射为 name: $(tserver.tars.servants.name), port: $(tserver.tars.servants.port) ,
 protocol: TCP|UDP
 
-### TServer 与 Statefulset 的映射
+## TServer 与 Statefulset 的映射
 
-#### 概述
+### 概述
 
 如果 tserver.spec.subType==tars, 目标 statefulset的 pod.spec 中会固定拥有一个名字 "tarsnode" 的 initContainer 与 一个与 tserver 同名的
 container 其中 initContainers.image = tserver.spec.releaset.nodeImage, container.image=tserver.spec.release.image
@@ -768,7 +698,7 @@ container.image=tserver.spec.release.image
 
 下文逐一介绍这些字段 tserver.spec.k8s 的域值与statefulset,initContainers,container 的映射关系
 
-#### tserver.k8s.affinity
+### tserver.k8s.affinity
 
 tserver.k8s.affinity 字段描述的是 tars 服务的节点亲和性功能.
 
@@ -855,52 +785,52 @@ affinity:
 
 注意: 无论 tserver.k8s.affinity 的选项如何. 节点可以运行该 tars 服务的前置条件是必须有 tars.io/node.$(tserver.namespace) 标签
 
-#### tserver.spec.k8s.env
+### tserver.spec.k8s.env
 
 tserver.spec.k8s.env 会被复制到 containers[$(tserver.name)].env
 
-#### tserver.spec.k8s.envFrom
+### tserver.spec.k8s.envFrom
 
 tserver.spec.k8s.env 会被复制到 containers[$(tserver.name)].envFrom
 
-#### tserver.spec.k8s.Resources
+### tserver.spec.k8s.Resources
 
 tserver.spec.k8s.env 会被复制到 containers[$(tserver.name)].Resources
 
-#### tserver.spec.k8s.ImagePullPolicy
+### tserver.spec.k8s.ImagePullPolicy
 
 tserver.spec.k8s.eImagePullPolicynv 会被复制到 containers[$(tserver.name)].ImagePullPolicy
 
-#### tserver.spec.k8s.hostIPC
+### tserver.spec.k8s.hostIPC
 
 tserver.spec.k8s.hostIPC 会被复制到 statefulset.spec.template.spec.hostIPC
 
-#### tserver.spec.k8s.hostNetwork
+### tserver.spec.k8s.hostNetwork
 
 tserver.spec.k8s.hostNetwork 会被复制到 statefulset.spec.template.spec.hostNetwork
 
-#### tserver.spec.k8s.serviceAccount
+### tserver.spec.k8s.serviceAccount
 
 tserver.spec.k8s.updateStrategy 会被复制到 statefulset.spec.template.spec.ServiceAccountName
 
-#### tserver.spec.k8s.podManagementPolicy
+### tserver.spec.k8s.podManagementPolicy
 
 tserver.spec.k8s.hostNetwork 会被复制到 statefulset.spec.podManagementPolicy
 
-#### tserver.spec.k8s.replicas
+### tserver.spec.k8s.replicas
 
 tserver.spec.k8s.replicas 会被复制到 statefulset.spec.replicas
 
-#### tserver.spec.k8s.updateStrategy
+### tserver.spec.k8s.updateStrategy
 
 tserver.spec.k8s.updateStrategy 会被复制到 statefulset.spec.updateStrategy
 
-#### tserver.spec.k8s.nodeSelector
+### tserver.spec.k8s.nodeSelector
 
 tserver.spec.k8s.nodeSelector 声明了 tars 服务的对节点除亲和性以外的其他要求,比如要求节点有 ssd, zone标签等 tserver.spec.k8s.nodeSelector 会被追加到
 statefulset.spec.template.spec.affinity.requiredDuringSchedulingIgnoredDuringExecution
 
-#### tserver.spec.k8s.notStacked
+### tserver.spec.k8s.notStacked
 
 tserver.spec.k8s.notStacked 声明了同一节点上是否可以运行同一 tserver 不同 pod. 如果 notStacked = true,
 statefulset.spec.template.spec.affinity 会被映射为
@@ -923,7 +853,7 @@ affinity:
         topologyKey: kubernetes.io/hostname
 ```
 
-#### tserver.spec.k8s.hostPorts
+### tserver.spec.k8s.hostPorts
 
 tserver.spec.k8s.hostPorts 声明了需要在节点上公开tserver pod 的端口.
 
@@ -957,18 +887,18 @@ ports:
 
 注意: 某些 k8s 集群网络插件可能并不支持或默认未开启 hostPort 功能. 您需要联系集群管理员确认信息
 
-#### tserver.spec.k8s.readinessGate
+### tserver.spec.k8s.readinessGate
 
 tserver.spec.k8s.readinessGate 会被追加到 statefulset.spc.template.spec.readinessGates
 
-#### tserver.spec.k8s.launcherType
+### tserver.spec.k8s.launcherType
 
 在原生 tars 中, tarsnode 为业务进程提供守护服务以及生命周期管理,
 
 tarsk8s 保留了这一个方式.,让 tarsnode 作为 pod 内的 1 号进程，负责业务进程的启动,暂停,重启,心跳监听工作. 这种进程模型被命名为 background tarsk8s 同时提供了另一种进程模型, 即业务进程作为
 pod 内的 1号进程，tarsnode 仅负责心跳监听工作, 这种进程模型被命名为 foreground
 
-#### tserver.spec.k8s.mounts
+### tserver.spec.k8s.mounts
 
 tarsk8s支持常见的磁盘挂载方式,包括 [ configMap, secret, emptyDir, hostPath, persistentVolumeClaim]
 
@@ -1077,8 +1007,7 @@ spec:
             storage: 1G
 ```
 
-TLocalVolume 是 tarsk8s 为了 适应私有环境 K8S 集群的磁盘挂载需求而设计出来的. 其本质是一个特化版标签以及其他挂载参数的 PersistentVolumeClaimTemplate. 以如下 tserver
-为例:
+TLocalVolume 是 tarsk8s 为了 适应私有环境 K8S 集群的磁盘挂载需求而设计出来的. 其本质是一个特化版标签以及其他挂载参数的 PersistentVolumeClaimTemplate. 以如下 tserver为例:
 
 ```
   k8s:
@@ -1140,7 +1069,7 @@ TLocalVolume 的实现:
    tars.io/SupportLocalVolume 标签), 会新建与 persistentVolumeClaim 匹配的 localPV 资源
 4. k8s 调度器自动绑定persistentVolumeClaim 和 localPV, 进而将 localPV 分配给 tserver 关联 Pod
 
-注意: 只有 spec.subType==tars 的 tserver 才可以使用 PersistentVolumeClaimTemplate ,TLocalVolume
+注意: 只有 spec.k8s.daemonset 的 tserver 才可以使用 PersistentVolumeClaimTemplate ,TLocalVolume
 
 ## TServer 与 Daemonset 的映射
 

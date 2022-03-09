@@ -18,6 +18,7 @@
 - [Mysql 安装](installation/mysql.md)
 - [Linux/Mac 源码部署](installation/source.md)
 - [Windows 源码部署](installation/source-windows.md)
+- [Tars 云部署](installation/cloud.md)
 - [TarsDocker 部署](installation/docker.md)
 - [K8s Docker 部署](installation/k8s-docker-1.md)
 - [K8s 部署方案](installation/k8s-docker-2.md)
@@ -171,9 +172,11 @@
 - [安装和使用说明]
   - [介绍](k8s/tarsk8s.md)
   - [特性](k8s/property.md)
-  - [安装](k8s/deploy.md)
-  - [运维](k8s/operator.md)
-  - [tarsweb](k8s/tarsweb.md)
+  - [快速部署](k8s/quick-deploy.md)
+  - [源码部署](k8s/source-deploy.md)
+  - [版本升级](k8s/upgrade.md)
+  - [云原生运维](k8s/cloud-operator.md)
+  - [管理平台](k8s/tarsweb-operator.md)
   - [证书](k8s/ca.md)
 - [开发环境构建]
   - [Dockerfile 说明](k8s/dockerfile.md)

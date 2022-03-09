@@ -1,6 +1,8 @@
-# TarsWeb 管理平台
+# 管理平台运维
 
-## TarsWeb 管理平台的访问
+管理平台运维是指通过  tarweb 服务提供的 web 界面来管理 tarsk8s.
+
+## TarsWeb 的访问
 
 当您成功安装 framework , 且观察到 tars-tarsweb-0 pod 成功启动, 即代表 tarweb 部署成功.
 
@@ -43,7 +45,7 @@ kubectl get pods -n ${namespace} tars-tarsweb-0 -o wide
 
 然后可以就可以使用 ingress 规则中的路由地址访问了
 
-## TarsWeb 管理平台的使用
+## TarsWeb 的使用
 
 TarsWeb 主要特性包括:
 
@@ -55,7 +57,7 @@ TarsWeb 主要特性包括:
 - shell 方式进入 pod, 方便查看日志
 - 支持服务以 tgz 包形式上传打包, web 会调用 tarsimage 制作镜像并发布
 
-### TarsWeb 管理平台与原生集群的融合
+## TarsWeb 与原生集群的融合
 
  当前版本的 TarsWeb 可以同时管理 K8S 集群和原生集群.具体开启方式为. 登陆 TarsWeb 管理平台后, 进入 ""运维管理"->"集群配置" 界面
 

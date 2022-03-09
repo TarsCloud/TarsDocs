@@ -4,8 +4,7 @@
 
 ## 项目介绍
 
-TarsK8S 是为了将 Tars 部署在 K8S 平台上而做的适应性改造项目. 提供了包括部署、升级、扩缩容、备份恢复、配置变更的 Tars 服务全生命周期管理. 借助 TarsK8S, Tars 服务可以无缝运行在公有云或私有部署的
-K8S 集群上.
+TarsK8S 是为了将 Tars 部署在 K8S 平台上而做的适应性改造项目. 提供了包括部署、升级、扩缩容、备份恢复、配置变更的 Tars 服务全生命周期管理. 借助 TarsK8S, Tars 服务可以无缝运行在公有云或私有部署的K8S 集群中.
 
 TarsK8S 暂不支持以下特性:
 
@@ -18,16 +17,20 @@ TarsK8S 暂不支持以下特性:
 
 TarsK8S 使用自定义控制器模式来完成 Tars 在 K8S 集群的部署, 由 CRD, Controller, Framework 组成.
 
-每个 K8S 集群可以部署一套 Controller , 并在不同的命名空间中部署多套 Framework. 每套 Framework 互相独立.
+每个 K8S 集群可以部署一套 Controller , 并在不同的命名空间中部署多套 Framework. 每套 Framework 互相独立
+
+每套 Framework 类似于一套具备完整的 Tars 集群.
 
 ### CRD
 
-+ tdeploy:  tdeploy 定义了一项 tars 服务部署申请的属性, 每提交一个 tdeploy 对象意味着在 k8s 集群中提交了一项 tars 服务部署申请.
+​	crd 是的是指在 k8s 集群中增加一种自定义资源类型.用来抽象与具体项目高度相关的概念,类型等.在 tarsk8s 中, 我们增加了如下 crd:
+
 + tserver:   tserver 定义了一项 tars 服务的属性, 每提交一个 tserver 对象意味则在 k8s 集群中部署可一项 tars 服务.
 + tconfig:   tconfig 定义了一项 tars 服务配置属性, 每提交一个 tconfig 对象意味则为 某个 tars 业务服务增加了一项业务配置.
 + ttemplate:  ttemplate 定义一项 tars 模板属性, 每提交一个 ttemplate 对象意味则在 k8s 集中部署了一个 tars 模板.
 + timage:  每个 tserver 对象通过 label 与一个或多个timage 对象关联, 并在 timage 对象中记录服务发布版本及镜像地址等信息.
 + tendpoint:  crontroller 从每个 tserver 对象衍生一个同名 tendpoint 对象, 并在 tendpoint 中记录关联 tserver 的运行实时运行状态.
++ taccount:  taccount 是对每个tarsweb用户的抽象, 用于记录用户认证, 权限等信息.
 + texitedrecord: crontroller 从每个 tserver 对象衍生一个同名 texitrecord 对象, 并在 texitedrecord 中记录 tserver pods 的生命周期信息
 + tframeworkconfig:  每套 framework 中有且其只有唯一的 tframeworkconfig 对象 记录 framework 级别的配置
 + ttree:  每套 framework 中且其只有唯一的 ttree 对象, 用于记录 tars business 与 tars app 的关联信息
@@ -69,17 +72,25 @@ framework 程序重构原则如下:
 
 以上原则可以保证绝大多数历史 tars 服务能通过 tarsk8s 无缝部署到 k8s 集群
 
-## 项目阶段
+## 快速安装
 
-TarsK8S 处于公开测试阶段, 在充分了解各项特性并确认需求能被满足后, 可用于生产环境
+你可以使用项目已构建好的 Helm Char  执行快速安装, 详情参考 [<<快速部署>>](quick-deploy.md)
 
-## 项目部署
+## 源码构建
 
-关于项目部署的细节请参考 <<[TarsK8S 部署](deploy.md)>>
+你可以从源代码开始构建自己的 Helm Charm, 详情参考 [<<源码构建>>](source-deploy.md)
+
+## 项目升级
+
+如果您需要升级版本,请参考 [<<版本升级>>](upgrade.md)
 
 ## 项目测试
 
 tarsk8s 支持 e2e 测试, 请参考 <<TarsK8S 测试>>
+
+## 项目阶段
+
+TarsK8S 处于公开测试阶段, 在充分了解各项特性并确认需求能被满足后, 可用于生产环境
 
 ## 兼容性政策
 
