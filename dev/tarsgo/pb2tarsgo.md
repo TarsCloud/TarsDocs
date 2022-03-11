@@ -2,19 +2,20 @@
 
 ## 用法
 
-```text
+```bash
 go get github.com/TarsCloud/TarsGo/tars
-go get  github.com/golang/protobuf/{proto,protoc-gen-go}
+go get github.com/golang/protobuf/{proto,protoc-gen-go}
 install protoc
 ```
 
 * Add tarsrpc plugin for protoc-gen-go
 
-```text
-	cd $GOPATH/src/github.com/golang/protobuf/protoc-gen-go &&  cp -r $GOPATH/src/github.com/TarsCloud/TarsGo/tars/tools/pb2tarsgo/protoc-gen-go/{link_tarsrpc.go, tarsrpc} .
-	go build .
-	cp protoc-gen-go $GOPATH/bin
-	export PATH=$PATH:$GOPATH/bin
+```bash
+cd $GOPATH/src/github.com/golang/protobuf/protoc-gen-go && cp -r $GOPATH/src/github.com/TarsCloud/TarsGo/tars/tools/pb2tarsgo/protoc-gen-go/{link_tarsrpc.go,tarsrpc} .
+git checkout v1.3.5
+go build .
+cp protoc-gen-go $GOPATH/bin
+export PATH=$PATH:$GOPATH/bin
 ```
 
 ## 示例
@@ -44,13 +45,13 @@ message HelloReply {
 
 * 生成代码
 
-```text
+```bash
 protoc --go_out=plugins=tarsrpc:. helloworld.proto
 ```
 
 * 服务端
 
-```text
+```go
 package main
 
 import (
@@ -66,11 +67,11 @@ func (imp *GreeterImp) SayHello(input helloworld.HelloRequest)(output helloworld
     return output, nil 
 }
 
-func main() { //Init servant
-
-    imp := new(GreeterImp)                                    //New Imp
-    app := new(helloworld.Greeter)                            //New init the A JCE
-    cfg := tars.GetServerConfig()                              //Get Config File Object
+func main() {
+	// Init servant
+    imp := new(GreeterImp)                                      // New Imp
+    app := new(helloworld.Greeter)                              // New init the A JCE
+    cfg := tars.GetServerConfig()                               // Get Config File Object
     app.AddServant(imp, cfg.App+"."+cfg.Server+".GreeterTestObj") //Register Servant
     tars.Run()
 }
@@ -79,7 +80,7 @@ func main() { //Init servant
 
 * 客户端
 
-```text
+```go
 package main
 
 import (
