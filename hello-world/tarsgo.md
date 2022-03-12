@@ -4,32 +4,44 @@
 
 ### 创建服务
 
-运行create\_tars\_server.sh脚本，自动创建服务必须的文件, 执行过程中如果出现语法错误尝试使用`dos2unix create_tars_server.sh`进行转码。
+运行`tarsgo`脚手架，自动创建服务必须的文件。
 
 ```text
-sh $GOPATH/src/github.com/TarsCloud/TarsGo/tars/tools/create_tars_server.sh [App] [Server] [Servant]
+tarsgo make App Server Servant GoModuleName
 例如： 
-sh $GOPATH/src/github.com/TarsCloud/TarsGo/tars/tools/create_tars_server.sh TestApp HelloGo SayHello
+tarsgo make TestApp HelloGo SayHello github.com/Tars/test
 ```
 
-命令执行后将生成代码至GOPATH中，并以`APP/Server`命名目录，生成代码中也有提示具体路径。
+命令执行后将生成代码当前目录中以`Server`命名目录，生成代码中也有提示具体路径。
 
 ```text
-[root@1-1-1-1 ~]# sh $GOPATH/src/github.com/TarsCloud/TarsGo/tars/tools/create_tars_server.sh TestApp HelloGo SayHello
-[create server: TestApp.HelloGo ...]
-[mkdir: $GOPATH/src/TestApp/HelloGo/]
->>>Now doing:./start.sh >>>>
->>>Now doing:./Server.go >>>>
->>>Now doing:./Server.conf >>>>
->>>Now doing:./ServantImp.go >>>>
->>>Now doing:./makefile >>>>
->>>Now doing:./Servant.tars >>>>
->>>Now doing:client/client.go >>>>
->>>Now doing:vendor/vendor.json >>>>
-# runtime/internal/sys
->>> Great！Done! You can jump in $GOPATH/src/TestApp/HelloGo
->>> 当编辑完成Tars文件后，使用如下自动生成go文件
->>>       $GOPATH/bin/tars2go *.tars
+[root@1-1-1-1 ~]# tarsgo make TestApp HelloGo SayHello github.com/Tars/test
+🚀 Creating server TestApp.HelloGo, layout repo is https://github.com/TarsCloud/TarsGo.git, please wait a moment.
+
+已经是最新的。
+
+go: creating new go.mod: module github.com/Tars/test
+go: to add module requirements and sums:
+	go mod tidy
+
+CREATED HelloGo/SayHello.tars (171 bytes)
+CREATED HelloGo/SayHello_imp.go (620 bytes)
+CREATED HelloGo/client/client.go (444 bytes)
+CREATED HelloGo/config.conf (967 bytes)
+CREATED HelloGo/debugtool/dumpstack.go (412 bytes)
+CREATED HelloGo/go.mod (37 bytes)
+CREATED HelloGo/main.go (517 bytes)
+CREATED HelloGo/makefile (193 bytes)
+CREATED HelloGo/scripts/makefile.tars.gomod (4181 bytes)
+CREATED HelloGo/start.sh (56 bytes)
+
+>>> Great！Done! You can jump in HelloGo
+>>> Tips: After editing the Tars file, execute the following cmd to automatically generate golang files.
+>>>       /root/gocode/bin/tars2go *.tars
+$ cd HelloGo
+$ ./start.sh
+🤝 Thanks for using TarsGo
+📚 Tutorial: https://tarscloud.github.io/TarsDocs/
 ```
 
 ### 定义接口文件
@@ -39,11 +51,11 @@ sh $GOPATH/src/github.com/TarsCloud/TarsGo/tars/tools/create_tars_server.sh Test
 为了测试我们定义一个echoHello的接口，客户端请求参数是短字符串如 "tars"，服务响应"hello tars".
 
 ```text
-# cat $GOPATH/src/TestApp/HelloGo/SayHello.tars 
+# cat HelloGo/SayHello.tars 
 module TestApp{
-interface SayHello{
-     int echoHello(string name, out string greeting); 
-   };
+    interface SayHello{
+        int echoHello(string name, out string greeting); 
+    };
 };
 ```
 
@@ -53,14 +65,14 @@ interface SayHello{
 
 首先把tars协议文件转化为Golang语言形式
 
-```text
-$GOPATH/bin/tars2go SayHello.tars
+```bash
+tars2go  -outdir=tars-protocol -module=github.com/Tars/test SayHello.tars
 ```
 
 现在开始实现服务端的逻辑：客户端传来一个名字，服务端回应hello name。
 
-```text
-cat $GOPATH/src/TestApp/HelloGo/SayHelloImp.go
+```bash
+cat HelloGo/SayHello_imp.go
 ```
 
 ```text
@@ -79,7 +91,9 @@ func (imp *SayHelloImp) EchoHello(name string, greeting *string) (int32, error) 
 
 编译main函数，初始代码以及有tars框架实现了。
 
-cat $GOPATH/src/TestApp/HelloGo/HelloGo.go
+```bash
+cat HelloGo/main.go
+```
 
 ```text
 package main
@@ -87,52 +101,59 @@ package main
 import (
 	"github.com/TarsCloud/TarsGo/tars"
 
-	"TestApp"
+	"github.com/Tars/test/tars-protocol/TestApp"
 )
 
-func main() { //Init servant
-	imp := new(SayHelloImp)                                    //New Imp
-	app := new(TestApp.SayHello)                                 //New init the A JCE
-	cfg := tars.GetServerConfig()                               //Get Config File Object
-	app.AddServant(imp, cfg.App+"."+cfg.Server+".SayHelloObj") //Register Servant
+func main() {
+	// Get server config
+	cfg := tars.GetServerConfig()
+
+	// New servant imp
+	imp := new(SayHelloImp)
+	// New servant
+	app := new(TestApp.SayHello)
+	// Register Servant
+	app.AddServantWithContext(imp, cfg.App+"."+cfg.Server+".SayHelloObj")
+
+	// Run application
 	tars.Run()
 }
 ```
 
 编译生成可执行文件，并打包发布包。
 
-```text
-cd $GOPATH/src/TestApp/HelloGo/ && make && make tar
+```bash
+cd HelloGo && make && make tar
 ```
 
 将生成可执行文件HelloGo和发布包HelloGo.tgz
 
 ### 客户端开发
 
-```text
+```go
 package main
 
 import (
-        "fmt"
-        "github.com/TarsCloud/TarsGo/tars"
+	"fmt"
 
-        "TestApp"
+	"github.com/TarsCloud/TarsGo/tars"
+
+	"github.com/Tars/test/tars-protocol/TestApp"
 )
 
 //只需初始化一次，全局的
 var comm *tars.Communicator
 func main() {
         comm = tars.NewCommunicator()
-        obj := "TestApp.HelloGo.SayHelloObj@tcp -h 127.0.0.1 -p 3002 -t 60000"
+        obj := "TestApp.HelloGo.SayHelloObj@tcp -h 127.0.0.1 -p 10015 -t 60000"
         app := new(TestApp.SayHello)
         /*
          // if your service has been registered at tars registry
-         comm = tars.NewCommunicator()
          obj := "TestApp.HelloGo.SayHelloObj"
-         // tarsregistry service at 192.168.1.1:17890 
+         // tarsregistry service at 192.168.1.1:17890
          comm.SetProperty("locator", "tars.tarsregistry.QueryObj@tcp -h 192.168.1.1 -p 17890")
         */
-    
+
         comm.StringToProxy(obj, app)
         reqStr := "tars"
         var resp string
@@ -155,8 +176,8 @@ func main() {
 编译测试
 
 ```text
-# go build client.go
-# ./client
+# go build client/client.go
+# ./client/client
 ret:  0 resp:  hello tars 
 ```
 
@@ -164,7 +185,7 @@ ret:  0 resp:  hello tars
 
 tarsgo支持http服务，按照上面的步骤创建好服务，tarsgo中处理http请求是在GO原生中的封装，所以使用很简单。
 
-```text
+```go
 package main
 
 import (
@@ -177,7 +198,7 @@ func main() {
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("Hello tars"))
 	})
-        cfg := tars.GetServerConfig()
+    cfg := tars.GetServerConfig()
 	tars.AddHttpServant(mux, cfg.App+"."+cfg.Server+".HttpSayHelloObj") //Register http server
 	tars.Run()
 }
