@@ -77,13 +77,13 @@ cat HelloGo/SayHello_imp.go
 
 ```text
 package main
-
+import "context"
 type SayHelloImp struct {
 }
 
-func (imp *SayHelloImp) EchoHello(name string, greeting *string) (int32, error) {
-     *greeting = "hello " + name
-     return 0, nil
+func (imp *SayHelloImp) EchoHello(ctx context.Context, name string, greeting *string) (int32, error) {
+    *greeting = "hello " + name
+    return 0, nil
 }
 ```
 
@@ -144,25 +144,25 @@ import (
 //只需初始化一次，全局的
 var comm *tars.Communicator
 func main() {
-        comm = tars.NewCommunicator()
-        obj := "TestApp.HelloGo.SayHelloObj@tcp -h 127.0.0.1 -p 10015 -t 60000"
-        app := new(TestApp.SayHello)
-        /*
-         // if your service has been registered at tars registry
-         obj := "TestApp.HelloGo.SayHelloObj"
-         // tarsregistry service at 192.168.1.1:17890
-         comm.SetProperty("locator", "tars.tarsregistry.QueryObj@tcp -h 192.168.1.1 -p 17890")
-        */
-
-        comm.StringToProxy(obj, app)
-        reqStr := "tars"
-        var resp string
-        ret, err := app.EchoHello(reqStr, &resp)
-        if err != nil {
-                fmt.Println(err)
-                return
-        }
-        fmt.Println("ret: ", ret, "resp: ", resp)
+    comm = tars.NewCommunicator()
+    obj := "TestApp.HelloGo.SayHelloObj@tcp -h 127.0.0.1 -p 10015 -t 60000"
+    app := new(TestApp.SayHello)
+    /*
+     // if your service has been registered at tars registry
+     obj := "TestApp.HelloGo.SayHelloObj"
+     // tarsregistry service at 192.168.1.1:17890
+     comm.SetProperty("locator", "tars.tarsregistry.QueryObj@tcp -h 192.168.1.1 -p 17890")
+    */
+    
+    comm.StringToProxy(obj, app)
+    reqStr := "tars"
+    var resp string
+    ret, err := app.EchoHello(reqStr, &resp)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+    fmt.Println("ret: ", ret, "resp: ", resp)
 }
 ```
 
