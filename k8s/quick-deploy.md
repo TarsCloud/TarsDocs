@@ -1,8 +1,12 @@
 # 快速部署
 
-TarsK8S 以 Helm Chart 的形式发布和部署. 通常情况下, 您可以使用项目预先构建的 Helm Chart, 并参照 "安装 Helm Char"  安装.
-
+TarsK8S 以 Helm Chart 的形式发布和部署. 通常情况下, 您可以下载项目预先构建的 Helm Chart, 并参照 "安装 Helm Chart"  安装.
 您也可以参照 [<<构建 Helm Chart>>](source-deploy.md) 自行构建 Helm Chart, 然后参照 "安装 Helm Chart" 安装
+> 你可以使用[https://github.com/TarsCloud/K8SFramework/tree/master/charts](https://github.com/TarsCloud/K8SFramework/tree/master/charts) 查看预构建的 Helm Chart
+> 
+> 预先构建包的格式为 tarscontroller-$(version).tgz 和 tarsframework-$(version).tgz
+> 
+> 另外,请您在安装时注意 Controller 和 Framework 的 Helm Chart 版本一致
 
 ## 安装 Helm Chart
 
@@ -13,7 +17,10 @@ TarsK8S 以 Helm Chart 的形式发布和部署. 通常情况下, 您可以使�
 1. 选定 tarsk8s 的可用节点
    > tarsk8s 只会将 pod 调度到您明确指出可以被 tarsk8s 使用的节点上. 在正式部署前, 您需要筛选出 tarsk8s 可用节点.
    > 如果您仅仅是用于测试, 那么您可以选定任意节点
-
+   > 如果您希望查看集群节点, 您可以执行如下命令:
+   > ```shell
+    > kubeclt get nodes
+    >```
 2. 选定您将要部署 framework 的 namespace
    > k8s 集群可以在不同的 namespace 中分别部署一套 framrwork , 每套 framework 都是是完整的 tars 框架.
    > 在正式部署前, 规划你将要使用的 namespace 非常重要
