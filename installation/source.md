@@ -115,6 +115,17 @@ mkdir tars
 mkdir app
 ```
 
+如果在非 root 下执行, 则需要先创建目录, 并赋予权限, 比如以: ubuntu(当前用户为 ubuntu)为例
+
+```sh
+sudo mkdir -p /usr/local/tars
+sudo mkdir -p /usr/local/app
+
+sudo chown -R ubuntu:ubuntu /usr/local/tars
+sudo chown -R ubuntu:ubuntu /usr/local/web
+
+```
+
 安装
 
 ```
