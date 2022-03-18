@@ -28,18 +28,18 @@
 
 ## 1.1. 编译包依赖下载安装介绍
 
-源码编译过程需要安装:gcc, glibc, bison, flex, cmake, ncurses-devel zlib-devel
+源码编译过程需要安装:gcc, glibc, bison, flex, cmake, ncurses-devel zlib-devel 等
 
 例如，在 Centos7 下，执行：
 
 ```
-yum install glibc-devel gcc gcc-c++ bison flex cmake which psmisc ncurses-devel zlib-devel
+yum install glibc-devel gcc gcc-c++ bison flex cmake which psmisc ncurses-devel zlib-devel yum-utils psmisc telnet net-tools wget unzip
 ```
 
 在 ubuntu 下执行:
 
 ```
-sudo apt-get install build-essential bison flex cmake psmisc libncurses5-dev zlib1g-dev
+sudo apt-get install build-essential bison flex cmake psmisc libncurses5-dev zlib1g-dev psmisc telnet net-tools wget unzip
 ```
 
 在 mac 安装, 请先安装 brew(如何在 mac 上安装 brew, 请自行搜索)
