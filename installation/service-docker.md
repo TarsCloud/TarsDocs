@@ -1,6 +1,8 @@
 # 目录
 
 > - [介绍](#chapter-1)
+> - [前置说明](#chapter-2)
+> - [使用说明](#chapter-3)
 
 ## 1 <span id="chapter-1"></span>介绍
 
@@ -61,7 +63,7 @@ docker run -d \
     tarscloud/tars-node:latest
 ```
 
-## 3 <span id="chapter-2"></span>使用说明
+## 3 <span id="chapter-3"></span>使用说明
 
 主要使用流程如下:
 
