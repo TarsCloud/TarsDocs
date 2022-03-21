@@ -132,7 +132,11 @@ docker pull tarscloud/framework:latest
 docker pull tarscloud/framework:v{x.y.z}
 ```
 
-**使用指定版本，如：`v2.4.17`，便于开发和生产环境的部署，后期需要升级时可选择更新的版本 tag，升级之前请先查看 GitHub 的 changelog，避免升级到不兼容的版本造成损失。**
+说明:
+
+- 使用指定版本，如：`v2.4.17`，便于开发和生产环境的部署，后期需要升级时可选择更新的版本 tag，升级之前请先查看 GitHub 的 changelog，避免升级到不兼容的版本造成损失。
+- 注意这里的 Tag 不是源码 TarsFramework 的 tag 号, 而是 Tars 这个 GIT 仓库的 tag 号, 因为 tarscloud/framework 还包含了 TarsWeb
+- 当部署好以后, TarsWeb 页面的右上角显示了内置的 TarsFramework&TarsWeb 的版本号, 以便你对应源码.
 
 2. 启动镜像(目前只考虑了 linux 上, 时间和本机同步)
 
@@ -287,7 +291,7 @@ docker run -d \
 
 ### 3.2 Docker 部署 Tars 应用节点
 
-在每台节点机器上运行一下 docker:
+在每台节点机器上运行 docker:
 
 ```bash
 # 挂载的/etc/localtime是用来设置容器时区的，若没有可以去掉
@@ -423,16 +427,18 @@ networks:
 - 因此为了更好的管理 docker 版本, docker 的版本标签对应: https://github.com/TarsCloud/Tars 的 Tag
 - https://github.com/TarsCloud/Tars 打 tag 时会自动编译并推送 docker 到 docker hub 上
 
-以上执行方式, 从 tarscloud/framework:v2.4.0 以后才执行
+以上执行方式, 从 tarscloud/framework:v2.4.0 以后才支持
 
 ## 8 <span id="chapter-8"></span>docker 高级使用方式
 
 以 docker 方式启动, 业务服务实际上发布以后时运行在 tarsnode 的容器中的, 即 tarsnode 容器相当于一台虚拟机, 内部可能同时运行多个业务服务.
 
-但是新版(tarsframework>v3.0.4, tarsweb>v2.4.25, tarscloud/framework>v3.0.5)的版本, 业务可以以独立容器运行, 此时需要在 tarsweb 运维管理->镜像管理中配置仓库和基础镜像, 然后服务配置中设置为以容器方式运行即可, 这样每个服务都可以运行在独立的容器中.
+但是新版(tarsframework>v3.0.5, tarsweb>v2.4.27, tarscloud/framework>v3.0.6)的版本, 业务可以以独立容器运行, 此时需要在 tarsweb 运维管理->镜像管理中配置仓库和基础镜像, 然后服务配置中设置为以容器方式运行即可, 这样每个服务都可以运行在独立的容器中.
 
 注意, 如果你的 tarsnode 是以容器方式运行的, 则启动时需要映射 docker 的 socket:
 
 ```
 -v /var/run/docker.sock:/var/run/docker.sock
 ```
+
+具体请看文档 [服务 docker 化文档](./service-docker.md)
