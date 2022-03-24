@@ -8,7 +8,7 @@
 
 ```text
 tarsgo make App Server Servant GoModuleName
-例如： 
+例如：
 tarsgo make TestApp HelloGo SayHello github.com/Tars/test
 ```
 
@@ -46,15 +46,15 @@ $ ./start.sh
 
 ### 定义接口文件
 
-接口文件定义请求方法以及参数字段类型等，有关接口定义文件说明参考tars\_tup.md
+接口文件定义请求方法以及参数字段类型等，有关接口定义文件说明参考 tars_tup.md
 
-为了测试我们定义一个echoHello的接口，客户端请求参数是短字符串如 "tars"，服务响应"hello tars".
+为了测试我们定义一个 echoHello 的接口，客户端请求参数是短字符串如 "tars"，服务响应"hello tars".
 
-```text
-# cat HelloGo/SayHello.tars 
+```go
+# cat HelloGo/SayHello.tars
 module TestApp{
     interface SayHello{
-        int echoHello(string name, out string greeting); 
+        int echoHello(string name, out string greeting);
     };
 };
 ```
@@ -63,19 +63,19 @@ module TestApp{
 
 ### 服务端开发
 
-首先把tars协议文件转化为Golang语言形式
+首先把 tars 协议文件转化为 Golang 语言形式
 
 ```bash
 tars2go  -outdir=tars-protocol -module=github.com/Tars/test SayHello.tars
 ```
 
-现在开始实现服务端的逻辑：客户端传来一个名字，服务端回应hello name。
+现在开始实现服务端的逻辑：客户端传来一个名字，服务端回应 hello name。
 
 ```bash
 cat HelloGo/SayHello_imp.go
 ```
 
-```text
+```go
 package main
 import "context"
 type SayHelloImp struct {
@@ -87,15 +87,15 @@ func (imp *SayHelloImp) EchoHello(ctx context.Context, name string, greeting *st
 }
 ```
 
-**注意**： 这里函数名要大写，Go语言方法导出规定。
+**注意**： 这里函数名要大写，Go 语言方法导出规定。
 
-编译main函数，初始代码以及有tars框架实现了。
+编译 main 函数，初始代码以及有 tars 框架实现了。
 
 ```bash
 cat HelloGo/main.go
 ```
 
-```text
+```go
 package main
 
 import (
@@ -126,7 +126,7 @@ func main() {
 cd HelloGo && make && make tar
 ```
 
-将生成可执行文件HelloGo和发布包HelloGo.tgz
+将生成可执行文件 HelloGo 和发布包 HelloGo.tgz
 
 ### 客户端开发
 
@@ -153,7 +153,7 @@ func main() {
      // tarsregistry service at 192.168.1.1:17890
      comm.SetProperty("locator", "tars.tarsregistry.QueryObj@tcp -h 192.168.1.1 -p 17890")
     */
-    
+
     comm.StringToProxy(obj, app)
     reqStr := "tars"
     var resp string
@@ -166,24 +166,24 @@ func main() {
 }
 ```
 
-* TestApp依赖是tars2go生成的代码。
-* obj指定服务端地址端口，如果服务端未在主控注册，则需要知道服务端的地址和端口并在Obj中指定，在例子中，协议为TCP，服务端地址为本地地址，端口为3002。如果有多个服务端，则可以这样写`TestApp.HelloGo.SayHelloObj@tcp -h 127.0.0.1 -p 9985:tcp -h 192.168.1.1 -p 9983`这样请求可以分散到多个节点。
+- TestApp 依赖是 tars2go 生成的代码。
+- obj 指定服务端地址端口，如果服务端未在主控注册，则需要知道服务端的地址和端口并在 Obj 中指定，在例子中，协议为 TCP，服务端地址为本地地址，端口为 3002。如果有多个服务端，则可以这样写`TestApp.HelloGo.SayHelloObj@tcp -h 127.0.0.1 -p 9985:tcp -h 192.168.1.1 -p 9983`这样请求可以分散到多个节点。
 
   如果已经在主控注册了服务，则不需要写死服务端地址和端口，但在初始化通信器时需要指定主控的地址。
 
-* com通信器，用于与服务端通信。
+- com 通信器，用于与服务端通信。
 
 编译测试
 
 ```text
 # go build client/client.go
 # ./client/client
-ret:  0 resp:  hello tars 
+ret:  0 resp:  hello tars
 ```
 
 ### HTTP 服务开发
 
-tarsgo支持http服务，按照上面的步骤创建好服务，tarsgo中处理http请求是在GO原生中的封装，所以使用很简单。
+tarsgo 支持 http 服务，按照上面的步骤创建好服务，tarsgo 中处理 http 请求是在 GO 原生中的封装，所以使用很简单。
 
 ```go
 package main
@@ -204,7 +204,4 @@ func main() {
 }
 ```
 
-另外还可以直接调用其他tars服务，调用方式和“客户端开发”提到一样。
-
-
-
+另外还可以直接调用其他 tars 服务，调用方式和“客户端开发”提到一样。

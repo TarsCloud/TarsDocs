@@ -1,35 +1,32 @@
+# HTTP2 支持
 
+Tars 使用[nghttp2 库](https://www.nghttp2.org/)支持了 http2 协议，对协议库做了 RPC 封装，使得对业务开发几乎透明，用起来非常方便。由于复用了 Tars rpc，因此也拥有了同步和异步以及超时的特性，并能够利用 tars stat 上报调用质量。
 
-# HTTP2支持
+本文简单介绍一下使用 http2 的方法和步骤，包括同步调用和异步调用, 实例代码参见 tarscpp/example/HttpDemo。
 
-Tars使用[nghttp2库](https://www.nghttp2.org/)支持了http2协议，对协议库做了RPC封装，使得对业务开发几乎透明，用起来非常方便。由于复用了 Tars rpc，因此也拥有了同步和异步以及超时的特性，并能够利用tars stat上报调用质量。
+**注意 tarscpp>=2.3 版本后接口变更成最新的了, 不在兼容老版本!并保持和 http1 接口一致性**
 
-本文简单介绍一下使用http2的方法和步骤，包括同步调用和异步调用, 实例代码参见tarscpp/example/HttpDemo。
-
-**注意 tarscpp>=2.3版本后接口变更成最新的了, 不在兼容老版本!并保持和http1接口一致性**
-
-## http2开启
+## http2 开启
 
 只需要按照下面几个步骤设置：
 
-### 编译tars框架，支持nghttp2
+### 编译 tars 框架，支持 nghttp2
 
-tars框架默认不开启http2，开启HTTP2:
+tars 框架默认不开启 http2，开启 HTTP2:
 
 ```text
 cmake .. -DTARS_HTTP2=ON
 ```
 
-重新编译tarscpp.
+重新编译 tarscpp.
 
-
-## http2 server实现
+## http2 server 实现
 
 see demo: cpp/example/HttpDemo/Http2Server
 
-自定义协议, 采用http2
-```
+自定义协议, 采用 http2
 
+```cpp
 void HttpServer::initialize()
 {
     addServant<Http2Imp>(ServerConfig::Application + "." + ServerConfig::ServerName + ".Http2Obj");
@@ -38,9 +35,9 @@ void HttpServer::initialize()
 
 ```
 
-协议解析器函数, 注意, 每个连接创建和保存一个TC_Http2Server, 作为http2的session控制器
-```
+协议解析器函数, 注意, 每个连接创建和保存一个 TC_Http2Server, 作为 http2 的 session 控制器
 
+```cpp
 TC_NetWorkBuffer::PACKET_TYPE parseHttp2(TC_NetWorkBuffer&in, vector<char> &out)
 {
     TC_Http2Server*sessionPtr = (TC_Http2Server*)(in.getContextData());
@@ -63,8 +60,9 @@ TC_NetWorkBuffer::PACKET_TYPE parseHttp2(TC_NetWorkBuffer&in, vector<char> &out)
 
 ```
 
-服务实现中, 根据连接id获取到http2的session(TC_Http2Server对象) 并解析协议, 回包即可 
-```
+服务实现中, 根据连接 id 获取到 http2 的 session(TC_Http2Server 对象) 并解析协议, 回包即可
+
+```cpp
 
 int Http2Imp::doRequest(TarsCurrentPtr current, vector<char> &buffer)
 {
@@ -100,21 +98,21 @@ int Http2Imp::doClose(TarsCurrentPtr current)
 }
 ```
 
-## http rpc的使用
+## http rpc 的使用
 
 只需要按照下面几个步骤设置：
 
-### 编译tars框架，支持nghttp2
+### 编译 tars 框架，支持 nghttp2
 
-tars框架默认不开启http2，开启HTTP2:
+tars 框架默认不开启 http2，开启 HTTP2:
 
 ```text
 cmake .. -DTARS_HTTP2=ON
 ```
 
-### 获取客户端代理，设置http2编解码函数
+### 获取客户端代理，设置 http2 编解码函数
 
-```text
+```cpp
 CommunicatorPtr& comm = Application::getCommunicator();
 ServantPrx prx = comm->stringToProxy<ServantPrx>("test.server.yourobj");
 
@@ -124,7 +122,7 @@ prox->tars_set_protocol(ServantProxy::PROTOCOL_HTTP2);
 
 ### 发起同步调用
 
-```text
+```cpp
 	shared_ptr<TC_HttpResponse> rsp;
 	shared_ptr<TC_HttpRequest> req = std::make_shared<TC_HttpRequest>();
 	req->setPostRequest("http://domain.com/hello", string("helloworld-") + TC_Common::tostr(i), true);
@@ -132,11 +130,11 @@ prox->tars_set_protocol(ServantProxy::PROTOCOL_HTTP2);
 	prx->http_call("hello", req, rsp);
 ```
 
-注意: 这里http_call第一个参数没有实际涵义, 只是用来监控用, 即在web管理平台接口统计看到函数名是"hello"
+注意: 这里 http_call 第一个参数没有实际涵义, 只是用来监控用, 即在 web 管理平台接口统计看到函数名是"hello"
 
 ### 发起异步调用
 
-```text
+```cpp
 // 编写callback
 class MyHttpCb : public HttpCallback
 {
@@ -160,4 +158,5 @@ req->setPostRequest("http://domain.com/hello", buff, true);
 prx->http_call_async("hello", req, p);
 
 ```
-注意: 这里http_call_async第一个参数没有实际涵义, 只是用来监控用, 即在web管理平台接口统计看到函数名是"hello"
+
+注意: 这里 http_call_async 第一个参数没有实际涵义, 只是用来监控用, 即在 web 管理平台接口统计看到函数名是"hello"

@@ -12,51 +12,51 @@
 
 输出滚动日志
 
-```text
-var logger = new tarsLogs('TarsRotate');
+```javascript
+var logger = new tarsLogs("TarsRotate");
 ```
 
 输出名为 access 的按天日志
 
-```text
-var logger = new tarsLogs('TarsDate', 'access');
+```javascript
+var logger = new tarsLogs("TarsDate", "access");
 ```
 
 输出名为 access 的按天日志，只写本地不写远程日志
 
-```text
-var logger = new tarsLogs('TarsDate', 'access', {
-	logTo : tarsLogs.LogTo.Local
+```javascript
+var logger = new tarsLogs("TarsDate", "access", {
+  logTo: tarsLogs.LogTo.Local,
 });
 ```
 
 输出名为 access 的按小时日志
 
-```text
-var logger = new tarsLogs('TarsDate', 'access', {  
-	format : tarsLogs.DateFormat.LogByHour
+```javascript
+var logger = new tarsLogs("TarsDate", "access", {
+  format: tarsLogs.DateFormat.LogByHour,
 });
 ```
 
-输出名为 access 的按 20分钟 滚动的日志，文件名为 2015-01-01\_10:00 这样的格式
+输出名为 access 的按 20 分钟 滚动的日志，文件名为 2015-01-01_10:00 这样的格式
 
-```text
-var logger = new tarsLogs('TarsDate', 'access', {
-	format : new (tarsLogs.DateFormat.LogByMinute)(20, '%Y-%m-%d_%H:%M')
+```javascript
+var logger = new tarsLogs("TarsDate", "access", {
+  format: new tarsLogs.DateFormat.LogByMinute(20, "%Y-%m-%d_%H:%M"),
 });
 ```
 
 指定输出 `INFO` 级别的日志信息
 
-```text
-logger.info('data');
-logger.info('data1', 'data2', 'data3');
+```javascript
+logger.info("data");
+logger.info("data1", "data2", "data3");
 ```
 
 指定当前 `INFO` 级别的日志输出需要染色
 
-```text
-logger.info('data', logger.getDyeingObj(true));
+```javascript
+logger.info("data", logger.getDyeingObj(true));
 ```
 
 ### 初始化
@@ -67,32 +67,32 @@ logger.info('data', logger.getDyeingObj(true));
 
 可通过调用 `tarsLogs.setConfig(data)` 静态方法进行初始化
 
-`data(String|Object)` 可以为 tars配置文件路径 或 已配置的 `(@tars/utils).Config` 实例。
+`data(String|Object)` 可以为 tars 配置文件路径 或 已配置的 `(@tars/utils).Config` 实例。
 
 ### 使用
 
 #### 实例化
 
-```text
-var tarsLogs = require('@tars/logs');
+```javascript
+var tarsLogs = require("@tars/logs");
 
 var logger = new tarsLogs(type, [name, options]);
 ```
 
 `type(String)` 日志类型：
 
-* **TarsRotate**: 按大小滚动日志
-* **TarsDate**: 按时间滚动日志
-* **TarsRemote**: 远程日志
+- **TarsRotate**: 按大小滚动日志
+- **TarsDate**: 按时间滚动日志
+- **TarsRemote**: 远程日志
 
 `name(String)` 用户自定义的文件名（可不填）
 
 `options(Object)` 根据不同的日志类型，存在不同的参数，但下面的参数是各类型共享的：
 
-* **hasSufix**: 日志文件名是否带.log后缀， _默认值为 true_
-* **hasAppNamePrefix**: 是否允许框架在日志文件名上增加业务相关的标识， _默认值为 true_
-* **concatStr**: 日志文件名中字符间的连接符， _默认值为 \__
-* **separ**: 日志内容项之间的分隔符， _默认值为 \|_
+- **hasSufix**: 日志文件名是否带.log 后缀， _默认值为 true_
+- **hasAppNamePrefix**: 是否允许框架在日志文件名上增加业务相关的标识， _默认值为 true_
+- **concatStr**: 日志文件名中字符间的连接符， \_默认值为 \_\_
+- **separ**: 日志内容项之间的分隔符， _默认值为 \|_
 
 `options` 中的其它参数，请详见不同日志类型的说明项。
 
@@ -102,7 +102,7 @@ var logger = new tarsLogs(type, [name, options]);
 
 在 `TARS` 中存在有 4 种日志级别 `INFO`、`DEBUG`、`WARN`、`ERROR` 可用对应的方法进行输出
 
-```text
+```javascript
 logger.info([data], [...]);
 logger.debug([data], [...]);
 logger.warn([data], [...]);
@@ -121,17 +121,17 @@ logger.error([data], [...]);
 
 关闭文件名与行号输出：
 
-```text
-logger.info('data', {
-	lineno : false
+```javascript
+logger.info("data", {
+  lineno: false,
 });
 ```
 
 自定义文件名与行号输出：
 
-```text
-logger.info('data', {
-	lineno : 'app.js:123'
+```javascript
+logger.info("data", {
+  lineno: "app.js:123",
 });
 ```
 
@@ -145,23 +145,23 @@ logger.info('data', {
 
 如需变更日志级别，可调用 `logger.setLevel(level)` 方法，传入需要的日志级别即可：
 
-```text
+```javascript
 logger.setLevel('info');
 logger.setLevel（'none'); // none 为一种特殊的日志级别，所有日志均不输出
 ```
 
 如果服务在 `TARS平台` 上运行：
 
-* 模块会接收 `日志级别变更` 的管理命令，自动变更当前日志级别。
-* 模块会读取 TARS 配置文件中 `tars.application.server.logLevel` 节，以配置日志级别。
-* 以上两项日志级别的配置仅针对 `按大小滚动日志（TarsRotate）` 生效。
+- 模块会接收 `日志级别变更` 的管理命令，自动变更当前日志级别。
+- 模块会读取 TARS 配置文件中 `tars.application.server.logLevel` 节，以配置日志级别。
+- 以上两项日志级别的配置仅针对 `按大小滚动日志（TarsRotate）` 生效。
 
 #### 日志内容格式（Formatter）
 
 模块提供精简 `Formatter.Simple()` 与复杂 `Formatter.Detail()` 两种日志处理方法：
 
-* **复杂**： `日期 时间|PID|日志级别|文件名与行号|内容`
-* **精简**： `日期 时间|内容`
+- **复杂**： `日期 时间|PID|日志级别|文件名与行号|内容`
+- **精简**： `日期 时间|内容`
 
 默认情况下，不同日志类型会使用不同的处理方法。
 
@@ -171,9 +171,9 @@ logger.setLevel（'none'); // none 为一种特殊的日志级别，所有日志
 
 在初始化类型为 `TarsRotate` 的 `logger` 时， `options` 还接受如下参数：
 
-* **maxFiles**: 最大的文件总数（也就是例子中的 n）， _默认值为 10_
-* **maxSize**: 单文件最大大小（单位为 bytes）， _默认值为 10M_
-* **formatter**: 定义日志内容格式化方法， _默认值为 Formatter.Detail\(\)_
+- **maxFiles**: 最大的文件总数（也就是例子中的 n）， _默认值为 10_
+- **maxSize**: 单文件最大大小（单位为 bytes）， _默认值为 10M_
+- **formatter**: 定义日志内容格式化方法， _默认值为 Formatter.Detail\(\)_
 
 关于 `TarsRotate` 的详情，请访问[ @tars/winston-tars.TarsRotate](tars-winston-tars.md#tarsrotate)
 
@@ -181,24 +181,24 @@ logger.setLevel（'none'); // none 为一种特殊的日志级别，所有日志
 
 定义了与时间相关的日志（`TarsDate`、`TarsRemote`）滚动的处理方法：
 
-* 按1天日志：LogByDay\(\[interval, pattern\]\)
-* 按1小时日志：LogByHour\(\[interval, pattern\]\)
-* 按10分钟日志：LogByMinute\(\[interval, pattern\]\)
-* 自定义格式日志：LogByCustom\(pattern\)
+- 按 1 天日志：LogByDay\(\[interval, pattern\]\)
+- 按 1 小时日志：LogByHour\(\[interval, pattern\]\)
+- 按 10 分钟日志：LogByMinute\(\[interval, pattern\]\)
+- 自定义格式日志：LogByCustom\(pattern\)
 
 其中， `interval` 为日志滚动间隔， `pattern` 为日志文件名中时间的格式
 
 一般情况下，可直接使用字面量：
 
-```text
-var logger = new tarsLogs('TarsDate', 'access', {
-	format : tarsLogs.DateFormat.LogByDay
+```javascript
+var logger = new tarsLogs("TarsDate", "access", {
+  format: tarsLogs.DateFormat.LogByDay,
 });
 ```
 
 但如果需要自定义间隔或日志文件名，则需要实例化：
 
-```text
+```javascript
 var logger = new tarsLogs('TarsDate', 'access', {
 	format : new tarsLogs.DateFormat.LogByDay(3, '%Y-%m-%d');
 });
@@ -210,15 +210,15 @@ var logger = new tarsLogs('TarsDate', 'access', {
 
 在初始化类型为 `TarsDate` 的 `logger` 时， `options` 还接受如下参数：
 
-* **format**: 创建新文件的间隔，为 DateFormat 对象， _默认值为 FORMAT.LogByDay_
-* **formatter**: 定义日志内容格式化方法， _默认值为 Formatter.Simple\(\)_
-* **logTo**: 日志发送的目标，为 LogTo 枚举， _默认值为 LogTo.Both_
+- **format**: 创建新文件的间隔，为 DateFormat 对象， _默认值为 FORMAT.LogByDay_
+- **formatter**: 定义日志内容格式化方法， _默认值为 Formatter.Simple\(\)_
+- **logTo**: 日志发送的目标，为 LogTo 枚举， _默认值为 LogTo.Both_
 
-`LogTo` 枚举中有3项可选：
+`LogTo` 枚举中有 3 项可选：
 
-* **LogTo.Remote**: 仅打远程日志（tars.tarslog.LogObj）
-* **LogTo.Local**: 仅打本地日志
-* **LogTo.Both**: 远程 + 本地
+- **LogTo.Remote**: 仅打远程日志（tars.tarslog.LogObj）
+- **LogTo.Local**: 仅打本地日志
+- **LogTo.Both**: 远程 + 本地
 
 _请注意：仅当 `LogTo.Local` 时，`options.format` 才可为 `DateFormat.LogByCustom`_
 
@@ -248,14 +248,14 @@ _请注意：仅当 `LogTo.Local` 时，`options.format` 才可为 `DateFormat.L
 
 打开染色
 
-```text
+```javascript
 logger.getDyeingObj(true);
 ```
 
 打开染色并设置染色的 `val` 为 `guid`，`key` 为 `guid|sn`
 
-```text
-logger.getDyeingObj(true, 'guid', 'guid|sn');
+```javascript
+logger.getDyeingObj(true, "guid", "guid|sn");
 ```
 
 **实际应用中，不应调用此方法生成染色对象，而应直接使用其他模块提供的染色对象**
@@ -270,17 +270,16 @@ logger.getDyeingObj(true, 'guid', 'guid|sn');
 
 输出日志内容为 `data1 data2` 并 强制染色的日志
 
-```text
-logger.info('data1', 'data2', logger.getDyeingObj(true));
+```javascript
+logger.info("data1", "data2", logger.getDyeingObj(true));
 ```
 
 输出日志内容为 `data` 并根据 `rpc.server` 调用链上的染色信息进行染色的日志
 
-```text
+```javascript
 tars.TestImp.prototype.echo = function (current, i) {
-   logger.info('data', current.getDyeingObj());
-}
+  logger.info("data", current.getDyeingObj());
+};
 ```
 
 _`rpc` 具体获取染色对象的方式，请详见_ [_@tars/rpc_](tars-rpc.md)\_\_
-

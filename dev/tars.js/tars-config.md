@@ -16,7 +16,7 @@
 
 **data**: 为 tars 配置文件路径 或 已配置的 `@tars/config-parser` 实例。
 
-**如果服务通过** [**node-agent**](https://github.com/tars-node/node-agent) **（或在Tars平台）运行，则无需传入 `data` 。**
+**如果服务通过** [**node-agent**](https://github.com/tars-node/node-agent) **（或在 Tars 平台）运行，则无需传入 `data` 。**
 
 ### 枚举
 
@@ -24,16 +24,16 @@
 
 定义了配置文件的格式：
 
-* **C**: C++ 服务格式
-* **JSON**: JSON 格式
-* **TEXT**: 普通文本（自定义格式）
+- **C**: C++ 服务格式
+- **JSON**: JSON 格式
+- **TEXT**: 普通文本（自定义格式）
 
 #### LOCATION
 
 定义了配置文件存放的区域：
 
-* **APP**: 配置文件存放于业务集下
-* **SERVER**: 配置文件存放于服务下
+- **APP**: 配置文件存放于业务集下
+- **SERVER**: 配置文件存放于服务下
 
 ### 接口
 
@@ -45,13 +45,13 @@
 
 `options(Object)` 为可选项，接受如下参数：
 
-* **format**: 文件格式， _默认为 FORMAT.C_
-* **location**: 存放区域， _默认为 LOCATION.SERVER_
+- **format**: 文件格式， _默认为 FORMAT.C_
+- **location**: 存放区域， _默认为 LOCATION.SERVER_
 
 调用成功后返回（Promise.resolve）由如下对象组成的数组：
 
-* **filename**: 文件名
-* **content**: 文件解析后内容
+- **filename**: 文件名
+- **content**: 文件解析后内容
 
 **如仅获取单一文件则返回文件解析后的内容**
 
@@ -59,58 +59,73 @@
 
 获取 `a.conf` 文件内容：
 
-```text
-config.loadConfig("a.conf").then(function(data) {
+```javascript
+config.loadConfig("a.conf").then(
+  function (data) {
     console.log("content:", data);
-}, function (err) {
+  },
+  function (err) {
     console.error("loadConfig err", err);
-});
+  }
+);
 ```
 
 获取 `a.conf` 文件内容并以 json 进行解析：
 
-```text
-config.loadConfig("a.conf", {format : config.FORMAT.JSON}).then(function(data) {
+```javascript
+config.loadConfig("a.conf", { format: config.FORMAT.JSON }).then(
+  function (data) {
     console.log("content:", data);
-}, function (err) {
+  },
+  function (err) {
     console.error("loadConfig err", err);
-});
+  }
+);
 ```
 
 获取存在于业务集中的 `a.conf` 文件内容：
 
-```text
-config.loadConfig("a.conf", {location : config.LOCATION.APP}).then(function(data) {
+```javascript
+config.loadConfig("a.conf", { location: config.LOCATION.APP }).then(
+  function (data) {
     console.log("content:", data);
-}, function (err) {
+  },
+  function (err) {
     console.error("loadConfig err", err);
-});
+  }
+);
 ```
 
 获取 `a.conf` 与 `b.conf` 文件内容：
 
-```text
-config.loadConfig(["a.conf", "b.conf"]).then(function(data) {
-    data.forEach(function(item) {
-        console.log("filename:", item.filename);
-        console.log("content:", item.content);
+```javascript
+config.loadConfig(["a.conf", "b.conf"]).then(
+  function (data) {
+    data.forEach(function (item) {
+      console.log("filename:", item.filename);
+      console.log("content:", item.content);
     });
-}, function (err) {
+  },
+  function (err) {
     console.error("loadConfig err", err);
-});
+  }
+);
 ```
 
 获取服务所有配置文件内容：
 
-```text
-config.loadConfig().then(function(data) {
-    data.forEach(function(item) {
-        console.log("filename:", item.filename);
-        console.log("content:", item.content);
+```javascript
+config.loadConfig().then(
+  function (data) {
+    data.forEach(function (item) {
+      console.log("filename:", item.filename);
+      console.log("content:", item.content);
     });
-}, function (err) {
+  },
+  function (err) {
     console.error("loadConfig err", err);
-});
+  }
+);
 ```
 
 #### loadList\(options\)
@@ -119,7 +134,7 @@ config.loadConfig().then(function(data) {
 
 `options(Object)` 为可选项，接受如下参数
 
-* **location**: 存放区域， _默认为 LOCATION.SERVER_
+- **location**: 存放区域， _默认为 LOCATION.SERVER_
 
 调用成功后返回（Promise.resolve）由文件名组成的数组。
 
@@ -127,12 +142,15 @@ config.loadConfig().then(function(data) {
 
 获取服务的所有配置文件名：
 
-```text
-config.loadList().then(function(filelist) {
+```javascript
+config.loadList().then(
+  function (filelist) {
     console.log("files:", filelist);
-}, function(err) {
+  },
+  function (err) {
     console.log("loadList error", err);
-});
+  }
+);
 ```
 
 #### loadServerConfig\(options\)
@@ -141,7 +159,7 @@ config.loadList().then(function(filelist) {
 
 `options(Object)` 为可选项，接受如下参数
 
-* **format**: 文件格式， _默认为 FORMAT.C_
+- **format**: 文件格式， _默认为 FORMAT.C_
 
 调用成功后返回（Promise.resolve）返回文件解析后的内容。
 
@@ -149,34 +167,39 @@ config.loadList().then(function(filelist) {
 
 获取服务默认配置文件：
 
-```text
-config.loadServerConfig().then(function(data) {
+```javascript
+config.loadServerConfig().then(
+  function (data) {
     console.log("content:", data);
-}, function(err) {
+  },
+  function (err) {
     console.log("loadServerConfig error", err);
-});
+  }
+);
 ```
 
 ### 事件
 
 #### configPushed
 
-由Tars平台向服务Push配置文件的时将触发此事件。
+由 Tars 平台向服务 Push 配置文件的时将触发此事件。
 
-回调会给出Push下发的文件名。
+回调会给出 Push 下发的文件名。
 
 **例子**
 
-监听Push事件，并获取Push文件内容：
+监听 Push 事件，并获取 Push 文件内容：
 
-```text
-config.on("configPushed", function(filename) {
-    console.log("config pushed", filename);
-    config.loadConfig(filename).then(function(data) {
-        console.log("content:", data);
-    }, function(err) {
-        console.error("loadConfig err", err);
-    });
+```javascript
+config.on("configPushed", function (filename) {
+  console.log("config pushed", filename);
+  config.loadConfig(filename).then(
+    function (data) {
+      console.log("content:", data);
+    },
+    function (err) {
+      console.error("loadConfig err", err);
+    }
+  );
 });
 ```
-

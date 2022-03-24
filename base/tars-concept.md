@@ -73,7 +73,7 @@ Tars 文件是 TARS 服务的协议通信接口，尤其某 Tars Server 的客�
 
 服务启动实际上无非是一条命令行, 比如 c++服务是:
 
-```
+```sh
 HelloServer --config=xxxxx.conf
 ```
 
@@ -94,7 +94,7 @@ HelloServer --config=xxxxx.conf
 
 你可以先将服务发布到平台的某个节点上, 然后登陆节点服务器, 运行:
 
-```
+```sh
 ps -efww | grep ${your server name}
 ```
 
@@ -113,7 +113,7 @@ ps -efww | grep ${your server name}
 - 如果你的 client 是独立的客户端程序, 并不部署在框架上, 那么你可以自己创建通信器, 此时调用服务有两种方式:
   > - 直接指定服务端的 ip 端口的方式(你可以指定多个, 框架会自动容灾切换), 各语言基本相同, 比如 c++语言:
 
-```
+```cpp
 Communicator *communicator = new Communicator();
 HelloPrx helloPrx = communicator->stringToProxy<HelloPrx>("Test.HelloServer.HelloObj@tcp -h xxx -p yyy:tcp -h www -p zzz");
 helloPrx->call();
@@ -121,7 +121,7 @@ helloPrx->call();
 
 > - 也可以通信器指定到对应的框架的主控中, 这样就不需要指定对应的 ip port 了, 各语言基本相同, 比如 c++语言:
 
-```
+```cpp
 Communicator *communicator = new Communicator();
 communicator->setProperty("locator", "tars.tarsregistry.QueryObj@tcp -h xxxx -p 17890");
 HelloPrx helloPrx = communicator->stringToProxy<HelloPrx>("Test.HelloServer.HelloObj");
@@ -130,7 +130,7 @@ helloPrx->call();
 
 这种客户端调用方式, 虽然服务可以寻址和容灾, 但是没有上报信息, 如果需要上报信息还需要指定其他相关属性, 比如:
 
-```
+```cpp
 communicator->setProperty("stat", "tars.tarsstat.StatObj");
 communicator->setProperty("property", "tars.tarspropery.PropertyObj");
 ```
@@ -186,7 +186,7 @@ tarsnode 会去平台拉取服务对应的模板(服务部署时配置好的), �
 - 完成框架安装后, 登录用户中心, 创建一个 token
 - linux 上使用 curl 命令即可完成服务的上传和发布,以 Test/HelloServer 为例, [参考 cmake 管理规范](../dev/tarscpp/tars-spec.md)
 
-```
+```sh
 curl http://${your-web-host}/api/upload_and_publish?ticket=${token} -Fsuse=@HelloServer.tgz -Fapplication=Test -Fmodule_name=HelloServer -Fcomment=dev
 ```
 
@@ -194,7 +194,7 @@ curl http://${your-web-host}/api/upload_and_publish?ticket=${token} -Fsuse=@Hell
 
 c++版本的 cmake 已经内嵌了命令行在服务的 CMakeLists.txt 中, 比如用 cmake_tars_server.sh 创建服务之后, 只需要:
 
-```
+```sh
 cd build
 cmake .. -DTARS_WEB_HOST=${WEB_HOST} -DTARS_TOKEN=${TOKEN}
 make HelloServer-tar

@@ -1,7 +1,6 @@
-
 # 服务配置说明
 
-```
+```xml
     <main>
         #传到后面taf服务的http头, 多个头以,分隔，在后端taf服务，通过 current->getContext()["X-GUID"] 获取。
         filterheaders = X-GUID|X-XUA|Host
@@ -35,7 +34,7 @@
             login = Base.LoginServer.LoginObj
 
             # 可以支持其他环节的转发，配合 httpheader 一起使用，例如下面的配置中，http头 X-GUID 为 b7392a2d60604eac81892f6f9c0232f7 时，那么客户端请求 hello servant，会调用 Test.HelloServer.HelloObj@tcp -h 127.0.0.1 -p 22346 这个指定的服务节点，而不是调用以上默认的 TestApp.HelloServer.HelloObj
-            <test>      
+            <test>
                 # test 环境转发规则，如果这里配置了的（例如hello）则优先用这里的配置，如果没有配置（例如login），那么还是用proxy下面默认的配置
                 hello = Test.HelloServer.HelloObj@tcp -h 127.0.0.1 -p 22346 | 2 | X-GUID
             </test>
@@ -60,12 +59,12 @@
             <phone_login>
                 verify=Base.UserServer.UserObj
                 # 认证时候， 是否需要带上 body 内容给认证服务接口
-                verify_data=true 
+                verify_data=true
                 # 透传http头
                 verify_headers=X-GUID|X-RemoteIP|X-XUA
                 # 认证票据http头
                 auth_http_header=X-Token
-                # 默认不鉴权，匹配上了才鉴权，在匹配上了之后，如果在exclude部分有配置，则不鉴权    
+                # 默认不鉴权，匹配上了才鉴权，在匹配上了之后，如果在exclude部分有配置，则不鉴权
                 <auth_list>
                     # 支持应用级别、服务级别、接口级别
                     # 应用级别
@@ -77,8 +76,8 @@
                     Test3.TestServer.TestObj:func1|func2|funcn
                     Test3.HelloServer.HelloObj:test1
 
-                    <exclude> 
-                        # 支持服务级别、接口级别                  
+                    <exclude>
+                        # 支持服务级别、接口级别
                         # 服务级别
                         Test1.Test1Server.TestObj
                         # 接口级别
@@ -103,7 +102,7 @@
             # b7392a2d60604eac81892f6f9c0232f7 转发到 test 环境
             X-GUID:b7392a2d60604eac81892f6f9c0232f7 = test
             # 344bfdf1afb146ffa68b2bd69a57f193 转发到 dogfood 环境
-            X-GUID:344bfdf1afb146ffa68b2bd69a57f193 = dogfood 
+            X-GUID:344bfdf1afb146ffa68b2bd69a57f193 = dogfood
         </httpheader>
 
         <http_retcode>
@@ -119,7 +118,7 @@
             # 192.168.2.131 x.tup.com
             # 192.168.2.131 x1.tup.net
             # 192.168.2.131 x.tuptest.com
-            # 192.168.2.131 f.tup.com 
+            # 192.168.2.131 f.tup.com
             <station1>
                 # server_name, location, proxy_pass 类似nginx对应的字段
                 server_name=127.0.0.1
@@ -151,47 +150,47 @@
             #     proxy_pass=http://127.0.0.1:8999/defaulthost/
             # </default_host>
             # <full_path>
-            #     server_name=f.tup.com 
+            #     server_name=f.tup.com
             #     location== /fullpath/
             #     proxy_pass=http://127.0.0.1:8999/full_path/
             # </full_path>
             # <startwith_path>
-            #     server_name=f.tup.com 
+            #     server_name=f.tup.com
             #     location=^~ /startpath/
             #     proxy_pass=http://127.0.0.1:8999/startwith_path/
             # </startwith_path>
             # <reg_path>
-            #     server_name=f.tup.com 
+            #     server_name=f.tup.com
             #     location=~ /[0-9]regpath/
             #     proxy_pass=http://127.0.0.1:8999
             # </reg_path>
             # <reg2_path>
-            #     server_name=f.tup.com 
+            #     server_name=f.tup.com
             #     location=~* /[0-9]reg2PaTH/
             #     proxy_pass=http://127.0.0.1:8999
             # </reg2_path>
             # # <notreg_path>
-            # #     server_name=f.tup.com 
+            # #     server_name=f.tup.com
             # #     location=!~ /notreg/
             # #     proxy_pass=http://172.16.8.171:10008
             # # </notreg_path>
             # <comm_path>
-            #     server_name=f.tup.com 
+            #     server_name=f.tup.com
             #     location=/commpath/
             #     proxy_pass=http://127.0.0.1:8999/comm_path/
             # </comm_path>
             # <default_path>
-            #     server_name=f.tup.com 
+            #     server_name=f.tup.com
             #     location=/
             #     proxy_pass=http://127.0.0.1:8999/default_path/
             # </default_path>
             # <proxy_path>
-            #     server_name=f.tup.com 
+            #     server_name=f.tup.com
             #     location=/proxypath/
             #     proxy_pass=http://127.0.0.1:8999
             # </proxy_path>
             # <proxy2_path>
-            #     server_name=f.tup.com 
+            #     server_name=f.tup.com
             #     location=/proxy2path/
             #     proxy_pass=http://127.0.0.1:8999/
             # </proxy2_path>
@@ -209,4 +208,3 @@
     </main>
 
 ```
-

@@ -4,15 +4,15 @@
 
 ### 服务端开发
 
-下面通过一个完整的hello world例子介绍如何实现自己的服务。
+下面通过一个完整的 hello world 例子介绍如何实现自己的服务。
 
 #### 依赖配置
 
-在构建项目**pom.xml**中添加依赖jar包
+在构建项目**pom.xml**中添加依赖 jar 包
 
-* 框架依赖配置
+- 框架依赖配置
 
-```text
+```xml
 <dependency>
     <groupId>com.tencent.tars</groupId>
     <artifactId>tars-server</artifactId>
@@ -21,9 +21,9 @@
 </dependency>
 ```
 
-* 插件依赖配置
+- 插件依赖配置
 
-```text
+```xml
 <plugin>
     <groupId>com.tencent.tars</groupId>
     <artifactId>tars-maven-plugin</artifactId>
@@ -45,10 +45,10 @@
 
 #### 接口文件定义
 
-接口文件定义是通过Tars接口描述语言来定义，在src/main/resources目录下建立hello.tars文件，内容如下
+接口文件定义是通过 Tars 接口描述语言来定义，在 src/main/resources 目录下建立 hello.tars 文件，内容如下
 
-```text
-module TestApp 
+```cpp
+module TestApp
 {
 	interface Hello
 	{
@@ -59,9 +59,9 @@ module TestApp
 
 #### 接口文件编译
 
-提供插件编译生成java代码，在tars-maven-plugin添加生成java文件配置
+提供插件编译生成 java 代码，在 tars-maven-plugin 添加生成 java 文件配置
 
-```text
+```xml
 <plugin>
 	<groupId>com.tencent.tars</groupId>
 	<artifactId>tars-maven-plugin</artifactId>
@@ -87,24 +87,24 @@ module TestApp
 </plugin>
 ```
 
-在工程根目录下执行mvn tars:tars2java
+在工程根目录下执行 mvn tars:tars2java
 
-```text
+```java
 @Servant
 public interface HelloServant {
     public String hello(int no, String name);
-}	
+}
 ```
 
 #### 服务接口实现
 
-新创建一个HelloServantImpl.java文件，实现HelloServant.java接口
+新创建一个 HelloServantImpl.java 文件，实现 HelloServant.java 接口
 
-```text
+```java
 public class HelloServantImpl implements HelloServant {
 ```
 
-```text
+```java
 @Override
 public String hello(int no, String name) {
     return String.format("hello no=%s, name=%s, time=%s", no, name, System.currentTimeMillis());
@@ -113,9 +113,9 @@ public String hello(int no, String name) {
 
 #### 服务暴露配置
 
-在WEB-INF下创建一个servants.xml的配置文件，服务编写后需要进程启动时加载配置暴露服务，配置如下:
+在 WEB-INF 下创建一个 servants.xml 的配置文件，服务编写后需要进程启动时加载配置暴露服务，配置如下:
 
-```text
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <servants>
 	<servant name="HelloObj">
@@ -125,26 +125,26 @@ public String hello(int no, String name) {
 </servants>
 ```
 
-说明：除了此方法之外，还可以采用spring模式来配置服务，详情见tars\_java\_spring.md。
+说明：除了此方法之外，还可以采用 spring 模式来配置服务，详情见 tars_java_spring.md。
 
-#### 服务配置ServerConfig
+#### 服务配置 ServerConfig
 
-服务框架中有全局的结构ServerConfig，它记录了服务的基本信息，在服务框架初始化时会自动从服务配置文件中初始化这些参数。参数说明：
+服务框架中有全局的结构 ServerConfig，它记录了服务的基本信息，在服务框架初始化时会自动从服务配置文件中初始化这些参数。参数说明：
 
-> * Application：应用名称，如果配置文件没有配置，默认为UNKNOWN；
-> * ServerName：服务名称；
-> * BasePath：基本路径，通常表示可执行文件的路径；
-> * DataPath：数据文件路径，通常表示存在服务自己的数据；
-> * LocalIp：本地ip，默认是本机非127.0.0.1的第一块网卡IP；
-> * LogPath：日志文件路径，日志的写法请参考后续；
-> * LogLevel：滚动log日志级别；
-> * Local：服务可以有管理端口，可以通过管理端口发送命令给服务，该参数表示绑定的管理端口的地址，例如tcp -h 127.0.0.1 -p 8899，如果没有设置则没有管理端口；
-> * Node：本地NODE地址，如果设置，则定时给NODE发送心跳，否则不发送心跳，通常只有发布到框架上面的服务才有该参数；
-> * Log：日志中心地址，例如：tars.tarslog.LogObj@tcp –h .. –p …，如果没有配置，则不记录远程日志；
-> * Config：配置中心地址，例如：tars.tarsconfig.ConfigObj@tcp –h … -p …，如果没有配置，则addConfig函数无效，无法从远程配置中心拉取配置；
-> * Notify：信息上报中心地址，例如：tars.tarsnotify.NotifyObj@tcp –h … -p …，如果没有配置，则上报的信息直接丢弃；
-> * SessionTimeOut：防空闲连接超时设置；
-> * SessionCheckInterval：防空闲连接超时检查周期；
+> - Application：应用名称，如果配置文件没有配置，默认为 UNKNOWN；
+> - ServerName：服务名称；
+> - BasePath：基本路径，通常表示可执行文件的路径；
+> - DataPath：数据文件路径，通常表示存在服务自己的数据；
+> - LocalIp：本地 ip，默认是本机非 127.0.0.1 的第一块网卡 IP；
+> - LogPath：日志文件路径，日志的写法请参考后续；
+> - LogLevel：滚动 log 日志级别；
+> - Local：服务可以有管理端口，可以通过管理端口发送命令给服务，该参数表示绑定的管理端口的地址，例如 tcp -h 127.0.0.1 -p 8899，如果没有设置则没有管理端口；
+> - Node：本地 NODE 地址，如果设置，则定时给 NODE 发送心跳，否则不发送心跳，通常只有发布到框架上面的服务才有该参数；
+> - Log：日志中心地址，例如：tars.tarslog.LogObj@tcp –h .. –p …，如果没有配置，则不记录远程日志；
+> - Config：配置中心地址，例如：tars.tarsconfig.ConfigObj@tcp –h … -p …，如果没有配置，则 addConfig 函数无效，无法从远程配置中心拉取配置；
+> - Notify：信息上报中心地址，例如：tars.tarsnotify.NotifyObj@tcp –h … -p …，如果没有配置，则上报的信息直接丢弃；
+> - SessionTimeOut：防空闲连接超时设置；
+> - SessionCheckInterval：防空闲连接超时检查周期；
 
 服务的配置文件格式如下：
 
@@ -189,11 +189,11 @@ public String hello(int no, String name) {
 
 #### Adapter
 
-Adapter表示了绑定端口。服务新增一个绑定端口，则新建立一个Adapter，并设置相关的参数和处理对象则可以非常方便的完成对这个端口上的处理，通常用这个功能来完成在其他协议的支撑。
+Adapter 表示了绑定端口。服务新增一个绑定端口，则新建立一个 Adapter，并设置相关的参数和处理对象则可以非常方便的完成对这个端口上的处理，通常用这个功能来完成在其他协议的支撑。
 
-对于TARS服务而言，在服务配置文件中增加adapter项，即可以完成增加一个Servant处理对象。
+对于 TARS 服务而言，在服务配置文件中增加 adapter 项，即可以完成增加一个 Servant 处理对象。
 
-Adapter配置如下：
+Adapter 配置如下：
 
 ```text
 <tars>
@@ -225,11 +225,11 @@ Adapter配置如下：
 </tars>
 ```
 
-添加servant项需要在servants.xml中完成配置
+添加 servant 项需要在 servants.xml 中完成配置
 
 #### 服务启动
 
-服务启动时需要在启动命令中添加配置文件\*\*-Dconfig=config.conf\*\*， 注意：config.conf为配置文件，服务端的配置文件和客户端的配置文件必须合并到这一个文件中。完整的如下：
+服务启动时需要在启动命令中添加配置文件\*\*-Dconfig=config.conf\*\*， 注意：config.conf 为配置文件，服务端的配置文件和客户端的配置文件必须合并到这一个文件中。完整的如下：
 
 ```text
 <tars>
@@ -311,13 +311,13 @@ Adapter配置如下：
 
 异步嵌套代表如下情况：
 
-> A 异步调用B，B接收到请求后再异步调用C，等C返回后，B再将结果返回A。
+> A 异步调用 B，B 接收到请求后再异步调用 C，等 C 返回后，B 再将结果返回 A。
 
-通常情况下面，B接收到请求后，在接口处理完毕以后就需要返回应答给A，因此如果B在接口中又发起异步请求到C，则无法实现。
+通常情况下面，B 接收到请求后，在接口处理完毕以后就需要返回应答给 A，因此如果 B 在接口中又发起异步请求到 C，则无法实现。
 
 因此需要在实现接口方法中，声明启动异步来实现跨服务的异步调用，​//声明启动异步上下文 AsyncContext context = AsyncContext.startAsync\(\); //接口实现 ...
 
-```text
+```java
 //在异步处理后回包
 context.writeResult(...);
 ```
@@ -332,7 +332,7 @@ context.writeResult(...);
 
 通信器的初始化如下：
 
-```text
+```java
 CommunicatorConfig cfg = CommunicatorConfig.load("config.conf");
 //构建通信器
 Communicator communicator = CommunicatorFactory.getInstance().getCommunicator(cfg);
@@ -340,23 +340,23 @@ Communicator communicator = CommunicatorFactory.getInstance().getCommunicator(cf
 
 说明：
 
-> * 通信器的配置文件格式后续会介绍；
-> * 通信器缺省不采用配置文件也可以使用，所有参数都有默认值；
-> * 通信器也可以直接通过属性来完成初始化；
-> * 如果需要通过名字来获取客户端调用代理，则必须设置locator参数；
+> - 通信器的配置文件格式后续会介绍；
+> - 通信器缺省不采用配置文件也可以使用，所有参数都有默认值；
+> - 通信器也可以直接通过属性来完成初始化；
+> - 如果需要通过名字来获取客户端调用代理，则必须设置 locator 参数；
 
 通信器属性说明：
 
-> * locator: registry服务的地址，必须是有ip port的，如果不需要registry来定位服务，则不需要配置；
-> * connect-timeout：网络连接超时时间，毫秒，没有配置缺省为3000
-> * connections；连接数，默认为4；
-> * sync-invoke-timeout：调用最大超时时间（同步），毫秒，没有配置缺省为3000
-> * async-invoke-timeout：调用最大超时时间（异步），毫秒，没有配置缺省为5000
-> * refresh-endpoint-interval：定时去registry刷新配置的时间间隔，毫秒，没有配置缺省为1分钟
-> * stat：模块间调用服务的地址，如果没有配置，则上报的数据直接丢弃；
-> * property：属性上报地址，如果没有配置，则上报的数据直接丢弃；
-> * report-interval：上报给stat/property的时间间隔，默认为60000毫秒；
-> * modulename：模块名称，默认为可执行程序名称；
+> - locator: registry 服务的地址，必须是有 ip port 的，如果不需要 registry 来定位服务，则不需要配置；
+> - connect-timeout：网络连接超时时间，毫秒，没有配置缺省为 3000
+> - connections；连接数，默认为 4；
+> - sync-invoke-timeout：调用最大超时时间（同步），毫秒，没有配置缺省为 3000
+> - async-invoke-timeout：调用最大超时时间（异步），毫秒，没有配置缺省为 5000
+> - refresh-endpoint-interval：定时去 registry 刷新配置的时间间隔，毫秒，没有配置缺省为 1 分钟
+> - stat：模块间调用服务的地址，如果没有配置，则上报的数据直接丢弃；
+> - property：属性上报地址，如果没有配置，则上报的数据直接丢弃；
+> - report-interval：上报给 stat/property 的时间间隔，默认为 60000 毫秒；
+> - modulename：模块名称，默认为可执行程序名称；
 
 通信器配置文件格式如下：
 
@@ -365,7 +365,7 @@ Communicator communicator = CommunicatorFactory.getInstance().getCommunicator(cf
   <application>
 	#set调用
 	enableset                      = N
-	setdivision                    = NULL 
+	setdivision                    = NULL
     #proxy需要的配置
     <client>
         #地址
@@ -395,15 +395,15 @@ Communicator communicator = CommunicatorFactory.getInstance().getCommunicator(cf
 
 使用说明：
 
-> * 当使用Tars框架做服务端使用时，通信器不要自己创建，直接采用服务框架中的通信器就可以了，例如：CommunicatorFactory.getInstance\(\).getCommunicator\(\).stringToProxy\(...\)，对于纯客户端情形，则要用户自己定义个通信器并生成代理（proxy）；
-> * getCommunicator\(\)是框架初始化，随时可以获取；
-> * 对于通信器创建出来的代理，也不需要每次需要的时候都stringToProxy，初始化时建立好，后面直接使用就可以了；
-> * 代理的创建和使用，请参见下面几节；
-> * 对同一个Obj名称，多次调用stringToProxy返回的Proxy其实是一个，多线程调用是安全的，且不会影响性能；
+> - 当使用 Tars 框架做服务端使用时，通信器不要自己创建，直接采用服务框架中的通信器就可以了，例如：CommunicatorFactory.getInstance\(\).getCommunicator\(\).stringToProxy\(...\)，对于纯客户端情形，则要用户自己定义个通信器并生成代理（proxy）；
+> - getCommunicator\(\)是框架初始化，随时可以获取；
+> - 对于通信器创建出来的代理，也不需要每次需要的时候都 stringToProxy，初始化时建立好，后面直接使用就可以了；
+> - 代理的创建和使用，请参见下面几节；
+> - 对同一个 Obj 名称，多次调用 stringToProxy 返回的 Proxy 其实是一个，多线程调用是安全的，且不会影响性能；
 
 #### 超时控制
 
-超时控制是对客户端proxy（代理）而言。上节中通信器的配置文件中有记录：
+超时控制是对客户端 proxy（代理）而言。上节中通信器的配置文件中有记录：
 
 ```text
 #同步最大超时时间(毫秒)
@@ -412,11 +412,11 @@ sync-invoke-timeout          = 3000
 async-invoke-timeout         = 5000
 ```
 
-上面的超时时间对通信器生成的所有proxy都有效，如果需要单独设置超时时间，设置如下：
+上面的超时时间对通信器生成的所有 proxy 都有效，如果需要单独设置超时时间，设置如下：
 
-针对proxy设置\(ServantProxyConfig与CommunicatorConfig类似\)​
+针对 proxy 设置\(ServantProxyConfig 与 CommunicatorConfig 类似\)​
 
-```text
+```java
 //设置该代理单独初始化配置
 public <T> T stringToProxy(Class<T> clazz, ServantProxyConfig servantProxyConfig)
 ```
@@ -425,35 +425,35 @@ public <T> T stringToProxy(Class<T> clazz, ServantProxyConfig servantProxyConfig
 
 本节会详细阐述远程调用的方式。
 
-首先简述tars客户端的寻址方式，其次会介绍客户端的调用方式，包括但不限于单向调用、同步调用、异步调用、hash调用等。
+首先简述 tars 客户端的寻址方式，其次会介绍客户端的调用方式，包括但不限于单向调用、同步调用、异步调用、hash 调用等。
 
 **寻址方式简介**
 
-Tars服务的寻址方式通常可以分为如下两种方式，即服务名在主控注册和不在主控注册，主控是指专用于注册服务节点信息的名字服务（路由服务）。 名字服务中的服务名添加则是通过操作管理平台实现的。
+Tars 服务的寻址方式通常可以分为如下两种方式，即服务名在主控注册和不在主控注册，主控是指专用于注册服务节点信息的名字服务（路由服务）。 名字服务中的服务名添加则是通过操作管理平台实现的。
 
-对于没有在主控注册的服务，可以归为直接寻址方式，即在服务的obj后面指定要访问的ip地址。客户端在调用的时候需要指定HelloObj对象的具体地址：
+对于没有在主控注册的服务，可以归为直接寻址方式，即在服务的 obj 后面指定要访问的 ip 地址。客户端在调用的时候需要指定 HelloObj 对象的具体地址：
 
 即：TestApp.HelloServer.HelloObj@tcp -h 127.0.0.1 -p 9985
 
 TestApp.HelloServer.HelloObj：对象名称
 
-tcp：tcp协议
+tcp：tcp 协议
 
--h：指定主机地址，这里是127.0.0.1
+-h：指定主机地址，这里是 127.0.0.1
 
--p：端口地址，这里是9985
+-p：端口地址，这里是 9985
 
-如果HelloServer在两台服务器上运行，则HelloPrx初始化方式如下：​
+如果 HelloServer 在两台服务器上运行，则 HelloPrx 初始化方式如下：​
 
-```text
+```java
 HelloPrx prx = c.stringToProxy("TestApp.HelloServer.HelloObj@tcp -h 127.0.0.1 -p 9985:tcp -h 192.168.1.1 -p 9983");
 ```
 
-即，HelloObj的地址设置为两台服务器的地址。此时请求会分发到两台服务器上（分发方式可以指定，这里不做介绍），如果一台服务器down，则自动将请求分到另外一台，并定时重试开始down的那一台服务器。
+即，HelloObj 的地址设置为两台服务器的地址。此时请求会分发到两台服务器上（分发方式可以指定，这里不做介绍），如果一台服务器 down，则自动将请求分到另外一台，并定时重试开始 down 的那一台服务器。
 
-对于在主控中注册的服务，服务的寻址方式是基于服务名进行的，客户端在请求服务端的时候则不需要指定HelloServer的具体地址，但是需要在生成通信器或初始化通信器的时候指定registry\(主控中心\)的地址。
+对于在主控中注册的服务，服务的寻址方式是基于服务名进行的，客户端在请求服务端的时候则不需要指定 HelloServer 的具体地址，但是需要在生成通信器或初始化通信器的时候指定 registry\(主控中心\)的地址。
 
-```text
+```java
 HelloPrx prx = c.stringToProxy<HelloPrx>("TestApp.HelloServer.HelloObj");
 ```
 
@@ -461,7 +461,7 @@ HelloPrx prx = c.stringToProxy<HelloPrx>("TestApp.HelloServer.HelloObj");
 
 所谓单向调用，表示客户端只管发送数据，而不接收服务端的响应，也不管服务端是否接收到请求。​
 
-```text
+```java
 HelloPrx prx = c.stringToProxy("TestApp.HelloServer.HelloObj");
 //发起远程调用
 prx.async_hello(null, 1000, "hello word");
@@ -471,7 +471,7 @@ prx.async_hello(null, 1000, "hello word");
 
 请看如下调用示例：​
 
-```text
+```java
 HelloPrx prx = c.stringToProxy("TestApp.HelloServer.HelloObj");
 //发起远程调用
 prx.hello(1000, "hello word");
@@ -481,19 +481,19 @@ prx.hello(1000, "hello word");
 
 请看如下调用示例：
 
-```text
+```java
 HelloPrx prx = c.stringToProxy("TestApp.HelloServer.HelloObj");
 //发起远程调用
 prx.async_hello(new HelloPrxCallback() {
-        
+
         @Override
         public void callback_expired() {
         }
-        
+
         @Override
         public void callback_exception(Throwable ex) {
         }
-        
+
         @Override
         public void callback_hello(String ret) {
             System.out.println(ret);
@@ -503,30 +503,30 @@ prx.async_hello(new HelloPrxCallback() {
 
 注意：
 
-> * 当接收到服务端返回时，HelloPrxCallback的callback\_hello会被响应。
-> * 如果调用返回异常或超时，则callback\_exception会被调用，ret的值定义如下：
+> - 当接收到服务端返回时，HelloPrxCallback 的 callback_hello 会被响应。
+> - 如果调用返回异常或超时，则 callback_exception 会被调用，ret 的值定义如下：
 
-**set方式调用**
+**set 方式调用**
 
-目前框架已经支持业务按set方式进行部署，按set部署之后，各个业务之间的调用对开业务发来说是透明的。但是由于有些业务有特殊需求，需要在按set部署之后，客户端可以指定set名称来调用服务端，因此框架则按set部署的基础上增加了客户端可以指定set名称去调用业务服务的功能。
+目前框架已经支持业务按 set 方式进行部署，按 set 部署之后，各个业务之间的调用对开业务发来说是透明的。但是由于有些业务有特殊需求，需要在按 set 部署之后，客户端可以指定 set 名称来调用服务端，因此框架则按 set 部署的基础上增加了客户端可以指定 set 名称去调用业务服务的功能。
 
 详细使用规则如下，
 
-假设业务服务端HelloServer部署在两个set上，分别为Test.s.1和Test.n.1。那么客户端指定set方式调用配置​enableset = Y setdivision = Test.s.1
+假设业务服务端 HelloServer 部署在两个 set 上，分别为 Test.s.1 和 Test.n.1。那么客户端指定 set 方式调用配置 ​enableset = Y setdivision = Test.s.1
 
 ### 业务配置
 
-Tars服务框架提供了从tarsconfig拉取服务的配置到本地目录的功能。
+Tars 服务框架提供了从 tarsconfig 拉取服务的配置到本地目录的功能。
 
-使用方法很简单，服务在启动通过在注册监听器里面加载到服务conf目录。
+使用方法很简单，服务在启动通过在注册监听器里面加载到服务 conf 目录。
 
-以HelloServer为例：
+以 HelloServer 为例：
 
-```text
+```java
 public class AppStartListener implements AppContextListener {
 ```
 
-```text
+```java
     @Override
     public void appContextStarted(AppContextEvent event) {
         ConfigHelper.getInstance().loadConfig("helloServer.conf");
@@ -538,7 +538,7 @@ public class AppStartListener implements AppContextListener {
 }
 ```
 
-在servant.xml中注册配置​
+在 servant.xml 中注册配置 ​
 
 ```text
 <listener>
@@ -548,46 +548,46 @@ public class AppStartListener implements AppContextListener {
 
 说明：
 
-> * HelloServer.conf配置文件可以在管理平台上配置；
-> * HelloServer.conf拉取到本地后，业务只要通过classloader就可以加载；
-> * 配置文件的管理都在web管理平台上，同时管理平台可以主动push配置文件到Server；
-> * 配置中心支持ip级别的配置，即一个服务部署在多台服务上，只有部分不同（与IP相关），这种情况下，配置中心可以支持配置文件的合并，同时支持在web管理平台查看和修改；
+> - HelloServer.conf 配置文件可以在管理平台上配置；
+> - HelloServer.conf 拉取到本地后，业务只要通过 classloader 就可以加载；
+> - 配置文件的管理都在 web 管理平台上，同时管理平台可以主动 push 配置文件到 Server；
+> - 配置中心支持 ip 级别的配置，即一个服务部署在多台服务上，只有部分不同（与 IP 相关），这种情况下，配置中心可以支持配置文件的合并，同时支持在 web 管理平台查看和修改；
 
 注意：
 
-> * 对于没有发布到管理平台上的服务，需要在服务的配置文件中指定Config的地址，否则不能使用远程配置。
+> - 对于没有发布到管理平台上的服务，需要在服务的配置文件中指定 Config 的地址，否则不能使用远程配置。
 
 ### 服务日志
 
-框架支持本地和远程日志，获取日志Logger对象如下​
+框架支持本地和远程日志，获取日志 Logger 对象如下 ​
 
-```text
+```java
 private final static Logger FLOW_LOGGER = Logger.getLogger("flow", LogType.LOCAL);
 ```
 
 说明：打远程日志前需要预先申请远程日志服务
 
-> * LogType.LOCAL：只打本地日志
-> * LogType.REMOTE只打远程日志
-> * LogType.All 打本地和远程日志
+> - LogType.LOCAL：只打本地日志
+> - LogType.REMOTE 只打远程日志
+> - LogType.All 打本地和远程日志
 
-#### Logback日志系统
+#### Logback 日志系统
 
-TarsJava 1.7版本之后使用了Logback作为Tars日志系统，Logback提供了十分灵活的配置项，可以为用户提供更加强大的日志功能。 
+TarsJava 1.7 版本之后使用了 Logback 作为 Tars 日志系统，Logback 提供了十分灵活的配置项，可以为用户提供更加强大的日志功能。
 
 ##### 日志系统结构
 
-Logback日志系统由三部分组成，分别是Logger, Appender, Layout：
+Logback 日志系统由三部分组成，分别是 Logger, Appender, Layout：
 
-- Logger：日志记录器，每个Logger会附加到一个LoggerContext中，后者用于生成Logger，并将它们排列成树状层次结构。Logger是命名实体。它们的名称区分大小写，并且遵循分层命名规则：
+- Logger：日志记录器，每个 Logger 会附加到一个 LoggerContext 中，后者用于生成 Logger，并将它们排列成树状层次结构。Logger 是命名实体。它们的名称区分大小写，并且遵循分层命名规则：
 
   > 命名层次结构：如果一个记录器的名称后有一个点，则该记录器是另一个记录器的祖先，该记录器的名称是该子记录器名称的前缀。如果记录器与子记录器之间没有祖先，则称该记录器为子记录器的父级
 
-  Logger可以设置不同级别，分别是TRACE、DEBUG、INFO、WARN 和 ERROR。若Logger的有效级别为q，日志记录的请求级别为p，只有当p≥q时，该日志请求才会被执行。（root Logger 默认有效级别是 DEBUG)
+  Logger 可以设置不同级别，分别是 TRACE、DEBUG、INFO、WARN 和 ERROR。若 Logger 的有效级别为 q，日志记录的请求级别为 p，只有当 p≥q 时，该日志请求才会被执行。（root Logger 默认有效级别是 DEBUG)
 
-  > 级别排序规则： TRACE < DEBUG < INFO <  WARN < ERROR
+  > 级别排序规则： TRACE < DEBUG < INFO < WARN < ERROR
 
-  如果没有为Logger设置一个级别，那么它将从其最接近的祖先那里继承一个已分配的级别，一个简单的示例如下：
+  如果没有为 Logger 设置一个级别，那么它将从其最接近的祖先那里继承一个已分配的级别，一个简单的示例如下：
 
   | Logger name | Assigned level | Effective level |
   | ----------- | -------------- | --------------- |
@@ -602,52 +602,52 @@ Logback日志系统由三部分组成，分别是Logger, Appender, Layout：
 
 ##### 配置文件
 
-Logback会首先会在类路径下寻找*logback-test.xml*和*logback.xml*配置文件，若没有找到，则会使用默认的*BasicConfigurator*。配置文件的基本结构为\<configuration\>元素中包含多个\<appender\>和\<logger\>元素和最多一个\<root\>元素，官方文档中给出了配置文件的结构图如下：
+Logback 会首先会在类路径下寻找*logback-test.xml*和*logback.xml*配置文件，若没有找到，则会使用默认的*BasicConfigurator*。配置文件的基本结构为\<configuration\>元素中包含多个\<appender\>和\<logger\>元素和最多一个\<root\>元素，官方文档中给出了配置文件的结构图如下：
 
 ![Logback-config](images/Logback-config.png)
 
-一个典型的logback.xml配置文件格式如下：
+一个典型的 logback.xml 配置文件格式如下：
 
 ```xml
-<configuration scan="true" scanPeriod="60 seconds" debug="false">  
-    <property name="Logname" value="demo" /> 
-    <contextName>${Logname}</contextName> 
-    
-    
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <property name="Logname" value="demo" />
+    <contextName>${Logname}</contextName>
+
+
     <appender>
         ···
-    </appender>   
-    
+    </appender>
+
     <logger>
         ···
     </logger>
-    
-    <root>             
+
+    <root>
        ···
-    </root>  
-</configuration>  
+    </root>
+</configuration>
 ```
 
 1. \<configuration\>
 
 \<configuration\>标签提供了三个配置选项：
 
-- scan：true表示当配置文件更改时，会自动重新加载配置文件，默认值为true
+- scan：true 表示当配置文件更改时，会自动重新加载配置文件，默认值为 true
 - scanPeriod：扫描配置文件是否发生更改的时间间隔，默认时间单位为毫秒，可以自行设置单位为毫秒、秒、分钟或者小时
-- debug：true表示打印Logback内部日志信息，默认值为false
+- debug：true 表示打印 Logback 内部日志信息，默认值为 false
 
 ```xml
-<configuration scan="true" scanPeriod="30 seconds" debug="false"> 
+<configuration scan="true" scanPeriod="30 seconds" debug="false">
   ...
-</configuration> 
+</configuration>
 ```
 
 2. \<contextName\>
 
-用于设置LoggerContext的名称，默认的上下文名称为"default"，一旦设置之后，上下文名字不能再被更改。
+用于设置 LoggerContext 的名称，默认的上下文名称为"default"，一旦设置之后，上下文名字不能再被更改。
 
 ```xml
-<contextName>myAppName</contextName> 
+<contextName>myAppName</contextName>
 ```
 
 3. \<property\>
@@ -688,7 +688,7 @@ Logback会首先会在类路径下寻找*logback-test.xml*和*logback.xml*配置
   </appender>
   ```
 
-- RollingFileAppender：可以先将日志输出到指定文件，一旦满足某个条件时，再将日志记录到另一个文件。（FileAppender的子类）
+- RollingFileAppender：可以先将日志输出到指定文件，一旦满足某个条件时，再将日志记录到另一个文件。（FileAppender 的子类）
 
   ```xml
   <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
@@ -696,29 +696,29 @@ Logback会首先会在类路径下寻找*logback-test.xml*和*logback.xml*配置
       <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
         <!-- 按天滚动 -->
         <fileNamePattern>logFile.%d{yyyy-MM-dd}.log</fileNamePattern>
-  
+
         <!-- 保留30天的历史记录，上限为3GB -->
         <maxHistory>30</maxHistory>
         <totalSizeCap>3GB</totalSizeCap>
-  
+
       </rollingPolicy>
-  
+
       <encoder>
         <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
       </encoder>
-  </appender> 
+  </appender>
   ```
 
   除上述的时间滚动策略以外，还有固定窗口滚动策略**FixedWindowRollingPolicy**。
 
 5. \<logger\>
 
-可以设置某一个包或者具体的某一个类的日志打印级别，并添加appender。
+可以设置某一个包或者具体的某一个类的日志打印级别，并添加 appender。
 
-- name：制定logger约束的某一个包或某一个类
+- name：制定 logger 约束的某一个包或某一个类
 - level：设置打印级别
-- addtivity：是否向上级logger传递打印信息，默认为true
-- \<appender-ref\>：添加这个appender到logger
+- addtivity：是否向上级 logger 传递打印信息，默认为 true
+- \<appender-ref\>：添加这个 appender 到 logger
 
 ```xml
 <logger name="chapters.configuration" level="DEBUG">
@@ -728,7 +728,7 @@ Logback会首先会在类路径下寻找*logback-test.xml*和*logback.xml*配置
 
 6. \<root\>
 
-也是\<logger\>元素，是根logger，仅有level一个属性用于设置打印级别，同时也可以使用<appender-ref\>来添加appender。
+也是\<logger\>元素，是根 logger，仅有 level 一个属性用于设置打印级别，同时也可以使用<appender-ref\>来添加 appender。
 
 ```xml
 <root level="debug">
@@ -736,7 +736,7 @@ Logback会首先会在类路径下寻找*logback-test.xml*和*logback.xml*配置
 </root>
 ```
 
-一个完整的logback.xml配置如下：
+一个完整的 logback.xml 配置如下：
 
 ```xml
 <configuration>
@@ -766,52 +766,52 @@ Logback会首先会在类路径下寻找*logback-test.xml*和*logback.xml*配置
 
 ##### 日志使用
 
-通过调用LoggerFactory.getLogger方法即可获取相应的日志记录器，之后使用记录器来完成来完成日志的记录。
+通过调用 LoggerFactory.getLogger 方法即可获取相应的日志记录器，之后使用记录器来完成来完成日志的记录。
 
 ```java
 Logger logger = LoggerFactory.getLogger("name");
 logger.info("Hello World!");
 ```
 
-更多关于Logback的使用，请参考[Logback官方文档](http://logback.qos.ch/manual/index.html)。
+更多关于 Logback 的使用，请参考[Logback 官方文档](http://logback.qos.ch/manual/index.html)。
 
 ### 服务管理
 
 服务框架可以支持动态接收命令，来处理相关的业务逻辑，例如：动态更新配置等。
 
-* 发送管理命令
+- 发送管理命令
 
-服务的管理命令的发送方式：通过管理平台，将服务发布到平台上，通过管理平台发送命令；​TARS服务框架目前内置命令：
+服务的管理命令的发送方式：通过管理平台，将服务发布到平台上，通过管理平台发送命令；​TARS 服务框架目前内置命令：
 
-> * tars.help //查看所有管理命令
-> * tars.loadconfig //从配置中心, 拉取配置下来: tars.loadconfig filename
-> * tars.setloglevel //设置滚动日志的等级: tars.setloglevel \[NONE, ERROR, WARN, DEBUG\]
-> * tars.viewstatus //查看服务状态
-> * tars.connection //查看当前链接情况
+> - tars.help //查看所有管理命令
+> - tars.loadconfig //从配置中心, 拉取配置下来: tars.loadconfig filename
+> - tars.setloglevel //设置滚动日志的等级: tars.setloglevel \[NONE, ERROR, WARN, DEBUG\]
+> - tars.viewstatus //查看服务状态
+> - tars.connection //查看当前链接情况
 
-* 自定义命令
+- 自定义命令
 
 服务的自定义命令发送方式，通过管理平台自定义命令发送； 只需注册相关命令以及命令处理类，如下
 
-```text
+```java
 CustemCommandHelper.getInstance().registerCustemHandler("cmdName",new CommandHandler() {
 ```
 
-```text
+```java
 	@Override
 	public void handle(String cmdName, String params) {
-		
+
 	}
 });
 ```
 
 ### 异常上报
 
-为了更好监控，框架支持在程序中将异常直接上报到tarsnotify，并可以在管理平台页面上查看到。
+为了更好监控，框架支持在程序中将异常直接上报到 tarsnotify，并可以在管理平台页面上查看到。
 
-框架提供异常上报工具，使用如下​
+框架提供异常上报工具，使用如下 ​
 
-```text
+```java
 NotifyHelper.getInstance().notifyNormal(info);
 NotifyHelper.getInstance().notifyWarn(info);
 NotifyHelper.getInstance().notifyError(info);
@@ -819,9 +819,9 @@ NotifyHelper.getInstance().notifyError(info);
 
 说明：
 
-> * notifyNormal 上报普通的信息
-> * notifyWarn 上报警告信息
-> * notifyError 上报错误信息
+> - notifyNormal 上报普通的信息
+> - notifyWarn 上报警告信息
+> - notifyError 上报错误信息
 
 ### 属性统计
 
@@ -829,34 +829,34 @@ NotifyHelper.getInstance().notifyError(info);
 
 目前支持的统计类型包括以下几种：
 
-> * 求和（sum）
-> * 平均（avg）
-> * 分布（distr）
-> * 最大值（max）
-> * 最小值（min）
-> * 计数（count）
+> - 求和（sum）
+> - 平均（avg）
+> - 分布（distr）
+> - 最大值（max）
+> - 最小值（min）
+> - 计数（count）
 
-示例代码如下：​PropertyReportHelper.getInstance\(\).createPropertyReporter\("queue\_size"\); PropertyReportHelper.getInstance\(\).reportPropertyValue\("queue\_size", 100\);
+示例代码如下：​PropertyReportHelper.getInstance\(\).createPropertyReporter\("queue_size"\); PropertyReportHelper.getInstance\(\).reportPropertyValue\("queue_size", 100\);
 
 说明：
 
-> * 上报数据是定时上报的，可以在通信器的配置中设置，目前是1分钟一次;
-> * 注意调用createPropertyReport时，必须在服务启动以后创建并保存好创建的对象，后续拿这个对象report即可，不要每次使用的时候create;
+> - 上报数据是定时上报的，可以在通信器的配置中设置，目前是 1 分钟一次;
+> - 注意调用 createPropertyReport 时，必须在服务启动以后创建并保存好创建的对象，后续拿这个对象 report 即可，不要每次使用的时候 create;
 
 ### 染色日志
 
-为了方便在debug时实时查看某个用户在调用某服务某接口后引起的后续相关调用消息流的日志，框架中支持将该用户触发的所有日志单独打印一份到一个指定日志文件中。
+为了方便在 debug 时实时查看某个用户在调用某服务某接口后引起的后续相关调用消息流的日志，框架中支持将该用户触发的所有日志单独打印一份到一个指定日志文件中。
 
 染色日志有主动打开和被动打开两种方法：
 
-* 主动染色：
+- 主动染色：
 
-> * 在发起请求的客户端显式调用框架中的染色开启接口，从打开开关到显式调用框架中染色关闭接口，中间的日志都会额外打印为染色日志。
-> * 在开启染色功能时，所有的发起的taf请求都会自动传递染色状态，被调服务接收到请求后产生的日志也会打印为染色日志，在该请求处理完成后，会自动关闭被调服务的染色开关。
+> - 在发起请求的客户端显式调用框架中的染色开启接口，从打开开关到显式调用框架中染色关闭接口，中间的日志都会额外打印为染色日志。
+> - 在开启染色功能时，所有的发起的 taf 请求都会自动传递染色状态，被调服务接收到请求后产生的日志也会打印为染色日志，在该请求处理完成后，会自动关闭被调服务的染色开关。
 
 示例代码如下：
 
-```text
+```java
 DyeingSwitch.enableActiveDyeing("helloServer");   //主动打开开关接口，参数表示染色日志名称
 ...业务处理
 loggerInnerImpl.info("hello world");   //此时出于染色开启状态，该条日志会额外打印一份到染色日志中
@@ -866,14 +866,14 @@ DyeingSwitch.closeActiveDyeing();    //主动关闭染色开关接口
 
 说明：
 
-> * 开启染色日志时传递的参数推荐填写服务名，如果填写为null则默认名称为default;
-> * 染色日志的日志级别和日志类型与原本日志相同，如果原本日志只打本地，那么染色日志也只打本地，原本日志要打远程染色日志才会打远程;
+> - 开启染色日志时传递的参数推荐填写服务名，如果填写为 null 则默认名称为 default;
+> - 染色日志的日志级别和日志类型与原本日志相同，如果原本日志只打本地，那么染色日志也只打本地，原本日志要打远程染色日志才会打远程;
 
-在新版的TarsJava中使用了Logback作为日志系统，因此可以使用MDC来实现对日志的染色。MDC是Logback提供的在多线程中记录日志的一种技术，它的内部持有一个ThreadLocal对象，其中存储了一个Map，因此用户可以根据需要向其中添加键值对。通过实现Filter，配合MDC可以实现对日志的染色：
+在新版的 TarsJava 中使用了 Logback 作为日志系统，因此可以使用 MDC 来实现对日志的染色。MDC 是 Logback 提供的在多线程中记录日志的一种技术，它的内部持有一个 ThreadLocal 对象，其中存储了一个 Map，因此用户可以根据需要向其中添加键值对。通过实现 Filter，配合 MDC 可以实现对日志的染色：
 
 ```java
 public class MyFilter implements Filter {
-    private static final String TRACE_ID = "traceId"; 
+    private static final String TRACE_ID = "traceId";
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         ...
@@ -898,41 +898,37 @@ public class MyFilter implements Filter {
     }
 ```
 
+- 被动染色：
 
-
-
-* 被动染色：
-
-  > * 在请求的服务端预设预先设定染色条件，如果接收到的请求满足染色条件，那么服务端框架层会自动打开染色开关;
-  > * 染色状态传递的机制和主动染色相同，但是不需要在业务层显式关闭染色开关;
+  > - 在请求的服务端预设预先设定染色条件，如果接收到的请求满足染色条件，那么服务端框架层会自动打开染色开关;
+  > - 染色状态传递的机制和主动染色相同，但是不需要在业务层显式关闭染色开关;
 
 使用方法如下：
 
-首先在需要染色的Tars接口上定义染色routeKey，这个值就是判断是否开启染色的变量，示例如下：
+首先在需要染色的 Tars 接口上定义染色 routeKey，这个值就是判断是否开启染色的变量，示例如下：
 
-```text
+```java
 @Servant
 public interface HelloServant {
      public String sayHello(@TarsRouteKey int no, String name);  //使用注释routeKey来表示开启染色的参数变量
 }
 ```
 
-在定义染色routeKey之后，可以通过管理命令"tars.setdyeing"来设置需要染色用户标识（就是routeKey注释对应的值），远程对象名称和接口函数名（可选）。
+在定义染色 routeKey 之后，可以通过管理命令"tars.setdyeing"来设置需要染色用户标识（就是 routeKey 注释对应的值），远程对象名称和接口函数名（可选）。
 
 管理命令格式如下：
 
-```text
+```java
 tars.setdyeing dyeingKey dyeingServant [dyeingInterface]  //三个参数分别对应上文所提值，接口名可选填
 ```
 
-假设远程对象名称是TestApp.HelloServer.HelloObj,请求接口名为sayHello,需要染色的用户号码为12345，对应的管理命令如下：
+假设远程对象名称是 TestApp.HelloServer.HelloObj,请求接口名为 sayHello,需要染色的用户号码为 12345，对应的管理命令如下：
 
-```text
+```java
 tars.setdyeing 12345 TestApp.HelloServer.HelloObj sayHello
 ```
 
-* 染色日志查询：
+- 染色日志查询：
 
-  > * 本地染色日志：日志默认所在目录为/usr/local/app/tars/app\_log/tars\_dyeing/，对于主动染色，日志名为打开开关时传入的参数加固定后缀；对于被动染色，日志名为染色入口服务的Server名称加固定后缀。后缀为\_dyeing。
-  > * 远程日志：在tarslog服务打日志所在机器上 的/usr/local/app/tars/remote\_app\_log/tars\_dyeing/dyeing/目录下，日志名为tars\_dyeing.dyeing\_{此部分同本地染色日志名}。
-
+  > - 本地染色日志：日志默认所在目录为/usr/local/app/tars/app_log/tars_dyeing/，对于主动染色，日志名为打开开关时传入的参数加固定后缀；对于被动染色，日志名为染色入口服务的 Server 名称加固定后缀。后缀为\_dyeing。
+  > - 远程日志：在 tarslog 服务打日志所在机器上 的/usr/local/app/tars/remote_app_log/tars_dyeing/dyeing/目录下，日志名为 tars_dyeing.dyeing\_{此部分同本地染色日志名}。

@@ -2,13 +2,13 @@
 
 ## 功能说明
 
-Tars支持使用通过spring boot的方式编写tars服务，使用此功能需要依赖tars-spring-boot-starter.jar包，以及spring boot 2.0及以上版本。你可以将你的servant作为一个Spring bean，注解暴露spring bean即可。
+Tars 支持使用通过 spring boot 的方式编写 tars 服务，使用此功能需要依赖 tars-spring-boot-starter.jar 包，以及 spring boot 2.0 及以上版本。你可以将你的 servant 作为一个 Spring bean，注解暴露 spring bean 即可。
 
 ## 依赖配置
 
-使用此功能需要添加依赖，在pom.xml中添加如下配置：
+使用此功能需要添加依赖，在 pom.xml 中添加如下配置：
 
-```text
+```xml
     <properties>
         <spring-boot.version>2.0.3.RELEASE</spring-boot.version>
     </properties>
@@ -34,11 +34,11 @@ Tars支持使用通过spring boot的方式编写tars服务，使用此功能需�
     </dependencies>
 ```
 
-### Servant配置
+### Servant 配置
 
-在spring boot中，需要通过注解开启tars服务相关功能：
+在 spring boot 中，需要通过注解开启 tars 服务相关功能：
 
-```text
+```java
 @SpringBootApplication
 @EnableTarsServer
 public class QuickStartApplication {
@@ -48,9 +48,9 @@ public class QuickStartApplication {
 }
 ```
 
-通过注解@EnableTarsServer标识这是一个TARS服务，并开启服务相关功能。
+通过注解@EnableTarsServer 标识这是一个 TARS 服务，并开启服务相关功能。
 
-编写tars协议文件，如：
+编写 tars 协议文件，如：
 
 ```text
 module TestApp
@@ -62,9 +62,9 @@ module TestApp
 };
 ```
 
-并通过TARS提供的maven插件生成对应的接口代码：
+并通过 TARS 提供的 maven 插件生成对应的接口代码：
 
-```text
+```java
 @Servant
 public interface HelloServant {
 
@@ -74,7 +74,7 @@ public interface HelloServant {
 
 服务逻辑通过实现接口来编写：
 
-```text
+```java
 @TarsServant("HelloObj")
 public class HelloServantImpl implements HelloServant {
 
@@ -85,13 +85,13 @@ public class HelloServantImpl implements HelloServant {
 }
 ```
 
-接口的实现类通过注解@TarsServant来暴露服务，其中填写的'HelloObj'为servant名，该名称与管理平台上的名称对应即可。
+接口的实现类通过注解@TarsServant 来暴露服务，其中填写的'HelloObj'为 servant 名，该名称与管理平台上的名称对应即可。
 
-## 编写一个Http服务
+## 编写一个 Http 服务
 
-此外如果你想使用spring-boot来编写一个http服务，而不使用taf接口的话也是可以的：
+此外如果你想使用 spring-boot 来编写一个 http 服务，而不使用 taf 接口的话也是可以的：
 
-```text
+```java
 @SpringBootApplication
 @EnableTarsServer
 @TarsHttpService("HttpObj")
@@ -100,7 +100,7 @@ public class DemoApplication {
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
     }
-	
+
 	@RequestMapping(path = "/test")
     public String test() {
         return "hello world";
@@ -108,13 +108,13 @@ public class DemoApplication {
 }
 ```
 
-此时添加一个@TarsHttpService注解，这个注解中需要添加你希望绑定的非tars协议 servant的名称，框架会自动将spring-boot中嵌入的容器的端口绑定到对应Servant的端口上，这样你就可以方便的使用spring-mvc的各种注解来开发http和web服务了。
+此时添加一个@TarsHttpService 注解，这个注解中需要添加你希望绑定的非 tars 协议 servant 的名称，框架会自动将 spring-boot 中嵌入的容器的端口绑定到对应 Servant 的端口上，这样你就可以方便的使用 spring-mvc 的各种注解来开发 http 和 web 服务了。
 
 ## 客户端注入
 
-为了简化客户端的构造，spring-boot-starter提供了客户端自动注入的功能，在你需要注入客户端的属性上加上@TarsClient注解，框架会自动帮你构造并注入客户端：
+为了简化客户端的构造，spring-boot-starter 提供了客户端自动注入的功能，在你需要注入客户端的属性上加上@TarsClient 注解，框架会自动帮你构造并注入客户端：
 
-```text
+```java
 @TarsServant("HelloObj")
 public class HelloWorldServantImpl implements HelloWordServant {
     @TarsClient("TarsJavaTest.SpringBootServer.HelloObj")
@@ -122,9 +122,9 @@ public class HelloWorldServantImpl implements HelloWordServant {
 }
 ```
 
-如上述代码，通过@TarsClient\("TarsJavaTest.SpringBootServer.HelloObj"\)即可注入HelloWordPrx客户端，如果只填写Obj名称则采用默认值注入客户端，当然你也可以在注解中自定义客户端配置：
+如上述代码，通过@TarsClient\("TarsJavaTest.SpringBootServer.HelloObj"\)即可注入 HelloWordPrx 客户端，如果只填写 Obj 名称则采用默认值注入客户端，当然你也可以在注解中自定义客户端配置：
 
-```text
+```java
 @TarsServant("HelloObj")
 public class HelloWorldServantImpl implements HelloWordServant {
     @TarsClient(name = "TarsJavaTest.SpringBootServer.HelloObj", syncTimeout = 1000)
@@ -134,7 +134,7 @@ public class HelloWorldServantImpl implements HelloWordServant {
 
 这样就设置了客户端同步超时时间，该注解提供了所有常用配置的配置项：
 
-```text
+```java
 @Target({ ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
@@ -169,19 +169,19 @@ public @interface TarsClient {
 
 ## 服务发布
 
-编写完成代码后，可以通过spring boot提供的spring-boot-maven-plugin插件进行打包，将服务打包为jar包后上传即可启动。
+编写完成代码后，可以通过 spring boot 提供的 spring-boot-maven-plugin 插件进行打包，将服务打包为 jar 包后上传即可启动。
 
-## 如何在本地启动和开发调试tars
+## 如何在本地启动和开发调试 tars
 
-拷贝node生成的模板文件到本地（在服务器 tasnode/data/服务名/conf 目录下），修改其中每个servant的启动ip和端口文本地ip端口 配置启动参数。-Dconfig=\(模板路径\) 通过ide启动MainClass
+拷贝 node 生成的模板文件到本地（在服务器 tasnode/data/服务名/conf 目录下），修改其中每个 servant 的启动 ip 和端口文本地 ip 端口 配置启动参数。-Dconfig=\(模板路径\) 通过 ide 启动 MainClass
 
 ## 版本升级指南
 
-如需使用tars-spring-boot的新功能需要将tars升级到1.6.1版本及以上版本，本次改动相对较大，附上版本升级指南：
+如需使用 tars-spring-boot 的新功能需要将 tars 升级到 1.6.1 版本及以上版本，本次改动相对较大，附上版本升级指南：
 
 1. 管理平台需要重新编译升级。
-2. tars-node需要升级到新版本。
-3. 模板选择需要选tars.tarsjava.springboot模版。如果不是重新搭建环境可自行添加模板，父模板选择tars.tarsjava.default，内容如下：
+2. tars-node 需要升级到新版本。
+3. 模板选择需要选 tars.tarsjava.springboot 模版。如果不是重新搭建环境可自行添加模板，父模板选择 tars.tarsjava.default，内容如下：
 
 ```text
 <tars>
