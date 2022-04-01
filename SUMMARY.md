@@ -93,15 +93,13 @@
 
 ## TarsGo <span id="TarsGo"></span>
 
-- [cmake 管理代码](dev/tarsgo/spec.md)
+- [基本介绍](dev/tarsgo/README.md)
+- [快速开始](hello-world/tarsgo.md)
+- [使用指面](dev/tarsgo/guide.md)
+- [cmake 管理代码](dev/tarsgo/cmake.md)
 - [pb2tarsgo](dev/tarsgo/pb2tarsgo.md)
 - [性能数据](dev/tarsgo/performance.md)
-- [案例]
-  - [服务端使用 context 示例](demo/tarsgo/context.md)
-  - [tars 客户端示例](demo/tarsgo/client.md)
-  - [tars 服务端示例](demo/tarsgo/server.md)
-  - [zipkin 调用链追踪客户端示例](demo/tarsgo/zipkin-client.md)
-  - [zipkin 调用链追踪服务端示例](demo/tarsgo/zipkin-server.md)
+- [使用示例](demo/tarsgo/README.md)
 
 ## TarsPHP <span id="TarsPHP"></span>
 

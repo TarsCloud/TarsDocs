@@ -1,10 +1,15 @@
 # TarsGo 快速入门
 
+## 前置条件
+
+- [安装Tars框架](../installation/README.md)
+- 安装Golang，建议1.17及以上版本
+
 ## 服务编写
 
 ### 创建服务
 
-运行`tarsgo`脚手架，自动创建服务必须的文件。
+运行`tarsgo`脚手架，自动创建使用`make`构建服务必须的文件。如要使用`cmake`，可参考[这里](../dev/tarsgo/cmake.md)。
 
 ```text
 tarsgo make App Server Servant GoModuleName
