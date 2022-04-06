@@ -3,6 +3,7 @@
 > - [介绍](#chapter-1)
 > - [前置说明](#chapter-2)
 > - [使用说明](#chapter-3)
+> - [容器运行机制](#chapter-4)
 
 ## 1 <span id="chapter-1"></span>介绍
 
@@ -82,3 +83,40 @@ docker run -d \
   > - tarscloud/tars.nodejsbase
   > - tarscloud/tars.javabase
   > - tarscloud/tars.php74base
+
+## 4 <span id="chapter-4"></span>容器运行机制
+
+业务服务的容器运行时, 采用以下几个条件启动:
+
+- 使用`--net=host`模式运行, 这样容器网络层和宿主机网络层一样
+- 使用`--ipc host`模式运行, 这样 ipc 相关的资源(共享内存等)和宿主机打通
+- 目录映射方面, 处理 tars 服务运行需要的目录会自动共享外, 如果您需要映射其他目录, 则可以在模板中配置映射目录, 格式如下:
+
+```xml
+<tars>
+    <application>
+        <container>
+            <volumes>
+                #宿主机目录 = 容器内目录
+                /data/host/path=/data/docker/path
+            </volumes>
+        </container>
+    </application>
+</tars>
+```
+
+- 端口映射方面, 如果是 linux 会自动和宿主机打通共享(`--net=host`), 如果是 mac, 如果您自己绑定了端口, 则需要单独在模板中配置:
+
+```xml
+<tars>
+    <application>
+        <container>
+            <ports>
+                #容器端口 = 宿主机host:端口
+                80/tcp=192.168.0.1:80
+                7778/udp=192.168.0.1:7778
+            </ports>
+        </container>
+    </application>
+</tars>
+```
