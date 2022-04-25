@@ -10,6 +10,7 @@
 - [基础概念](base/tars-concept.md)
 - [基础通信协议 Tars](base/tars-protocol.md)
 - [统一通信协议 Tup](base/tars-tup.md)
+- [服务市场](base/market.md)
 
 ## 框架部署 <span id="deploy"></span>
 
