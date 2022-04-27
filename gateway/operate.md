@@ -35,7 +35,7 @@ Url: http://172.16.8.227:8200(网关服务监听地址)/json（表示json协议�
 			"y":233
 		}
 }
-其中req对应int getSumEx(GetSumReq req, out GetSumRsp rsp)中的入参参数名。
+注意：其中req对应int getSumEx(GetSumReq req, out GetSumRsp rsp)中的入参参数名， 而非固定的。
 
 响应包：
 {

@@ -129,12 +129,43 @@ TARS-JSON 协议代理，支持两种类型的接口。
 路径为/json/servantName/funcName，其中/json 是固定的，后面分别是 servantName 和 funcName。
 
 ```
-    请求：
+tars协议文件：
+    module Test
+    {
+        struct GetSumReq
+        {
+            1 require   int     x;
+            2 require   int     y;
+        };
+        struct GetSumRsp
+        {
+            1 optional  int     z;
+            2 optional  string  msg;
+        };
+        
+        interface GetSum
+        {
+            int getSum(int x, int y, out int z);
+            int getSumEx(GetSumReq req, out GetSumRsp rsp);
+        };
+    }
+
+示例：
+    请求1(getSum接口请求)：
+    url： http://xx.xx.com/json/Test.GetSumServer.GetSumObj/getSum
+    {"x":100, "y": 200}
+
+    响应1(getSum接口响应)：
+    { "z": 300, "": 0 }
+
+
+    请求2(getSumEx接口请求)：
     url： http://xx.xx.com/json/Test.GetSumServer.GetSumObj/getSumEx
     {"req":{"userKey":"upchina","userToken":"upchinatoken","x":1,"y":9900989}}
 
-    响应：
+    响应2(getSumEx接口响应)：
     { "rsp": { "otherMsg": [ "1 + 9900989 = 9900990" ], "msg": "succ.", "sum": 9900990, "ret": 0 }, "": 0 }
+
 ```
 
 - **相关参数都在 http body 中指定：**
