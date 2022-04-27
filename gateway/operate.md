@@ -26,27 +26,53 @@
 这里GatewayServer部署的ip和端口为 172.16.8.227:8200，那么通过GatewayServer 访问 getSumEx 接口支持两种风格的接口访问，具体查看功能说明，以下以RESTFUL风格为例：
 ![gateway_05](../assets/gateway_05.png)
 说明：
-Url: http://172.16.8.227:8200(网关服务监听地址)/json（表示json协议代理）/getsum（servant别名，如果auto_proxy=1，那么这里也可以直接用服务的真实Obj：Test.GetSumServer.GetSumObj）/getSumEx （tars接口名）
+
+风格1
+```
+Url: http://172.16.8.227:8200(网关服务监听地址)/json（表示json协议代理）/getsum（servant别名）/getSumEx （tars接口名）
+```
+
+风格2
+
+如果auto_proxy=1，那么这里也可以直接用服务的真实Obj：Test.GetSumServer.GetSumObj(该做法无需在 GatewayServer.conf 配置亦可生效)
+```
+Url: http://172.16.8.227:8200(网关服务监听地址)/json（表示json协议代理）/Test.GetSumServer.GetSumObj/getSumEx （tars接口名）
+```
+
 请求参数：
+```
 {
-	"req": 
-		{	
-			"x": 100, 
-			"y":233
-		}
+	"req": {
+		"x": 100,
+		"y": 233
+	}
 }
+```
+
+
 注意：其中req对应int getSumEx(GetSumReq req, out GetSumRsp rsp)中的入参参数名， 而非固定的。
 
 响应包：
+```
 {
-    "tars_ret": 0,
-    "rsp": {
-        "msg": "succ",
-        "z": 333
-    }
+	"tars_ret": 0,
+	"rsp": {
+		"msg": "succ",
+		"z": 333
+	}
 }
+```
+
 其中rsp对应int getSumEx(GetSumReq req, out GetSumRsp rsp)中的出参参数名。如果接口有返回值，那么回包中有对应的tars_ret字段，否则没有。
 
+注意: 如果响应HTTP STATUS = 200, 而响应内容为空, 尝试注释服务端代码 
+\src\vendor\phptars\tars-server\src\protocol\TARSProtocol.php
+```
+//            $map->pushBack([$k => $v]);
+```
+![gateway_05](../assets/gateway_17.png)
+
+> 这个问题可能是 c 扩展 在 gcc 高版本里面 map 打包有问题
 
 ### 【其他配置】
 GatewayServer支持不同的负载均衡策略，也支持换机切换，详细见配置说明。
