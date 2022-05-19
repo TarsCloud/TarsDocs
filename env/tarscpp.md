@@ -27,7 +27,7 @@
 
 例如，在Centos7下，执行：
 ```
-yum install glibc-devel gcc gcc-c++ bison flex cmake
+yum install glibc-devel gcc gcc-c++ bison flex cmake diffutils
 ```
 
 ## 2.2. 下载源码
