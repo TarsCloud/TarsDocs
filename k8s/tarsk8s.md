@@ -65,23 +65,23 @@ framework 是指 tars 框架中的基础服务, 相比原生 tars 框架, **Tars
 
 ## 特性
 
-**TarsCloud K8SFramework** 特性介绍请参考 <<[特性](docs/zh/property.md)>>
+**TarsCloud K8SFramework** 特性介绍请参考 <<[特性](property.md)>>
 
 ## 安装与升级
 
 **TarsCloud K8SFramework** 以 Helm Cart 的形式对外发布  
-您可以参考 <<[安装](docs/zh/install.md)>> 进行安装  
-您可以参考 <<[升级](docs/zh/upgrade.md)>> 进行升级
+您可以参考 <<[安装](install.md)>> 进行安装  
+您可以参考 <<[升级](upgrade.md)>> 进行升级
 
 ## 运维
 
 **TarsCloud K8SFramework** 支持两种运维管理方式  
-普通开发部署人员 可以通过 <<[管理平台](docs/zh/tarsweb.md)>> 进行运维管理  
-Kubernetes 集群管理员可以通过<<[云原生运维](docs/zh/kubectl.md)>> 进行运维管理
+普通开发部署人员 可以通过 <<[管理平台](tarsweb.md)>> 进行运维管理  
+Kubernetes 集群管理员可以通过<<[云原生运维](kubectl.md)>> 进行运维管理
 
 ## 开发者
 
-做为开发者,您可以参考 <<[构建](docs/zh/make.md)>> 从源码开始构建项目
+做为开发者,您可以参考 <<[构建](make.md)>> 从源码开始构建项目
 
 ## Todo
 
