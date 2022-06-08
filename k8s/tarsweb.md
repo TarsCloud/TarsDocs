@@ -1,47 +1,58 @@
 # 管理平台运维
 
-管理平台运维是指通过  tarweb 服务提供的 web 界面来管理 tarsk8s.
+管理平台运维是指通过 tarsweb 服务来管理 **TarsCloud K8SFramework**
 
 ## TarsWeb 的访问
 
-当您成功安装 framework , 且观察到 tars-tarsweb-0 pod 成功启动, 即代表 tarweb 部署成功.
+当您成功安装 Framework , 且观察到 tars-tarsweb-0 pod 成功启动, 即代表 tarweb 部署成功.
 
-但此时, 因为k8s 本身的网络模型限制, 你需要选择一种方式访问 tarsweb:
+但此时, 因为 Kubernetes 本身的限制, 你需要选择一种方式访问 TarsWeb:
 
 ### 使用 HostNetwork 方式访问
-1. 修改 tserver/tarsweb.spec.k8s.hostnetwork 值为 true,具体命令为
+
+1. 修改 tserver/tarsweb.spec.Kubernetes.hostnetwork 值为 true,具体命令为
+
 ```shell
 kubectel edit tserver -n ${namespace} tars-tarsweb
 ```
-2. 等待 tars-tarsweb-0 pod 成功启动并获取其 ip 值, 具体命令为
+
+2. 等待 tars-tarsweb-0 pod 重启启动并获取其 ip 值, 具体命令为
+
 ```shell
 kubectl get pods -n ${namespace} tars-tarsweb-0 -o wide
 ```
+
 3. 使用 http://$(ip):3000 访问管理平台
 
 ### 使用 HostPort 方式访问
-1. 修改 tserver/tarsweb.spec.k8s.hostPorts 为如下值
+
+1. 修改 tserver/tarsweb.spec.Kubernetes.hostPorts 为如下值
+
 ```yaml
    spec:
-     k8s:
+     Kubernetes:
       hostPorts:
        - nameRef: http
          port: 3000
 ```
- 具体命令为: 
+
+具体命令为:
 
 ```shell
 kubectel edit tserver -n ${namespace} tars-tarsweb
 ```
+
 2. 等待 tars-tarsweb-0 pod 成功启动并获取其 ip值, 具体命令为
+
 ```shell
 kubectl get pods -n ${namespace} tars-tarsweb-0 -o wide
 ```
+
 3. 使用 http://$(ip):3000 访问管理平台
 
 ### 使用 Ingress 方式访问
 
-如果您的集群已经安装了 Ingress 控制器 , 可以配置ingress 规则指向 tars-tarsweb:3000
+如果您的集群已经安装了 Ingress 控制器 , 可以配置ingress 规则指向 ${Namespace}/tars-tarsweb:3000
 
 然后可以就可以使用 ingress 规则中的路由地址访问了
 
@@ -59,9 +70,9 @@ TarsWeb 主要特性包括:
 
 ## TarsWeb 与原生集群的融合
 
- 当前版本的 TarsWeb 可以同时管理 K8S 集群和原生集群.具体开启方式为. 登陆 TarsWeb 管理平台后, 进入 ""运维管理"->"集群配置" 界面
+当前版本的 TarsWeb 可以同时管理原生 Tars 集群.具体开启方式为. 登陆 TarsWeb 管理平台后, 进入 ""运维管理"->"集群配置" 界面
 
-在 nativeDBConfig 中填入原生集群的 MySql 配置信息, 内容格式如下:
+在 nativeDBConfig 中填入原生 Tars 框架所使用的 MySql 配置信息, 填充格式如下:
 
 ```
 {
@@ -82,9 +93,7 @@ TarsWeb 主要特性包括:
 }
 ```
 
-
-
-在 nativeFrameworkConfig 中填入原生集群的 TafRegistry 服务信息, 内容格式如下:
+在 nativeFrameworkConfig 中填入原生集群的 TarsRegistry 服务信息, 内容格式如下:
 
 ```
 <tars>
@@ -108,9 +117,7 @@ TarsWeb 主要特性包括:
 </tars>
 ```
 
-
-
-upchain 中填入需要访问原生集群中 Obj 名和地址, 这样 tarsk8s 集群中未寻址到的 Obj 地址,就会按照  upChain 中的配置寻址.
+upchain 中填入需要访问原生集群中 Obj 名和地址, 这样 tarsk8s 集群中未寻址到的 Obj 地址,就会按照 upChain 中的配置寻址.
 
 内容格式如下:
 
@@ -128,8 +135,6 @@ upChain:
   - host: 172.16.8.123
     port: 10018
 ```
-
-
 
 配置完成并重建 tars-tarsweb-0 , 再次访问 tarsweb 管理平台,即可同时看到 tars 信息和 tarsk8s信息.
 

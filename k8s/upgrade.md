@@ -13,10 +13,10 @@
         + [安装 Controller](#安装Controller)
         + [等待 Controller 启动](#等待Controller启动)
     + [升级 Framework](#升级Framework)
-        + [确认Controller兼容性](#确认Controller兼容性)
-        + [生成Framework配置文件](#生成Framework配置文件)
-        + [安装Framework](#安装Framework)
-        + [等待Framework启动](#等待Framework启动)
+      + [确认Controller兼容性](#确认Controller兼容性)
+      + [生成Framework配置文件](#生成Framework配置文件)
+      + [安装Framework](#安装Framework)
+      + [等待Framework启动](#等待Framework启动)
 
 # 升级
 
@@ -50,7 +50,7 @@
 2. 升级 Framework 时, 请确保已安装的 Controller 版本能兼容待升级的 Framework 版本
 3. 降级 Framework 时, 请确保已安装的 Controller 版本能兼容待降级的 Framework 版本
 4. 降级 Controller 可能导致不可预知的问题, 我们不建议您对 Controller 执行降级操作
-   不满足兼容性规则的 升/降级操作 可能导致 framework 程序运行错误, 甚至 crd 对象丢失
+不满足兼容性规则的 升/降级操作 可能导致 framework 程序运行错误, 甚至 crd 对象丢失
 
 ## 获取HelmChart
 

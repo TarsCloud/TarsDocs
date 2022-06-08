@@ -173,8 +173,8 @@
   - [特性](k8s/property.md)
   - [安装](k8s/install.md)
   - [升级](k8s/upgrade.md)
-  - [云原生运维](k8s/cloud-operator.md)
-  - [管理平台](k8s/tarsweb-operator.md)
+  - [云原生运维](k8s/kubectl.md)
+  - [管理平台](k8s/tarsweb.md)
   - [证书](k8s/ca.md)
 - [开发环境构建]
   - [Dockerfile 说明](k8s/dockerfile.md)

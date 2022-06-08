@@ -18,7 +18,7 @@
 
 ## 设计
 
-**TarsCloud K8SFramework** 使用 **Kubernetes Operator** 模式支持 Tars 服务在 K8S 集群的部署和运维.  
+**TarsCloud K8SFramework** 使用 **Kubernetes Operator** 模式支持 Tars 服务在 Kubernetes 集群的部署和运维.  
 具体由 CRD, Controller, Framework 三部分组成, 其关系如下:
 
 ### CRD

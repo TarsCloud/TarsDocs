@@ -1,6 +1,6 @@
 # 云原生运维
 
-tarsk8s 采用了流行的  "自定义控制器模式", 并将所有 tars 的可运维对象都抽象为声明式对象. 您可以使用 kubectl 或其他兼容 k8s 集群管理工具增删改查这些声明式对象来完成您的运维目标.
+**TarsCloud K8SFramework** 采用了流行的  "自定义控制器模式", 并将所有 tars 的可运维对象都抽象为声明式对象. 您可以使用 kubectl 或其他兼容 Kubernetes 集群管理工具增删改查这些声明式对象来完成您的运维目标.
 
 下文描述了一些常用的云原生操作流程:
 
@@ -8,7 +8,7 @@ tarsk8s 采用了流行的  "自定义控制器模式", 并将所有 tars 的可
 > A:  执行如下操作列举出当所有 tars 服务
 >
 > ```shell
-> kubectl get tserver -n ${namespace}
+> kubectl get tserver -n ${namespace} -o wide
 > ```
 
 ---
@@ -39,16 +39,12 @@ tarsk8s 采用了流行的  "自定义控制器模式", 并将所有 tars 的可
 
 ---
 
->Q: 查看/修改账号密码
+> Q: 查看/修改账号密码
 >
->A:  您可通过 md5(username) 找到对应账号的 taccount  对象, 然后修改其 spec.authorization.password 字段, 完成账号密码的重置
+>A:  您可通过 md5(username) 找到对应账号的 taccount 对象, 然后修改其 spec.authorization.password 字段, 完成账号密码的重置
 >
 >```shell
 >kubectl edit -n $(namespace) taccount 21232f297a57a5a743894a0e4a801fc3
 >```
 
-
-
-更多操作方式, 您可以阅读 [<<TarsK8S 特性>>](property.md) 或 k8s 官方文档获取更多信息
-
- 
+更多操作方式, 您可以参看 <<[特性](property.md) >>或 Kubernetes 官方文档获取更多信息
