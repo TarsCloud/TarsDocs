@@ -1,96 +1,110 @@
-[TOC]
+# 目录
+- [TarsCloud K8SFramework](#tars-k8sframework)
+    * [设计](#设计)
+        + [CRD](#crd)
+        + [Controller](#controller)
+        + [Framework](#framework)
+    * [特性](#特性)
+    * [安装与升级](#安装与升级)
+    * [运维](#运维)
+    * [开发者](#开发者)
+    * [Todo](#todo)
 
-# TarsK8S
+# TarsCloud K8SFramework
 
-## 项目介绍
+**TarsCloud K8SFramework** 是为了将 Tars 部署在 Kubernetes 集群而做的适应性改造项目.  
+**TarsCloud K8SFramework** 提供了包括部署,升级,回滚,、伸缩容,配置变更的在内的 Tars 服务全生命周期管理.  
+借助 **TarsCloud K8SFramework**, Tars 服务可以无缝运行在公有云或私有部署的 Kubernetes 集群.
 
-TarsK8S 是为了将 Tars 部署在 K8S 平台上而做的适应性改造项目. 提供了包括部署、升级、扩缩容、备份恢复、配置变更的 Tars 服务全生命周期管理. 借助 TarsK8S, Tars 服务可以无缝运行在公有云或私有部署的K8S 集群中.
+## 设计
 
-TarsK8S 暂不支持以下特性:
-
-+ tars set
-+ tars dcache
-
-关于 TarsK8S 的更多特性请参考 [<<TarsK8S 特性>>](property.md)
-
-## 项目设计
-
-TarsK8S 使用自定义控制器模式来完成 Tars 在 K8S 集群的部署, 由 CRD, Controller, Framework 组成.
-
-每个 K8S 集群可以部署一套 Controller , 并在不同的命名空间中部署多套 Framework. 每套 Framework 互相独立
-
-每套 Framework 类似于一套具备完整的 Tars 集群.
+**TarsCloud K8SFramework** 使用 **Kubernetes Operator** 模式支持 Tars 服务在 K8S 集群的部署和运维.  
+具体由 CRD, Controller, Framework 三部分组成, 其关系如下:
 
 ### CRD
 
-​	crd 是的是指在 k8s 集群中增加一种自定义资源类型.用来抽象与具体项目高度相关的概念,类型等.在 tarsk8s 中, 我们增加了如下 crd:
+crd 是我们在 **Kubernetes** 集群中增加的一些自定义资源类型, 每种资源类型都抽象了 Tars 框架的概念或动作,  
+对这些资源执行 "增删改查" 操作, 就是对 Tars 框架的查询,管理和运维. crd 类型有:
 
-+ tserver:   tserver 定义了一项 tars 服务的属性, 每提交一个 tserver 对象意味则在 k8s 集群中部署可一项 tars 服务.
-+ tconfig:   tconfig 定义了一项 tars 服务配置属性, 每提交一个 tconfig 对象意味则为 某个 tars 业务服务增加了一项业务配置.
-+ ttemplate:  ttemplate 定义一项 tars 模板属性, 每提交一个 ttemplate 对象意味则在 k8s 集中部署了一个 tars 模板.
-+ timage:  每个 tserver 对象通过 label 与一个或多个timage 对象关联, 并在 timage 对象中记录服务发布版本及镜像地址等信息.
-+ tendpoint:  crontroller 从每个 tserver 对象衍生一个同名 tendpoint 对象, 并在 tendpoint 中记录关联 tserver 的运行实时运行状态.
-+ taccount:  taccount 是对每个tarsweb用户的抽象, 用于记录用户认证, 权限等信息.
-+ texitedrecord: crontroller 从每个 tserver 对象衍生一个同名 texitrecord 对象, 并在 texitedrecord 中记录 tserver pods 的生命周期信息
-+ tframeworkconfig:  每套 framework 中有且其只有唯一的 tframeworkconfig 对象 记录 framework 级别的配置
-+ ttree:  每套 framework 中且其只有唯一的 ttree 对象, 用于记录 tars business 与 tars app 的关联信息
-
-crd 的更多细节请参考 [<<TarsK8S 特性>>](property.md)
++ tserver: tserver 抽象了 tars 服务属性, 每个 tserver 对象代表着一项 tars 服务.
++ tconfig: tconfig 抽象了 tars 服务配置属性, 每个 tconfig 对象代表一项 tars 服务配置.
++ ttemplate: ttemplate 抽象了 tars 服务模板属性, 每个 ttemplate 对象代表了一项 tars 模板.
++ taccount: taccount 抽象了 tarsweb 用户, 每个 taccount 对象代表一个 tarsweb 账号.
++ timage: timage 抽象了 tars 服务版本发布, 每个 timage 对象都记录了其关联 tars 服务已发布版本,发布时间,镜像地址,镜像密钥等信息.
++ tendpoint: tendpont 抽象了 tars 服务运行状态, 每个 tendpoint 对象都记录了其关联 tserver 的运行实时运行状态.
++ texitedrecord: texitedrecord 抽象了 tars 服务的退出状态, 每个 texitedrecord 对象都记录了其关联 tserver pods 的生命周期信息
++ tframeworkconfig: 每套tars 框架其只有唯一的 tframeworkconfig 对象, 用于记录 tars 框架级别的配置信息
++ ttree: 每套 tars 集群且其只有唯一的 ttree 对象, 用于记录 tars business 与 tars app 的关联信息
 
 ### Controller
 
-controller 是自定义控制器模式的核心. 主要职责有:
+controller 是 **Kubernetes Operator** 模式的核心. 主要职责有:
 
-+ 将 crd 对象调谐成 k8s 原生对象(statefulset , deployment, daemonset,service)
-+ 校验 crd 对象值合法性, 填充默认值, 添加,删除标签
-+ 校验运维操作的合法性
++ 校验 crd 对象值合法性, 填充默认值, 添加,删除对象标签值
++ 持续监听 crd 对象的 "增删查改" 操作, 并将调谐成 Kubernetes 原生对象(statefulset,daemonset,service)
 + 提供 crd 版本兼容转换服务
-
-controller 的更多细节请参考 [<<TarsK8S 特性>>](property.md)
 
 ### Framework
 
-framework 是指 tars 框架中的基础服务, 相比原生版本, tarsk8s 对这些服务程序进行了代码重构, 使其能使用在 k8s 集群中工作,这些程序的具体功能如下:
+framework 是指 tars 框架中的基础服务, 相比原生 tars 框架, **TarsCloud Kubernetes** 增删了部分服务,其清单和功能说明如下:
 
-+ tarsweb:  tars 微服务框架的运维管理平台
-+ tafnode:  tars 微服务框架的节点守护程序
-+ tarsregistry:   tars 微服务框架中的注册中心
-+ tarsconfig:  tars 微服务框架的配置中心
-+ tarsnotify:  tars 微服务框架的消息通知中心
-+ tarslog :  tars 微服务框架的日志中心
-+ tarsproperty, tarsqueryproperty:  提供 tars 微服务框架的特性监控数据接收和查询服务
-+ tarsstat, tarsquerystat:  提供 tars 微服务框务的服务监控数据接收和查询服务
-+ tarsimage:  tarsk8s 新增的 framework 服务, 提供镜像构建服务
-+ tarskevent:  tarsk8s 新增的 framework 服务, 用于监听 k8s 集群的 event 资源变动
-+ tarselasticsearch:  tarsk8s 新增的 framework 服务, 前文提及的消息, 特性监控, 服务监控, evnet 数据都会落地到 tarselasticsearch 中
++ elasticsearch: 单节点 elasticsearch 服务, 替代原生 Tars 中的 MySql, 用于存储服务监控,特性监控,消息通知等信息
++ tarsweb: 提供运维管理平台服务
++ tarsregistry: 提供注册中心服务
++ tarsconfig: 提供配置中心服务
++ tarsnotify: 提供消息中心服务
++ tarslog : 提供日志中心服务
++ tarsproperty, tarsqueryproperty: 提供特性监控数据汇聚和查询服务
++ tarsstat, tarsquerystat: 提供的服务监控数据汇聚和查询服务
++ tarsimage, tarskaniko: 提供镜像构建服务
++ tarskevent: 提供 kubernetes 集群的 event 监听服务
++ tarsnode: 节点守护程序
 
-framework 程序重构原则如下:
+每个 **Kubernetes** 集群只可以部署一套 CRD 和 Controller, 可以在不同的命名空间分别部署 Framework.
+每套 Framework 互相独立, 等价一套原生 Tars 集群
 
-+ 允许重新设计 framrework 程序之间的 rpc 数据结构和接口
-+ 兼容 frameowork 程序与业务程序 rpc 数据结构和接口
-+ 业务程序对是否运行环境在 k8s 集群内无感知
+## 特性
 
-以上原则可以保证绝大多数历史 tars 服务能通过 tarsk8s 无缝部署到 k8s 集群
+**TarsCloud K8SFramework** 特性介绍请参考 <<[特性](docs/zh/property.md)>>
 
-## 快速安装
+## 安装与升级
 
-你可以使用项目已构建好的 Helm Char  执行快速安装, 详情参考 [<<快速部署>>](quick-deploy.md)
+**TarsCloud K8SFramework** 以 Helm Cart 的形式对外发布  
+您可以参考 <<[安装](docs/zh/install.md)>> 进行安装  
+您可以参考 <<[升级](docs/zh/upgrade.md)>> 进行升级
 
-## 源码构建
+## 运维
 
-你可以从源代码开始构建自己的 Helm Charm, 详情参考 [<<源码构建>>](source-deploy.md)
+**TarsCloud K8SFramework** 支持两种运维管理方式  
+普通开发部署人员 可以通过 <<[管理平台](docs/zh/tarsweb.md)>> 进行运维管理  
+Kubernetes 集群管理员可以通过<<[云原生运维](docs/zh/kubectl.md)>> 进行运维管理
 
-## 项目升级
+## 开发者
 
-如果您需要升级版本,请参考 [<<版本升级>>](upgrade.md)
+做为开发者,您可以参考 <<[构建](docs/zh/make.md)>> 从源码开始构建项目
 
-## 项目测试
+## Todo
 
-tarsk8s 支持 e2e 测试, 请参考 <<TarsK8S 测试>>
++ 时区处理:
+  当前 **TarsCloud K8SFramework** 是通过在 Pod 中挂载 宿主机 /etc/localtime 文件尝试解决时区同步问题, 但是在某些宿主机无法按预期工作,我们正在探索更好的办法.
 
-## 项目阶段
++ Tars SSL 支持:  
+  当前 **TarsCloud K8SFramework** 未支持 Tars SSL, 我们会在后续版本提供支持
 
-TarsK8S 处于公开测试阶段, 在充分了解各项特性并确认需求能被满足后, 可用于生产环境
++ Tars Set 支持
+  当前 **TarsCloud K8SFramework** 未支持 Tars Set, 我们会在后续版本提供支持
 
-## 兼容性政策
++ 文档计划
+  我们会逐步增加 **TarsCloud K8SFramework**  项目的文档
 
++ 测试案例
+  我们会逐步增加 **TarsCloud K8SFramework**  项目的测试案例, 包括针对 tarscontroller ,tarsframework ,helm安装,升级,降级的自动化测试
+
++ Tars DCache 支持
+  当前 **TarsCloud K8SFramework** 未支持 Tars DCache, 我们会在后续版本提供支持
+
++ 调试工具
+  Pod 中的服务调试运行比较困难,我们将会在基础镜像中添加 DebugTools, 便于在 Pod 中排查故障
+
++ 迁移工具
+  您可能有很历史服务需要迁移部署到**TarsCloud K8SFramework** , 我们将会在项目添加迁移工具

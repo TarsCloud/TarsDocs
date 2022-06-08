@@ -171,9 +171,8 @@
 - [安装和使用说明]
   - [介绍](k8s/tarsk8s.md)
   - [特性](k8s/property.md)
-  - [快速部署](k8s/quick-deploy.md)
-  - [源码部署](k8s/source-deploy.md)
-  - [版本升级](k8s/upgrade.md)
+  - [安装](k8s/install.md)
+  - [升级](k8s/upgrade.md)
   - [云原生运维](k8s/cloud-operator.md)
   - [管理平台](k8s/tarsweb-operator.md)
   - [证书](k8s/ca.md)
