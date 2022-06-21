@@ -8,4 +8,4 @@ Tars 框架从(tarscloud/framework:v3.0.7 or K8SFramework:v1.2.5)开始内置了
 
 后续框架的功能扩展都会通过市场上的服务来扩展, tarsweb 也计划改成插件化模式, 即可以嵌入发布到框架上的其他 web 服务来扩展功能.
 
-计划讲压力测试, 网关, dcache 的 web 管理都从 tarsweb 中拆分出来, 通过独立的服务来嵌入的模式来完成框架的扩展.
+计划将压力测试, 网关, dcache 的 web 管理都从 tarsweb 中拆分出来, 通过独立的服务、嵌入的模式来完成框架的扩展.
