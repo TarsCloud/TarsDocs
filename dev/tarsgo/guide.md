@@ -6,18 +6,14 @@
 有关 tars 协议的更多详细信息, 请查看 [Tars协议](../../base/tars-protocol.md)
 
 ```go
-
-	module TestApp
-	{
-
-	interface Hello
-	{
-	    int test();
-	    int testHello(string sReq, out string sRsp);
-	};
-
-	};
-
+module TestApp
+{
+    interface Hello
+    {
+        int test();
+        int testHello(string sReq, out string sRsp);
+    };
+};
 ```
 
 ### **编译接口定义文件**
@@ -27,7 +23,10 @@
 编译并安装 tars2go 工具(如果已经执行, 则忽略)
 
 ```text
-go get github.com/TarsCloud/TarsGo/tars/tools/tars2go
+# < go 1.16
+go get -u github.com/TarsCloud/TarsGo/tars/tools/tars2go
+# >= go 1.16
+go install github.com/TarsCloud/TarsGo/tars/tools/tars2go@latest
 ```
 
 #### **编译 tars 文件并转成 go 文**
@@ -42,33 +41,31 @@ tars2go --outdir=./autogen hello.tars
 package main
 
 import (
-    "github.com/TarsCloud/TarsGo/tars"
+	"github.com/TarsCloud/TarsGo/tars"
 
-    "TestApp"
+	"TestApp"
 )
 
 type HelloImp struct {
 }
 
-//implete the Test interface
+// Test implement the Test interface
 func (imp *HelloImp) Test() (int32, error) {
-    return 0, nil
+	return 0, nil
 }
 
-//implete the testHello interface
-
+// TestHello implement the testHello interface
 func (imp *HelloImp) TestHello(in string, out *string) (int32, error) {
-    *out = in
-    return 0, nil
+	*out = in
+	return 0, nil
 }
-
 
 func main() { //Init servant
-    imp := new(HelloImp)                                    //New Imp
-    app := new(TestApp.Hello)                               //New init the A Tars
-    cfg := tars.GetServerConfig()                           //Get Config File Object
-    app.AddServant(imp, cfg.App+"."+cfg.Server+".HelloObj") //Register Servant
-    tars.Run()
+	imp := new(HelloImp)                                    //New Imp
+	app := new(TestApp.Hello)                               //New init the A Tars
+	cfg := tars.GetServerConfig()                           //Get Config File Object
+	app.AddServant(imp, cfg.App+"."+cfg.Server+".HelloObj") //Register Servant
+	tars.Run()
 }
 
 ```

@@ -7,7 +7,7 @@
 
 ## 环境依赖
 
-要求 Go `1.9.x` 或以上版本(推荐 `1.14` 以上的版本)，请查看 https://go.dev/doc/install
+要求 Go `1.9.x` 或以上版本(推荐 `1.14` 以上的版本)，请查看 [https://go.dev/doc/install](https://go.dev/doc/install)
 
 ## 安装
 
@@ -36,17 +36,17 @@ go env -w GO111MODULE=auto
 安装 `tarsgo` 创建项目脚手架:
 
 ```sh
-# < go 1.17 
+# < go 1.16
 go get -u github.com/TarsCloud/TarsGo/tars/tools/tarsgo
-# >= go 1.17
+# >= go 1.16
 go install github.com/TarsCloud/TarsGo/tars/tools/tarsgo@latest
 ```
 
 安装 `tars2go` 工具:
 
 ```sh
-# < go 1.17 
+# < go 1.16 
 go get -u github.com/TarsCloud/TarsGo/tars/tools/tars2go
-# >= go 1.17
+# >= go 1.16
 go install github.com/TarsCloud/TarsGo/tars/tools/tars2go@latest
 ```
