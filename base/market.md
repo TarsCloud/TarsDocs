@@ -8,6 +8,7 @@ Tars 框架从(tarscloud/framework:v3.0.7 or K8SFramework:v1.2.5)开始内置了
 
 ## 服务扩展
 
-框架的功能扩展都会通过市场上的服务来扩展, tarsweb(>=v3.0.3)已经支持服务扩展, 即可以通过发布到框架上的web 服务来扩展TarsWeb的功能.
+框架的功能扩展都会通过市场上的服务来扩展, tarframework(>=v3.0.9), tarsweb(>=v3.0.3)已经支持服务扩展, 即可以通过发布到框架上的web 服务来扩展TarsWeb的功能.
 
 压力测试, 网关, dcache 都将作为 Tars 的服务扩展接入到市场中, 使用者从市场中安装即可.
+
