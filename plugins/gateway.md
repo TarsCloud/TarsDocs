@@ -1,5 +1,3 @@
-- [English](Gateway.en.md)
-
 ## 简介
 
 [TarsGateway](https://github.com/TarsCloud/TarsGateway) 系统是基于 tars 框架开发的一套通用 api 网关, 它有两个服务组成:
