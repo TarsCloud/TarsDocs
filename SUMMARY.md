@@ -13,17 +13,6 @@
 - [服务市场](base/market.md)
 - [服务扩展](base/plugins.md)
 
-## 关键特性 <span id="important"></span>
-
-- [业务配置](dev/tars-config.md)
-- [服务监控](dev/tars-monitor.md)
-- [模板配置](dev/tars-template.md)
-- [无损发布/重启](dev/tars-lossless-patch.md)
-- [调用链](dev/tars-trace.md)
-- [IDC分组](dev/tars-idc-set.md)
-- [鉴权功能](dev/tars-auth.md)
-- [web用户体系](dev/tars-web-user.md)
-- [web管理平台 API](dev/tars-web-api.md)
 
 ## 框架部署 <span id="deploy"></span>
 
@@ -42,6 +31,18 @@
 - [TarsWeb 说明](installation/web.md)
 - [调用链升级注意事项](installation/train.md)
 - [框架版本说明](installation/version.md)
+
+## 关键特性 <span id="important"></span>
+
+- [业务配置](dev/tars-config.md)
+- [服务监控](dev/tars-monitor.md)
+- [模板配置](dev/tars-template.md)
+- [无损发布/重启](dev/tars-lossless-patch.md)
+- [调用链](dev/tars-trace.md)
+- [IDC分组](dev/tars-idc-set.md)
+- [鉴权功能](dev/tars-auth.md)
+- [web用户体系](dev/tars-web-user.md)
+- [web管理平台 API](dev/tars-web-api.md)
 
 ## 开发入门 <span id="enter"></span>
 
