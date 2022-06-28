@@ -1,7 +1,7 @@
 
 ## 介绍
 
-[tb(tars benchmark)](https://github.com/TarsCloud/TarsBenchmark)是专门为tars服务量身订做的无码压测工具，具备以下特性：
+[tars benchmark](https://github.com/TarsCloud/TarsBenchmark)是专门为tars服务量身订做的无码压测工具，具备以下特性：
 
  - 网络高性能：8核机器TPS支持超过20W/S;
  - 通讯扩展性：网络层支持TCP/UDP两种协议方式;
