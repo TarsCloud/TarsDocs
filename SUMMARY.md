@@ -22,7 +22,7 @@
 - [Linux/Mac 源码部署](installation/source.md)
 - [Windows 源码部署](installation/source-windows.md)
 - [TarsDocker 部署](installation/docker.md)
-- [业务服务容器化部署](installation/service-docker.md)
+- [业务服务容器化](installation/service-docker.md)
 - [TarsNode 部署](installation/node.md)
 - [K8S Docker 部署](installation/k8s-docker-1.md)
 - [K8STARS 部署方案](installation/k8s-docker-2.md)

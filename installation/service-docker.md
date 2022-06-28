@@ -66,25 +66,37 @@ docker run -d \
 
 ## 3 <span id="chapter-3"></span>使用说明
 
+## 镜像管理
+
+在使用之前, 需要在 web 平台->运维管理->镜像管理中完成镜像的配置, 这样业务服务可以运行在指定的镜像中, 如图:
+
+![镜像管理](../assets/images.jpg)
+
+## 服务设置
+
+在服务编辑界面, 设置服务以容器方式启动, 并选择合适的容器
+
+![服务设置](../assets/service_docker.jpg)
+
+
 主要使用流程如下:
 
-- 业务服务可以运行在镜像中, 镜像在 web 平台->运维管理->镜像管理中配置
+- 镜像在 web 平台->运维管理->镜像管理中配置
 - 先关闭服务
 - 在服务的部署以及编辑界面, 都可以将服务设置为: 以容器方式启动
 - 重启服务
 - 此时服务运行在容器中
-
-注意事项:
+## 注意事项
 
 - 业务服务以及 tarsregistry 所在的节点必须要能访问到镜像仓库
 - 业务服务如果已经以非容器化方式启动, 变更为容器方式启动, 不需要再发布, 只需要重启即可, 反之亦然(注意要先关闭服务, 变更启动模式, 再重启服务)
 - 容器的镜像你可以自己制作, 保证你的服务能在容器中运行即可
 - 当然你也可以直接用官方的, 如果使用的官方的, 就需要注意你的编译环境是否和官方的匹配, 官方提供的运行镜像对应的编译环境是: tarscloud/base-compiler, 这个和 K8SFramework 版本保持一致.
 - 官方几个语言的镜像如下:
-  > - tarscloud/tars.cppbase
-  > - tarscloud/tars.nodejsbase
-  > - tarscloud/tars.javabase
-  > - tarscloud/tars.php74base
+  > - tarscloud/tars.cppbase:latest
+  > - tarscloud/tars.nodejsbase:latest
+  > - tarscloud/tars.javabase:latest
+  > - tarscloud/tars.php74base:latest
 
 发布机制:
 
@@ -92,6 +104,7 @@ docker run -d \
 - 各个节点会同步基础镜像(在运维管理->镜像管理中配置)
 - 服务启动时, 本质上就是在镜像中启动了服务
 
+**如果服务无法启动, 请查看tarsnode的日志!**
 ## 4 <span id="chapter-4"></span>容器运行机制
 
 业务服务的容器运行时, 采用以下几个条件启动:
