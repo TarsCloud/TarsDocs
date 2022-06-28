@@ -16,9 +16,11 @@
 
 使用Tars实现的服务，可以使用cmake来管理go的代码编译
 
-TARS框架提供了一个基础的tars-tools.cmake ($GOPATH/src/github.com/TarsCloud/TarsGo/cmake/tars-tools.cmake), 业务服务的CMakeLists.txt引用该文件即可.
+TarsGo 框架`v1.3.3`之前版本提供了一个基础的tars-tools.cmake ($GOPATH/src/github.com/TarsCloud/TarsGo/cmake/tars-tools.cmake), 业务服务的CMakeLists.txt引用该文件即可.
 
-TARS框架也提供了脚本\($GOPATH/src/github.com/TarsCloud/TarsGo/tars/tools/cmake\_tars\_server.sh\)可以自动生成空的服务框架和CMakeLists.txt
+TarsGo 框架`v1.3.3`开始为方便go 1.17版本移除src目录，会在使用`tarsgo`脚手架创建项目是直接把`tars-tools.cmake`放入项目根目录的cmake目录中。并方便旧项目升级cmake编译脚本提供了`tarsgo upgrade cmake`一键升级CMakeLists.txt
+
+TARS框架也提供了脚手架`tarsgo`可以自动生成空的服务框架和CMakeLists.txt
 
 业务服务CMakeLists.txt示例如下:
 

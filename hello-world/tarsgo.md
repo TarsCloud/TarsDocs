@@ -7,6 +7,17 @@
 
 ## 服务编写
 
+### 安装依赖
+
+```shell
+# < go 1.16
+go get -u github.com/TarsCloud/TarsGo/tars/tools/tarsgo
+go get -u github.com/TarsCloud/TarsGo/tars/tools/tars2go
+# >= go 1.16
+go install github.com/TarsCloud/TarsGo/tars/tools/tarsgo@latest
+go install github.com/TarsCloud/TarsGo/tars/tools/tars2go@latest
+```
+
 ### 创建服务
 
 运行`tarsgo`脚手架，自动创建使用`make`构建服务必须的文件。如要使用`cmake`，可参考[这里](../dev/tarsgo/cmake.md)。

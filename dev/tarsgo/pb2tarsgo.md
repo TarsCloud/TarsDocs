@@ -4,8 +4,8 @@
 
 ```bash
 go get github.com/TarsCloud/TarsGo/tars
+# install protoc and protoc-gen-go
 go get github.com/golang/protobuf/{proto,protoc-gen-go}
-install protoc
 ```
 
 * Add tarsrpc plugin for protoc-gen-go
