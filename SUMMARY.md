@@ -12,7 +12,7 @@
 - [统一通信协议 Tup](base/tars-tup.md)
 - [服务市场](base/market.md)
 - [服务扩展](base/plugins.md)
-
+- [框架版本说明](installation/version.md)
 
 ## 框架部署 <span id="deploy"></span>
 
@@ -30,8 +30,7 @@
 - [Tars 框架更新及扩容](installation/expand.md)
 - [TarsWeb 说明](installation/web.md)
 - [调用链升级注意事项](installation/train.md)
-- [框架版本说明](installation/version.md)
-
+- [TarsWeb-v3.0.3 重大升级说明](installation/web-update.md)
 ## 关键特性 <span id="important"></span>
 
 - [业务配置](dev/tars-config.md)
