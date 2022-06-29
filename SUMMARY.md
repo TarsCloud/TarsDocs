@@ -30,7 +30,9 @@
 - [Tars 框架更新及扩容](installation/expand.md)
 - [TarsWeb 说明](installation/web.md)
 - [调用链升级注意事项](installation/train.md)
-- [TarsWeb-v3.0.3 重大升级说明](installation/web-update.md)
+- [TarsWeb-v3.0.3升级说明](installation/web-update.md)
+
+
 ## 关键特性 <span id="important"></span>
 
 - [业务配置](dev/tars-config.md)
