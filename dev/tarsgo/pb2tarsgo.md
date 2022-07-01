@@ -2,29 +2,36 @@
 
 ## 用法
 
-```bash
-go get github.com/TarsCloud/TarsGo/tars
-# install protoc and protoc-gen-go
-go get github.com/golang/protobuf/{proto,protoc-gen-go}
-```
+* install protoc [https://github.com/protocolbuffers/protobuf/releases](https://github.com/protocolbuffers/protobuf/releases)
 
-* Add tarsrpc plugin for protoc-gen-go
+* Install protoc-gen-go and protoc-gen-go-tarsrpc
 
 ```bash
-cd $GOPATH/src/github.com/golang/protobuf/protoc-gen-go && cp -r $GOPATH/src/github.com/TarsCloud/TarsGo/tars/tools/pb2tarsgo/protoc-gen-go/{link_tarsrpc.go,tarsrpc} .
-git checkout v1.3.5
-go build .
-cp protoc-gen-go $GOPATH/bin
 export PATH=$PATH:$GOPATH/bin
+# < go 1.16
+go get -u google.golang.org/protobuf/cmd/protoc-gen-go
+go get -u github.com/TarsCloud/TarsGo/tars/tools/protoc-gen-go-tarsrpc
+# >= go 1.16
+go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+go install github.com/TarsCloud/TarsGo/tars/tools/protoc-gen-go-tarsrpc@latest
 ```
 
 ## 示例
 
-* proto 文件
+* 创建项目目录
 
-```text
+```shell
+mkdir pb2tarsgo
+cd pb2tarsgo
+go mod init pb2tarsgo
+```
+
+* helloworld.proto 文件
+
+```protobuf
 syntax = "proto3";
 package helloworld;
+option go_package = "pb2tarsgo/helloworld";
 
 // The greeting service definition.
 service Greeter {
@@ -45,18 +52,18 @@ message HelloReply {
 
 * 生成代码
 
-```bash
-protoc --go_out=plugins=tarsrpc:. helloworld.proto
+```shell
+protoc --go_out=. --go-tarsrpc_out=. helloworld.proto
 ```
 
-* 服务端
+* 服务端 `mian.go`
 
 ```go
 package main
 
 import (
     "github.com/TarsCloud/TarsGo/tars"
-    "helloworld" 
+    "pb2tarsgo/helloworld" 
 )
 
 type GreeterImp  struct {
@@ -78,7 +85,7 @@ func main() {
 	
 ```
 
-* 客户端
+* 客户端 `client/client.go`
 
 ```go
 package main
@@ -86,7 +93,7 @@ package main
 import (
     "fmt"
     "github.com/TarsCloud/TarsGo/tars"
-    "helloworld"
+    "pb2tarsgo/helloworld"
 )
 
 func main() {
@@ -103,3 +110,29 @@ func main() {
 }
 ```
 
+* 配置文件 `config.conf`
+```xml
+<tars>
+    <application>
+        <server>
+            app=StressTest
+            server=HelloPbServer
+            local=tcp -h 127.0.0.1 -p 10014 -t 30000
+            logpath=/tmp
+            <StressTest.HelloPbServer.GreeterTestObjAdapter>
+                allow
+                endpoint=tcp -h 127.0.0.1 -p 10014 -t 60000
+                handlegroup=StressTest.HelloPbServer.GreeterTestObjAdapter
+                maxconns=200000
+                protocol=tars
+                queuecap=10000
+                queuetimeout=60000
+                servant=StressTest.HelloPbServer.GreeterTestObj
+                shmcap=0
+                shmkey=0
+                threads=1
+            </StressTest.HelloPbServer.GreeterTestObjAdapter>
+        </server>
+    </application>
+</tars>
+```
