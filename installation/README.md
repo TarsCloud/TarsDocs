@@ -39,11 +39,12 @@ Tars 部署方式有以下几种:
 - 源码编译部署
 - Docker 部署
 - K8s Docker 部署
-- K8s 融合部署
+- K8s Tars 融合部署
+- K8s Framework 融合部署
 
-根据你的需要选择一种即可.
+根据你的需要选择一种即可, 推荐非K8S模式下使用[Docker部署方式](./docker.mk), K8S模式下使用[K8SFramework模式](./k8s-docker-3.md).
 
-**建议部署都在 linux 上完成, 即使是 docker 安装, 推荐使用 centos7**
+**建议部署都在 linux 上完成, 即使是 docker 安装, 推荐使用 ubuntu:20.04以及后续版本**
 
 # 2 <span id="chapter-2"></span>源码编译方式部署
 
@@ -117,7 +118,7 @@ Tars 框架的 Docker 制作分三种模式:
 
 Tars 团队已经制作了一个[一键部署 k8s 的方案](k8s-docker-1.md)
 
-# 5 <span id="chapter-5"></span>K8S 融合部署
+# 5 <span id="chapter-5"></span>K8S Framework部署
 
 上面 K8s 的 Docker 部署, 虽然把 Tars 部署在 k8s 上运行起来, 但是实际发布, 扩容并没有使用 K8s, 只是把 k8s 当成了一个容器管理平台了.
 
@@ -127,12 +128,10 @@ https://github.com/TarsCloud/K8SFramework 提供了一种 Tars 和 K8S 深度融
 
 # 6 <span id="chapter-6"></span>推荐部署方案
 
-建议可以把集中方式都用一用, 以便你数据框架的基本部署, 当然如果你对 K8S 不熟悉, 那么可以不使用 K8S 方式部署, 总体而言 K8S 的学习成本和曲线还是比较高, 对中小公司未必是最佳选择.
-
 tars 的部署方式非常灵活和多样化, 可以根据自己公司的实际状况来选择, 我们对于部署方案的推荐如下:
 
-- 如果你的公司规模较大, 且熟悉 K8S 那么推荐使用 [K8S 融合部署](k8s-docker-3.md)
+- 如果你的公司规模较大, 且熟悉 K8S 那么推荐使用 [K8S Framework部署](k8s-docker-3.md)
 - 如果你的公司规模较小, 或者不熟悉 K8S, 那么推荐一般的[Docker 部署方式](docker.md):
-  > - 框架使用 docker 方式部署: tarscloud/framework
-  > - 节点也使用 docker 部署: tarscloud/tars-node
+  > - 框架使用 docker 部署: tarscloud/framework
+  > - 节点使用 docker 部署: tarscloud/tars-node
   > - 这种方式下, 可以根据需要启用容器化运行(这样每个业务服务也运行在独立的容器中)

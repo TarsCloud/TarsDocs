@@ -11,24 +11,39 @@
 - [基础通信协议 Tars](base/tars-protocol.md)
 - [统一通信协议 Tup](base/tars-tup.md)
 - [服务市场](base/market.md)
+- [服务扩展](base/plugins.md)
+- [框架版本说明](installation/version.md)
 
 ## 框架部署 <span id="deploy"></span>
 
 - [部署总体介绍](installation/README.md)
-- [Docker 环境安装](installation/docker-install.md)
-- [Mysql 安装](installation/mysql.md)
-- [Linux/Mac 源码部署](installation/source.md)
-- [Windows 源码部署](installation/source-windows.md)
-- [TarsDocker 部署](installation/docker.md)
-- [业务服务容器化部署](installation/service-docker.md)
-- [TarsNode 部署](installation/node.md)
-- [K8S Docker 部署](installation/k8s-docker-1.md)
-- [K8STARS 部署方案](installation/k8s-docker-2.md)
-- [K8SFramework 深度融合方案(强烈推荐)](installation/k8s-docker-3.md)
-- [Tars 框架更新及扩容](installation/expand.md)
-- [TarsWeb 说明](installation/web.md)
+- [Docker环境安装](installation/docker-install.md)
+- [Mysql安装](installation/mysql.md)
+- [框架源码部署(Linux/Mac)](installation/source.md)
+- [框架源码部署(Windows)](installation/source-windows.md)
+- [框架Docker部署](installation/docker.md)
+- [框架节点部署](installation/node.md)
+- [业务服务容器化](installation/service-docker.md)
+- [框架K8SDocker 部署](installation/k8s-docker-1.md)
+- [框架K8STARS 部署](installation/k8s-docker-2.md)
+- [框架K8SFramework 部署(强烈推荐)](installation/k8s-docker-3.md)
+- [框架更新及扩容](installation/expand.md)
+- [TarsWeb说明](installation/web.md)
 - [调用链升级注意事项](installation/train.md)
-- [框架版本说明](installation/version.md)
+- [TarsWeb-v3.0.3升级说明](installation/web-update.md)
+
+
+## 关键特性 <span id="important"></span>
+
+- [业务配置](dev/tars-config.md)
+- [服务监控](dev/tars-monitor.md)
+- [模板配置](dev/tars-template.md)
+- [无损发布/重启](dev/tars-lossless-patch.md)
+- [调用链](dev/tars-trace.md)
+- [IDC分组](dev/tars-idc-set.md)
+- [鉴权功能](dev/tars-auth.md)
+- [web用户体系](dev/tars-web-user.md)
+- [web管理平台 API](dev/tars-web-api.md)
 
 ## 开发入门 <span id="enter"></span>
 
@@ -46,21 +61,6 @@
   - [TarsCPP 快速入门](hello-world/tarscpp.md)
   - [TarsPHP 快速入门](hello-world/tarsphp.md)
   - [Tars.js 快速入门](hello-world/tars.js.md)
-
-## 压测工具 <span id="benchmark"></span>
-
-- [工具介绍](benchmark/README.md)
-- [压测工具编译](benchmark/build.md)
-- [工具二次开发介绍](benchmark/develop.md)
-- [Http 协议压测说明](benchmark/http-guide.md)
-- [Tars 协议压测说明](benchmark/tars-guide.md)
-
-## Tars 网关 <span id="gateway"></span>
-
-- [网关介绍](gateway/README.md)
-- [编译安装](gateway/install.md)
-- [服务配置说明](gateway/config.md)
-- [系统配置手册](gateway/operate.md)
 
 ## TarsCPP <span id="TarsCPP"></span>
 
@@ -154,17 +154,6 @@
 - [@tars/winston-tars](dev/tars.js/tars-winston-tars.md)
 - [tars2node](dev/tars.js/tars2node.md)
 
-## 其他重要特性 <span id="important"></span>
-
-- [业务配置](dev/tars-config.md)
-- [服务监控](dev/tars-monitor.md)
-- [模板配置](dev/tars-template.md)
-- [用户体系模块使用指引](dev/tars-web-user.md)
-- [管理平台 API](dev/tars-web-api.md)
-- [无损发布 重启](dev/tars-lossless-patch.md)
-- [调用链](dev/tars-trace.md)
-- [IDC 分组](dev/tars-idc-set.md)
-- [鉴权功能](dev/tars-auth.md)
 
 ## K8SFramework <span id="k8s"></span>
 
@@ -185,6 +174,12 @@
   - [发布业务镜像到 K8S 集群](k8s/exec-deploy.md)
   - [服务发布示例](k8s/example.md)
   - [如何调试业务服务](k8s/debug.md)
+
+## 服务扩展 <span id="extend"></span>
+
+- [压测工具](plugins/benchmark.md)
+- [网关服务](plugins/gateway.md)
+- [缓存服务](plugins/dcache.md)
 
 ## 常见问题 <span id="question"></span>
 

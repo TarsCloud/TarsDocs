@@ -59,9 +59,6 @@ module.exports.Hello = Hello;
 Hello.HelloProxyImp.prototype.initialize = function () {
     //TODO::
 };
-Hello.HelloProxyImp.prototype.initialize = function () {
-    //TODO::
-};
 Hello.HelloProxyImp.prototype.add = function (current, a, b, c) {
     c = a + b;
     current.sendResponse(0, c);

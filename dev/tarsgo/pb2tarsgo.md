@@ -75,7 +75,7 @@ func (imp *GreeterImp) SayHello(input helloworld.HelloRequest)(output helloworld
 }
 
 func main() {
-	// Init servant
+	  // Init servant
     imp := new(GreeterImp)                                      // New Imp
     app := new(helloworld.Greeter)                              // New init the A JCE
     cfg := tars.GetServerConfig()                               // Get Config File Object
@@ -111,6 +111,7 @@ func main() {
 ```
 
 * 配置文件 `config.conf`
+
 ```xml
 <tars>
     <application>
