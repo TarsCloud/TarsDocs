@@ -64,6 +64,7 @@
 
 ## TarsCPP <span id="TarsCPP"></span>
 
+- [编译](dev/tarscpp/tars-compiler.md)
 - [使用指南](dev/tarscpp/tars-guide.md)
 - [开发规范](dev/tarscpp/tars-spec.md)
 - [服务线程说明文档](dev/tarscpp/tars-server-thread.md)

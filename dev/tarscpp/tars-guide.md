@@ -1316,7 +1316,7 @@ void HelloImp::initialize()
 
 服务的管理命令的发送方式：通过 web 管理平台，将 TARS 服务发布到平台上，通过管理平台发送命令；
 
-TARS 服务框架目前内置了八种命令：
+TARS 服务框架目前内置了多种命令：
 
 > - tars.help //查看所有管理命令
 > - tars.loadconfig //从配置中心, 拉取配置下来: tars.loadconfig filename
@@ -1420,35 +1420,3 @@ for ( int i = 0; i < 10000000; i++ )
 > - 上报数据是定时上报的，可以在通信器的配置中设置，目前是 1 分钟一次;
 > - 创建 PropertyReportPtr 的函数：createPropertyReport 的参数可以是任何统计方式的集合，例子中是用到 6 六种统计方式，通常情况下可能只需要用到一种或两种;
 > - 注意调用 createPropertyReport 时，必须在服务启动以后创建并保存好创建的对象，后续拿这个对象 report 即可，不要每次使用的时候 create;
-
-## 13. tars 调用链
-
-功能介绍： Tars 支持将 rpc 调用路径信息上报 zipkin, 以协助定位网络调用问题。  
-关于 zipkin 使用可以在[https://zipkin.io/](https://zipkin.io/) 上找到 zipkin 的介绍及使用说明。
-
-编译及运行依赖：  
-Tars 调用链使用了 opentracking 和 zipkin-opentracking 库，由于 zipkin-opentracking 库使用了 libcurl 库的功能，需要额外安装 libcurl, 另外，编译器需要支持 c++11；  
-下载链接：  
-[opentracing-cpp](https://github.com/opentracing/opentracing-cpp)  
-[zipkin-cpp-opentracing](https://github.com/rnburn/zipkin-cpp-opentracing)
-
-使用说明：
-
-1. 编译及安装 tars 调用链功能通过编译选项\_USE_OPENTRACKING 进行控制，默认情况下为关闭。 打开方式：在 shell 中执行 export \_USE_OPENTRACKING=1，然后进行编译。 框架编译完后，修改 servant/makefile/makefile.tars 文件，在前面增加一行： `_USE_OPENTRACKING=1` 表示框架打开了调用链开关。另外，opentraking, curl, zipkin_opentracing 需要手动修改到正确的路径上来（目前默认路径为/usr/local/lib）。 然后使用 make install 安装 tars 框架。
-2. 配置 使用 tars 调用链功能时需要在程序配置文件中指定 zipkin 的地址，示例配置如下：
-
-```xml
-<tars>
-    <application>
-        …
-        <client>
-            …
-            collector_host=127.0.0.1
-            collector_port=9411
-            sample_rate=1.0
-        </client>
-    </application>
-</tars>
-```
-
-其中 collector_host 和 collector_port 为必选\(如果没有配置的话，调用链功能将无法使用\)，sample_rate 可选\(默认为 1.0,区间为 0.0~1.0,用于指定调用链信息上报 zipkin collector 的 rate\)
