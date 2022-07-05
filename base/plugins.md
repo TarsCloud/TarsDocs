@@ -49,7 +49,7 @@ type 的值为 1, 2, 3, 用于注册时使用, 请参见后续文档.
 
 - 后端服务
 
-请参考网关的 web 代码(https://TarsCloud/TarsGateway.git), src/common/AdminService.js, 提供了: 注册扩展服务, 验证框架 ticket, 获取用户权限等接口
+请参考网关的 web 代码(https://github.com/TarsCloud/TarsGateway.git), src/common/AdminService.js, 提供了: 注册扩展服务, 验证框架 ticket, 获取用户权限等接口
 
 ### 权限问题
 
