@@ -4,23 +4,34 @@
 
 * install protoc [https://github.com/protocolbuffers/protobuf/releases](https://github.com/protocolbuffers/protobuf/releases)
 
-* Install the tarsrpc plugin version of protoc-gen-go
+* Install protoc-gen-go and protoc-gen-go-tarsrpc
 
 ```bash
 export PATH=$PATH:$GOPATH/bin
 # < go 1.16
-go get -u github.com/TarsCloud/TarsGo/tars/tools/pb2tarsgo/protoc-gen-go
+go get -u google.golang.org/protobuf/cmd/protoc-gen-go
+go get -u github.com/TarsCloud/TarsGo/tars/tools/protoc-gen-go-tarsrpc
 # >= go 1.16
-go install github.com/TarsCloud/TarsGo/tars/tools/pb2tarsgo/protoc-gen-go@latest
+go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+go install github.com/TarsCloud/TarsGo/tars/tools/protoc-gen-go-tarsrpc@latest
 ```
 
 ## 示例
 
-* proto 文件
+* 创建项目目录
 
-```text
+```shell
+mkdir pb2tarsgo
+cd pb2tarsgo
+go mod init pb2tarsgo
+```
+
+* helloworld.proto 文件
+
+```protobuf
 syntax = "proto3";
 package helloworld;
+option go_package = "pb2tarsgo/helloworld";
 
 // The greeting service definition.
 service Greeter {
@@ -41,18 +52,18 @@ message HelloReply {
 
 * 生成代码
 
-```bash
-protoc --go_out=plugins=tarsrpc:. helloworld.proto
+```shell
+protoc --go_out=. --go-tarsrpc_out=. helloworld.proto
 ```
 
-* 服务端
+* 服务端 `mian.go`
 
 ```go
 package main
 
 import (
     "github.com/TarsCloud/TarsGo/tars"
-    "helloworld" 
+    "pb2tarsgo/helloworld" 
 )
 
 type GreeterImp  struct {
@@ -64,7 +75,7 @@ func (imp *GreeterImp) SayHello(input helloworld.HelloRequest)(output helloworld
 }
 
 func main() {
-	// Init servant
+	  // Init servant
     imp := new(GreeterImp)                                      // New Imp
     app := new(helloworld.Greeter)                              // New init the A JCE
     cfg := tars.GetServerConfig()                               // Get Config File Object
@@ -74,7 +85,7 @@ func main() {
 	
 ```
 
-* 客户端
+* 客户端 `client/client.go`
 
 ```go
 package main
@@ -82,7 +93,7 @@ package main
 import (
     "fmt"
     "github.com/TarsCloud/TarsGo/tars"
-    "helloworld"
+    "pb2tarsgo/helloworld"
 )
 
 func main() {
@@ -99,7 +110,8 @@ func main() {
 }
 ```
 
-* config.conf
+* 配置文件 `config.conf`
+
 ```xml
 <tars>
     <application>
