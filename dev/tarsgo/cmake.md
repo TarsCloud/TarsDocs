@@ -12,9 +12,61 @@
 
 ## 2. <span id="main-chapter-2"></span> cmake规范
 
-### 2.1. cmake使用
-
 使用Tars实现的服务，可以使用cmake来管理go的代码编译
+### 2.1 创建服务
+
+运行tarsgo脚手架，自动创建使用`cmake`构建服务必须的文件。如要使用makefile，[可参考这里](../../hello-world/tarsgo.md)
+
+tarsgo cmake App Server Servant GoModuleName
+例如：
+tarsgo cmake TestApp HelloGo SayHello github.com/Tars/test
+
+例如: 
+```sh
+MacBook-Pro-2:OrderServer jarod$ ~/go/bin/tarsgo cmake Cloud OrderServer Order pay
+🚀 Creating server Cloud.OrderServer, please wait a moment.
+
+go: creating new go.mod: module pay
+go: to add module requirements and sums:
+        go mod tidy
+
+CREATED OrderServer/CMakeLists.txt (397 bytes)
+CREATED OrderServer/Order.tars (166 bytes)
+CREATED OrderServer/Order_imp.go (602 bytes)
+CREATED OrderServer/client/CMakeLists.txt (161 bytes)
+CREATED OrderServer/client/client.go (419 bytes)
+CREATED OrderServer/cmake/CMakeDetermineGoCompiler.cmake (1615 bytes)
+CREATED OrderServer/cmake/CMakeGoCompiler.cmake.in (273 bytes)
+CREATED OrderServer/cmake/CMakeGoInformation.cmake (230 bytes)
+CREATED OrderServer/cmake/CMakeTestGoCompiler.cmake (49 bytes)
+CREATED OrderServer/cmake/golang.cmake (2444 bytes)
+CREATED OrderServer/cmake/tars-tools.cmake (9754 bytes)
+CREATED OrderServer/config/config.conf (714 bytes)
+CREATED OrderServer/debugtool/dumpstack.go (411 bytes)
+CREATED OrderServer/go.mod (20 bytes)
+CREATED OrderServer/main.go (484 bytes)
+CREATED OrderServer/start.sh (115 bytes)
+
+>>> Great！Done! You can jump in OrderServer
+>>> Tips: After editing the Tars file, execute the following cmd to automatically generate golang files.
+>>>       /bin/tars2go *.tars
+$ cd OrderServer
+$ ./start.sh
+🤝 Thanks for using TarsGo
+📚 Tutorial: https://doc.tarsyun.com/
+```
+
+完成服务创建以后, 你就可以编译代码了, 编译方式如下:
+```
+cd OrderServer
+make build
+cd build
+cmake ..
+make
+```
+
+### 2.2. cmake使用说明
+
 
 TarsGo 框架`v1.3.3`之前版本提供了一个基础的tars-tools.cmake ($GOPATH/src/github.com/TarsCloud/TarsGo/cmake/tars-tools.cmake), 业务服务的CMakeLists.txt引用该文件即可.
 
@@ -63,7 +115,7 @@ cmake ..
 make -j4
 ```
 
-### 2.2. 打包和上传服务
+### 2.3. 打包和上传服务
 
 你可以一键打包和上传服务:
 ```

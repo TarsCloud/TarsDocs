@@ -97,7 +97,7 @@
 
 - [基本介绍](dev/tarsgo/README.md)
 - [快速开始](hello-world/tarsgo.md)
-- [使用指面](dev/tarsgo/guide.md)
+- [使用指南](dev/tarsgo/guide.md)
 - [cmake 管理代码](dev/tarsgo/cmake.md)
 - [pb2tarsgo](dev/tarsgo/pb2tarsgo.md)
 - [性能数据](dev/tarsgo/performance.md)
