@@ -1,7 +1,19 @@
 
 ## 介绍
 
-[tars benchmark](https://github.com/TarsCloud/TarsBenchmark)是专门为tars服务量身订做的无码压测工具，具备以下特性：
+[tars benchmark](https://github.com/TarsCloud/TarsBenchmark)是专门为tars服务量身订做的压测工具.
+
+完成安装后, 在服务管理页面, 会增加新的tab, 如下图(你需要上传自己的tars协议文件), 如果没有增加说明服务安装或启动失败.
+
+![接口以及压力测试系统入口](../assets/interface.jpg)
+
+- 点击`调试`, 录入参数, 即可进行TARS服务的接口测试
+
+- 点击`压测`, 即可基于配置的接口, 完成TARS服务的压力测试
+
+**注意如果你的服务的tars文件是多个tars文件组成(通过include引用的), 那么你需要将他们合并成一个上传**
+
+## 压测的主要功能
 
  - 网络高性能：8核机器TPS支持超过20W/S;
  - 通讯扩展性：网络层支持TCP/UDP两种协议方式;
