@@ -184,6 +184,11 @@ mvn package
 
 ### 接口调试
 
+注意新版本接口调试已经变成了框架的插件, 需要独立安装, 请参考以下三篇文档:
+- [市场介绍](../../base/market.md)
+- [插件介绍](../../base/plugins.md)
+- [接口和压测介绍](../../plugins/benchmark.md)
+
 进入接口调试界面，点击添加，在HelloServer服务中上传resources目录下的hello.tars文件，在HelloClient服务中上传client.tars文件。
 
 **服务端：**
