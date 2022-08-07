@@ -10,10 +10,11 @@
 - [基础概念](base/tars-concept.md)
 - [基础通信协议 Tars](base/tars-protocol.md)
 - [统一通信协议 Tup](base/tars-tup.md)
+- [开发模式介绍](base/README.md)
+- [模板配置](base/start-config.md)
 - [服务市场](base/market.md)
 - [服务扩展](base/plugins.md)
 - [框架版本说明](installation/version.md)
-- [开发模式介绍](base/README.md)
 
 ## 框架部署 <span id="deploy"></span>
 
@@ -38,7 +39,6 @@
 
 - [业务配置](dev/tars-config.md)
 - [服务监控](dev/tars-monitor.md)
-- [模板配置](dev/tars-template.md)
 - [无损发布/重启](dev/tars-lossless-patch.md)
 - [调用链](dev/tars-trace.md)
 - [IDC分组](dev/tars-idc-set.md)
