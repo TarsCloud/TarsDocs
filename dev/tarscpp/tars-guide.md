@@ -1325,6 +1325,13 @@ TARS 服务框架目前内置了多种命令：
 > - tars.connection //查看当前链接情况
 > - tars.loadproperty //使配置文件的 property 信息生效
 > - tars.setdyeing //设置染色信息 tars.setdyeing key servant \[interface\]
+> - tars.viewversion // 查看服务采用TARS的版本
+> - tars.closecout // 设置是否启关闭cout\cin\cerr: tars.openthreadcontext yes/NO 服务重启才生效
+> - tars.enabledaylog // 设置按天日志是否输出: tars.enabledaylog [remote|local]|[logname]|[true|false]
+> - tars.closecore // 设置服务的core limit: tars.setlimit [yes|no]
+> - tars.reloadlocator // 重新加载 locator 的配置信息
+> - tars.resource // 获取需要上报的stat数据size、Obj个数以及各个Obj的名字/发送缓冲区大小/接收缓冲区大小等资源信息
+> - tars.bid // 查看服务编译时间, build id
 
 ## 10. 统计上报
 
