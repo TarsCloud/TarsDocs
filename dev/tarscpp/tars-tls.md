@@ -68,11 +68,11 @@ cmake .. -DTARS_SSL=ON
 
 ### 服务器端
 
-你可以在配置文件中, adapter下增加自己的证书:
+你可以在私有模板中配置, adapter下增加自己的证书:
 
 ```
     <server>
-        <Hello2Adapter>
+        <TestApp.SSLServer.SSL2ObjAdapter>
             #ip:port:timeout
             endpoint = ssl -h 127.0.0.1 -p 9007 -t 10000
             #allow ip
@@ -92,11 +92,12 @@ cmake .. -DTARS_SSL=ON
             key         = ../examples/SSLDemo/certs/server1.key
             #default is 0
             verifyclient = 1
-        </Hello2Adapter>
+        </TestApp.SSLServer.SSL2ObjAdapter>
     </server>    
 
 ```
 
+注意: TestApp.SSLServer.SSL2ObjAdapter 这个格式根据Obj的名称生成的: Obj+Adapter
 ### 客户端
 
 客户端同样, 也可以在增加某个远端服务的证书, 而不使用统一的, 在配置文件中:
