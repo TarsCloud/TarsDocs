@@ -583,11 +583,12 @@ ReportStat(msg, 1, 0, 0)
 该框架提供了三个宏来上报不同类型的异常：
 
 ```go
-tars.reportNotifyInfo("Get data from mysql error!")
+tars.ReportNotifyInfo(notifyf.NOTIFYLEVEL_NOTIFYERROR, "Get data from mysql error!")
 ```
 
 Info 是一个字符串，可以直接将字符串上报给 tarsnotify。 上报的字符串可以在页面上看到，随后，我们可以根据上报的信息进行报警。
 
+如果结合: http://alarm.k.tarsyun.com/alarms/index.html#/document, 能快速将异常通知到您!
 ## 特性监控
 
 为了便于业务统计，TARS 框架还支持在 Web 管理平台上显示信息。

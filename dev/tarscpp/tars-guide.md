@@ -1375,6 +1375,9 @@ TARS_NOTIFY_ERROR(info)
 
 Info 为字符串, 可以直接上报字符串到 tarsnotify，页面可以看到上报的字符串，后续可以根据上报的信息进行报警。
 
+
+如果结合: http://alarm.k.tarsyun.com/alarms/index.html#/document, 能快速将异常通知到您!
+
 ## 12. 属性统计
 
 为了方便业务做统计，TARS 框架中也支持能够在 web 管理平台看上报的信息展示。

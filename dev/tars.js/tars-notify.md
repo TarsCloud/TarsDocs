@@ -27,3 +27,5 @@
 
 平台每10分钟对上报的异常进行收敛告警。
 
+
+如果结合: http://alarm.k.tarsyun.com/alarms/index.html#/document, 能快速将异常通知到您!
