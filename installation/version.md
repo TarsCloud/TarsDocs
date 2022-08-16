@@ -1,6 +1,7 @@
 # 目录
 
 > - [版本说明](#chapter-1)
+> - [版本列表](#chapter-2)
 
 # 1 <span id="chapter-1"></span>版本说明
 
@@ -19,3 +20,21 @@
 - `tarscloud/framework`包含了 TarsFramework 也包含了 TarsWeb, 因此无法用 TarsFramework 的版本号来标示
 - `tarscloud/framework:$tag` 的 tag 是`https://github.com/TarsCloud/Tars` 对应的 tag 号
 - 所有相关代码最终都以 submodule 形式被 Tars 这个 git 所引用, 且 docker 的镜像是通过 Tars 这个 git 的 action 自动编译出来的, 因此对应的该版本号!
+
+# 2 <span id="chapter-2"></span>版本列表
+
+| docker镜像版本 | TarsFramework版本 | TarsWeb版本 |
+|--------------|-------------------|-------------|
+| v3.0.12      | v3.0.10            | v3.0.8      |
+| v3.0.11      | v3.0.9            | v3.0.7      |
+| v3.0.10      | v3.0.8            | v3.0.3      |
+| v3.0.9      | v3.0.8            | v3.0.2      |
+| v3.0.8      | v3.0.7            | v3.0.1      |
+| v3.0.7      | v3.0.6            | v3.0.0      |
+| v3.0.6      | v3.0.5            | v2.4.27     |
+| v3.0.5      | v3.0.4            | v2.4.25     |
+| v3.0.4      | v3.0.3            | v2.4.23      |
+| v3.0.3      | v3.0.3            | v2.4.21      |
+| v3.0.2      | v3.0.2            | v2.4.20     |
+| v3.0.1      | v3.0.1            | v2.4.19      |
+
