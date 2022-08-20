@@ -142,7 +142,6 @@
 - [@tars/winston-tars](dev/tars.js/tars-winston-tars.md)
 - [tars2node](dev/tars.js/tars2node.md)
 
-
 ## K8SFramework <span id="k8s"></span>
 
 - [安装和使用说明]
@@ -165,6 +164,7 @@
 
 ## 服务扩展 <span id="extend"></span>
 
+- [云告警](plugins/alarm.md)
 - [接口及压测工具](plugins/benchmark.md)
 - [网关服务](plugins/gateway.md)
 - [缓存服务](plugins/dcache.md)
