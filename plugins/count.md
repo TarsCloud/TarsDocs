@@ -1,19 +1,13 @@
 # 介绍
 
-**请通过市场安装, 详细文档请参考市场最新版本**
-
 ## 服务说明
 
+实现以下几种功能:
+- 自增计数, 每次调用自增计数
+- 指定范围循环自增计数, 每次调用自增计数, 当到最大值则从最小值开始重新计数
+- 唯一随机字符串, 可以设置字符串过期时间
+
 基于 raft 实现的数据存储服务, 能实现 2n+1 台节点的数据一致性存储.
-
-服务有两个 servant:
-
-- RaftObj: raft 端口接口
-- CountObj: 业务服务模块
-
-使用者调用 CountObj 接口即可, RaftObj 是提供给 raft 协议协商使用.
-
-读接口都带有 leader 参数, 表示是否一定要从 leader 读取数据, 对于实时性以及数据准确性要求不那么高的请求, 可以设置 leader 为 false, 这样能提高整体集群的通信效率.
 
 ## 配置文件
 
@@ -56,9 +50,21 @@
 
 - 使用 c++, 底层数据存储用 rockesdb
 - 拿到 tars 协议文件, 通过 CountPrx 即可完成服务的调用
-- 技术接口`count`数据接口最终都转发到 leader 来执行写处理
+- 计数接口`count`/`circleCount`数据接口最终都转发到 leader 来执行写处理
 - 查询数据接口可以指定是否在 leader 执行, 如果不指定 leader, 不保证写入的数据马上能查到, 因为数据同步有一定延时
 - 如果查询每次指定 leader 会影响效率, 但是如果不指定 leader 会有数据延迟(通常都是毫秒级别)
 - 可以在 tarsweb 上, 发送命令查看和修改表的数据, 方便调试
   > - count.get sBusinessName sKey
-  > - count.set sBusinessName sKey value
+  > - count.set sBusinessName sKey value default
+  > - count.circle sBusinessName sKey value min max 
+
+## 服务说明
+
+服务有两个 servant:
+
+- RaftObj: raft 端口接口
+- CountObj: 业务服务模块
+
+使用者调用 CountObj 接口即可, RaftObj 是提供给 raft 协议协商使用.
+
+读接口都带有 leader 参数, 表示是否一定要从 leader 读取数据, 对于实时性以及数据准确性要求不那么高的请求, 可以设置 leader 为 false, 这样能提高整体集群的通信效率.

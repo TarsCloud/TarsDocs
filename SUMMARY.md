@@ -168,10 +168,11 @@
 - [云告警](plugins/alarm.md)
 - [接口及压测工具](plugins/benchmark.md)
 - [网关服务](plugins/gateway.md)
-- [缓存服务](plugins/dcache.md)
+- [dcache缓存服务](plugins/dcache.md)
 - [发送邮件服务](plugins/sendmail.md)
-- [存储服务](plugins/storage.md)
-- [计数服务](plugins/count.md)
+- [一致性存储服务](plugins/storage.md)
+- [一致性存储web管理平台](plugins/storage-web.md)
+- [唯一计数服务](plugins/count.md)
 
 ## 常见问题 <span id="question"></span>
 

@@ -1,7 +1,4 @@
-
 ## 服务说明
-
-**请通过市场安装, 详细文档请参考市场最新版本**
 
 基于 raft 实现的数据存储服务, 能实现 2n+1 台节点的数据一致性存储.
 
@@ -12,6 +9,9 @@
 
 使用者调用StorageObj 接口即可, RaftObj是提供给raft协议协商使用.
 
+它的单机读写速度大概是mysql的十倍, 且能保持多机数据一致性, 当你这类需求时可以采用这个服务来存储数据.
+
+同时它也提供给[web管理平台](./storage-web.md), 来快速访问数据
 ## 配置文件
 
 服务的配置文件格式如下:
@@ -50,6 +50,9 @@
 
 - 使用c++, 底层数据存储用rockesdb, 实现mkey+ukey+data的存储方式
 - 拿到tars协议文件, 通过StoragePrx即可完成服务的调用
+- 支持两种存储方式, 一种是map类table存储格式, 一类是队列模式
+
+### table模式
 - mkey是主key, ukey是子key, data是实际数据, 使用vector<byte>, 因此可以存放二进制数据
 - 支持多张表, 使用时需要调用createTable来创建表, createTable可以重复调用, 比如在服务每次启动时调用
 - 注意mkey/ukey只能使用字符串(不能用二进制数据!!!), 且在存储是按照字符串从小到大排序的, 因此遍历时可以按照顺序遍历
@@ -66,6 +69,12 @@
 - 可以在tarsweb上, 发送命令查看和修改表的数据, 方便调试
  >- storage.get table mkey ukey
  >- storage.set table mkey ukey value
+ >- storage.del table mkey ukey value
+
+### queue模式
+- 队列模式, 接口相对简单, 可以push和pop
+- 根据数据在队列中的索引, 指定读取/写入/删除某一条数据
+- 数据放入队列中, 也可以指定超时时间, 一旦超时则获取不到该条数据了
 
 ## 性能说明
 

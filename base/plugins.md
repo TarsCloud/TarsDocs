@@ -121,3 +121,16 @@ registerPlugin 的参数说明如下:
 - path: 路由地址, 必须以`/plugins/${group}`开头, 其中${group}是上架到 Tars 服务市场上的 group, 从而避免相互冲突, 比如网关是: /plugins/base/gateway, 压力测试系统是: /plugins/base/benchmark
 
 **注意这里path是TarsWeb用来路由请求到你的服务的, 因此你的服务所有请求都必须是这个path路径!**
+
+
+## 示例
+
+如果你也希望实现类似的插件服务, 可以存储扩展的管理平台web代码: 
+
+```
+https://github.com/TarsCloudMarket/StorageWebServer
+```
+
+或者参考网关/压测服务的web代码
+- https://github.com/TarsCloud/TarsGateway/tree/master/web
+- https://github.com/TarsCloud/TarsBenchmark/tree/master/web
