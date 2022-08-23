@@ -748,6 +748,15 @@ if(iRet != 0)
 cout << stHttpRep.getContent();
 ```
 
+### TC_HttpAsync
+
+- Http协议异步请求类
+- 支持ssl
+
+### TC_UUIDGenerator
+- 单例
+- 生成唯一的UUID
+
 ## 命令解析、配置文件类
 
 ### TC_Config
