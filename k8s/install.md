@@ -16,7 +16,7 @@
 > 如果您希望查看集群的所有节点, 您可以执行如下命令:
 
 > ```shell
-> kubeclt get nodes -o wide
+> kubectl get nodes -o wide
 > ```
 >
 > 作为选定节点的参考指标, 我们希望您能理解  **TarsCloud K8SFramework** 的磁盘管理策略, 具体请参考 <<[特性](property.sh)>> 文档的 "磁盘管理" 一节
@@ -28,19 +28,19 @@
 > 您可以使用如下指令完成完成该操作:
 
 > ```shell
-> kubeclt label nodes ${node1} ${node2} ... tars.io/node.${namespace}=
+> kubectl label nodes ${node1} ${node2} ... tars.io/node.${namespace}=
 > ```
 > 以选定的节点名 node-007, node-008, node-009, 选定的 namespace 名 tars-dev 为例
 > 您可以执行:
 
 > ```shell
-> kubeclt label nodes node-007 node-008 node-009 tars.io/node.tars-dev=
+> kubectl label nodes node-007 node-008 node-009 tars.io/node.tars-dev=
 > ```
 > 如果您希望追加 **TarsCloud K8SFramework** 的可用节点, 也可以按以上命令操作
 > 如果你希望撤销 **TarsCloud K8SFramework** 的可用节点, 您可以执行如下命令:
 >
 > ```shell
-> kubeclt label nodes ${node1} ${node2} ... tars.io/node.${namespace}-
+> kubectl label nodes ${node1} ${node2} ... tars.io/node.${namespace}-
 > ```
 > 撤销标签后, 已经被调度运行的 pod 是否会立刻被节点驱逐由 Kubernetes 的调度器策略决定
 
@@ -53,7 +53,7 @@
 > 您可以使用 以下命令执行该操作:
 
 > ```shell
-> kubeclt label nodes ${node1} ${node2} ... tars.io/SupportLocalVolume=
+> kubectl label nodes ${node1} ${node2} ... tars.io/SupportLocalVolume=
 > ```
 
 ### 5. 准备镜像仓库
@@ -173,29 +173,29 @@ kubectl get pods -n ${namespace} -o wide
 
   ```shell
   # 查询节点
-  kubeclt get nodes
+  kubectl get nodes
   
   # 以选定节点为 node_1, node_2, framework 安装命名空间为 tars-dev 为例
-  kubeclt label nodes node_1 node_2 tars.io/node.tars-dev=
+  kubectl label nodes node_1 node_2 tars.io/node.tars-dev=
   ```
 
 + 为处理问题2, 您需要遵循 "准备" 给选定节点添加  "tars.io/SupportLocalVolume" 标签
 
   ```shell
   # 查询节点
-  kubeclt get nodes
+  kubectl get nodes
   
   # 以选定节点为 node_1, node_2为例
-  kubeclt label nodes node_1 node_2 tars.io/SupportLocalVolume=
+  kubectl label nodes node_1 node_2 tars.io/SupportLocalVolume=
   ```
 
 + 为处理问题3, 您需要遵循 "准备" 给选定节点添加  "tars.io/SupportLocalVolume" 标签
   ```shell
   # 查询节点
-  kubeclt get nodes
+  kubectl get nodes
   
   # 以选定节点为 node_1, node_2为例
-  kubeclt label nodes node_1 node_2 tars.io/SupportLocalVolume=
+  kubectl label nodes node_1 node_2 tars.io/SupportLocalVolume=
   ```
 
 + 问题3 解决后, 问题4 所述的 pod 会被 Kubernetes 调度器多次重启直到恢复正常, 如果重启间隔过长, 您可以删除 pod 并等待重启恢复
