@@ -30,9 +30,9 @@
 
 ### 服务器
 
-服务器上必须安装 docker, 且 docker 的本地套接字地址最好默认是: `/var/run/docker.run` (通常安装都在这里, 如果不在这里, 则需要修改 Tars 框架中 tarsnode/tarsregistry 的模板, 指向实际的地址)
+服务器上必须安装 docker, 且 docker 的本地套接字地址最好默认是: `/var/run/docker.sock` (通常安装都在这里, 如果不在这里, 则需要修改 Tars 框架中 tarsnode/tarsregistry 的模板, 指向实际的地址)
 
-如果是 docker 部署方式, 请请映射宿主机的`/var/run/docker.run`到镜像中`/var/run/docker.run`, 比如:
+如果是 docker 部署方式, 请请映射宿主机的`/var/run/docker.sock`到镜像中`/var/run/docker.sock`, 比如:
 
 ```
 docker --name=tars-framework \
@@ -49,7 +49,7 @@ docker --name=tars-framework \
     -v /etc/localtime:/etc/localtime \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -p 3000:3000 \
-    tarscloud/framework:v3.0.6
+    tarscloud/framework:v3.0.14
 
 docker run -d \
     --name=tars-node \
