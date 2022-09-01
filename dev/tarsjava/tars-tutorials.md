@@ -586,7 +586,14 @@ public class App {
 
 通过spring-boot-maven-plugin，在根目录下执行mvn package即可打包为jar包进行部署。
 
+##### 获取运行时Context
 
+```JAVA
+
+TarsServantRequest request=  (TarsServantRequest)ContextManager.getContext().request();
+Map<String,String> context = request.getContext();
+
+```
 
 ## Tars-Spring-Cloud 使用说明
 
