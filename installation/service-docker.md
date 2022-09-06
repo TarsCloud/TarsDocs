@@ -28,6 +28,8 @@
 
 - tarscloud/framework>v3.0.6
 
+在看到本文档时, 建议使用镜像版本`>=tarscloud/framework>v3.0.15`的镜像来部署tars框架.
+
 ### 服务器
 
 服务器上必须安装 docker, 且 docker 的本地套接字地址最好默认是: `/var/run/docker.sock` (通常安装都在这里, 如果不在这里, 则需要修改 Tars 框架中 tarsnode/tarsregistry 的模板, 指向实际的地址)
@@ -43,13 +45,14 @@ docker --name=tars-framework \
     -e MYSQL_PORT=3306 \
     -e REBUILD=false \
     -e INET=eth0 \
-    -e SLAVE=false \
+    -e SLAVE=false \    
+    -e TARS_HOSTPATH=/data/framework \
     --ip="172.25.0.3" \
     -v /data/framework:/data/tars \
     -v /etc/localtime:/etc/localtime \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -p 3000:3000 \
-    tarscloud/framework:v3.0.14
+    tarscloud/framework:v3.0.15
 
 docker run -d \
     --name=tars-node \
@@ -57,12 +60,17 @@ docker run -d \
     -e INET=eth0 \
     -e WEB_HOST="http://172.25.0.3:3000" \
     --ip="172.25.0.5" \
+    -e TARS_HOSTPATH=/data/tars \
     -v /data/tars:/data/tars \
     -v /etc/localtime:/etc/localtime \
     -p 9000-9010:9000-9010 \
     -v /var/run/docker.sock:/var/run/docker.sock \
     tarscloud/tars-node:latest
 ```
+
+注意: 
+- 这里相比普通方式多了一个`TARS_HOSTPATH`的环境变量, 它指向宿主机的映射目录, 即`-v /data/tars:/data/tars`这里宿主机的目录
+- 它存在的原因是, 当以容器化方式启动业务服务时, 需要映射宿主机的目录到业务服务的容器中
 
 ## 3 <span id="chapter-3"></span>使用说明
 
