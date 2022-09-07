@@ -576,8 +576,16 @@ cout << TC_Common::tostr(v.begin(), v.end()) << endl;
 
 ### TC_Transceiver
 
-提供网络连接的操作类。
+提供网络连接的操作类, 具体使用请参考头文件。
 
+### TC_CoroutineScheduler
+
+协程调度器.
+### TC_CoroutineQueue
+
+协程调度队列.
+
+用于跨线程的协程的数据交互, 队列没有数据时, 协程会阻塞在epoller上, 当有网络事件或者其他协程调度时会被唤醒处理其他事件!
 ### TC_ClientSocket
 
 提供客户端同步请求的socket类，用于发送数据包，支持tcp/udp，支持**大句柄**；
@@ -843,7 +851,6 @@ class TestAuto : public TC_HandleBase
 {
     
 };
-```
 
 Typedef TC_AutoPtr<TestAuto> TestAutoPtr;
 ```
