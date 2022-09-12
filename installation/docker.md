@@ -134,7 +134,7 @@ docker pull tarscloud/framework:v{x.y.z}
 
 说明:
 
-- 使用指定版本，如：`v3.0.10`，便于开发和生产环境的部署，后期需要升级时可选择更新的版本 tag，升级之前请先查看 GitHub 的 changelog，避免升级到不兼容的版本造成损失。
+- 使用指定版本，如：`v3.0.15`，便于开发和生产环境的部署，后期需要升级时可选择更新的版本 tag，升级之前请先查看 GitHub 的 changelog，避免升级到不兼容的版本造成损失。
 - 注意这里的 Tag 不是源码 TarsFramework 的 tag 号, 而是 Tars 这个 GIT 仓库的 tag 号, 因为 tarscloud/framework 还包含了 TarsWeb
 - 当部署好以后, TarsWeb 页面的右上角显示了内置的 TarsFramework&TarsWeb 的版本号, 以便你对应源码.
 
@@ -159,7 +159,7 @@ docker run -d \
     -v /etc/localtime:/etc/localtime \
     -p 3000:3000 \
     -p 3001:3001 \
-    tarscloud/framework:v3.0.10
+    tarscloud/framework:v3.0.15
 ```
 
 安装完毕后, 访问 `http://${your_machine_ip}:3000` 打开 web 管理平台
@@ -210,7 +210,7 @@ docker run -d \
     --ip="172.25.0.4" \
     -v /data/framework-slave:/data/tars \
     -v /etc/localtime:/etc/localtime \
-    tarscloud/framework:v3.0.10
+    tarscloud/framework:v3.0.15
 ```
 
 **注意:SLAVE 参数不同**
@@ -284,7 +284,7 @@ docker run -d \
     -e INET=eth0 \
     -v /etc/localtime:/etc/localtime \
     -v /tmp/test/data:/data/tars \
-    tarscloud/framework:v3.0.10
+    tarscloud/framework:v3.0.15
 ```
 
 **注意目录映射, 保证了 docker 重启, 数据不会丢失**
@@ -336,7 +336,7 @@ docker --name=tars-framework \
     -v /data/framework:/data/tars \
     -v /etc/localtime:/etc/localtime \
     -p 3000:3000 \
-    tarscloud/framework:v3.0.10
+    tarscloud/framework:v3.0.15
 ```
 
 - 查看 docker 输出是否有明显问题
@@ -372,7 +372,7 @@ services:
       internal:
         ipv4_address: 172.25.1.2
   framework:
-    image: tarscloud/framework:v3.0.10
+    image: tarscloud/framework:v3.0.15
     container_name: tars-framework
     ports:
       - "3000:3000"
