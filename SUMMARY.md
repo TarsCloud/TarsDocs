@@ -21,7 +21,7 @@
 - [部署总体介绍](installation/README.md)
 - [Docker环境安装](installation/docker-install.md)
 - [Mysql安装](installation/mysql.md)
-- [框架云部署部署](installation/cloud.md)
+- [框架云部署](installation/cloud.md)
 - [框架源码部署(Linux/Mac)](installation/source.md)
 - [框架源码部署(Windows)](installation/source-windows.md)
 - [框架Docker部署](installation/docker.md)
