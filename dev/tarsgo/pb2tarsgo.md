@@ -56,7 +56,7 @@ message HelloReply {
 protoc --go_out=. --go-tarsrpc_out=. helloworld.proto
 ```
 
-* 服务端 `mian.go`
+* 服务端 `main.go`
 
 ```go
 package main
