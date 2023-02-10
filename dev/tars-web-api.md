@@ -1,4 +1,4 @@
-r# 管理平台 API
+# 管理平台 API
 > * [Auth](#auth)
 > * [业务树](#tree)
 > * [服务管理](#server)
