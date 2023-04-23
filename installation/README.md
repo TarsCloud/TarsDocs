@@ -42,7 +42,7 @@ Tars 部署方式有以下几种:
 - K8s Tars 融合部署
 - K8s Framework 融合部署
 
-根据你的需要选择一种即可, 推荐非K8S模式下使用[Docker部署方式](./docker.mk), K8S模式下使用[K8SFramework模式](./k8s-docker-3.md).
+根据你的需要选择一种即可, 推荐非K8S模式下使用[Docker部署方式](./docker.md), K8S模式下使用[K8SFramework模式](./k8s-docker-3.md).
 
 **建议部署都在 linux 上完成, 即使是 docker 安装, 推荐使用 ubuntu:20.04以及后续版本**
 
