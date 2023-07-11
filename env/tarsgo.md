@@ -11,6 +11,8 @@
 
 ## 安装
 
+### Go安装
+
 下面以 Go `1.14.x` 为例:
 
 安装 go (比如安装目录: `/usr/local/go`), 设置好 `GOROOT`, `GOPATH`, 比如, Linux 下:
@@ -33,20 +35,32 @@ go env -w GOPROXY=https://goproxy.cn,direct
 go env -w GO111MODULE=auto
 ```
 
-安装 `tarsgo` 创建项目脚手架:
+### tarsgo、tars2go安装
 
-```sh
-# < go 1.16
-go get -u github.com/TarsCloud/TarsGo/tars/tools/tarsgo
-# >= go 1.16
-go install github.com/TarsCloud/TarsGo/tars/tools/tarsgo@latest
+#### 查看go版本
+
+```bash
+go version
 ```
 
-安装 `tars2go` 工具:
+#### go [get, install] 命令
+
+- 如果 go 版本在 1.16 以前，则使用如下命令安装：
+    ```sh
+    GO111MODULE=on go get -u github.com/TarsCloud/TarsGo/tars/tools/tarsgo@latest
+    GO111MODULE=on go get -u github.com/TarsCloud/TarsGo/tars/tools/tars2go@latest
+    ```
+
+- 如果 go 版本在 1.16 及以后，则使用如下命令安装：
+
+    ```sh
+    go install github.com/TarsCloud/TarsGo/tars/tools/tarsgo@latest
+    go install github.com/TarsCloud/TarsGo/tars/tools/tars2go@latest
+    ```
+
+#### 验证
 
 ```sh
-# < go 1.16 
-go get -u github.com/TarsCloud/TarsGo/tars/tools/tars2go
-# >= go 1.16
-go install github.com/TarsCloud/TarsGo/tars/tools/tars2go@latest
+tarsgo -v
+tars2go
 ```

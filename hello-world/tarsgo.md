@@ -66,8 +66,8 @@ $ ./start.sh
 
 为了测试我们定义一个 echoHello 的接口，客户端请求参数是短字符串如 "tars"，服务响应"hello tars".
 
-```go
-# cat HelloGo/SayHello.tars
+```bash
+cat HelloGo/SayHello.tars
 module TestApp{
     interface SayHello{
         int echoHello(string name, out string greeting);
@@ -82,7 +82,7 @@ module TestApp{
 首先把 tars 协议文件转化为 Golang 语言形式
 
 ```bash
-tars2go  -outdir=tars-protocol -module=github.com/Tars/test SayHello.tars
+tars2go -outdir=tars-protocol -module=github.com/Tars/test SayHello.tars
 ```
 
 现在开始实现服务端的逻辑：客户端传来一个名字，服务端回应 hello name。
@@ -191,9 +191,9 @@ func main() {
 
 编译测试
 
-```text
-# go build client/client.go
-# ./client/client
+```bash
+go build client/client.go
+./client/client
 ret:  0 resp:  hello tars
 ```
 

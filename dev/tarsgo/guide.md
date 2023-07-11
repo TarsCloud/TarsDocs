@@ -5,7 +5,7 @@
 
 有关 tars 协议的更多详细信息, 请查看 [Tars协议](../../base/tars-protocol.md)
 
-```go
+```text
 module TestApp
 {
     interface Hello
@@ -129,7 +129,7 @@ type serverConfig struct {
 
 如下是一个服务端配置的例子:
 
-```text
+```xml
 <tars>
   <application>
       enableset=Y
@@ -159,7 +159,7 @@ type serverConfig struct {
 
 适配器为每个对象绑定 ip 和端口.在服务端代码实现的例子中， app.AddServant\(imp, cfg.App+"."+cfg.Server+".HelloObj"\)完成 HelloObj 的适配器配置和实现的绑定。适配器的完整例子如下：
 
-```text
+```xml
 <tars>
   <application>
     <server>
@@ -199,7 +199,7 @@ type serverConfig struct {
 
 请参阅下面的 config.conf 的完整示例，稍后我们将解释客户端配置。
 
-```text
+```xml
 <tars>
   <application>
     enableset=n
@@ -322,7 +322,7 @@ comm.SetProperty("locator", "tars.tarsregistry.QueryObj@tcp -h ... -p ...")
 
 通信器配置文件的格式如下：
 
-```text
+```xml
 <tars>
   <application>
     #The configuration required by the proxy

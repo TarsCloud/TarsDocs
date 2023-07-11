@@ -16,14 +16,15 @@
 ### 2.1 创建服务
 
 运行tarsgo脚手架，自动创建使用`cmake`构建服务必须的文件。如要使用makefile，[可参考这里](../../hello-world/tarsgo.md)
-
+```text
 tarsgo cmake App Server Servant GoModuleName
 例如：
 tarsgo cmake TestApp HelloGo SayHello github.com/Tars/test
+```
 
 例如: 
 ```sh
-MacBook-Pro-2:OrderServer jarod$ ~/go/bin/tarsgo cmake Cloud OrderServer Order pay
+MacBook-Pro-2:OrderServer jarod$ tarsgo cmake Cloud OrderServer Order pay
 🚀 Creating server Cloud.OrderServer, please wait a moment.
 
 go: creating new go.mod: module pay

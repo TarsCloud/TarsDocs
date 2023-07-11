@@ -2,7 +2,7 @@
 
 ## 前置条件
 
-- [安装Tars框架](../installation/README.md)
+- [安装Tars框架](../../installation/README.md)
 - 安装Golang，建议1.17及以上版本
 
 ## 服务编写
@@ -20,7 +20,7 @@ go install github.com/TarsCloud/TarsGo/tars/tools/tars2go@latest
 
 ### 创建服务
 
-运行`tarsgo`脚手架，自动创建使用`make`构建服务必须的文件。如要使用`cmake`，可参考[这里](../dev/tarsgo/cmake.md)。
+运行`tarsgo`脚手架，自动创建使用`make`构建服务必须的文件。如要使用`cmake`，可参考[这里](cmake.md)。
 
 ```text
 tarsgo make App Server Servant GoModuleName
@@ -66,8 +66,8 @@ $ ./start.sh
 
 为了测试我们定义一个 echoHello 的接口，客户端请求参数是短字符串如 "tars"，服务响应"hello tars".
 
-```go
-# cat HelloGo/SayHello.tars
+```bash
+cat HelloGo/SayHello.tars
 module TestApp{
     interface SayHello{
         int echoHello(string name, out string greeting);
@@ -191,9 +191,9 @@ func main() {
 
 编译测试
 
-```text
-# go build client/client.go
-# ./client/client
+```bash
+go build client/client.go
+./client/client
 ret:  0 resp:  hello tars
 ```
 
