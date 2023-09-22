@@ -37,7 +37,8 @@
 如果是 docker 部署方式, 请请映射宿主机的`/var/run/docker.sock`到镜像中`/var/run/docker.sock`, 比如:
 
 ```
-docker --name=tars-framework \
+docker run -d \
+    --name=tars-framework \
     --net=tars \
     -e MYSQL_HOST="172.25.0.2" \
     -e MYSQL_ROOT_PASSWORD="123456" \
