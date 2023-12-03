@@ -7,38 +7,24 @@
 
 # 1 <span id="chapter-1"></span>TarsNode部署
 
-当完成Tars框架部署之后, 如果希望业务服务发布到节点服务器, 就需要将节点服务器连接到框架上, 这步操作即在节点服务器上安装tarsnode.
+首先我们理解一下tarsnode是什么, 部署完framework以后(通常framework一般部署2台后者3台), 通常还需要部署tarsnode, 在实际环境中tarsnode会部署几十上百台(根据业务规模), 而业务通常部署在tarsnode的节点服务器上.
+
+tarsnode的安装包是在framework上的, 可以通过framework的web平台拉取下来, 当然通常你不需要自己拉取, 后续安装方式会自动拉取并部署在服务器上.
+
+因此我们通常建议tarsnode运行的节点服务器和framework运行服务器是同一个版本, 如果gcc版本不同, 很有可能拉取下来后无法运行!
+
+当完成Tars framework之后, 如果希望业务服务发布到节点服务器, 就需要将节点服务器连接到框架上, 这步操作即在节点服务器上安装tarsnode.
 
 安装Tarsnode有三种模式:
 - web平台在线部署
 - 节点机脚本部署
 - docker化部署
 
-tarsnode运行的用户可以不用是root, 可以安装以后, 将目录切换到其他用户, 例如当前是root用户, 希望切换到tars用户下
-
-```
-#root用户下, 屏蔽crontab, 注释掉tarsnode的监控
-#* * * * * /usr/local/app/tars/tarsnode/util/monitor.sh
-
-#停掉tarsnode(注意crontab监控也要屏蔽, 否则会被自动拉起)
-/usr/local/app/tarsnode/util/stop.sh
-
-#修改目录权限
-chown -R tars:tars /usr/local/app/tarsnode
-
-#切换到tars用户
-su tars
-
-#启动
-/usr/local/app/tarsnode/util/start.sh
-
-#增加当前用户的crontab的监控
-* * * * * /usr/local/app/tars/tarsnode/util/monitor.sh
-```
-
 # 2 <span id="chapter-2"></span>web在线安装
 
-web(>=1.4.1)提供了在线安装tarsnode的功能, 安装时需要输入节点机的ip, 密码等信息, 完成自动tarsnode的安装(需要自己增加crontab监控tarsnode)
+web(>=1.4.1)提供了在线安装tarsnode的功能, 请在web平台: 运维管理->节点管理 界面进行操作. 安装时需要输入节点机的ip, 密码等信息, 完成自动tarsnode的安装(需要自己增加crontab监控tarsnode)
+
+注意节点服务器需要安装好unzip, curl, wget工具包.
 
 注意:
 - tarsnode.tgz安装包是在部署时, 安装脚本自动copy到web/files目录下的
@@ -63,7 +49,7 @@ cp tarsnode.tgz yourweb/files
 
 在节点上运行:
 ```
-wget http://webhost/get_tarsnode?ip=xxx&runuser=root
+wget http://webhost/get_tarsnode?ip=xxx&runuser=root -O get_tarsnode
 chmod a+x get_tarsnode
 ./get_tarsnode
 ```
@@ -76,6 +62,29 @@ chmod a+x get_tarsnode
 
 在crontab配置一个进程监控，确保TARS框架服务在出现异常后能够重新启动。
 ```
+* * * * * /usr/local/app/tars/tarsnode/util/monitor.sh
+```
+
+
+tarsnode运行的用户可以不用是root, 可以安装以后, 将目录切换到其他用户, 例如当前是root用户, 希望切换到tars用户下
+
+```
+#root用户下, 屏蔽crontab, 注释掉tarsnode的监控
+#* * * * * /usr/local/app/tars/tarsnode/util/monitor.sh
+
+#停掉tarsnode(注意crontab监控也要屏蔽, 否则会被自动拉起)
+/usr/local/app/tarsnode/util/stop.sh
+
+#修改目录权限
+chown -R tars:tars /usr/local/app/tarsnode
+
+#切换到tars用户
+su tars
+
+#启动
+/usr/local/app/tarsnode/util/start.sh
+
+#增加当前用户的crontab的监控
 * * * * * /usr/local/app/tars/tarsnode/util/monitor.sh
 ```
 
