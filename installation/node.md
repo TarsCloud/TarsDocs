@@ -58,6 +58,8 @@ chmod a+x get_tarsnode
 - ip: 本机ip
 - runuser: 运行tarsnode的用户
 
+通常情况, 执行`get_tarsnode`脚本, tarsnode会安装`/usr/local/app`目录下, 如果你没有root用户, 你可以优先创建好`/usr/local/app`目录, 切换到你的用户, 然后`wget http://webhost/get_tarsnode?ip=xxx&runuser=root -O get_tarsnode`中, 修改runuser=${your user}, 然后再${your user}权限下执行 ./get_tarsnode 
+
 即完成tarsnode的安装, 然后添加监控:
 
 在crontab配置一个进程监控，确保TARS框架服务在出现异常后能够重新启动。
