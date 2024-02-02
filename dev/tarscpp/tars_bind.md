@@ -12,7 +12,7 @@
 //注意tarscpp版本,老版本可能没有这个函数
 getBindAdapter(getServerBaseInfo().Application + "." + getServerBaseInfo().ServerName +".HelloObj")->enableManualListen();
 
-//如果3.0.16之前的版本, 只能在模板中的<server>域内配置, manualListen = 1 来实现
+//如果3.0.19之前的版本, 只能在模板中的<server>域内配置, manualListen = 1 来实现
 
 ```
 
