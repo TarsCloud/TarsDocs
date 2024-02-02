@@ -6,7 +6,6 @@
 - [新闻](https://tarscloud.org/feed/newsroom)
 - QQ 技术交流群群：733605310, 579079160(满), 669339903(满)
 - 微信公众号: TarsCloud
-- 微信 ID: TARS01
 - [联系我们](https://tarscloud.org/about/contacts)
 
 ## 目录

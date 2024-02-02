@@ -110,8 +110,6 @@ cmake --build . --config release --target install
 
 注意: Visual Studio 16 2019 可以选择你需要的版本, 可以用 cmake .. -G 查看
 
-另外: windows 版本目前开启 TARS_MYSQL, TARS_HTTP2, TARS_SSL, TARS_PROTOBUF 还有问题, 还在解决中.
-
 ## 5 实现业务服务
 
 完成TarsCpp以后, 你可以基于TarsCpp编译出来头文件和lib库实现自己的业务服务了, [请参考](../hello-world/tarscpp.md)
