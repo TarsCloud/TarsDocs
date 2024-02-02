@@ -22,5 +22,5 @@ getBindAdapter(getServerBaseInfo().Application + "." + getServerBaseInfo().Serve
 
 ```
 
-从而完成端口的主动绑定
+从而完成端口的主动绑定.
 
