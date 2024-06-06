@@ -44,16 +44,14 @@
   - [使用二进制包部署](pro/tars-deploy-bin.md)
   - [使用容器部署](pro/tars-deploy-container.md)
   - [业务服务一主多备机制](pro/tars-master-slave.md)
-  - [命令行终端](pro/tars-ctl.md)
-  - [IP-LIST实时同步机制](pro/tars-iplist.md)
+  - [命令行控制终端](pro/tars-ctl.md)
+  - [IP-LIST级联缓存机制](pro/tars-iplist.md)
   - [多数据中心管理](pro/tars-idcs.md)
   - [多网络支持](pro/tars-interfaces.md)
   - [第三方服务管理](pro/tars-other-service.md)
   - [数据产生和管理机制](pro/tars-collect.md)
   - [密码重置功能](pro/tars-pwd.md)
   - [TarsPython介绍](pro/tars-python.md)
-
-
 
 ## 框架关键特性 <span id="important"></span>
 
