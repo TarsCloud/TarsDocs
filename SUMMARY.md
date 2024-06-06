@@ -41,6 +41,8 @@
 ## 企业版本介绍 <span id="pro"></span>
   - [企业版说明](pro/tars-pro.md)
   - [主控集群化](pro/tars-raft.md)
+  - [使用二进制包部署](pro/tars-deploy-bin.md)
+  - [使用容器部署](pro/tars-deploy-container.md)
   - [业务服务一主多备机制](pro/tars-master-slave.md)
   - [命令行终端](pro/tars-ctl.md)
   - [IP-LIST实时同步机制](pro/tars-iplist.md)
@@ -49,8 +51,7 @@
   - [第三方服务管理](pro/tars-other-service.md)
   - [数据产生和管理机制](pro/tars-collect.md)
   - [密码重置功能](pro/tars-pwd.md)
-  - [使用二进制包部署](pro/tars-deploy-bin.md)
-  - [使用容器部署](pro/tars-deploy-container.md)
+  - [TarsPython介绍](pro/tars-python.md)
 
 
 
