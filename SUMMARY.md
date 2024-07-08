@@ -38,7 +38,7 @@
   - [web用户体系](dev/tars-web-user.md)
   - [web管理平台 API](dev/tars-web-api.md)
 
-<!-- ## 企业版本介绍 <span id="pro"></span>
+## 企业版本介绍 <span id="pro"></span>
   - [企业版说明](pro/tars-pro.md)
   - [主控集群化](pro/tars-raft.md)
   - [使用二进制包部署](pro/tars-deploy-bin.md)
@@ -50,8 +50,8 @@
   - [多网络支持](pro/tars-interfaces.md)
   - [第三方服务管理](pro/tars-other-service.md)
   - [数据产生和管理机制](pro/tars-collect.md)
-  - [密码重置功能](pro/tars-pwd.md)
-  - [TarsPython介绍](pro/tars-python.md) -->
+  - [密码重置](pro/tars-pwd.md)
+  - [TarsPython介绍](pro/tars-python.md)
 
 ## 框架关键特性 <span id="important"></span>
 
