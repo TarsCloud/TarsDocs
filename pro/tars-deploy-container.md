@@ -20,9 +20,9 @@ docker run -d --rm --net=host \
     -e TARS_LOCALIP="$localip" \
     -e TARS_OPEN_WEB=true \
     -e TARS_START_PORT=9999 \
-    --name framework-pro \
     -v /data/tars:/data/tars \
-    docker.tarsyun.com/tars-pro/framework-pro:v1.0.0 
+    --name framework-pro \
+    ruanshudong/framework-pro
 ```
 
 说明:
@@ -53,8 +53,9 @@ docker run -d --rm --net=host \
 -e TARS_OPEN_WEB=true \
 -e TARS_START_PORT=9000 \
 -v /data/tars:/data/tars \
+-v /etc/localtime:/etc/localtime \
 --name framework-pro \
-docker.tarsyun.com/tars-pro/framework-pro:v1.0.0 
+ruanshudong/framework-pro
 ```
 
 在节点`192.168.11.2`上启动:
@@ -68,8 +69,9 @@ docker run -d --rm --net=host \
 -e TARS_OPEN_WEB=true \
 -e TARS_START_PORT=9100 \
 -v /data/tars:/data/tars \
+-v /etc/localtime:/etc/localtime \
 --name framework-pro \
-docker.tarsyun.com/tars-pro/framework-pro:v1.0.0 
+ruanshudong/framework-pro
 ```
 
 在节点`192.168.11.3`上启动:
@@ -83,8 +85,9 @@ docker run -d --rm --net=host \
 -e TARS_OPEN_WEB=true \
 -e TARS_START_PORT=9200 \
 -v /data/tars:/data/tars \
+-v /etc/localtime:/etc/localtime \
 --name framework-pro \
-docker.tarsyun.com/tars-pro/framework-pro:v1.0.0 
+ruanshudong/framework-pro
 ```
 
 - 在一台机器上启动三个容器
@@ -101,8 +104,9 @@ docker run -d --rm --net=host \
 -e TARS_OPEN_WEB=true \
 -e TARS_START_PORT=9000 \
 -v /data/tars:/data/tars \
+-v /etc/localtime:/etc/localtime \
 --name framework-pro-1 \
-docker.tarsyun.com/tars-pro/framework-pro:v1.0.0 
+ruanshudong/framework-pro
 ```
 
 ```shell
@@ -114,8 +118,9 @@ docker run -d --rm --net=host \
 -e TARS_LOCALIP="192.168.11.1" \
 -e TARS_START_PORT=9100 \
 -v /data/tars:/data/tars \
+-v /etc/localtime:/etc/localtime \
 --name framework-pro-2 \
-docker.tarsyun.com/tars-pro/framework-pro:v1.0.0 
+ruanshudong/framework-pro
 ```
 
 
@@ -128,8 +133,9 @@ docker run -d --rm --net=host \
 -e TARS_LOCALIP="192.168.11.1" \
 -e TARS_START_PORT=9200 \
 -v /data/tars:/data/tars \
+-v /etc/localtime:/etc/localtime \
 --name framework-pro-3 \
-docker.tarsyun.com/tars-pro/framework-pro:v1.0.0 
+ruanshudong/framework-pro
 
 ```
 
@@ -153,8 +159,9 @@ docker run -d --rm --net=host \
     -e TARS_LOCALIP="$localip" \
     -e TARS_OPEN_WEB=true \
     -v /data/tars:/data/tars \
+    -v /etc/localtime:/etc/localtime \
     --name $nodename \
-    docker.tarsyun.com/tars-pro/framework-pro:v1.0.0 
+    ruanshudong/framework-pro
 ```
 
 例如:
@@ -168,6 +175,7 @@ docker run -d --rm --net=host \
 -e TARS_LOCALIP="192.168.11.1" \
 -e TARS_START_PORT=9200 \
 -v /data/tars:/data/tars \
+-v /etc/localtime:/etc/localtime \
 --name tarsnode-4 \
-docker.tarsyun.com/tars-pro/framework-pro:v1.0.0 
+ruanshudong/framework-pro
 ```
