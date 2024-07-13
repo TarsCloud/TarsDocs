@@ -21,6 +21,7 @@ docker run -d --rm --net=host \
     -e TARS_OPEN_WEB=true \
     -e TARS_START_PORT=9999 \
     --name framework-pro \
+    -v /data/tars:/data/tars \
     docker.tarsyun.com/tars-pro/framework-pro:v1.0.0 
 ```
 
@@ -51,6 +52,7 @@ docker run -d --rm --net=host \
 -e TARS_LOCALIP="192.168.11.1" \
 -e TARS_OPEN_WEB=true \
 -e TARS_START_PORT=9000 \
+-v /data/tars:/data/tars \
 --name framework-pro \
 docker.tarsyun.com/tars-pro/framework-pro:v1.0.0 
 ```
@@ -65,6 +67,7 @@ docker run -d --rm --net=host \
 -e TARS_LOCALIP="192.168.11.2" \
 -e TARS_OPEN_WEB=true \
 -e TARS_START_PORT=9100 \
+-v /data/tars:/data/tars \
 --name framework-pro \
 docker.tarsyun.com/tars-pro/framework-pro:v1.0.0 
 ```
@@ -79,6 +82,7 @@ docker run -d --rm --net=host \
 -e TARS_LOCALIP="192.168.11.3" \
 -e TARS_OPEN_WEB=true \
 -e TARS_START_PORT=9200 \
+-v /data/tars:/data/tars \
 --name framework-pro \
 docker.tarsyun.com/tars-pro/framework-pro:v1.0.0 
 ```
@@ -96,6 +100,7 @@ docker run -d --rm --net=host \
 -e TARS_LOCALIP="192.168.11.1" \
 -e TARS_OPEN_WEB=true \
 -e TARS_START_PORT=9000 \
+-v /data/tars:/data/tars \
 --name framework-pro-1 \
 docker.tarsyun.com/tars-pro/framework-pro:v1.0.0 
 ```
@@ -108,6 +113,7 @@ docker run -d --rm --net=host \
 -e TARS_REGISTRY="tcp -h 192.168.11.1 -p 7891" \
 -e TARS_LOCALIP="192.168.11.1" \
 -e TARS_START_PORT=9100 \
+-v /data/tars:/data/tars \
 --name framework-pro-2 \
 docker.tarsyun.com/tars-pro/framework-pro:v1.0.0 
 ```
@@ -121,6 +127,7 @@ docker run -d --rm --net=host \
 -e TARS_REGISTRY="tcp -h 192.168.11.3 -p 7892" \
 -e TARS_LOCALIP="192.168.11.1" \
 -e TARS_START_PORT=9200 \
+-v /data/tars:/data/tars \
 --name framework-pro-3 \
 docker.tarsyun.com/tars-pro/framework-pro:v1.0.0 
 
@@ -145,6 +152,7 @@ docker run -d --rm --net=host \
     -e TARS_NODENAME="$nodename" \
     -e TARS_LOCALIP="$localip" \
     -e TARS_OPEN_WEB=true \
+    -v /data/tars:/data/tars \
     --name $nodename \
     docker.tarsyun.com/tars-pro/framework-pro:v1.0.0 
 ```
@@ -159,6 +167,7 @@ docker run -d --rm --net=host \
 -e TARS_NODENAME="tarsnode-4" \
 -e TARS_LOCALIP="192.168.11.1" \
 -e TARS_START_PORT=9200 \
+-v /data/tars:/data/tars \
 --name tarsnode-4 \
 docker.tarsyun.com/tars-pro/framework-pro:v1.0.0 
 ```
