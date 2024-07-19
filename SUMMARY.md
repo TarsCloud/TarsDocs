@@ -40,7 +40,8 @@
 
 ## 企业版本介绍 <span id="pro"></span>
   - [企业版说明](pro/tars-pro.md)
-  - [主控集群化](pro/tars-raft.md)
+  - [框架集群化机制](pro/tars-single.md)
+  - [框架单节点机制](pro/tars-cluster.md)
   - [使用二进制包部署](pro/tars-deploy-bin.md)
   - [使用容器部署](pro/tars-deploy-container.md)
   - [业务服务一主多备机制](pro/tars-master-slave.md)

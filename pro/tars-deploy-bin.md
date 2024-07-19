@@ -7,6 +7,7 @@
 
 - 正常情况下, 需要选取2n+1节点服务器, 从而完成框架组件的容灾;
 - 如果有需要, 也可以在同一个服务器上安装三次, 每次安装在不同目录, 使用不同的节点名称;
+- 也可以将框架部署成单节模式;
 
 **tars企业版本可以在同一台节点上安装多个tarsnode, 只需要每个tarsnode的节点名称不同即可!**
 
@@ -15,19 +16,18 @@
 ### 安装framework
 
 - 得到安装包: framework.tgz, 源码下可以执行: `make publish`, 得到安装包: framework.tgz
-- 得到tarsctl
->- 源码编译, 执行: `make tarsctl`, 得到tarsctl
->- 源码情况下, 可以远程下载: wget http://cdn.tarsyun.com/src/tarsctl -O tarsctl && chmod a+x tarsctl && cp tarsctl -rf /usr/bin/
+- 解压framework.tgz, 目录下得到tarsctl
 - 通常至少在2n+1台节点(建议3台)的运行以下命令安装framework
 ```shell
-tarsctl install framework --install-path=/usr/local/app --file=framework.tgz --locator="tcp -h xxx1 -p yyy1:tcp -h xxx2 -p yyy2:tcp -h xxx3 -p yyy3" --localip=[xxx] --node-name=tarsnode-0 --registry=\"tcp -h xxx1 -p xxx2\"
+tarsctl install framework --mode=cluster --install-path=/usr/local/app --file=framework.tgz --locator="tcp -h xxx1 -p yyy1:tcp -h xxx2 -p yyy2:tcp -h xxx3 -p yyy3" --localip=[xxx] --node-name=tarsnode-0 --registry=\"tcp -h xxx1 -p xxx2\"
 ```
 >- file: 制定了安装包文件, 如果是源码编译出来的, 通过`make publish`来生成
+>- mode: 集群机制, 默认是集群机制, 如果希望只部署一个节点(单节点机制), 则mode设置为single
 >- install-path: 指定了安装目录, 当前用户需要有这个目录的权限, 缺省为: /usr/local/app
 >- locator: 指定了主控的地址, 指定了三个地址, 必须和三台节点相匹配
 >- localip: 本节点的ip
 >- node-name: 当前安装的节点名称, 指定了`tarsnode`的节点名称(必须唯一)
->- registry: 当前安装的主控节点QueryObj绑定的地址, 必须是locator中的一个
+>- registry: 当前安装的主控节点QueryObj绑定的地址, 必须是locator中的一个(如果是单节点机制, registry不需要设置)
 >- tarslog只部署在第一台节点`xxx1`上, 其他服务都是部署了三台节点
 
 **注意: 可以在同一台机器上安装三个framework, 注意每次的安装目录(install-path)和节点名称(node-name)要不同, 另外注意locator和registry的地址要争取(比如ip相同, 端口不同)**
@@ -57,6 +57,11 @@ tarsctl install web --install-path=/usr/local/app --file=web.tgz --locator="tcp 
 
 你可以在多台机器上安装台web管理平台, 前面配置负载均衡即可.
 
+启动管理平台:
+```shell
+cd /usr/local/app/web
+
+```
 ## 框架启动方式
 
 启动组件服务有两种方式, 一种是手动拉起, 一种是自动拉起
