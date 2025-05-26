@@ -50,7 +50,7 @@
   - [多数据中心管理](pro/tars-idcs.md)
   - [多网络支持](pro/tars-interfaces.md)
   - [第三方服务管理](pro/tars-other-service.md)
-  - [数据产生和管理机制](pro/tars-collect.md)
+  - [数据产生和管理机制](pro/tars-data.md)
   - [密码重置](pro/tars-pwd.md)
   - [TarsPython介绍](pro/tars-python.md)
 
