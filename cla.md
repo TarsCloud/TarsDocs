@@ -14,7 +14,7 @@ It is important to read and understand this legal agreement.
 
 ### How do I sign?
 
-1. Create a pull request, the system will remind you the CLA is not signed yet. Click the url. You will recive an email at the same time.
+1. Create a pull request, the system will remind you the CLA is not signed yet. Click the url. You will receive an email at the same time.
 
 ![](assets/cla1.png)
 
